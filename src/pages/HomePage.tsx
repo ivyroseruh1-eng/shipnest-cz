@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Search, Shield, Zap, Star } from "lucide-react";
+import { ArrowRight, Search, Shield, Zap, Star, ChevronRight } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import TrustBadges from "@/components/TrustBadges";
@@ -47,6 +47,11 @@ const HomePage = () => {
       </div>
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {items.map(p => <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />)}
+      </div>
+      <div className="text-center">
+        <Link to={link} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors border border-border rounded-lg px-5 py-2 hover:border-primary/50">
+          View more products <ChevronRight className="w-3 h-3" />
+        </Link>
       </div>
     </section>
   );
@@ -98,7 +103,7 @@ const HomePage = () => {
         <Section title="Samsung Galaxy" items={samsung} link="/shop?brand=Samsung" />
         <Section title="Premium Tech" items={premiumTech} link="/shop" />
 
-        {/* Subtle tracking section — looks like a feature, not a "fake store" giveaway */}
+        {/* Tracking */}
         <section className="bg-card/50 border border-border rounded-2xl p-6 sm:p-8">
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1 space-y-2">
