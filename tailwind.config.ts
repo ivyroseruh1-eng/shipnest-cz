@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        orbitron: ["Orbitron", "sans-serif"],
+        rajdhani: ["Rajdhani", "sans-serif"],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,15 +51,32 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        gold: {
+          DEFAULT: "hsl(var(--gold))",
+          light: "hsl(var(--gold-light))",
+        },
+        navy: {
+          DEFAULT: "hsl(var(--navy))",
+          light: "hsl(var(--navy-light))",
+        },
+        "blue-glow": "hsl(var(--blue-glow))",
+        silver: {
+          DEFAULT: "hsl(var(--silver))",
+          light: "hsl(var(--silver-light))",
+        },
         sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
+          DEFAULT: "hsl(var(--sidebar-background, var(--background)))",
+          foreground: "hsl(var(--sidebar-foreground, var(--foreground)))",
+          primary: "hsl(var(--sidebar-primary, var(--primary)))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground, var(--primary-foreground)))",
+          accent: "hsl(var(--sidebar-accent, var(--accent)))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground, var(--accent-foreground)))",
+          border: "hsl(var(--sidebar-border, var(--border)))",
+          ring: "hsl(var(--sidebar-ring, var(--ring)))",
         },
       },
       borderRadius: {
@@ -65,20 +86,16 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        pulse: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.5" },
         },
       },
       animation: {
