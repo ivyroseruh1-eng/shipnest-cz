@@ -1,30 +1,45 @@
 import { useState } from "react";
 import { useOrders, generateTrackingId } from "@/context/OrderContext";
+import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save } from "lucide-react";
+import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp } from "lucide-react";
 
 const ADMIN_PASSWORD = "shipnest2024";
-const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢"];
+const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
 
 const AdminPage = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
-  const [tab, setTab] = useState<"dashboard" | "orders" | "products">("dashboard");
+  const [tab, setTab] = useState<"dashboard" | "orders" | "products" | "settings">("dashboard");
   const { orders, updateOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    customer: true, order: true, timeline: true,
+  });
+
+  const toggleSection = (key: string) => setExpandedSections(prev => ({ ...prev, [key]: !prev[key] }));
 
   if (!authenticated) {
     return (
-      <div className="max-w-md mx-auto px-4 py-20 space-y-6">
-        <h1 className="text-2xl font-bold font-orbitron text-foreground text-center">Admin Access</h1>
-        <div className="bg-card border border-border rounded-xl p-6 space-y-4">
-          <input type="password" placeholder="Enter admin password" value={password}
-            onChange={e => setPassword(e.target.value)}
-            onKeyDown={e => { if (e.key === "Enter") { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Wrong password"); }}}
-            className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary" />
-          <button onClick={() => { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Wrong password"); }}
-            className="w-full gold-gradient text-primary-foreground py-3 rounded-xl font-bold hover:opacity-90">Login</button>
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="max-w-sm w-full space-y-6">
+          <div className="text-center space-y-2">
+            <div className="w-16 h-16 rounded-2xl gold-gradient mx-auto flex items-center justify-center mb-4">
+              <Settings className="w-8 h-8 text-primary-foreground" />
+            </div>
+            <h1 className="text-xl font-bold font-orbitron text-foreground">Admin Portal</h1>
+            <p className="text-xs text-muted-foreground">Enter credentials to access the control panel</p>
+          </div>
+          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
+            <input type="password" placeholder="Admin Password" value={password}
+              onChange={e => setPassword(e.target.value)}
+              onKeyDown={e => { if (e.key === "Enter") { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Invalid credentials"); }}}
+              className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary text-sm" />
+            <button onClick={() => { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Invalid credentials"); }}
+              className="w-full gold-gradient text-primary-foreground py-3 rounded-xl font-bold hover:opacity-90 text-sm">Authenticate</button>
+          </div>
         </div>
       </div>
     );
@@ -34,13 +49,17 @@ const AdminPage = () => {
   const processing = orders.filter(o => o.status !== "Delivered").length;
   const delivered = orders.filter(o => o.status === "Delivered").length;
 
+  const filteredOrders = searchQuery
+    ? orders.filter(o => o.orderId.toLowerCase().includes(searchQuery.toLowerCase()) || o.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) || o.trackingId.toLowerCase().includes(searchQuery.toLowerCase()))
+    : orders;
+
   const saveOrder = () => {
     if (!editingOrder) return;
     const latestCompleted = [...editingOrder.trackingSteps].reverse().find(s => s.completed);
     const updatedOrder = { ...editingOrder, status: latestCompleted?.status || editingOrder.status };
     updateOrder(updatedOrder.orderId, updatedOrder);
     setEditingOrder(null);
-    toast.success("Order updated!");
+    toast.success("Order updated successfully!");
   };
 
   const updateStep = (stepId: string, updates: Partial<TrackingStep>) => {
@@ -67,23 +86,35 @@ const AdminPage = () => {
     setEditingOrder({ ...editingOrder, trackingSteps: editingOrder.trackingSteps.filter(s => s.id !== stepId) });
   };
 
-  const inputClass = "w-full bg-muted border border-border rounded-lg px-3 py-2 text-foreground text-sm focus:outline-none focus:border-primary";
+  const inputClass = "w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-foreground text-sm focus:outline-none focus:border-primary placeholder:text-muted-foreground";
+  const labelClass = "text-[10px] text-muted-foreground font-orbitron tracking-widest uppercase mb-1 block";
+
+  const tabs = [
+    { id: "dashboard" as const, icon: BarChart3, label: "Dashboard" },
+    { id: "orders" as const, icon: Package, label: "Orders" },
+    { id: "products" as const, icon: Eye, label: "Products" },
+    { id: "settings" as const, icon: Settings, label: "Settings" },
+  ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
+      {/* Header */}
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold font-orbitron text-foreground">Admin Panel</h1>
-        <button onClick={() => setAuthenticated(false)} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-destructive transition-colors">
-          <LogOut className="w-4 h-4" /> Logout
+        <div>
+          <h1 className="text-xl font-bold font-orbitron text-foreground">Control Panel</h1>
+          <p className="text-xs text-muted-foreground mt-0.5">ShipNest Admin · {new Date().toLocaleString("en-GB", { timeZone: "Europe/Prague" })}</p>
+        </div>
+        <button onClick={() => setAuthenticated(false)} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-destructive transition-colors bg-card border border-border rounded-lg px-3 py-2">
+          <LogOut className="w-3 h-3" /> Logout
         </button>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 border-b border-border pb-2">
-        {(["dashboard", "orders", "products"] as const).map(t => (
-          <button key={t} onClick={() => setTab(t)}
-            className={`px-4 py-2 rounded-t-lg text-sm font-medium capitalize transition-colors ${tab === t ? "bg-card text-primary border border-border border-b-0" : "text-muted-foreground hover:text-foreground"}`}>
-            {t}
+      <div className="flex gap-1 bg-card border border-border rounded-xl p-1">
+        {tabs.map(t => (
+          <button key={t.id} onClick={() => setTab(t.id)}
+            className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${tab === t.id ? "gold-gradient text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}>
+            <t.icon className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.label}</span>
           </button>
         ))}
       </div>
@@ -91,69 +122,47 @@ const AdminPage = () => {
       {/* Dashboard */}
       {tab === "dashboard" && (
         <div className="space-y-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
               { icon: Package, label: "Total Orders", value: orders.length, color: "text-accent" },
-              { icon: Truck, label: "Processing", value: processing, color: "text-primary" },
+              { icon: Clock, label: "Processing", value: processing, color: "text-primary" },
               { icon: CheckCircle, label: "Delivered", value: delivered, color: "text-success" },
-              { icon: DollarSign, label: "Revenue", value: `$${totalRevenue.toFixed(2)}`, color: "gold-text" },
+              { icon: DollarSign, label: "Revenue", value: `$${totalRevenue.toFixed(0)}`, color: "gold-text" },
             ].map(s => (
-              <div key={s.label} className="bg-card border border-border rounded-xl p-4">
-                <s.icon className={`w-6 h-6 ${s.color} mb-2`} />
+              <div key={s.label} className="bg-card border border-border rounded-xl p-4 space-y-2">
+                <div className="flex items-center justify-between">
+                  <s.icon className={`w-5 h-5 ${s.color}`} />
+                  <span className="text-[10px] text-muted-foreground font-orbitron">{s.label.toUpperCase()}</span>
+                </div>
                 <p className="text-2xl font-bold font-orbitron text-foreground">{s.value}</p>
-                <p className="text-xs text-muted-foreground">{s.label}</p>
               </div>
             ))}
           </div>
+
           {orders.length > 0 && (
             <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <div className="p-4 border-b border-border"><h3 className="font-bold text-foreground font-orbitron">Recent Orders</h3></div>
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead><tr className="border-b border-border text-muted-foreground">
-                    <th className="p-3 text-left">Order ID</th><th className="p-3 text-left">Customer</th><th className="p-3 text-left">Status</th><th className="p-3 text-left">Total</th>
-                  </tr></thead>
-                  <tbody>
-                    {orders.slice(0, 10).map(o => (
-                      <tr key={o.orderId} className="border-b border-border/50">
-                        <td className="p-3 font-orbitron text-xs text-foreground">{o.orderId}</td>
-                        <td className="p-3 text-foreground">{o.customer.name}</td>
-                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-xs font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
-                        <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <div className="p-4 border-b border-border flex items-center justify-between">
+                <h3 className="font-bold text-foreground font-orbitron text-sm">Recent Orders</h3>
+                <button onClick={() => setTab("orders")} className="text-xs text-primary hover:underline">View all →</button>
               </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Orders */}
-      {tab === "orders" && (
-        <div className="space-y-4">
-          {orders.length === 0 ? (
-            <p className="text-center text-muted-foreground py-10">No orders yet</p>
-          ) : (
-            <div className="bg-card border border-border rounded-xl overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead><tr className="border-b border-border text-muted-foreground">
-                    <th className="p-3 text-left">Order ID</th><th className="p-3 text-left">Customer</th><th className="p-3 text-left">Tracking</th>
-                    <th className="p-3 text-left">Items</th><th className="p-3 text-left">Total</th><th className="p-3 text-left">Status</th><th className="p-3 text-left">Actions</th>
+                <table className="w-full text-xs">
+                  <thead><tr className="border-b border-border text-muted-foreground bg-muted/30">
+                    <th className="p-3 text-left font-medium">Order</th>
+                    <th className="p-3 text-left font-medium">Customer</th>
+                    <th className="p-3 text-left font-medium">Status</th>
+                    <th className="p-3 text-left font-medium">Total</th>
+                    <th className="p-3 text-left font-medium">Action</th>
                   </tr></thead>
                   <tbody>
-                    {orders.map(o => (
-                      <tr key={o.orderId} className="border-b border-border/50">
-                        <td className="p-3 font-orbitron text-xs text-foreground">{o.orderId}</td>
-                        <td className="p-3"><p className="text-foreground">{o.customer.name}</p><p className="text-xs text-muted-foreground">{o.customer.email}</p></td>
-                        <td className="p-3 font-orbitron text-xs gold-text">{o.trackingId}</td>
-                        <td className="p-3 text-foreground">{o.items.length}</td>
+                    {orders.slice(0, 5).map(o => (
+                      <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                        <td className="p-3 font-orbitron text-foreground">{o.orderId}</td>
+                        <td className="p-3 text-foreground">{o.customer.name}</td>
+                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
                         <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
-                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-xs font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
                         <td className="p-3">
-                          <button onClick={() => setEditingOrder({ ...o })} className="flex items-center gap-1 text-accent hover:text-primary transition-colors text-xs">
+                          <button onClick={() => setEditingOrder({ ...o })} className="text-primary hover:underline flex items-center gap-1">
                             <Edit className="w-3 h-3" /> Edit
                           </button>
                         </td>
@@ -167,90 +176,245 @@ const AdminPage = () => {
         </div>
       )}
 
-      {/* Products (simplified view) */}
+      {/* Orders */}
+      {tab === "orders" && (
+        <div className="space-y-4">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input placeholder="Search by Order ID, Customer, or Tracking ID..."
+              value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+              className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary" />
+          </div>
+
+          {filteredOrders.length === 0 ? (
+            <div className="text-center text-muted-foreground py-10 bg-card border border-border rounded-xl">
+              <Package className="w-10 h-10 mx-auto mb-3 opacity-30" />
+              <p className="text-sm">No orders found</p>
+            </div>
+          ) : (
+            <div className="bg-card border border-border rounded-xl overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs">
+                  <thead><tr className="border-b border-border text-muted-foreground bg-muted/30">
+                    <th className="p-3 text-left font-medium">Order ID</th>
+                    <th className="p-3 text-left font-medium">Customer</th>
+                    <th className="p-3 text-left font-medium">Tracking</th>
+                    <th className="p-3 text-left font-medium">Items</th>
+                    <th className="p-3 text-left font-medium">Total</th>
+                    <th className="p-3 text-left font-medium">Status</th>
+                    <th className="p-3 text-left font-medium">Actions</th>
+                  </tr></thead>
+                  <tbody>
+                    {filteredOrders.map(o => (
+                      <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                        <td className="p-3 font-orbitron text-foreground">{o.orderId}</td>
+                        <td className="p-3">
+                          <p className="text-foreground font-medium">{o.customer.name}</p>
+                          <p className="text-muted-foreground">{o.customer.email}</p>
+                        </td>
+                        <td className="p-3 font-orbitron gold-text">{o.trackingId}</td>
+                        <td className="p-3 text-foreground">{o.items.length} item{o.items.length > 1 ? "s" : ""}</td>
+                        <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
+                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
+                        <td className="p-3">
+                          <button onClick={() => setEditingOrder({ ...o })}
+                            className="flex items-center gap-1 text-primary hover:underline">
+                            <Edit className="w-3 h-3" /> Edit
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Products */}
       {tab === "products" && (
-        <div className="text-center text-muted-foreground py-10">
-          <p>Products are managed via the data file. {orders.length} products loaded.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {products.map(p => (
+            <div key={p.id} className="bg-card border border-border rounded-xl p-4 flex gap-4 items-center">
+              <img src={p.image} alt={p.name} className="w-14 h-14 object-contain rounded-lg bg-muted/30" />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs text-muted-foreground">{p.brand}</p>
+                <p className="text-sm font-semibold text-foreground truncate">{p.name}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-sm font-bold font-orbitron gold-text">${p.price}</span>
+                  {p.badge && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold gold-gradient text-primary-foreground">{p.badge}</span>}
+                  <span className={`text-[9px] font-bold ${p.inStock ? "text-success" : "text-destructive"}`}>
+                    {p.inStock ? "● In Stock" : "● Out"}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Settings */}
+      {tab === "settings" && (
+        <div className="bg-card border border-border rounded-xl p-6 space-y-4 max-w-md">
+          <h3 className="font-bold font-orbitron text-foreground text-sm">System Info</h3>
+          <div className="space-y-2 text-sm">
+            <div className="flex justify-between text-muted-foreground"><span>Platform</span><span className="text-foreground">ShipNest v2.0</span></div>
+            <div className="flex justify-between text-muted-foreground"><span>Timezone</span><span className="text-foreground">Europe/Prague (CET)</span></div>
+            <div className="flex justify-between text-muted-foreground"><span>Orders</span><span className="text-foreground">{orders.length}</span></div>
+            <div className="flex justify-between text-muted-foreground"><span>Products</span><span className="text-foreground">{products.length}</span></div>
+          </div>
         </div>
       )}
 
       {/* Edit Order Modal */}
       {editingOrder && (
-        <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-start justify-center overflow-y-auto py-8">
-          <div className="bg-card border border-border rounded-2xl max-w-3xl w-full mx-4 p-6 space-y-6">
+        <div className="fixed inset-0 z-50 bg-background/90 backdrop-blur-md flex items-start justify-center overflow-y-auto py-4 px-4">
+          <div className="bg-card border border-border rounded-2xl max-w-2xl w-full p-5 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold font-orbitron text-foreground">Edit Order</h2>
-              <button onClick={() => setEditingOrder(null)} className="text-muted-foreground hover:text-foreground text-xl">✕</button>
-            </div>
-
-            {/* Customer Details */}
-            <div className="space-y-3">
-              <h3 className="font-semibold text-foreground text-sm">Customer Details</h3>
-              <div className="grid grid-cols-2 gap-3">
-                <input value={editingOrder.customer.name} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, name: e.target.value } })} placeholder="Name" className={inputClass} />
-                <input value={editingOrder.customer.email} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, email: e.target.value } })} placeholder="Email" className={inputClass} />
-                <input value={editingOrder.customer.phone} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, phone: e.target.value } })} placeholder="Phone" className={inputClass} />
-                <input value={editingOrder.customer.address} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, address: e.target.value } })} placeholder="Address" className={inputClass} />
-                <input value={editingOrder.customer.city} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, city: e.target.value } })} placeholder="City" className={inputClass} />
-                <input value={editingOrder.customer.country} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, country: e.target.value } })} placeholder="Country" className={inputClass} />
+              <div>
+                <h2 className="text-lg font-bold font-orbitron text-foreground">Edit Order</h2>
+                <p className="text-xs text-muted-foreground font-orbitron">{editingOrder.orderId}</p>
               </div>
+              <button onClick={() => setEditingOrder(null)} className="p-2 text-muted-foreground hover:text-foreground bg-muted rounded-lg">✕</button>
             </div>
 
-            {/* Order Details */}
-            <div className="space-y-3">
-              <h3 className="font-semibold text-foreground text-sm">Order Details</h3>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex gap-2">
-                  <input value={editingOrder.trackingId} onChange={e => setEditingOrder({ ...editingOrder, trackingId: e.target.value })} placeholder="Tracking ID" className={inputClass} />
-                  <button onClick={() => setEditingOrder({ ...editingOrder, trackingId: generateTrackingId() })}
-                    className="shrink-0 px-3 py-2 bg-muted border border-border rounded-lg text-xs text-foreground hover:border-primary">New</button>
+            {/* Customer Details Section */}
+            <div className="border border-border rounded-xl overflow-hidden">
+              <button onClick={() => toggleSection("customer")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-primary" />
+                  <span className="font-semibold text-foreground text-sm">Customer Details</span>
                 </div>
-                <input type="date" value={editingOrder.estimatedDelivery.split("T")[0]}
-                  onChange={e => setEditingOrder({ ...editingOrder, estimatedDelivery: new Date(e.target.value).toISOString() })} className={inputClass} />
-              </div>
-              <textarea value={editingOrder.notes} onChange={e => setEditingOrder({ ...editingOrder, notes: e.target.value })}
-                placeholder="Admin notes..." rows={2} className={inputClass} />
+                {expandedSections.customer ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+              </button>
+              {expandedSections.customer && (
+                <div className="p-4 space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div><label className={labelClass}>Name</label><input value={editingOrder.customer.name} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, name: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>Email</label><input value={editingOrder.customer.email} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, email: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>Phone</label><input value={editingOrder.customer.phone} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, phone: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>Address</label><input value={editingOrder.customer.address} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, address: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>City</label><input value={editingOrder.customer.city} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, city: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>State</label><input value={editingOrder.customer.state} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, state: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>Country</label><input value={editingOrder.customer.country} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, country: e.target.value } })} className={inputClass} /></div>
+                    <div><label className={labelClass}>ZIP</label><input value={editingOrder.customer.zip} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, zip: e.target.value } })} className={inputClass} /></div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Tracking Steps */}
-            <div className="space-y-3">
-              <h3 className="font-semibold text-foreground text-sm">Tracking Timeline</h3>
-              <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
-                {editingOrder.trackingSteps.map((step, i) => (
-                  <div key={step.id} className={`border rounded-xl p-4 space-y-3 ${step.completed ? "border-primary/50 bg-primary/5" : "border-border"}`}>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs text-muted-foreground font-orbitron">Step {i + 1}</span>
-                      <div className="flex items-center gap-2">
-                        <label className="flex items-center gap-1.5 text-xs text-foreground cursor-pointer">
-                          <input type="checkbox" checked={step.completed}
-                            onChange={e => updateStep(step.id, { completed: e.target.checked })}
-                            className="rounded border-border" /> ✅ Completed
-                        </label>
-                        <button onClick={() => removeStep(step.id)} className="p-1 text-muted-foreground hover:text-destructive"><Trash2 className="w-3 h-3" /></button>
+            {/* Order Details Section */}
+            <div className="border border-border rounded-xl overflow-hidden">
+              <button onClick={() => toggleSection("order")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-2">
+                  <Package className="w-4 h-4 text-primary" />
+                  <span className="font-semibold text-foreground text-sm">Order Details</span>
+                </div>
+                {expandedSections.order ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+              </button>
+              {expandedSections.order && (
+                <div className="p-4 space-y-3">
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className={labelClass}>Tracking ID</label>
+                      <div className="flex gap-2">
+                        <input value={editingOrder.trackingId} onChange={e => setEditingOrder({ ...editingOrder, trackingId: e.target.value })} className={inputClass} />
+                        <button onClick={() => setEditingOrder({ ...editingOrder, trackingId: generateTrackingId() })}
+                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-primary transition-colors" title="Generate new">
+                          <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
+                        </button>
                       </div>
                     </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <input value={step.status} onChange={e => updateStep(step.id, { status: e.target.value })} placeholder="Status" className={inputClass} />
-                      <select value={step.icon} onChange={e => updateStep(step.id, { icon: e.target.value })} className={inputClass}>
-                        {ICONS.map(ic => <option key={ic} value={ic}>{ic}</option>)}
-                      </select>
-                      <input value={step.city} onChange={e => updateStep(step.id, { city: e.target.value })} placeholder="City" className={inputClass} />
-                      <input value={step.state} onChange={e => updateStep(step.id, { state: e.target.value })} placeholder="State" className={inputClass} />
-                      <input value={step.country} onChange={e => updateStep(step.id, { country: e.target.value })} placeholder="Country" className={inputClass} />
-                      <input type="datetime-local" value={step.timestamp ? step.timestamp.slice(0, 16) : ""}
-                        onChange={e => updateStep(step.id, { timestamp: e.target.value ? new Date(e.target.value).toISOString() : "" })} className={inputClass} />
+                    <div>
+                      <label className={labelClass}>Estimated Delivery</label>
+                      <input type="date" value={editingOrder.estimatedDelivery.split("T")[0]}
+                        onChange={e => setEditingOrder({ ...editingOrder, estimatedDelivery: new Date(e.target.value).toISOString() })} className={inputClass} />
                     </div>
                   </div>
-                ))}
-              </div>
-              <button onClick={addStep} className="w-full border border-dashed border-border rounded-xl p-3 text-sm text-muted-foreground hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2">
-                <Plus className="w-4 h-4" /> Add Tracking Step
+                  <div>
+                    <label className={labelClass}>Admin Notes</label>
+                    <textarea value={editingOrder.notes} onChange={e => setEditingOrder({ ...editingOrder, notes: e.target.value })}
+                      placeholder="Internal notes..." rows={2} className={inputClass} />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Tracking Timeline Section */}
+            <div className="border border-border rounded-xl overflow-hidden">
+              <button onClick={() => toggleSection("timeline")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-2">
+                  <Truck className="w-4 h-4 text-primary" />
+                  <span className="font-semibold text-foreground text-sm">Tracking Timeline</span>
+                  <span className="text-[10px] text-muted-foreground">({editingOrder.trackingSteps.length} steps)</span>
+                </div>
+                {expandedSections.timeline ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
               </button>
+              {expandedSections.timeline && (
+                <div className="p-4 space-y-3">
+                  <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
+                    {editingOrder.trackingSteps.map((step, i) => (
+                      <div key={step.id} className={`border rounded-xl p-3 space-y-2 transition-all ${step.completed ? "border-primary/40 bg-primary/5" : "border-border"}`}>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg">{step.icon}</span>
+                            <span className="text-[10px] text-muted-foreground font-orbitron">STEP {i + 1}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <label className="flex items-center gap-1 text-[10px] text-foreground cursor-pointer bg-muted px-2 py-1 rounded-lg">
+                              <input type="checkbox" checked={step.completed}
+                                onChange={e => updateStep(step.id, { completed: e.target.checked })}
+                                className="rounded border-border w-3 h-3" />
+                              Done
+                            </label>
+                            <button onClick={() => removeStep(step.id)} className="p-1 text-muted-foreground hover:text-destructive">
+                              <Trash2 className="w-3 h-3" />
+                            </button>
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div>
+                            <label className={labelClass}>Status</label>
+                            <input value={step.status} onChange={e => updateStep(step.id, { status: e.target.value })} className={inputClass} />
+                          </div>
+                          <div>
+                            <label className={labelClass}>Icon</label>
+                            <select value={step.icon} onChange={e => updateStep(step.id, { icon: e.target.value })} className={inputClass}>
+                              {ICONS.map(ic => <option key={ic} value={ic}>{ic}</option>)}
+                            </select>
+                          </div>
+                          <div>
+                            <label className={labelClass}>City</label>
+                            <input value={step.city} onChange={e => updateStep(step.id, { city: e.target.value })} className={inputClass} />
+                          </div>
+                          <div>
+                            <label className={labelClass}>State</label>
+                            <input value={step.state} onChange={e => updateStep(step.id, { state: e.target.value })} className={inputClass} />
+                          </div>
+                          <div>
+                            <label className={labelClass}>Country</label>
+                            <input value={step.country} onChange={e => updateStep(step.id, { country: e.target.value })} className={inputClass} />
+                          </div>
+                          <div>
+                            <label className={labelClass}>Timestamp</label>
+                            <input type="datetime-local" value={step.timestamp ? step.timestamp.slice(0, 16) : ""}
+                              onChange={e => updateStep(step.id, { timestamp: e.target.value ? new Date(e.target.value).toISOString() : "" })} className={inputClass} />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <button onClick={addStep} className="w-full border border-dashed border-border rounded-xl p-3 text-xs text-muted-foreground hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2">
+                    <Plus className="w-3.5 h-3.5" /> Add Tracking Step
+                  </button>
+                </div>
+              )}
             </div>
 
             <button onClick={saveOrder}
-              className="w-full gold-gradient text-primary-foreground py-3 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:opacity-90">
-              <Save className="w-5 h-5" /> Save All Changes
+              className="w-full gold-gradient text-primary-foreground py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90">
+              <Save className="w-4 h-4" /> Save All Changes
             </button>
           </div>
         </div>
