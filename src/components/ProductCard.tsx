@@ -2,7 +2,6 @@ import { Product } from "@/types";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
-import { useState } from "react";
 
 interface Props {
   product: Product;
@@ -24,15 +23,6 @@ const badgeColors: Record<string, string> = {
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const { addToCart } = useCart();
   const savings = product.originalPrice - product.price;
-  const [imgIdx, setImgIdx] = useState(-1);
-
-  const currentSrc = imgIdx < 0 ? product.image : (product.fallbackImages[imgIdx] || "/placeholder.svg");
-
-  const handleImgError = () => {
-    if (imgIdx < product.fallbackImages.length - 1) {
-      setImgIdx(prev => prev + 1);
-    }
-  };
 
   return (
     <div className="group bg-card border border-border rounded-xl overflow-hidden card-hover relative flex flex-col">
@@ -51,11 +41,10 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       <Link to={`/product/${product.id}`}>
         <div className="aspect-square p-4 flex items-center justify-center bg-muted/20 overflow-hidden">
           <img
-            src={currentSrc}
+            src={product.image}
             alt={product.name}
             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
-            onError={handleImgError}
           />
         </div>
       </Link>
@@ -72,9 +61,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
         <div className="flex items-baseline gap-2 mt-auto pt-1">
           <span className="text-base sm:text-lg font-bold font-orbitron text-foreground">${product.price}</span>
           {savings > 0 && (
-            <>
-              <span className="text-xs text-muted-foreground line-through">${product.originalPrice}</span>
-            </>
+            <span className="text-xs text-muted-foreground line-through">${product.originalPrice}</span>
           )}
         </div>
         {savings > 0 && (
