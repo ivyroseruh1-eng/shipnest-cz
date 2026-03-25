@@ -9,12 +9,15 @@ export const products: Product[] = [
     category: "iPhone 17",
     price: 1399,
     originalPrice: 1599,
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-deserttitanium?wid=800&hei=800&fmt=jpeg&qlt=90",
-    fallbackImages: ["https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-9inch-deserttitanium?wid=800&hei=800&fmt=jpeg&qlt=90"],
+    image: "https://www.apple.com/v/iphone/home/cj/images/overview/select/iphone_17pro__t1j902iw6kya_large.jpg",
+    fallbackImages: [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-17-pro-finish-silver-202509?wid=800&hei=800&fmt=jpeg&qlt=90",
+      "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17-pro-max.jpg"
+    ],
     rating: 4.9,
     reviews: 2847,
     badge: "PRO",
-    specs: ["6.9\" Super Retina XDR OLED", "A19 Pro chip", "48MP Main Camera", "Titanium Design", "USB-C Thunderbolt", "Up to 1TB Storage"],
+    specs: ["6.9\" Super Retina XDR OLED", "A19 Pro chip", "48MP Pro Fusion Camera", "Forged Aluminum Unibody", "USB-C Thunderbolt", "Up to 2TB Storage"],
     inStock: true,
   },
   {
@@ -24,12 +27,15 @@ export const products: Product[] = [
     category: "iPhone 17",
     price: 1199,
     originalPrice: 1399,
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-pro-finish-select-202409-6-3inch-blacktitanium?wid=800&hei=800&fmt=jpeg&qlt=90",
-    fallbackImages: [],
+    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-17-pro-finish-cosmicorange-202509?wid=800&hei=800&fmt=jpeg&qlt=90",
+    fallbackImages: [
+      "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-17-pro-finish-silver-202509?wid=800&hei=800&fmt=jpeg&qlt=90",
+      "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17-pro.jpg"
+    ],
     rating: 4.8,
     reviews: 1923,
     badge: "PRO",
-    specs: ["6.3\" Super Retina XDR OLED", "A19 Pro chip", "48MP Camera System", "Titanium Design", "USB-C", "Up to 1TB"],
+    specs: ["6.3\" Super Retina XDR OLED", "A19 Pro chip", "48MP Pro Fusion Camera", "Forged Aluminum Unibody", "USB-C", "Up to 2TB"],
     inStock: true,
   },
   {
@@ -39,8 +45,10 @@ export const products: Product[] = [
     category: "iPhone 17",
     price: 899,
     originalPrice: 999,
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-1inch-ultramarine?wid=800&hei=800&fmt=jpeg&qlt=90",
-    fallbackImages: [],
+    image: "https://www.apple.com/v/iphone/home/cj/images/overview/select/iphone_17__fb1277oq3eaa_large.jpg",
+    fallbackImages: [
+      "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17.jpg"
+    ],
     rating: 4.7,
     reviews: 3412,
     badge: "NEW",
@@ -54,8 +62,10 @@ export const products: Product[] = [
     category: "iPhone 17",
     price: 1099,
     originalPrice: 1199,
-    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-16-finish-select-202409-6-7inch-pink?wid=800&hei=800&fmt=jpeg&qlt=90",
-    fallbackImages: [],
+    image: "https://www.apple.com/v/iphone/home/cj/images/overview/select/iphone_air__b5qmgl05ojyq_large.jpg",
+    fallbackImages: [
+      "https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-air.jpg"
+    ],
     rating: 4.8,
     reviews: 1567,
     badge: "NEW",
