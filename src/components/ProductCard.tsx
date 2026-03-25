@@ -25,50 +25,66 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const savings = product.originalPrice - product.price;
 
   return (
-    <div className="group bg-card border border-border rounded-xl overflow-hidden card-hover relative flex flex-col">
+    <div className="group relative flex flex-col rounded-2xl overflow-hidden border border-border/60 bg-card shadow-md hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 hover:-translate-y-1">
+      {/* Badge */}
       {product.badge && (
-        <span className={`absolute top-3 left-3 z-10 px-2 py-0.5 rounded-full text-[10px] font-bold font-orbitron uppercase tracking-wide ${badgeColors[product.badge] || "bg-muted text-foreground"}`}>
+        <span className={`absolute top-3 left-3 z-10 px-2.5 py-1 rounded-md text-[10px] font-bold font-orbitron uppercase tracking-wider ${badgeColors[product.badge] || "bg-muted text-foreground"}`}>
           {product.badge}
         </span>
       )}
+
+      {/* Wishlist */}
       {onToggleWishlist && (
         <button onClick={() => onToggleWishlist(product.id)}
-          className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-background/80 backdrop-blur-sm hover:bg-primary/20 transition-colors">
-          <Heart className={`w-3.5 h-3.5 ${isWishlisted ? "fill-primary text-primary" : "text-muted-foreground"}`} />
+          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/90 shadow-sm hover:bg-white transition-colors">
+          <Heart className={`w-3.5 h-3.5 ${isWishlisted ? "fill-red-500 text-red-500" : "text-gray-400"}`} />
         </button>
       )}
 
-      <Link to={`/product/${product.id}`}>
-        <div className="aspect-square p-4 flex items-center justify-center bg-muted/20 overflow-hidden">
+      {/* Image — white background so product photos blend perfectly */}
+      <Link to={`/product/${product.id}`} className="block">
+        <div className="aspect-[4/3] bg-white flex items-center justify-center p-6 overflow-hidden">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+            className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500"
             loading="lazy"
           />
         </div>
       </Link>
 
-      <div className="p-3 sm:p-4 space-y-1.5 flex-1 flex flex-col">
-        <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-widest">{product.brand}</p>
+      {/* Info */}
+      <div className="p-4 space-y-2 flex-1 flex flex-col">
+        <p className="text-[10px] text-muted-foreground font-semibold uppercase tracking-[0.15em]">{product.brand}</p>
         <Link to={`/product/${product.id}`}>
-          <h3 className="text-xs sm:text-sm font-semibold text-foreground line-clamp-2 hover:text-primary transition-colors leading-tight">{product.name}</h3>
+          <h3 className="text-sm font-semibold text-foreground line-clamp-2 hover:text-primary transition-colors leading-snug">{product.name}</h3>
         </Link>
-        <div className="flex items-center gap-1">
-          <span className="text-primary text-[10px]">{"★".repeat(Math.floor(product.rating))}</span>
-          <span className="text-[10px] text-muted-foreground">({product.reviews.toLocaleString()})</span>
+
+        {/* Rating */}
+        <div className="flex items-center gap-1.5">
+          <div className="flex gap-0.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <span key={i} className={`text-xs ${i < Math.floor(product.rating) ? "text-amber-400" : "text-border"}`}>★</span>
+            ))}
+          </div>
+          <span className="text-[11px] text-muted-foreground">({product.reviews.toLocaleString()})</span>
         </div>
-        <div className="flex items-baseline gap-2 mt-auto pt-1">
-          <span className="text-base sm:text-lg font-bold font-orbitron text-foreground">${product.price}</span>
+
+        {/* Price */}
+        <div className="mt-auto pt-2 space-y-1">
+          <div className="flex items-baseline gap-2">
+            <span className="text-lg font-black font-orbitron text-foreground">${product.price}</span>
+            {savings > 0 && (
+              <span className="text-xs text-muted-foreground line-through">${product.originalPrice}</span>
+            )}
+          </div>
           {savings > 0 && (
-            <span className="text-xs text-muted-foreground line-through">${product.originalPrice}</span>
+            <span className="text-[11px] font-bold text-success">Save ${savings}</span>
           )}
         </div>
-        {savings > 0 && (
-          <span className="text-[10px] font-semibold text-success">Save ${savings}</span>
-        )}
+
         <button onClick={() => addToCart(product)}
-          className="w-full mt-2 flex items-center justify-center gap-1.5 gold-gradient text-primary-foreground py-2 rounded-lg font-semibold text-xs hover:opacity-90 transition-opacity">
+          className="w-full mt-3 flex items-center justify-center gap-2 gold-gradient text-primary-foreground py-2.5 rounded-xl font-bold text-xs tracking-wide hover:opacity-90 transition-opacity">
           <ShoppingCart className="w-3.5 h-3.5" /> Add to Cart
         </button>
       </div>
