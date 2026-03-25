@@ -2,8 +2,6 @@ import { Product } from "@/types";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
-import { useState } from "react";
-
 interface Props {
   product: Product;
   isWishlisted?: boolean;
