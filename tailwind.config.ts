@@ -14,8 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        orbitron: ["Orbitron", "sans-serif"],
-        rajdhani: ["Rajdhani", "sans-serif"],
+        heading: ['"Plus Jakarta Sans"', '"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        body: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        orbitron: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+        rajdhani: ['"Inter"', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,10 +94,6 @@ export default {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
-        },
-        pulse: {
-          "0%, 100%": { opacity: "1" },
-          "50%": { opacity: "0.5" },
         },
       },
       animation: {

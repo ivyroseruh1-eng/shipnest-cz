@@ -6,8 +6,8 @@ import { useWishlist } from "@/hooks/useWishlist";
 
 const sortOptions = [
   { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price: Low-High" },
-  { value: "price-desc", label: "Price: High-Low" },
+  { value: "price-asc", label: "Price: Low to High" },
+  { value: "price-desc", label: "Price: High to Low" },
   { value: "rating", label: "Top Rated" },
   { value: "newest", label: "Newest" },
 ];
@@ -32,35 +32,38 @@ const ShopPage = () => {
   }, [brand, category, sort]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold font-orbitron text-foreground">Shop</h1>
-        <p className="text-muted-foreground text-sm">{filtered.length} products</p>
+    <div className="max-w-7xl mx-auto px-4 py-10 space-y-8">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Shop</h1>
+          <p className="text-muted-foreground text-[14px] mt-1">{filtered.length} products</p>
+        </div>
       </div>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3">
-        <select value={brand} onChange={e => setBrand(e.target.value)}
-          className="bg-card border border-border rounded-lg px-4 py-2 text-sm text-foreground focus:outline-none focus:border-primary">
-          {brands.map(b => <option key={b} value={b}>{b}</option>)}
-        </select>
-        <select value={category} onChange={e => setCategory(e.target.value)}
-          className="bg-card border border-border rounded-lg px-4 py-2 text-sm text-foreground focus:outline-none focus:border-primary">
-          {categories.map(c => <option key={c} value={c}>{c}</option>)}
-        </select>
+        {[
+          { value: brand, onChange: setBrand, options: brands, label: "Brand" },
+          { value: category, onChange: setCategory, options: categories, label: "Category" },
+        ].map(f => (
+          <select key={f.label} value={f.value} onChange={e => f.onChange(e.target.value)}
+            className="bg-secondary border-0 rounded-full px-5 py-2.5 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20 font-medium appearance-none cursor-pointer pr-8">
+            {f.options.map(o => <option key={o} value={o}>{o}</option>)}
+          </select>
+        ))}
         <select value={sort} onChange={e => setSort(e.target.value)}
-          className="bg-card border border-border rounded-lg px-4 py-2 text-sm text-foreground focus:outline-none focus:border-primary">
+          className="bg-secondary border-0 rounded-full px-5 py-2.5 text-[13px] text-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20 font-medium appearance-none cursor-pointer pr-8">
           {sortOptions.map(s => <option key={s.value} value={s.value}>{s.label}</option>)}
         </select>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-10">
         {filtered.map(p => (
           <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />
         ))}
       </div>
       {filtered.length === 0 && (
-        <div className="text-center py-20 text-muted-foreground">No products found matching your filters.</div>
+        <div className="text-center py-20 text-muted-foreground text-[15px]">No products found matching your filters.</div>
       )}
     </div>
   );

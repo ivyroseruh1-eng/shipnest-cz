@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,46 +7,46 @@
 
 @layer base {
   :root {
-    --background: 222 60% 7%;
-    --foreground: 213 30% 85%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
 
-    --card: 222 50% 10%;
-    --card-foreground: 213 30% 85%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
 
-    --popover: 222 50% 10%;
-    --popover-foreground: 213 30% 85%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
 
-    --primary: 45 70% 47%;
-    --primary-foreground: 222 60% 7%;
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 215 40% 22%;
-    --secondary-foreground: 213 30% 85%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 7%;
 
-    --muted: 215 35% 15%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 220 100% 56%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 7%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --success: 145 100% 45%;
-    --success-foreground: 222 60% 7%;
+    --success: 145 65% 42%;
+    --success-foreground: 0 0% 100%;
 
-    --border: 210 40% 22%;
-    --input: 210 40% 18%;
-    --ring: 45 70% 47%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 7%;
 
     --radius: 0.75rem;
 
-    --gold: 45 70% 47%;
-    --gold-light: 45 75% 59%;
-    --navy: 222 60% 7%;
-    --navy-light: 222 50% 10%;
-    --blue-glow: 220 100% 56%;
-    --silver: 213 30% 85%;
-    --silver-light: 213 35% 90%;
+    --gold: 0 0% 7%;
+    --gold-light: 0 0% 20%;
+    --navy: 0 0% 100%;
+    --navy-light: 0 0% 98%;
+    --blue-glow: 220 90% 56%;
+    --silver: 0 0% 45%;
+    --silver-light: 0 0% 70%;
   }
 }
 
@@ -54,58 +55,51 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-rajdhani;
+    @apply bg-background text-foreground font-body;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-orbitron;
+    @apply font-heading font-semibold tracking-tight;
   }
 }
 
 @layer utilities {
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(45 70% 47%), hsl(45 75% 59%));
+    background: hsl(0 0% 7%);
   }
   .gold-text {
-    background: linear-gradient(135deg, hsl(45 70% 47%), hsl(45 75% 59%));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: hsl(0 0% 7%);
   }
   .blue-glow {
-    box-shadow: 0 0 20px hsl(220 100% 56% / 0.3), 0 0 40px hsl(220 100% 56% / 0.1);
+    box-shadow: 0 0 20px hsl(220 90% 56% / 0.15);
   }
   .gold-glow {
-    box-shadow: 0 0 20px hsl(45 70% 47% / 0.3), 0 0 40px hsl(45 70% 47% / 0.1);
+    box-shadow: 0 4px 20px hsl(0 0% 0% / 0.08);
   }
   .card-hover {
     @apply transition-all duration-300;
   }
   .card-hover:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px hsl(220 100% 56% / 0.15);
-    border-color: hsl(45 70% 47% / 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsl(0 0% 0% / 0.08);
   }
   .grid-bg {
-    background-image: 
-      linear-gradient(hsl(210 40% 22% / 0.3) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(210 40% 22% / 0.3) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background-color: hsl(0 0% 98%);
   }
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: hsl(222 60% 7%);
+  background: hsl(0 0% 98%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(210 40% 22%);
-  border-radius: 4px;
+  background: hsl(0 0% 80%);
+  border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(45 70% 47%);
+  background: hsl(0 0% 60%);
 }

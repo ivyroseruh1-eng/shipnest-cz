@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Search, Shield, Zap, Star, ChevronRight } from "lucide-react";
+import { ArrowRight, Search, Zap, Star, ChevronRight, Shield, Truck, RotateCcw, BadgeCheck, Globe } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
-import TrustBadges from "@/components/TrustBadges";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
@@ -13,6 +12,14 @@ const stats = [
   { value: "98.7%", label: "On-Time Delivery" },
   { value: "220+", label: "Countries Served" },
   { value: "4.9★", label: "Customer Rating" },
+];
+
+const trustBadges = [
+  { icon: Shield, label: "Secure Payment" },
+  { icon: Truck, label: "Ships from Czech Republic" },
+  { icon: RotateCcw, label: "30-Day Returns" },
+  { icon: BadgeCheck, label: "Authentic Products" },
+  { icon: Globe, label: "Worldwide Delivery" },
 ];
 
 const HomePage = () => {
@@ -38,77 +45,91 @@ const HomePage = () => {
   };
 
   const Section = ({ title, items, link }: { title: string; items: typeof products; link: string }) => (
-    <section className="space-y-5">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl sm:text-2xl font-bold font-orbitron text-foreground">{title}</h2>
-        <Link to={link} className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 font-medium">
+    <section>
+      <div className="flex items-end justify-between mb-8">
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">{title}</h2>
+        </div>
+        <Link to={link} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 font-medium">
           View All <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
         {items.map(p => <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />)}
       </div>
-      <div className="text-center">
-        <Link to={link} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors border border-border rounded-lg px-5 py-2 hover:border-primary/50">
-          View more products <ChevronRight className="w-3 h-3" />
+      <div className="text-center mt-8">
+        <Link to={link} className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-full px-6 py-2.5 hover:border-foreground/30 font-medium">
+          View more <ChevronRight className="w-3 h-3" />
         </Link>
       </div>
     </section>
   );
 
   return (
-    <div className="space-y-12 sm:space-y-16 pb-20">
+    <div className="pb-20">
       {/* Hero */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] flex items-center justify-center grid-bg overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
-        <div className="relative z-10 text-center max-w-3xl mx-auto px-4 space-y-5">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs text-primary font-medium mb-2">
+      <section className="bg-secondary">
+        <div className="max-w-7xl mx-auto px-4 py-20 sm:py-28 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-foreground/5 border border-foreground/10 text-[12px] text-foreground font-medium mb-6">
             <Zap className="w-3 h-3" /> New iPhone 17 Series Now Available
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black font-orbitron leading-tight">
-            <span className="gold-text">Premium Tech</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground max-w-4xl mx-auto">
+            Premium Tech.
             <br />
-            <span className="text-foreground">Delivered Worldwide</span>
+            <span className="text-muted-foreground">Delivered Worldwide.</span>
           </h1>
-          <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+          <p className="text-[15px] sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed mt-6">
             Authentic products shipped from Prague, Czech Republic. Smart logistics & fulfillment for 220+ countries.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
-            <Link to="/shop" className="gold-gradient text-primary-foreground px-8 py-3 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity inline-flex items-center justify-center gap-2">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
+            <Link to="/shop" className="bg-foreground text-background px-8 py-3.5 rounded-full font-semibold text-[14px] hover:bg-foreground/90 transition-colors inline-flex items-center justify-center gap-2">
               Shop Now <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/shop?category=iPhone+17" className="border border-border text-foreground px-8 py-3 rounded-xl font-bold text-sm hover:bg-muted transition-colors inline-flex items-center justify-center gap-2">
+            <Link to="/shop?category=iPhone+17" className="border border-foreground/20 text-foreground px-8 py-3.5 rounded-full font-semibold text-[14px] hover:bg-foreground/5 transition-colors inline-flex items-center justify-center gap-2">
               <Star className="w-4 h-4" /> iPhone 17 Series
             </Link>
           </div>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 space-y-12 sm:space-y-16">
-        <TrustBadges />
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Trust badges */}
+        <section className="py-10 border-b border-border">
+          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+            {trustBadges.map(b => (
+              <div key={b.label} className="flex items-center gap-2.5">
+                <b.icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                <span className="text-[13px] text-muted-foreground font-medium">{b.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Stats */}
-        <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <section className="py-16 grid grid-cols-2 md:grid-cols-4 gap-6">
           {stats.map(s => (
-            <div key={s.label} className="text-center p-4 sm:p-6 bg-card border border-border rounded-xl">
-              <p className="text-xl sm:text-2xl md:text-3xl font-black font-orbitron gold-text">{s.value}</p>
-              <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
+            <div key={s.label} className="text-center">
+              <p className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight">{s.value}</p>
+              <p className="text-[13px] text-muted-foreground mt-1 font-medium">{s.label}</p>
             </div>
           ))}
         </section>
 
-        <Section title="Featured Products" items={featured} link="/shop" />
-        <Section title="iPhone 17 Series" items={iphone17} link="/shop?category=iPhone+17" />
-        <Section title="iPhone 16 Series" items={iphone16} link="/shop?category=iPhone+16" />
-        <Section title="Samsung Galaxy" items={samsung} link="/shop?brand=Samsung" />
-        <Section title="Premium Tech" items={premiumTech} link="/shop" />
+        {/* Product sections */}
+        <div className="space-y-20">
+          <Section title="Featured Products" items={featured} link="/shop" />
+          <Section title="iPhone 17 Series" items={iphone17} link="/shop?category=iPhone+17" />
+          <Section title="iPhone 16 Series" items={iphone16} link="/shop?category=iPhone+16" />
+          <Section title="Samsung Galaxy" items={samsung} link="/shop?brand=Samsung" />
+          <Section title="Premium Tech" items={premiumTech} link="/shop" />
+        </div>
 
         {/* Tracking */}
-        <section className="bg-card/50 border border-border rounded-2xl p-6 sm:p-8">
+        <section className="mt-20 bg-secondary rounded-2xl p-8 sm:p-10">
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1 space-y-2">
-              <h3 className="text-lg font-bold font-orbitron text-foreground">Already ordered?</h3>
-              <p className="text-sm text-muted-foreground">Enter your tracking or order ID to check shipment status.</p>
+              <h3 className="text-xl font-bold text-foreground tracking-tight">Already ordered?</h3>
+              <p className="text-[14px] text-muted-foreground">Enter your tracking or order ID to check shipment status.</p>
             </div>
             <div className="flex gap-2 flex-1 max-w-md">
               <div className="relative flex-1">
@@ -116,9 +137,9 @@ const HomePage = () => {
                 <input type="text" placeholder="e.g. SNX4829371"
                   value={trackInput} onChange={e => setTrackInput(e.target.value)}
                   onKeyDown={e => e.key === "Enter" && handleTrack()}
-                  className="w-full bg-muted border border-border rounded-lg pl-10 pr-4 py-2.5 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary text-sm" />
+                  className="w-full bg-background border border-border rounded-full pl-10 pr-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20 text-[14px]" />
               </div>
-              <button onClick={handleTrack} className="gold-gradient text-primary-foreground px-5 py-2.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity whitespace-nowrap">
+              <button onClick={handleTrack} className="bg-foreground text-background px-6 py-3 rounded-full font-semibold text-[14px] hover:bg-foreground/90 transition-colors whitespace-nowrap">
                 Track
               </button>
             </div>
