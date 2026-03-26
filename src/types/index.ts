@@ -1,3 +1,9 @@
+export interface ColorVariant {
+  name: string;
+  hex: string;
+  image?: string;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -12,11 +18,13 @@ export interface Product {
   badge?: string;
   specs: string[];
   inStock: boolean;
+  colors?: ColorVariant[];
 }
 
 export interface CartItem {
   product: Product;
   qty: number;
+  selectedColor?: string;
 }
 
 export interface TrackingStep {

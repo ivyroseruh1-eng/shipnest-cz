@@ -26,19 +26,19 @@ const AdminPage = () => {
       <div className="min-h-screen flex items-center justify-center px-4">
         <div className="max-w-sm w-full space-y-6">
           <div className="text-center space-y-2">
-            <div className="w-16 h-16 rounded-2xl gold-gradient mx-auto flex items-center justify-center mb-4">
-              <Settings className="w-8 h-8 text-primary-foreground" />
+            <div className="w-16 h-16 rounded-2xl bg-foreground mx-auto flex items-center justify-center mb-4">
+              <Settings className="w-8 h-8 text-background" />
             </div>
-            <h1 className="text-xl font-bold font-orbitron text-foreground">Admin Portal</h1>
+            <h1 className="text-xl font-bold text-foreground">Admin Portal</h1>
             <p className="text-xs text-muted-foreground">Enter credentials to access the control panel</p>
           </div>
           <div className="bg-card border border-border rounded-xl p-6 space-y-4">
             <input type="password" placeholder="Admin Password" value={password}
               onChange={e => setPassword(e.target.value)}
               onKeyDown={e => { if (e.key === "Enter") { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Invalid credentials"); }}}
-              className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary text-sm" />
+              className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground text-sm" />
             <button onClick={() => { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Invalid credentials"); }}
-              className="w-full gold-gradient text-primary-foreground py-3 rounded-xl font-bold hover:opacity-90 text-sm">Authenticate</button>
+              className="w-full bg-foreground text-background py-3 rounded-xl font-semibold hover:bg-foreground/90 text-sm transition-colors">Authenticate</button>
           </div>
         </div>
       </div>
@@ -63,34 +63,92 @@ const AdminPage = () => {
   };
 
   const copyOrderDetails = (order: Order) => {
+    const latestCompleted = [...order.trackingSteps].reverse().find(s => s.completed);
+    const currentStatus = latestCompleted?.status || order.status;
     const items = order.items.map(i => `  • ${i.name} (${i.brand}) x${i.qty} — $${(i.price * i.qty).toFixed(2)}`).join("\n");
     const czechTime = new Date(order.placedAt).toLocaleString("en-GB", { timeZone: "Europe/Prague" });
-    const text = `ORDER DETAILS — ShipNest
-━━━━━━━━━━━━━━━━━━━━━━━━
+
+    // Build status-specific subject and message
+    let subject = "";
+    let statusMessage = "";
+    
+    switch (currentStatus.toLowerCase()) {
+      case "order placed":
+        subject = `Order Confirmed — ${order.orderId}`;
+        statusMessage = "Your order has been confirmed and is being prepared at our warehouse in Prague.";
+        break;
+      case "processing":
+        subject = `Order Processing — ${order.orderId}`;
+        statusMessage = "Your order is currently being processed and prepared for shipment.";
+        break;
+      case "shipped":
+        subject = `Order Shipped — ${order.orderId}`;
+        statusMessage = "Great news! Your order has been shipped and is on its way to you.";
+        break;
+      case "in transit":
+        subject = `Order In Transit — ${order.orderId}`;
+        statusMessage = "Your package is currently in transit and moving through our logistics network.";
+        break;
+      case "out for delivery":
+        subject = `Out for Delivery — ${order.orderId}`;
+        statusMessage = "Your package is out for delivery and will arrive soon!";
+        break;
+      case "delivered":
+        subject = `Order Delivered — ${order.orderId}`;
+        statusMessage = "Your order has been successfully delivered. We hope you enjoy your purchase!";
+        break;
+      default:
+        subject = `Order Update — ${order.orderId}`;
+        statusMessage = `Current status: ${currentStatus}`;
+    }
+
+    // Build completed tracking steps
+    const completedSteps = order.trackingSteps
+      .filter(s => s.completed)
+      .map(s => {
+        const time = s.timestamp ? new Date(s.timestamp).toLocaleString("en-GB", { timeZone: "Europe/Prague" }) : "";
+        return `  ${s.icon} ${s.status}${s.city ? ` — ${s.city}${s.country ? `, ${s.country}` : ""}` : ""}${time ? ` (${time})` : ""}`;
+      })
+      .join("\n");
+
+    const text = `Subject: ${subject}
+
+Dear ${order.customer.name},
+
+${statusMessage}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ORDER SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Order ID: ${order.orderId}
 Tracking ID: ${order.trackingId}
-Status: ${order.status}
+Status: ${currentStatus}
 Placed: ${czechTime} (CET)
-
-CUSTOMER
-Name: ${order.customer.name}
-Email: ${order.customer.email}
-Phone: ${order.customer.phone}
-Address: ${order.customer.address}, ${order.customer.city}${order.customer.state ? `, ${order.customer.state}` : ""}, ${order.customer.country} ${order.customer.zip}
 
 ITEMS
 ${items}
 
 Subtotal: $${order.subtotal.toFixed(2)}
-Tax: $${order.tax.toFixed(2)}
+Shipping: FREE
+VAT (20%): $${order.tax.toFixed(2)}
 Total: $${order.total.toFixed(2)}
 
+SHIPPING TO
+${order.customer.name}
+${order.customer.address}, ${order.customer.city}${order.customer.state ? `, ${order.customer.state}` : ""}
+${order.customer.country} ${order.customer.zip}
+${order.customer.email} | ${order.customer.phone}
+
+${completedSteps ? `TRACKING UPDATES\n${completedSteps}\n` : ""}
 Est. Delivery: ${new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
 Ships From: Prague, Czech Republic
-${order.notes ? `\nNotes: ${order.notes}` : ""}
-━━━━━━━━━━━━━━━━━━━━━━━━`;
+${order.notes ? `\nInternal Notes: ${order.notes}` : ""}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ShipNest · Premium Tech · Shipped from Prague, CZ 🇨🇿
+Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
+
     navigator.clipboard.writeText(text);
-    toast.success("Order details copied — ready to email!");
+    toast.success(`"${subject}" copied to clipboard!`);
   };
 
   const updateStep = (stepId: string, updates: Partial<TrackingStep>) => {
@@ -117,8 +175,8 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
     setEditingOrder({ ...editingOrder, trackingSteps: editingOrder.trackingSteps.filter(s => s.id !== stepId) });
   };
 
-  const inputClass = "w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-foreground text-sm focus:outline-none focus:border-primary placeholder:text-muted-foreground";
-  const labelClass = "text-[10px] text-muted-foreground font-orbitron tracking-widest uppercase mb-1 block";
+  const inputClass = "w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-foreground text-sm focus:outline-none focus:border-foreground placeholder:text-muted-foreground";
+  const labelClass = "text-[10px] text-muted-foreground font-medium tracking-widest uppercase mb-1 block";
 
   const tabs = [
     { id: "dashboard" as const, icon: BarChart3, label: "Dashboard" },
@@ -132,7 +190,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold font-orbitron text-foreground">Control Panel</h1>
+          <h1 className="text-xl font-bold text-foreground">Control Panel</h1>
           <p className="text-xs text-muted-foreground mt-0.5">ShipNest Admin · {new Date().toLocaleString("en-GB", { timeZone: "Europe/Prague" })}</p>
         </div>
         <button onClick={() => setAuthenticated(false)} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-destructive transition-colors bg-card border border-border rounded-lg px-3 py-2">
@@ -144,7 +202,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
       <div className="flex gap-1 bg-card border border-border rounded-xl p-1">
         {tabs.map(t => (
           <button key={t.id} onClick={() => setTab(t.id)}
-            className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${tab === t.id ? "gold-gradient text-primary-foreground" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}>
+            className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${tab === t.id ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}>
             <t.icon className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.label}</span>
           </button>
         ))}
@@ -155,17 +213,17 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
         <div className="space-y-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[
-              { icon: Package, label: "Total Orders", value: orders.length, color: "text-accent" },
-              { icon: Clock, label: "Processing", value: processing, color: "text-primary" },
-              { icon: CheckCircle, label: "Delivered", value: delivered, color: "text-success" },
-              { icon: DollarSign, label: "Revenue", value: `$${totalRevenue.toFixed(0)}`, color: "gold-text" },
+              { icon: Package, label: "Total Orders", value: orders.length, color: "text-foreground" },
+              { icon: Clock, label: "Processing", value: processing, color: "text-foreground" },
+              { icon: CheckCircle, label: "Delivered", value: delivered, color: "text-emerald-600" },
+              { icon: DollarSign, label: "Revenue", value: `$${totalRevenue.toFixed(0)}`, color: "text-foreground" },
             ].map(s => (
               <div key={s.label} className="bg-card border border-border rounded-xl p-4 space-y-2">
                 <div className="flex items-center justify-between">
                   <s.icon className={`w-5 h-5 ${s.color}`} />
-                  <span className="text-[10px] text-muted-foreground font-orbitron">{s.label.toUpperCase()}</span>
+                  <span className="text-[10px] text-muted-foreground font-medium tracking-wider">{s.label.toUpperCase()}</span>
                 </div>
-                <p className="text-2xl font-bold font-orbitron text-foreground">{s.value}</p>
+                <p className="text-2xl font-bold text-foreground">{s.value}</p>
               </div>
             ))}
           </div>
@@ -173,8 +231,8 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
           {orders.length > 0 && (
             <div className="bg-card border border-border rounded-xl overflow-hidden">
               <div className="p-4 border-b border-border flex items-center justify-between">
-                <h3 className="font-bold text-foreground font-orbitron text-sm">Recent Orders</h3>
-                <button onClick={() => setTab("orders")} className="text-xs text-primary hover:underline">View all →</button>
+                <h3 className="font-bold text-foreground text-sm">Recent Orders</h3>
+                <button onClick={() => setTab("orders")} className="text-xs text-muted-foreground hover:text-foreground">View all →</button>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
@@ -188,14 +246,19 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                   <tbody>
                     {orders.slice(0, 5).map(o => (
                       <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                        <td className="p-3 font-orbitron text-foreground">{o.orderId}</td>
+                        <td className="p-3 font-medium text-foreground">{o.orderId}</td>
                         <td className="p-3 text-foreground">{o.customer.name}</td>
-                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
-                        <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
+                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-foreground text-background">{o.status}</span></td>
+                        <td className="p-3 font-medium text-foreground">${o.total.toFixed(2)}</td>
                         <td className="p-3">
-                          <button onClick={() => setEditingOrder({ ...o })} className="text-primary hover:underline flex items-center gap-1">
-                            <Edit className="w-3 h-3" /> Edit
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <button onClick={() => setEditingOrder({ ...o })} className="text-muted-foreground hover:text-foreground flex items-center gap-1">
+                              <Edit className="w-3 h-3" /> Edit
+                            </button>
+                            <button onClick={() => copyOrderDetails(o)} className="text-muted-foreground hover:text-foreground flex items-center gap-1">
+                              <ClipboardCopy className="w-3 h-3" /> Copy
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -214,7 +277,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
             <input placeholder="Search by Order ID, Customer, or Tracking ID..."
               value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary" />
+              className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground" />
           </div>
 
           {filteredOrders.length === 0 ? (
@@ -238,19 +301,19 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                   <tbody>
                     {filteredOrders.map(o => (
                       <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                        <td className="p-3 font-orbitron text-foreground">{o.orderId}</td>
+                        <td className="p-3 font-medium text-foreground">{o.orderId}</td>
                         <td className="p-3">
                           <p className="text-foreground font-medium">{o.customer.name}</p>
                           <p className="text-muted-foreground">{o.customer.email}</p>
                         </td>
-                        <td className="p-3 font-orbitron gold-text">{o.trackingId}</td>
+                        <td className="p-3 text-foreground font-medium">{o.trackingId}</td>
                         <td className="p-3 text-foreground">{o.items.length} item{o.items.length > 1 ? "s" : ""}</td>
-                        <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
-                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
+                        <td className="p-3 font-medium text-foreground">${o.total.toFixed(2)}</td>
+                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-foreground text-background">{o.status}</span></td>
                         <td className="p-3">
                           <div className="flex items-center gap-2">
                             <button onClick={() => setEditingOrder({ ...o })}
-                              className="flex items-center gap-1 text-primary hover:underline">
+                              className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
                               <Edit className="w-3 h-3" /> Edit
                             </button>
                             <button onClick={() => copyOrderDetails(o)}
@@ -274,14 +337,14 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {products.map(p => (
             <div key={p.id} className="bg-card border border-border rounded-xl p-4 flex gap-4 items-center">
-              <img src={p.image} alt={p.name} className="w-14 h-14 object-contain rounded-lg bg-muted/30" />
+              <img src={p.image} alt={p.name} className="w-14 h-14 object-contain rounded-lg bg-white" />
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-muted-foreground">{p.brand}</p>
                 <p className="text-sm font-semibold text-foreground truncate">{p.name}</p>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm font-bold font-orbitron gold-text">${p.price}</span>
-                  {p.badge && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold gold-gradient text-primary-foreground">{p.badge}</span>}
-                  <span className={`text-[9px] font-bold ${p.inStock ? "text-success" : "text-destructive"}`}>
+                  <span className="text-sm font-bold text-foreground">${p.price}</span>
+                  {p.badge && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-foreground text-background">{p.badge}</span>}
+                  <span className={`text-[9px] font-bold ${p.inStock ? "text-emerald-600" : "text-destructive"}`}>
                     {p.inStock ? "● In Stock" : "● Out"}
                   </span>
                 </div>
@@ -294,7 +357,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
       {/* Settings */}
       {tab === "settings" && (
         <div className="bg-card border border-border rounded-xl p-6 space-y-4 max-w-md">
-          <h3 className="font-bold font-orbitron text-foreground text-sm">System Info</h3>
+          <h3 className="font-bold text-foreground text-sm">System Info</h3>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between text-muted-foreground"><span>Platform</span><span className="text-foreground">ShipNest v2.0</span></div>
             <div className="flex justify-between text-muted-foreground"><span>Timezone</span><span className="text-foreground">Europe/Prague (CET)</span></div>
@@ -310,8 +373,8 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
           <div className="bg-card border border-border rounded-2xl max-w-2xl w-full p-5 space-y-4 shadow-2xl">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-bold font-orbitron text-foreground">Edit Order</h2>
-                <p className="text-xs text-muted-foreground font-orbitron">{editingOrder.orderId}</p>
+                <h2 className="text-lg font-bold text-foreground">Edit Order</h2>
+                <p className="text-xs text-muted-foreground">{editingOrder.orderId}</p>
               </div>
               <div className="flex items-center gap-2">
                 <button onClick={() => copyOrderDetails(editingOrder)}
@@ -326,7 +389,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
             <div className="border border-border rounded-xl overflow-hidden">
               <button onClick={() => toggleSection("customer")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
                 <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-primary" />
+                  <Users className="w-4 h-4 text-foreground" />
                   <span className="font-semibold text-foreground text-sm">Customer Details</span>
                 </div>
                 {expandedSections.customer ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
@@ -351,7 +414,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
             <div className="border border-border rounded-xl overflow-hidden">
               <button onClick={() => toggleSection("order")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
                 <div className="flex items-center gap-2">
-                  <Package className="w-4 h-4 text-primary" />
+                  <Package className="w-4 h-4 text-foreground" />
                   <span className="font-semibold text-foreground text-sm">Order Details</span>
                 </div>
                 {expandedSections.order ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
@@ -364,7 +427,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                       <div className="flex gap-2">
                         <input value={editingOrder.trackingId} onChange={e => setEditingOrder({ ...editingOrder, trackingId: e.target.value })} className={inputClass} />
                         <button onClick={() => setEditingOrder({ ...editingOrder, trackingId: generateTrackingId() })}
-                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-primary transition-colors" title="Generate new">
+                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors" title="Generate new">
                           <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
                         </button>
                       </div>
@@ -388,7 +451,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
             <div className="border border-border rounded-xl overflow-hidden">
               <button onClick={() => toggleSection("timeline")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
                 <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-primary" />
+                  <Truck className="w-4 h-4 text-foreground" />
                   <span className="font-semibold text-foreground text-sm">Tracking Timeline</span>
                   <span className="text-[10px] text-muted-foreground">({editingOrder.trackingSteps.length} steps)</span>
                 </div>
@@ -398,11 +461,11 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                 <div className="p-4 space-y-3">
                   <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
                     {editingOrder.trackingSteps.map((step, i) => (
-                      <div key={step.id} className={`border rounded-xl p-3 space-y-2 transition-all ${step.completed ? "border-primary/40 bg-primary/5" : "border-border"}`}>
+                      <div key={step.id} className={`border rounded-xl p-3 space-y-2 transition-all ${step.completed ? "border-foreground/30 bg-muted/30" : "border-border"}`}>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <span className="text-lg">{step.icon}</span>
-                            <span className="text-[10px] text-muted-foreground font-orbitron">STEP {i + 1}</span>
+                            <span className="text-[10px] text-muted-foreground font-medium tracking-wider">STEP {i + 1}</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <label className="flex items-center gap-1 text-[10px] text-foreground cursor-pointer bg-muted px-2 py-1 rounded-lg">
@@ -448,7 +511,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                       </div>
                     ))}
                   </div>
-                  <button onClick={addStep} className="w-full border border-dashed border-border rounded-xl p-3 text-xs text-muted-foreground hover:text-primary hover:border-primary transition-colors flex items-center justify-center gap-2">
+                  <button onClick={addStep} className="w-full border border-dashed border-border rounded-xl p-3 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors flex items-center justify-center gap-2">
                     <Plus className="w-3.5 h-3.5" /> Add Tracking Step
                   </button>
                 </div>
@@ -456,7 +519,7 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
             </div>
 
             <button onClick={saveOrder}
-              className="w-full gold-gradient text-primary-foreground py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90">
+              className="w-full bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
               <Save className="w-4 h-4" /> Save All Changes
             </button>
           </div>

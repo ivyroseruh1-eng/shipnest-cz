@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Product } from "@/types";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -12,9 +13,20 @@ interface Props {
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const { addToCart } = useCart();
   const savings = product.originalPrice - product.price;
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [imgError, setImgError] = useState(false);
 
   return (
     <div className="group relative flex flex-col">
+      {/* Badge */}
+      {product.badge && (
+        <div className="absolute top-3 left-3 z-10">
+          <span className="px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider bg-foreground text-background">
+            {product.badge}
+          </span>
+        </div>
+      )}
+
       {/* Wishlist */}
       {onToggleWishlist && (
         <button onClick={() => onToggleWishlist(product.id)}
@@ -25,13 +37,21 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
       {/* Image */}
       <Link to={`/product/${product.id}`} className="block">
-        <div className="aspect-square bg-secondary rounded-2xl flex items-center justify-center p-8 overflow-hidden mb-4">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
-            loading="lazy"
-          />
+        <div className="aspect-square bg-white rounded-2xl flex items-center justify-center p-8 overflow-hidden mb-4 border border-border/40">
+          {!imgError ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
+              loading="lazy"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="text-center text-muted-foreground">
+              <div className="text-4xl mb-2">📱</div>
+              <p className="text-xs">{product.name}</p>
+            </div>
+          )}
         </div>
       </Link>
 
@@ -52,6 +72,23 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
           <span className="text-[11px] text-muted-foreground">({product.reviews.toLocaleString()})</span>
         </div>
 
+        {/* Color swatches */}
+        {product.colors && product.colors.length > 0 && (
+          <div className="flex items-center gap-1.5 pt-1">
+            {product.colors.map((c, i) => (
+              <button
+                key={c.name}
+                onClick={() => setSelectedColor(i)}
+                title={c.name}
+                className={`w-4 h-4 rounded-full border-2 transition-all ${
+                  selectedColor === i ? "border-foreground scale-110" : "border-border hover:border-muted-foreground"
+                }`}
+                style={{ backgroundColor: c.hex }}
+              />
+            ))}
+          </div>
+        )}
+
         {/* Price */}
         <div className="mt-auto pt-2">
           <div className="flex items-baseline gap-2">
@@ -61,7 +98,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
             )}
           </div>
           {savings > 0 && (
-            <span className="text-[11px] font-semibold text-success">Save ${savings}</span>
+            <span className="text-[11px] font-semibold text-emerald-600">Save ${savings}</span>
           )}
         </div>
 

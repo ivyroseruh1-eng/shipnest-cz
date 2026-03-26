@@ -16,6 +16,11 @@ export const products: Product[] = [
     badge: "PRO",
     specs: ["6.9\" Super Retina XDR OLED", "A19 Pro chip", "48MP Pro Fusion Camera", "Forged Aluminum Unibody", "USB-C Thunderbolt", "Up to 2TB Storage"],
     inStock: true,
+    colors: [
+      { name: "Cosmic Orange", hex: "#C2682D" },
+      { name: "Deep Blue", hex: "#1B3A5C" },
+      { name: "Silver", hex: "#C0C0C0" },
+    ],
   },
   {
     id: "iphone-17-pro",
@@ -31,6 +36,11 @@ export const products: Product[] = [
     badge: "PRO",
     specs: ["6.3\" Super Retina XDR OLED", "A19 Pro chip", "48MP Pro Fusion Camera", "Forged Aluminum Unibody", "USB-C", "Up to 2TB"],
     inStock: true,
+    colors: [
+      { name: "Cosmic Orange", hex: "#C2682D" },
+      { name: "Deep Blue", hex: "#1B3A5C" },
+      { name: "Silver", hex: "#C0C0C0" },
+    ],
   },
   {
     id: "iphone-17",
@@ -46,6 +56,13 @@ export const products: Product[] = [
     badge: "NEW",
     specs: ["6.1\" OLED Display", "A19 chip", "Dynamic Island", "48MP Camera", "USB-C", "All-day battery"],
     inStock: true,
+    colors: [
+      { name: "Black", hex: "#1C1C1E" },
+      { name: "White", hex: "#F5F5F0" },
+      { name: "Lavender", hex: "#B8A9C9" },
+      { name: "Mist Blue", hex: "#A4C8E1" },
+      { name: "Sage", hex: "#87A96B" },
+    ],
   },
   {
     id: "iphone-17-air",
@@ -61,6 +78,12 @@ export const products: Product[] = [
     badge: "NEW",
     specs: ["6.6\" OLED Display", "Ultra-thin 5.5mm design", "A19 chip", "48MP Camera", "Aerospace-grade aluminum", "MagSafe"],
     inStock: true,
+    colors: [
+      { name: "Space Black", hex: "#1C1C1E" },
+      { name: "Cloud White", hex: "#F5F5F0" },
+      { name: "Sky Blue", hex: "#87CEEB" },
+      { name: "Light Gold", hex: "#D4AF37" },
+    ],
   },
   // iPhone 16 Series
   {
@@ -77,6 +100,12 @@ export const products: Product[] = [
     badge: "HOT",
     specs: ["6.9\" Super Retina XDR", "A18 Pro chip", "48MP Fusion Camera", "Desert Titanium", "5x Optical Zoom", "Action button"],
     inStock: true,
+    colors: [
+      { name: "Desert Titanium", hex: "#BFA58A" },
+      { name: "Natural Titanium", hex: "#A8A9AD" },
+      { name: "White Titanium", hex: "#E8E6DF" },
+      { name: "Black Titanium", hex: "#3B3B3D" },
+    ],
   },
   {
     id: "iphone-16-pro",
@@ -92,6 +121,12 @@ export const products: Product[] = [
     badge: "BEST",
     specs: ["6.3\" Super Retina XDR", "A18 Pro chip", "48MP Camera", "Black Titanium", "Camera Control button", "USB-C"],
     inStock: true,
+    colors: [
+      { name: "Desert Titanium", hex: "#BFA58A" },
+      { name: "Natural Titanium", hex: "#A8A9AD" },
+      { name: "White Titanium", hex: "#E8E6DF" },
+      { name: "Black Titanium", hex: "#3B3B3D" },
+    ],
   },
   {
     id: "iphone-16",
@@ -107,6 +142,13 @@ export const products: Product[] = [
     badge: "SALE",
     specs: ["6.1\" OLED Display", "A18 chip", "48MP Camera", "Ultramarine", "Action button", "All-day battery"],
     inStock: true,
+    colors: [
+      { name: "Ultramarine", hex: "#3F4FA3" },
+      { name: "Teal", hex: "#4E9F96" },
+      { name: "Pink", hex: "#F2A7B0" },
+      { name: "White", hex: "#F5F5F0" },
+      { name: "Black", hex: "#1C1C1E" },
+    ],
   },
   {
     id: "iphone-16-plus",
@@ -121,6 +163,13 @@ export const products: Product[] = [
     reviews: 3156,
     specs: ["6.7\" OLED Display", "A18 chip", "48MP Camera", "Pink", "All-day battery", "MagSafe"],
     inStock: true,
+    colors: [
+      { name: "Ultramarine", hex: "#3F4FA3" },
+      { name: "Teal", hex: "#4E9F96" },
+      { name: "Pink", hex: "#F2A7B0" },
+      { name: "White", hex: "#F5F5F0" },
+      { name: "Black", hex: "#1C1C1E" },
+    ],
   },
   // iPhone 15 Series
   {
@@ -137,6 +186,12 @@ export const products: Product[] = [
     badge: "SALE",
     specs: ["6.7\" Super Retina XDR", "A17 Pro chip", "48MP Camera", "Natural Titanium", "5x Zoom", "USB-C"],
     inStock: true,
+    colors: [
+      { name: "Natural Titanium", hex: "#A8A9AD" },
+      { name: "Blue Titanium", hex: "#394E6A" },
+      { name: "White Titanium", hex: "#E8E6DF" },
+      { name: "Black Titanium", hex: "#3B3B3D" },
+    ],
   },
   {
     id: "iphone-15-pro",
@@ -152,6 +207,12 @@ export const products: Product[] = [
     badge: "SALE",
     specs: ["6.1\" Super Retina XDR", "A17 Pro chip", "48MP Camera", "Black Titanium", "Action button", "USB-C"],
     inStock: true,
+    colors: [
+      { name: "Natural Titanium", hex: "#A8A9AD" },
+      { name: "Blue Titanium", hex: "#394E6A" },
+      { name: "White Titanium", hex: "#E8E6DF" },
+      { name: "Black Titanium", hex: "#3B3B3D" },
+    ],
   },
   {
     id: "iphone-15",
@@ -167,6 +228,13 @@ export const products: Product[] = [
     badge: "SALE",
     specs: ["6.1\" OLED Display", "A16 chip", "48MP Camera", "Pink", "Dynamic Island", "USB-C"],
     inStock: true,
+    colors: [
+      { name: "Black", hex: "#1C1C1E" },
+      { name: "Blue", hex: "#6B8DAD" },
+      { name: "Green", hex: "#D1E8D0" },
+      { name: "Yellow", hex: "#F9E547" },
+      { name: "Pink", hex: "#F4C2C2" },
+    ],
   },
   // Apple Other
   {
@@ -220,7 +288,7 @@ export const products: Product[] = [
     category: "Watch",
     price: 799,
     originalPrice: 899,
-    image: "https://m.media-amazon.com/images/I/71XMTLYdGYL._AC_SL1500_.jpg",
+    image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQDY3ref_VW_34FR+watch-49-titanium-702702_VW_34FR_WF_CO+watch-face-49-alpine-702702_VW_34FR_WF_CI?wid=750&hei=712&fmt=p-jpg&qlt=95",
     fallbackImages: [],
     rating: 4.8,
     reviews: 3456,
@@ -273,6 +341,12 @@ export const products: Product[] = [
     badge: "PRO",
     specs: ["6.9\" Dynamic AMOLED 2X", "Snapdragon 8 Elite", "200MP Camera", "Titanium frame", "S Pen built-in", "5000mAh battery"],
     inStock: true,
+    colors: [
+      { name: "Titanium Black", hex: "#1C1C1E" },
+      { name: "Titanium Gray", hex: "#848789" },
+      { name: "Titanium Silver Blue", hex: "#B0C4D8" },
+      { name: "Titanium White Silver", hex: "#E8E6DF" },
+    ],
   },
   {
     id: "galaxy-s25-plus",
@@ -287,6 +361,12 @@ export const products: Product[] = [
     reviews: 2345,
     specs: ["6.7\" Dynamic AMOLED 2X", "Snapdragon 8 Elite", "50MP Camera", "4900mAh battery", "45W fast charging", "Galaxy AI"],
     inStock: true,
+    colors: [
+      { name: "Navy", hex: "#1B2838" },
+      { name: "Ice Blue", hex: "#C8DCE8" },
+      { name: "Mint", hex: "#A8D8B9" },
+      { name: "Silver Shadow", hex: "#C0C0C0" },
+    ],
   },
   {
     id: "galaxy-s25",
@@ -302,6 +382,12 @@ export const products: Product[] = [
     badge: "NEW",
     specs: ["6.2\" Dynamic AMOLED 2X", "Snapdragon 8 Elite", "50MP Camera", "4000mAh battery", "Galaxy AI", "IP68"],
     inStock: true,
+    colors: [
+      { name: "Navy", hex: "#1B2838" },
+      { name: "Ice Blue", hex: "#C8DCE8" },
+      { name: "Mint", hex: "#A8D8B9" },
+      { name: "Silver Shadow", hex: "#C0C0C0" },
+    ],
   },
   {
     id: "galaxy-s24-ultra",
@@ -317,6 +403,12 @@ export const products: Product[] = [
     badge: "SALE",
     specs: ["6.8\" Dynamic AMOLED 2X", "Snapdragon 8 Gen 3", "200MP Camera", "Titanium frame", "S Pen", "Galaxy AI"],
     inStock: true,
+    colors: [
+      { name: "Titanium Black", hex: "#1C1C1E" },
+      { name: "Titanium Gray", hex: "#848789" },
+      { name: "Titanium Violet", hex: "#9B8EB8" },
+      { name: "Titanium Yellow", hex: "#E5D68A" },
+    ],
   },
   // Samsung Galaxy Z
   {
@@ -387,7 +479,7 @@ export const products: Product[] = [
     category: "Audio",
     price: 249,
     originalPrice: 279,
-    image: "https://m.media-amazon.com/images/I/61Qqg+T8nsL._AC_SL1500_.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-buds3-pro.jpg",
     fallbackImages: [],
     rating: 4.5,
     reviews: 2345,
@@ -402,7 +494,7 @@ export const products: Product[] = [
     category: "Gaming",
     price: 699,
     originalPrice: 799,
-    image: "https://m.media-amazon.com/images/I/51mHjRMBbZL._SL1500_.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/sony-playstation5-pro.jpg",
     fallbackImages: [],
     rating: 4.9,
     reviews: 5678,
@@ -417,7 +509,7 @@ export const products: Product[] = [
     category: "Audio",
     price: 399,
     originalPrice: 449,
-    image: "https://m.media-amazon.com/images/I/51aXvjzcukL.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/sony-wh-1000xm5.jpg",
     fallbackImages: [],
     rating: 4.8,
     reviews: 6789,
@@ -432,7 +524,7 @@ export const products: Product[] = [
     category: "Drones",
     price: 2199,
     originalPrice: 2499,
-    image: "https://m.media-amazon.com/images/I/71bfjneTJaL._AC_SL1500_.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/dji-mavic-4-pro.jpg",
     fallbackImages: [],
     rating: 4.9,
     reviews: 1234,
@@ -447,7 +539,7 @@ export const products: Product[] = [
     category: "Audio",
     price: 429,
     originalPrice: 499,
-    image: "https://m.media-amazon.com/images/I/51JbsHSktkL._AC_SL1500_.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/bose-quietcomfort-ultra-headphones.jpg",
     fallbackImages: [],
     rating: 4.7,
     reviews: 4567,
@@ -462,7 +554,7 @@ export const products: Product[] = [
     category: "TV",
     price: 2499,
     originalPrice: 2999,
-    image: "https://m.media-amazon.com/images/I/81mZoKMGDdL._AC_SL1500_.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/lg-65-g4.jpg",
     fallbackImages: [],
     rating: 4.9,
     reviews: 2345,
@@ -477,7 +569,7 @@ export const products: Product[] = [
     category: "Watch",
     price: 999,
     originalPrice: 1099,
-    image: "https://m.media-amazon.com/images/I/81z4nhKJHnL._AC_SL1500_.jpg",
+    image: "https://fdn2.gsmarena.com/vv/bigpic/garmin-fenix-8.jpg",
     fallbackImages: [],
     rating: 4.8,
     reviews: 3456,
