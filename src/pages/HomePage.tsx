@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Search, Zap, Star, ChevronRight, Shield, Truck, RotateCcw, BadgeCheck, Globe } from "lucide-react";
+import { ArrowRight, Search, Zap, Star, ChevronRight, Shield, Truck, RotateCcw, BadgeCheck, Globe, Headphones } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { useWishlist } from "@/hooks/useWishlist";
@@ -15,11 +15,12 @@ const stats = [
 ];
 
 const trustBadges = [
-  { icon: Shield, label: "Secure Payment" },
-  { icon: Truck, label: "Ships from Czech Republic" },
+  { icon: Shield, label: "Secure Checkout" },
+  { icon: Truck, label: "Free Worldwide Shipping" },
   { icon: RotateCcw, label: "30-Day Returns" },
-  { icon: BadgeCheck, label: "Authentic Products" },
-  { icon: Globe, label: "Worldwide Delivery" },
+  { icon: BadgeCheck, label: "100% Authentic" },
+  { icon: Globe, label: "Ships from Czech Republic" },
+  { icon: Headphones, label: "24/7 Support" },
 ];
 
 const HomePage = () => {
@@ -44,11 +45,12 @@ const HomePage = () => {
     }
   };
 
-  const Section = ({ title, items, link }: { title: string; items: typeof products; link: string }) => (
+  const Section = ({ title, subtitle, items, link }: { title: string; subtitle?: string; items: typeof products; link: string }) => (
     <section>
       <div className="flex items-end justify-between mb-8">
         <div>
           <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">{title}</h2>
+          {subtitle && <p className="text-[13px] text-muted-foreground mt-1">{subtitle}</p>}
         </div>
         <Link to={link} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 font-medium">
           View All <ArrowRight className="w-3.5 h-3.5" />
@@ -68,7 +70,7 @@ const HomePage = () => {
   return (
     <div className="pb-20">
       {/* Hero */}
-      <section className="bg-secondary">
+      <section className="bg-secondary/50">
         <div className="max-w-7xl mx-auto px-4 py-20 sm:py-28 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-foreground/5 border border-foreground/10 text-[12px] text-foreground font-medium mb-6">
             <Zap className="w-3 h-3" /> New iPhone 17 Series Now Available
@@ -95,11 +97,11 @@ const HomePage = () => {
       <div className="max-w-7xl mx-auto px-4">
         {/* Trust badges */}
         <section className="py-10 border-b border-border">
-          <div className="flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+          <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
             {trustBadges.map(b => (
-              <div key={b.label} className="flex items-center gap-2.5">
-                <b.icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                <span className="text-[13px] text-muted-foreground font-medium">{b.label}</span>
+              <div key={b.label} className="flex items-center gap-2">
+                <b.icon className="w-4 h-4 text-muted-foreground" strokeWidth={1.5} />
+                <span className="text-[12px] text-muted-foreground font-medium">{b.label}</span>
               </div>
             ))}
           </div>
@@ -117,15 +119,15 @@ const HomePage = () => {
 
         {/* Product sections */}
         <div className="space-y-20">
-          <Section title="Featured Products" items={featured} link="/shop" />
-          <Section title="iPhone 17 Series" items={iphone17} link="/shop?category=iPhone+17" />
-          <Section title="iPhone 16 Series" items={iphone16} link="/shop?category=iPhone+16" />
-          <Section title="Samsung Galaxy" items={samsung} link="/shop?brand=Samsung" />
-          <Section title="Premium Tech" items={premiumTech} link="/shop" />
+          <Section title="Featured Products" subtitle="Our most popular picks" items={featured} link="/shop" />
+          <Section title="iPhone 17 Series" subtitle="The latest from Apple" items={iphone17} link="/shop?category=iPhone+17" />
+          <Section title="iPhone 16 Series" subtitle="Incredible value" items={iphone16} link="/shop?category=iPhone+16" />
+          <Section title="Samsung Galaxy" subtitle="Innovation meets design" items={samsung} link="/shop?brand=Samsung" />
+          <Section title="Premium Tech" subtitle="Audio, gaming & more" items={premiumTech} link="/shop" />
         </div>
 
         {/* Tracking */}
-        <section className="mt-20 bg-secondary rounded-2xl p-8 sm:p-10">
+        <section className="mt-20 bg-secondary/50 rounded-2xl p-8 sm:p-10 border border-border/50">
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1 space-y-2">
               <h3 className="text-xl font-bold text-foreground tracking-tight">Already ordered?</h3>
@@ -145,6 +147,56 @@ const HomePage = () => {
             </div>
           </div>
         </section>
+
+        {/* Footer info */}
+        <footer className="mt-20 pt-12 border-t border-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+            <div>
+              <h4 className="font-semibold text-foreground mb-3">Shop</h4>
+              <div className="space-y-2">
+                <Link to="/shop?category=iPhone+17" className="block text-muted-foreground hover:text-foreground transition-colors">iPhone 17</Link>
+                <Link to="/shop?category=iPhone+16" className="block text-muted-foreground hover:text-foreground transition-colors">iPhone 16</Link>
+                <Link to="/shop?brand=Samsung" className="block text-muted-foreground hover:text-foreground transition-colors">Samsung</Link>
+                <Link to="/shop?category=Mac" className="block text-muted-foreground hover:text-foreground transition-colors">Mac</Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold text-foreground mb-3">Support</h4>
+              <div className="space-y-2">
+                <Link to="/track" className="block text-muted-foreground hover:text-foreground transition-colors">Track Order</Link>
+                <span className="block text-muted-foreground">Returns & Refunds</span>
+                <span className="block text-muted-foreground">Warranty Info</span>
+                <span className="block text-muted-foreground">Contact Us</span>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold text-foreground mb-3">Company</h4>
+              <div className="space-y-2">
+                <span className="block text-muted-foreground">About ShipNest</span>
+                <span className="block text-muted-foreground">Careers</span>
+                <span className="block text-muted-foreground">Press</span>
+                <span className="block text-muted-foreground">Blog</span>
+              </div>
+            </div>
+            <div>
+              <h4 className="font-semibold text-foreground mb-3">Legal</h4>
+              <div className="space-y-2">
+                <span className="block text-muted-foreground">Privacy Policy</span>
+                <span className="block text-muted-foreground">Terms of Service</span>
+                <span className="block text-muted-foreground">Cookie Policy</span>
+                <span className="block text-muted-foreground">GDPR</span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-10 pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-muted-foreground">
+            <p>© {new Date().getFullYear()} ShipNest s.r.o. · Prague, Czech Republic · IČO: 12345678</p>
+            <div className="flex items-center gap-4">
+              <span className="font-medium tracking-wider">VISA</span>
+              <span className="font-medium tracking-wider">MASTERCARD</span>
+              <span className="font-medium tracking-wider">AMEX</span>
+            </div>
+          </div>
+        </footer>
       </div>
     </div>
   );
