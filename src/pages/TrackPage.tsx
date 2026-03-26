@@ -56,8 +56,8 @@ const TrackPage = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[
             { label: "Order ID", value: order.orderId, copyable: true },
-            { label: "Placed On", value: new Date(order.placedAt).toLocaleDateString() },
-            { label: "Est. Delivery", value: new Date(order.estimatedDelivery).toLocaleDateString() },
+            { label: "Placed On", value: new Date(order.placedAt).toLocaleDateString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", year: "numeric" }) },
+            { label: "Est. Delivery", value: new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", year: "numeric" }) },
             { label: "Recipient", value: order.customer.name },
             { label: "Total", value: `$${order.total.toFixed(2)}` },
           ].map(m => (

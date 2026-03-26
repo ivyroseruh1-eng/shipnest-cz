@@ -3,7 +3,7 @@ import { useOrders, generateTrackingId } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp } from "lucide-react";
+import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy } from "lucide-react";
 
 const ADMIN_PASSWORD = "shipnest2024";
 const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
@@ -60,6 +60,37 @@ const AdminPage = () => {
     updateOrder(updatedOrder.orderId, updatedOrder);
     setEditingOrder(null);
     toast.success("Order updated successfully!");
+  };
+
+  const copyOrderDetails = (order: Order) => {
+    const items = order.items.map(i => `  • ${i.name} (${i.brand}) x${i.qty} — $${(i.price * i.qty).toFixed(2)}`).join("\n");
+    const czechTime = new Date(order.placedAt).toLocaleString("en-GB", { timeZone: "Europe/Prague" });
+    const text = `ORDER DETAILS — ShipNest
+━━━━━━━━━━━━━━━━━━━━━━━━
+Order ID: ${order.orderId}
+Tracking ID: ${order.trackingId}
+Status: ${order.status}
+Placed: ${czechTime} (CET)
+
+CUSTOMER
+Name: ${order.customer.name}
+Email: ${order.customer.email}
+Phone: ${order.customer.phone}
+Address: ${order.customer.address}, ${order.customer.city}${order.customer.state ? `, ${order.customer.state}` : ""}, ${order.customer.country} ${order.customer.zip}
+
+ITEMS
+${items}
+
+Subtotal: $${order.subtotal.toFixed(2)}
+Tax: $${order.tax.toFixed(2)}
+Total: $${order.total.toFixed(2)}
+
+Est. Delivery: ${new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+Ships From: Prague, Czech Republic
+${order.notes ? `\nNotes: ${order.notes}` : ""}
+━━━━━━━━━━━━━━━━━━━━━━━━`;
+    navigator.clipboard.writeText(text);
+    toast.success("Order details copied — ready to email!");
   };
 
   const updateStep = (stepId: string, updates: Partial<TrackingStep>) => {
@@ -217,10 +248,16 @@ const AdminPage = () => {
                         <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
                         <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
                         <td className="p-3">
-                          <button onClick={() => setEditingOrder({ ...o })}
-                            className="flex items-center gap-1 text-primary hover:underline">
-                            <Edit className="w-3 h-3" /> Edit
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <button onClick={() => setEditingOrder({ ...o })}
+                              className="flex items-center gap-1 text-primary hover:underline">
+                              <Edit className="w-3 h-3" /> Edit
+                            </button>
+                            <button onClick={() => copyOrderDetails(o)}
+                              className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
+                              <ClipboardCopy className="w-3 h-3" /> Copy
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
@@ -276,7 +313,13 @@ const AdminPage = () => {
                 <h2 className="text-lg font-bold font-orbitron text-foreground">Edit Order</h2>
                 <p className="text-xs text-muted-foreground font-orbitron">{editingOrder.orderId}</p>
               </div>
-              <button onClick={() => setEditingOrder(null)} className="p-2 text-muted-foreground hover:text-foreground bg-muted rounded-lg">✕</button>
+              <div className="flex items-center gap-2">
+                <button onClick={() => copyOrderDetails(editingOrder)}
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors text-foreground">
+                  <ClipboardCopy className="w-3.5 h-3.5" /> Copy for Email
+                </button>
+                <button onClick={() => setEditingOrder(null)} className="p-2 text-muted-foreground hover:text-foreground bg-muted rounded-lg">✕</button>
+              </div>
             </div>
 
             {/* Customer Details Section */}
