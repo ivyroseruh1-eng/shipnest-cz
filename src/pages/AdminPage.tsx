@@ -248,10 +248,16 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                         <td className="p-3 font-orbitron text-foreground">${o.total.toFixed(2)}</td>
                         <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-bold gold-gradient text-primary-foreground">{o.status}</span></td>
                         <td className="p-3">
-                          <button onClick={() => setEditingOrder({ ...o })}
-                            className="flex items-center gap-1 text-primary hover:underline">
-                            <Edit className="w-3 h-3" /> Edit
-                          </button>
+                          <div className="flex items-center gap-2">
+                            <button onClick={() => setEditingOrder({ ...o })}
+                              className="flex items-center gap-1 text-primary hover:underline">
+                              <Edit className="w-3 h-3" /> Edit
+                            </button>
+                            <button onClick={() => copyOrderDetails(o)}
+                              className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
+                              <ClipboardCopy className="w-3 h-3" /> Copy
+                            </button>
+                          </div>
                         </td>
                       </tr>
                     ))}
