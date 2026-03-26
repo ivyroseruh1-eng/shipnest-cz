@@ -307,7 +307,13 @@ ${order.notes ? `\nNotes: ${order.notes}` : ""}
                 <h2 className="text-lg font-bold font-orbitron text-foreground">Edit Order</h2>
                 <p className="text-xs text-muted-foreground font-orbitron">{editingOrder.orderId}</p>
               </div>
-              <button onClick={() => setEditingOrder(null)} className="p-2 text-muted-foreground hover:text-foreground bg-muted rounded-lg">✕</button>
+              <div className="flex items-center gap-2">
+                <button onClick={() => copyOrderDetails(editingOrder)}
+                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors text-foreground">
+                  <ClipboardCopy className="w-3.5 h-3.5" /> Copy for Email
+                </button>
+                <button onClick={() => setEditingOrder(null)} className="p-2 text-muted-foreground hover:text-foreground bg-muted rounded-lg">✕</button>
+              </div>
             </div>
 
             {/* Customer Details Section */}
