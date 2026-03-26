@@ -3,7 +3,7 @@ import { useOrders, generateTrackingId } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp } from "lucide-react";
+import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy } from "lucide-react";
 
 const ADMIN_PASSWORD = "shipnest2024";
 const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
@@ -60,6 +60,37 @@ const AdminPage = () => {
     updateOrder(updatedOrder.orderId, updatedOrder);
     setEditingOrder(null);
     toast.success("Order updated successfully!");
+  };
+
+  const copyOrderDetails = (order: Order) => {
+    const items = order.items.map(i => `  • ${i.name} (${i.brand}) x${i.qty} — $${(i.price * i.qty).toFixed(2)}`).join("\n");
+    const czechTime = new Date(order.placedAt).toLocaleString("en-GB", { timeZone: "Europe/Prague" });
+    const text = `ORDER DETAILS — ShipNest
+━━━━━━━━━━━━━━━━━━━━━━━━
+Order ID: ${order.orderId}
+Tracking ID: ${order.trackingId}
+Status: ${order.status}
+Placed: ${czechTime} (CET)
+
+CUSTOMER
+Name: ${order.customer.name}
+Email: ${order.customer.email}
+Phone: ${order.customer.phone}
+Address: ${order.customer.address}, ${order.customer.city}${order.customer.state ? `, ${order.customer.state}` : ""}, ${order.customer.country} ${order.customer.zip}
+
+ITEMS
+${items}
+
+Subtotal: $${order.subtotal.toFixed(2)}
+Tax: $${order.tax.toFixed(2)}
+Total: $${order.total.toFixed(2)}
+
+Est. Delivery: ${new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
+Ships From: Prague, Czech Republic
+${order.notes ? `\nNotes: ${order.notes}` : ""}
+━━━━━━━━━━━━━━━━━━━━━━━━`;
+    navigator.clipboard.writeText(text);
+    toast.success("Order details copied — ready to email!");
   };
 
   const updateStep = (stepId: string, updates: Partial<TrackingStep>) => {
