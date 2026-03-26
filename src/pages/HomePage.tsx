@@ -10,7 +10,7 @@ import { toast } from "sonner";
 const stats = [
   { value: "2.4M+", label: "Orders Shipped" },
   { value: "98.7%", label: "On-Time Delivery" },
-  { value: "220+", label: "Countries Served" },
+  { value: "180+", label: "Countries Served" },
   { value: "4.9★", label: "Customer Rating" },
 ];
 
@@ -79,7 +79,7 @@ const HomePage = () => {
             <span className="text-muted-foreground">Delivered Worldwide.</span>
           </h1>
           <p className="text-[15px] sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed mt-6">
-            Authentic products shipped from Prague, Czech Republic. Smart logistics & fulfillment for 220+ countries.
+            Authentic products shipped from Prague, Czech Republic. Smart logistics & fulfillment for 180+ countries.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
             <Link to="/shop" className="bg-foreground text-background px-8 py-3.5 rounded-full font-semibold text-[14px] hover:bg-foreground/90 transition-colors inline-flex items-center justify-center gap-2">
