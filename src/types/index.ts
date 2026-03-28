@@ -71,5 +71,6 @@ export interface Order {
   estimatedDelivery: string;
   placedAt: string;
   notes: string;
+  paymentMethod?: string;
   trackingSteps: TrackingStep[];
 }
