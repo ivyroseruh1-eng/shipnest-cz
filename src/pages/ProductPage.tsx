@@ -107,7 +107,7 @@ const ProductPage = () => {
                 {product.colors.map((c, i) => (
                   <button
                     key={c.name}
-                    onClick={() => setSelectedColor(i)}
+                    onClick={() => { setSelectedColor(i); setImgError(false); }}
                     className={`relative w-10 h-10 rounded-full border-2 transition-all ${
                       selectedColor === i ? "border-foreground ring-2 ring-foreground/20 ring-offset-2" : "border-border hover:border-muted-foreground"
                     }`}
