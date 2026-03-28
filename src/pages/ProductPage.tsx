@@ -43,7 +43,12 @@ const ProductPage = () => {
         <div className="space-y-4">
           <div className="bg-white rounded-2xl p-10 flex items-center justify-center aspect-square border border-border/40">
             {!imgError ? (
-              <img src={product.image} alt={product.name} className="max-h-full max-w-full object-contain" onError={() => setImgError(true)} />
+              <img 
+                src={(product.colors?.[selectedColor]?.image) || product.image} 
+                alt={`${product.name}${product.colors?.[selectedColor] ? ` - ${product.colors[selectedColor].name}` : ''}`} 
+                className="max-h-full max-w-full object-contain" 
+                onError={() => setImgError(true)} 
+              />
             ) : (
               <div className="text-center text-muted-foreground">
                 <div className="text-6xl mb-3">📱</div>
