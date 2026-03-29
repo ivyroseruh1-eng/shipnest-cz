@@ -7,12 +7,22 @@ import { toast } from "sonner";
 
 const TrackPage = () => {
   const { id } = useParams();
-  const { getOrder, orders } = useOrders();
+  const { getOrder, orders, loading } = useOrders();
   const navigate = useNavigate();
   const [input, setInput] = useState(id || "");
   const order = id ? getOrder(id) : null;
 
   const recentOrders = orders.slice(0, 5);
+
+  // Show loading state while orders are being fetched from backend
+  if (loading && id) {
+    return (
+      <div className="max-w-3xl mx-auto px-4 py-20 text-center space-y-4">
+        <div className="animate-spin w-8 h-8 border-2 border-foreground/20 border-t-foreground rounded-full mx-auto" />
+        <p className="text-muted-foreground text-sm">Loading tracking information...</p>
+      </div>
+    );
+  }
 
   const handleSearch = () => {
     if (!input.trim()) return;
