@@ -40,7 +40,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
         <div className="aspect-square bg-white rounded-2xl flex items-center justify-center p-8 overflow-hidden mb-4 border border-border/40">
           {!imgError ? (
             <img
-              src={product.image}
+              src={(product.colors?.[selectedColor]?.image) || product.image}
               alt={product.name}
               className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
               loading="lazy"
@@ -78,7 +78,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
             {product.colors.map((c, i) => (
               <button
                 key={c.name}
-                onClick={() => setSelectedColor(i)}
+                onClick={() => { setSelectedColor(i); setImgError(false); }}
                 title={c.name}
                 className={`w-4 h-4 rounded-full border-2 transition-all ${
                   selectedColor === i ? "border-foreground scale-110" : "border-border hover:border-muted-foreground"
