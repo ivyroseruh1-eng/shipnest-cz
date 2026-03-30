@@ -12,7 +12,7 @@ const TrackPage = () => {
   const [input, setInput] = useState(id || "");
   const order = id ? getOrder(id) : null;
 
-  const recentOrders = orders.slice(0, 5);
+  // Don't show recent orders to public visitors - only show search
 
   // Show loading state while orders are being fetched from backend
   if (loading && id) {
@@ -133,23 +133,7 @@ const TrackPage = () => {
         </div>
       </div>
 
-      {recentOrders.length > 0 && (
-        <div className="space-y-4">
-          <h2 className="text-lg font-bold text-foreground font-orbitron">Recent Orders</h2>
-          {recentOrders.map(o => (
-            <Link key={o.orderId} to={`/track/${o.trackingId}`}
-              className="block bg-card border border-border rounded-xl p-4 hover:border-primary transition-colors">
-              <div className="flex justify-between items-center">
-                <div>
-                  <p className="font-orbitron text-sm gold-text">{o.trackingId}</p>
-                  <p className="text-xs text-muted-foreground mt-1">{o.items.length} item(s) · ${o.total.toFixed(2)}</p>
-                </div>
-                <span className="text-xs font-semibold text-primary">{o.status}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      )}
+      <p className="text-center text-muted-foreground text-sm">Enter the tracking ID or order ID provided in your confirmation email.</p>
     </div>
   );
 };
