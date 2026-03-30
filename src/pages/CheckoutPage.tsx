@@ -47,10 +47,49 @@ const CheckoutPage = () => {
     setShowPaymentModal(true);
   };
 
+  const luhnCheck = (num: string) => {
+    const digits = num.replace(/\D/g, "");
+    if (digits.length < 13 || digits.length > 19) return false;
+    let sum = 0;
+    let alt = false;
+    for (let i = digits.length - 1; i >= 0; i--) {
+      let n = parseInt(digits[i], 10);
+      if (alt) { n *= 2; if (n > 9) n -= 9; }
+      sum += n;
+      alt = !alt;
+    }
+    return sum % 10 === 0;
+  };
+
+  const validateExpiry = (exp: string) => {
+    const match = exp.match(/^(\d{2})\/(\d{2})$/);
+    if (!match) return false;
+    const month = parseInt(match[1], 10);
+    const year = parseInt("20" + match[2], 10);
+    if (month < 1 || month > 12) return false;
+    const now = new Date();
+    const expDate = new Date(year, month);
+    return expDate > now;
+  };
+
   const handlePayment = () => {
-    if (paymentMethod === "card" && (!cardForm.cardNumber || !cardForm.expiry || !cardForm.cvv)) {
-      toast.error("Please fill in card details");
-      return;
+    if (paymentMethod === "card") {
+      if (!cardForm.cardNumber || !cardForm.expiry || !cardForm.cvv || !cardForm.cardName) {
+        toast.error("Please fill in all card details");
+        return;
+      }
+      if (!luhnCheck(cardForm.cardNumber)) {
+        toast.error("Invalid card number. Please check and try again.");
+        return;
+      }
+      if (!validateExpiry(cardForm.expiry)) {
+        toast.error("Card expired or invalid expiry date.");
+        return;
+      }
+      if (cardForm.cvv.replace(/\D/g, "").length < 3) {
+        toast.error("Invalid CVV.");
+        return;
+      }
     }
     setProcessing(true);
     setShowPaymentModal(false);
