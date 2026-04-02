@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
+import PaymentIcons from "@/components/PaymentIcons";
 
 const stats = [
   { value: "2.4M+", label: "Orders Shipped" },
