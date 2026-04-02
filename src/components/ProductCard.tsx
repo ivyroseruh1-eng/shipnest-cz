@@ -91,6 +91,11 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
         {/* Price */}
         <div className="mt-auto pt-2">
+          {product.inStock ? (
+            <p className="text-[11px] text-emerald-600 font-semibold mb-1">✓ In Stock</p>
+          ) : (
+            <p className="text-[11px] text-red-500 font-semibold mb-1">Out of Stock</p>
+          )}
           <div className="flex items-baseline gap-2">
             <span className="text-lg font-bold text-foreground tracking-tight">${product.price}</span>
             {savings > 0 && (
