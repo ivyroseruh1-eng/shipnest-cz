@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Search, ShoppingCart, Heart, Menu, X, User, Truck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
 import shipnestLogo from "@/assets/shipnest-logo.png";
 
+const announcements = [
+  "Free express shipping worldwide — Ships from Prague, CZ 🇨🇿",
+  "✓ 100% Authentic Products — Authorized Distributor",
+  "30-Day Returns · 2-Year Warranty · 24/7 Support",
+  "🔥 New iPhone 17 Series Now Available — Shop Now",
+];
+
 const Navbar = () => {
   const { totalItems } = useCart();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [announcementIndex, setAnnouncementIndex] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnnouncementIndex(i => (i + 1) % announcements.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
 
   const filtered = searchQuery.length > 1
     ? products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.brand.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 5)
@@ -19,9 +34,9 @@ const Navbar = () => {
   return (
     <>
       {/* Top utility bar */}
-      <div className="bg-foreground text-background text-[11px] tracking-wide">
+      <div className="bg-foreground text-background text-[11px] tracking-wide overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 h-9 flex items-center justify-between">
-          <p className="font-medium">Free express shipping worldwide — Ships from Prague, CZ 🇨🇿</p>
+          <p className="font-medium transition-all duration-500" key={announcementIndex}>{announcements[announcementIndex]}</p>
           <div className="hidden sm:flex items-center gap-5">
             <Link to="/track" className="hover:opacity-70 transition-opacity">Track Order</Link>
             <Link to="/admin" className="hover:opacity-70 transition-opacity">Account</Link>

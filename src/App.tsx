@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/context/CartContext";
 import { OrderProvider } from "@/context/OrderContext";
 import Navbar from "@/components/Navbar";
+import CookieConsent from "@/components/CookieConsent";
 import HomePage from "@/pages/HomePage";
 import ShopPage from "@/pages/ShopPage";
 import ProductPage from "@/pages/ProductPage";
@@ -14,6 +15,11 @@ import OrderConfirmationPage from "@/pages/OrderConfirmationPage";
 import TrackPage from "@/pages/TrackPage";
 import WishlistPage from "@/pages/WishlistPage";
 import AdminPage from "@/pages/AdminPage";
+import PrivacyPage from "@/pages/PrivacyPage";
+import TermsPage from "@/pages/TermsPage";
+import ReturnsPage from "@/pages/ReturnsPage";
+import ContactPage from "@/pages/ContactPage";
+import AboutPage from "@/pages/AboutPage";
 import NotFound from "@/pages/NotFound";
 import { useEffect } from "react";
 
@@ -45,8 +51,14 @@ const App = () => (
               <Route path="/track/:id" element={<TrackPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/returns" element={<ReturnsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+            <CookieConsent />
           </BrowserRouter>
         </OrderProvider>
       </CartProvider>

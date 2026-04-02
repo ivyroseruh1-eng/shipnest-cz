@@ -6,6 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
+import PaymentIcons from "@/components/PaymentIcons";
 
 const stats = [
   { value: "2.4M+", label: "Orders Shipped" },
@@ -164,37 +165,30 @@ const HomePage = () => {
               <h4 className="font-semibold text-foreground mb-3">Support</h4>
               <div className="space-y-2">
                 <Link to="/track" className="block text-muted-foreground hover:text-foreground transition-colors">Track Order</Link>
-                <span className="block text-muted-foreground">Returns & Refunds</span>
-                <span className="block text-muted-foreground">Warranty Info</span>
-                <span className="block text-muted-foreground">Contact Us</span>
+                <Link to="/returns" className="block text-muted-foreground hover:text-foreground transition-colors">Returns & Refunds</Link>
+                <Link to="/contact" className="block text-muted-foreground hover:text-foreground transition-colors">Contact Us</Link>
               </div>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-3">Company</h4>
               <div className="space-y-2">
-                <span className="block text-muted-foreground">About ShipNest</span>
-                <span className="block text-muted-foreground">Careers</span>
-                <span className="block text-muted-foreground">Press</span>
-                <span className="block text-muted-foreground">Blog</span>
+                <Link to="/about" className="block text-muted-foreground hover:text-foreground transition-colors">About ShipNest</Link>
+                <Link to="/privacy" className="block text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="block text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
               </div>
             </div>
             <div>
               <h4 className="font-semibold text-foreground mb-3">Legal</h4>
               <div className="space-y-2">
-                <span className="block text-muted-foreground">Privacy Policy</span>
-                <span className="block text-muted-foreground">Terms of Service</span>
-                <span className="block text-muted-foreground">Cookie Policy</span>
-                <span className="block text-muted-foreground">GDPR</span>
+                <Link to="/privacy" className="block text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="block text-muted-foreground hover:text-foreground transition-colors">Terms of Service</Link>
+                <Link to="/returns" className="block text-muted-foreground hover:text-foreground transition-colors">Returns Policy</Link>
               </div>
             </div>
           </div>
           <div className="mt-10 pb-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] text-muted-foreground">
             <p>© {new Date().getFullYear()} ShipNest s.r.o. · Prague, Czech Republic · IČO: 12345678</p>
-            <div className="flex items-center gap-4">
-              <span className="font-medium tracking-wider">VISA</span>
-              <span className="font-medium tracking-wider">MASTERCARD</span>
-              <span className="font-medium tracking-wider">AMEX</span>
-            </div>
+            <PaymentIcons />
           </div>
         </footer>
       </div>

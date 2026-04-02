@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { ShoppingCart, Heart, CreditCard, ChevronRight, Check, Truck, Shield, RotateCcw } from "lucide-react";
+import { ShoppingCart, Heart, CreditCard, ChevronRight, Check, Truck, Shield, RotateCcw, Star } from "lucide-react";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
+import { getProductReviews } from "@/data/reviews";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -19,6 +20,7 @@ const ProductPage = () => {
 
   const savings = product.originalPrice - product.price;
   const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+  const reviews = getProductReviews(product.id);
 
   const handleBuyNow = () => {
     addToCart(product, 1);
@@ -96,6 +98,16 @@ const ProductPage = () => {
             )}
           </div>
 
+          {/* Stock status */}
+          <div className="space-y-1.5 text-[14px]">
+            {product.inStock ? (
+              <p className="text-emerald-600 font-semibold">✓ In Stock — Ships within 24 hours</p>
+            ) : (
+              <p className="text-red-500 font-semibold">✗ Out of Stock</p>
+            )}
+            <p className="text-muted-foreground">Dispatched from Prague, Czech Republic 🇨🇿</p>
+          </div>
+
           {/* Color selection */}
           {product.colors && product.colors.length > 0 && (
             <div className="space-y-3">
@@ -116,7 +128,7 @@ const ProductPage = () => {
                   >
                     {selectedColor === i && (
                       <Check className={`w-4 h-4 absolute inset-0 m-auto ${
-                        c.hex.toLowerCase() === "#f5f5f0" || c.hex.toLowerCase() === "#e8e6df" || c.hex.toLowerCase() === "#c0c0c0" || c.hex.toLowerCase() === "#a8a9ad" || c.hex.toLowerCase() === "#f4c2c2" || c.hex.toLowerCase() === "#f9e547" || c.hex.toLowerCase() === "#d1e8d0" || c.hex.toLowerCase() === "#f2a7b0" || c.hex.toLowerCase() === "#c8dce8" || c.hex.toLowerCase() === "#a8d8b9" || c.hex.toLowerCase() === "#87ceeb" || c.hex.toLowerCase() === "#a4c8e1" || c.hex.toLowerCase() === "#b8a9c9" || c.hex.toLowerCase() === "#b0c4d8" || c.hex.toLowerCase() === "#bfa58a" || c.hex.toLowerCase() === "#d4af37" || c.hex.toLowerCase() === "#e5d68a" || c.hex.toLowerCase() === "#9b8eb8" || c.hex.toLowerCase() === "#6b8dad"
+                        ["#F5F5F0","#E8E6DF","#C0C0C0","#A8A9AD","#F4C2C2","#F9E547","#D1E8D0","#F2A7B0","#C8DCE8","#A8D8B9","#87CEEB","#A4C8E1","#B8A9C9","#B0C4D8","#BFA58A","#D4AF37","#E5D68A","#9B8EB8","#6B8DAD"].some(h => h.toLowerCase() === c.hex.toLowerCase())
                           ? "text-foreground" : "text-white"
                       }`} strokeWidth={2.5} />
                     )}
@@ -137,11 +149,6 @@ const ProductPage = () => {
             </ul>
           </div>
 
-          <div className="space-y-1.5 text-[14px]">
-            <p className="text-emerald-600 font-semibold">✓ In Stock — Ships within 24 hours</p>
-            <p className="text-muted-foreground">Dispatched from Prague, Czech Republic 🇨🇿</p>
-          </div>
-
           <div className="flex gap-3 pt-2">
             <button onClick={handleBuyNow}
               className="flex-1 bg-foreground text-background py-3.5 rounded-full font-semibold text-[15px] flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
@@ -158,6 +165,42 @@ const ProductPage = () => {
           </div>
         </div>
       </div>
+
+      {/* Customer Reviews */}
+      <section>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-foreground tracking-tight">Customer Reviews</h2>
+          <span className="text-[13px] text-muted-foreground">{reviews.length} reviews</span>
+        </div>
+        <div className="space-y-4">
+          {reviews.map((r, i) => (
+            <div key={i} className="bg-secondary/50 border border-border/50 rounded-2xl p-5 space-y-2">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-[12px] font-bold text-foreground">
+                    {r.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="text-[13px] font-semibold text-foreground">{r.name}</p>
+                    <p className="text-[11px] text-muted-foreground">{new Date(r.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1">
+                  {r.verified && (
+                    <span className="text-[10px] text-emerald-600 font-semibold bg-emerald-50 px-2 py-0.5 rounded-full mr-2">✓ Verified</span>
+                  )}
+                  <div className="flex gap-px">
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <Star key={j} className={`w-3 h-3 ${j < r.rating ? "fill-amber-500 text-amber-500" : "text-border"}`} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <p className="text-[13px] text-muted-foreground leading-relaxed">{r.comment}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Related Products */}
       {related.length > 0 && (
