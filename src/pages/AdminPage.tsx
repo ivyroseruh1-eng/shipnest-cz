@@ -379,23 +379,41 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
       {/* Orders */}
       {tab === "orders" && (
         <div className="space-y-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input placeholder="Search by Order ID, Customer, or Tracking ID..."
-              value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground" />
+          {/* Action bar */}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative flex-1 min-w-[200px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input placeholder="Search by Order ID, Customer, or Tracking ID..."
+                value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+                className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground" />
+            </div>
+            <button onClick={generateFakeOrder}
+              className="flex items-center gap-1.5 px-4 py-3 text-xs font-medium bg-card border border-border rounded-xl hover:border-foreground/30 transition-colors text-foreground">
+              <Shuffle className="w-3.5 h-3.5" /> Generate Order
+            </button>
+            {selectedOrders.size > 0 && (
+              <button onClick={handleBulkDelete}
+                className="flex items-center gap-1.5 px-4 py-3 text-xs font-medium bg-destructive/10 border border-destructive/30 rounded-xl hover:bg-destructive/20 transition-colors text-destructive">
+                <Trash2 className="w-3.5 h-3.5" /> Delete ({selectedOrders.size})
+              </button>
+            )}
           </div>
 
           {filteredOrders.length === 0 ? (
             <div className="text-center text-muted-foreground py-10 bg-card border border-border rounded-xl">
               <Package className="w-10 h-10 mx-auto mb-3 opacity-30" />
               <p className="text-sm">No orders found</p>
+              <button onClick={generateFakeOrder} className="mt-3 text-xs text-foreground underline">Generate a test order</button>
             </div>
           ) : (
             <div className="bg-card border border-border rounded-xl overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead><tr className="border-b border-border text-muted-foreground bg-muted/30">
+                    <th className="p-3 text-left font-medium">
+                      <input type="checkbox" checked={selectedOrders.size === filteredOrders.length && filteredOrders.length > 0}
+                        onChange={toggleSelectAll} className="rounded border-border w-3.5 h-3.5" />
+                    </th>
                     <th className="p-3 text-left font-medium">Order ID</th>
                     <th className="p-3 text-left font-medium">Customer</th>
                     <th className="p-3 text-left font-medium">Tracking</th>
@@ -406,7 +424,11 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                   </tr></thead>
                   <tbody>
                     {filteredOrders.map(o => (
-                      <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                      <tr key={o.orderId} className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${selectedOrders.has(o.orderId) ? "bg-muted/30" : ""}`}>
+                        <td className="p-3">
+                          <input type="checkbox" checked={selectedOrders.has(o.orderId)}
+                            onChange={() => toggleSelectOrder(o.orderId)} className="rounded border-border w-3.5 h-3.5" />
+                        </td>
                         <td className="p-3 font-medium text-foreground">{o.orderId}</td>
                         <td className="p-3">
                           <p className="text-foreground font-medium">{o.customer.name}</p>
