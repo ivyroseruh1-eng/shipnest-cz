@@ -36,6 +36,96 @@ const AdminPage = () => {
 
   const toggleSection = (key: string) => setExpandedSections(prev => ({ ...prev, [key]: !prev[key] }));
 
+  const toggleSelectOrder = (orderId: string) => {
+    setSelectedOrders(prev => {
+      const next = new Set(prev);
+      if (next.has(orderId)) next.delete(orderId); else next.add(orderId);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedOrders.size === filteredOrders.length) setSelectedOrders(new Set());
+    else setSelectedOrders(new Set(filteredOrders.map(o => o.orderId)));
+  };
+
+  const handleDeleteOrder = async (orderId: string) => {
+    await deleteOrder(orderId);
+    setDeleteConfirm(null);
+    setEditingOrder(null);
+    toast.success("Order deleted");
+  };
+
+  const handleBulkDelete = async () => {
+    const count = selectedOrders.size;
+    for (const orderId of selectedOrders) {
+      await deleteOrder(orderId);
+    }
+    setSelectedOrders(new Set());
+    toast.success(`${count} order(s) deleted`);
+  };
+
+  const generateFakeOrder = () => {
+    const nameIdx = Math.floor(Math.random() * FAKE_NAMES.length);
+    const loc = FAKE_CITIES[Math.floor(Math.random() * FAKE_CITIES.length)];
+    const numItems = Math.floor(Math.random() * 3) + 1;
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+    const selectedProducts = shuffled.slice(0, numItems);
+    
+    const items = selectedProducts.map(p => ({
+      productId: p.id, name: p.name, brand: p.brand, image: p.image,
+      price: p.price, qty: Math.floor(Math.random() * 2) + 1,
+    }));
+    
+    const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const tax = subtotal * 0.2;
+    const total = subtotal + tax;
+    
+    // Random date in the past 1-30 days
+    const daysAgo = Math.floor(Math.random() * 30) + 1;
+    const placedDate = new Date();
+    placedDate.setDate(placedDate.getDate() - daysAgo);
+    
+    const deliveryDate = new Date(placedDate);
+    deliveryDate.setDate(deliveryDate.getDate() + Math.floor(Math.random() * 14) + 7);
+    
+    const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
+    // Randomly complete some steps based on how old the order is
+    const completedCount = Math.min(Math.floor(daysAgo / 3), steps.length);
+    steps.forEach((step, i) => {
+      if (i < completedCount) {
+        step.completed = true;
+        const stepDate = new Date(placedDate);
+        stepDate.setDate(stepDate.getDate() + i * 2);
+        step.timestamp = stepDate.toISOString();
+      }
+    });
+    
+    const latestCompleted = [...steps].reverse().find(s => s.completed);
+    
+    const order: Order = {
+      id: crypto.randomUUID(),
+      orderId: generateOrderId(),
+      trackingId: generateTrackingId(),
+      customer: {
+        name: FAKE_NAMES[nameIdx], email: FAKE_EMAILS[nameIdx],
+        phone: `+1 ${Math.floor(200 + Math.random() * 800)}-${Math.floor(100 + Math.random() * 900)}-${Math.floor(1000 + Math.random() * 9000)}`,
+        address: `${Math.floor(1 + Math.random() * 999)} ${["Oak St", "Main Ave", "Elm Rd", "Park Blvd", "King St"][Math.floor(Math.random() * 5)]}`,
+        city: loc.city, state: loc.state, country: loc.country, zip: loc.zip,
+      },
+      items, subtotal, tax, total,
+      status: latestCompleted?.status || "Order Placed",
+      estimatedDelivery: deliveryDate.toISOString(),
+      placedAt: placedDate.toISOString(),
+      notes: "",
+      paymentMethod: ["Credit Card", "PayPal", "Apple Pay", "Google Pay"][Math.floor(Math.random() * 4)],
+      trackingSteps: steps,
+    };
+    
+    addOrder(order);
+    toast.success(`Generated order ${order.orderId}`);
+  };
+
   if (!authenticated) {
     return (
       <div className="min-h-screen flex items-center justify-center px-4">
