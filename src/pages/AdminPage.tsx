@@ -1,25 +1,130 @@
 import { useState } from "react";
-import { useOrders, generateTrackingId } from "@/context/OrderContext";
+import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy } from "lucide-react";
+import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy, Shuffle, AlertTriangle } from "lucide-react";
 
 const ADMIN_PASSWORD = "shipnest2024";
 const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
+
+const FAKE_NAMES = ["James Wilson", "Emma Thompson", "Liam Carter", "Sophia Martinez", "Noah Brown", "Olivia Davis", "Ethan Garcia", "Ava Johnson", "Mason Lee", "Isabella Clark"];
+const FAKE_EMAILS = ["james.w@gmail.com", "emma.t@outlook.com", "liam.c@yahoo.com", "sophia.m@gmail.com", "noah.b@hotmail.com", "olivia.d@gmail.com", "ethan.g@yahoo.com", "ava.j@outlook.com", "mason.l@gmail.com", "isabella.c@hotmail.com"];
+const FAKE_CITIES = [
+  { city: "New York", state: "NY", country: "United States", zip: "10001" },
+  { city: "London", state: "England", country: "United Kingdom", zip: "SW1A 1AA" },
+  { city: "Toronto", state: "Ontario", country: "Canada", zip: "M5V 3L9" },
+  { city: "Sydney", state: "NSW", country: "Australia", zip: "2000" },
+  { city: "Dubai", state: "Dubai", country: "UAE", zip: "00000" },
+  { city: "Berlin", state: "Berlin", country: "Germany", zip: "10115" },
+  { city: "Mumbai", state: "Maharashtra", country: "India", zip: "400001" },
+  { city: "Tokyo", state: "Tokyo", country: "Japan", zip: "100-0001" },
+];
 
 const AdminPage = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<"dashboard" | "orders" | "products" | "settings">("dashboard");
-  const { orders, updateOrder } = useOrders();
+  const { orders, updateOrder, addOrder, deleteOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [selectedOrders, setSelectedOrders] = useState<Set<string>>(new Set());
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     customer: true, order: true, timeline: true,
   });
 
   const toggleSection = (key: string) => setExpandedSections(prev => ({ ...prev, [key]: !prev[key] }));
+
+  const toggleSelectOrder = (orderId: string) => {
+    setSelectedOrders(prev => {
+      const next = new Set(prev);
+      if (next.has(orderId)) next.delete(orderId); else next.add(orderId);
+      return next;
+    });
+  };
+
+  const toggleSelectAll = () => {
+    if (selectedOrders.size === filteredOrders.length) setSelectedOrders(new Set());
+    else setSelectedOrders(new Set(filteredOrders.map(o => o.orderId)));
+  };
+
+  const handleDeleteOrder = async (orderId: string) => {
+    await deleteOrder(orderId);
+    setDeleteConfirm(null);
+    setEditingOrder(null);
+    toast.success("Order deleted");
+  };
+
+  const handleBulkDelete = async () => {
+    const count = selectedOrders.size;
+    for (const orderId of selectedOrders) {
+      await deleteOrder(orderId);
+    }
+    setSelectedOrders(new Set());
+    toast.success(`${count} order(s) deleted`);
+  };
+
+  const generateFakeOrder = () => {
+    const nameIdx = Math.floor(Math.random() * FAKE_NAMES.length);
+    const loc = FAKE_CITIES[Math.floor(Math.random() * FAKE_CITIES.length)];
+    const numItems = Math.floor(Math.random() * 3) + 1;
+    const shuffled = [...products].sort(() => 0.5 - Math.random());
+    const selectedProducts = shuffled.slice(0, numItems);
+    
+    const items = selectedProducts.map(p => ({
+      productId: p.id, name: p.name, brand: p.brand, image: p.image,
+      price: p.price, qty: Math.floor(Math.random() * 2) + 1,
+    }));
+    
+    const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
+    const tax = subtotal * 0.2;
+    const total = subtotal + tax;
+    
+    // Random date in the past 1-30 days
+    const daysAgo = Math.floor(Math.random() * 30) + 1;
+    const placedDate = new Date();
+    placedDate.setDate(placedDate.getDate() - daysAgo);
+    
+    const deliveryDate = new Date(placedDate);
+    deliveryDate.setDate(deliveryDate.getDate() + Math.floor(Math.random() * 14) + 7);
+    
+    const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
+    // Randomly complete some steps based on how old the order is
+    const completedCount = Math.min(Math.floor(daysAgo / 3), steps.length);
+    steps.forEach((step, i) => {
+      if (i < completedCount) {
+        step.completed = true;
+        const stepDate = new Date(placedDate);
+        stepDate.setDate(stepDate.getDate() + i * 2);
+        step.timestamp = stepDate.toISOString();
+      }
+    });
+    
+    const latestCompleted = [...steps].reverse().find(s => s.completed);
+    
+    const order: Order = {
+      id: crypto.randomUUID(),
+      orderId: generateOrderId(),
+      trackingId: generateTrackingId(),
+      customer: {
+        name: FAKE_NAMES[nameIdx], email: FAKE_EMAILS[nameIdx],
+        phone: `+1 ${Math.floor(200 + Math.random() * 800)}-${Math.floor(100 + Math.random() * 900)}-${Math.floor(1000 + Math.random() * 9000)}`,
+        address: `${Math.floor(1 + Math.random() * 999)} ${["Oak St", "Main Ave", "Elm Rd", "Park Blvd", "King St"][Math.floor(Math.random() * 5)]}`,
+        city: loc.city, state: loc.state, country: loc.country, zip: loc.zip,
+      },
+      items, subtotal, tax, total,
+      status: latestCompleted?.status || "Order Placed",
+      estimatedDelivery: deliveryDate.toISOString(),
+      placedAt: placedDate.toISOString(),
+      notes: "",
+      paymentMethod: ["Credit Card", "PayPal", "Apple Pay", "Google Pay"][Math.floor(Math.random() * 4)],
+      trackingSteps: steps,
+    };
+    
+    addOrder(order);
+    toast.success(`Generated order ${order.orderId}`);
+  };
 
   if (!authenticated) {
     return (
@@ -274,23 +379,41 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
       {/* Orders */}
       {tab === "orders" && (
         <div className="space-y-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input placeholder="Search by Order ID, Customer, or Tracking ID..."
-              value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground" />
+          {/* Action bar */}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="relative flex-1 min-w-[200px]">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input placeholder="Search by Order ID, Customer, or Tracking ID..."
+                value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+                className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground" />
+            </div>
+            <button onClick={generateFakeOrder}
+              className="flex items-center gap-1.5 px-4 py-3 text-xs font-medium bg-card border border-border rounded-xl hover:border-foreground/30 transition-colors text-foreground">
+              <Shuffle className="w-3.5 h-3.5" /> Generate Order
+            </button>
+            {selectedOrders.size > 0 && (
+              <button onClick={handleBulkDelete}
+                className="flex items-center gap-1.5 px-4 py-3 text-xs font-medium bg-destructive/10 border border-destructive/30 rounded-xl hover:bg-destructive/20 transition-colors text-destructive">
+                <Trash2 className="w-3.5 h-3.5" /> Delete ({selectedOrders.size})
+              </button>
+            )}
           </div>
 
           {filteredOrders.length === 0 ? (
             <div className="text-center text-muted-foreground py-10 bg-card border border-border rounded-xl">
               <Package className="w-10 h-10 mx-auto mb-3 opacity-30" />
               <p className="text-sm">No orders found</p>
+              <button onClick={generateFakeOrder} className="mt-3 text-xs text-foreground underline">Generate a test order</button>
             </div>
           ) : (
             <div className="bg-card border border-border rounded-xl overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead><tr className="border-b border-border text-muted-foreground bg-muted/30">
+                    <th className="p-3 text-left font-medium">
+                      <input type="checkbox" checked={selectedOrders.size === filteredOrders.length && filteredOrders.length > 0}
+                        onChange={toggleSelectAll} className="rounded border-border w-3.5 h-3.5" />
+                    </th>
                     <th className="p-3 text-left font-medium">Order ID</th>
                     <th className="p-3 text-left font-medium">Customer</th>
                     <th className="p-3 text-left font-medium">Tracking</th>
@@ -301,7 +424,11 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                   </tr></thead>
                   <tbody>
                     {filteredOrders.map(o => (
-                      <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                      <tr key={o.orderId} className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${selectedOrders.has(o.orderId) ? "bg-muted/30" : ""}`}>
+                        <td className="p-3">
+                          <input type="checkbox" checked={selectedOrders.has(o.orderId)}
+                            onChange={() => toggleSelectOrder(o.orderId)} className="rounded border-border w-3.5 h-3.5" />
+                        </td>
                         <td className="p-3 font-medium text-foreground">{o.orderId}</td>
                         <td className="p-3">
                           <p className="text-foreground font-medium">{o.customer.name}</p>
@@ -321,6 +448,21 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                               className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
                               <ClipboardCopy className="w-3 h-3" /> Copy
                             </button>
+                            {deleteConfirm === o.orderId ? (
+                              <div className="flex items-center gap-1">
+                                <button onClick={() => handleDeleteOrder(o.orderId)}
+                                  className="flex items-center gap-1 text-destructive font-semibold">
+                                  <AlertTriangle className="w-3 h-3" /> Confirm
+                                </button>
+                                <button onClick={() => setDeleteConfirm(null)}
+                                  className="text-muted-foreground text-[10px]">Cancel</button>
+                              </div>
+                            ) : (
+                              <button onClick={() => setDeleteConfirm(o.orderId)}
+                                className="flex items-center gap-1 text-muted-foreground hover:text-destructive">
+                                <Trash2 className="w-3 h-3" /> Delete
+                              </button>
+                            )}
                           </div>
                         </td>
                       </tr>
@@ -519,10 +661,16 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
               )}
             </div>
 
-            <button onClick={saveOrder}
-              className="w-full bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
-              <Save className="w-4 h-4" /> Save All Changes
-            </button>
+            <div className="flex gap-2">
+              <button onClick={saveOrder}
+                className="flex-1 bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
+                <Save className="w-4 h-4" /> Save All Changes
+              </button>
+              <button onClick={() => { if (confirm("Delete this order permanently?")) handleDeleteOrder(editingOrder.orderId); }}
+                className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive hover:bg-destructive/20 transition-colors">
+                <Trash2 className="w-4 h-4" /> Delete
+              </button>
+            </div>
           </div>
         </div>
       )}
