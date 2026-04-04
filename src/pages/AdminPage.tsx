@@ -25,9 +25,11 @@ const AdminPage = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<"dashboard" | "orders" | "products" | "settings">("dashboard");
-  const { orders, updateOrder } = useOrders();
+  const { orders, updateOrder, addOrder, deleteOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [selectedOrders, setSelectedOrders] = useState<Set<string>>(new Set());
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     customer: true, order: true, timeline: true,
   });
