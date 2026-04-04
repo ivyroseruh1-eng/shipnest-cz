@@ -119,12 +119,18 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     if (error) console.error("Failed to update order:", error);
   };
 
+  const deleteOrder = async (orderId: string) => {
+    setOrders(prev => prev.filter(o => o.orderId !== orderId));
+    const { error } = await supabase.from("orders").delete().eq("order_id", orderId);
+    if (error) console.error("Failed to delete order:", error);
+  };
+
   const getOrder = (idOrTracking: string) => {
     return orders.find(o => o.orderId === idOrTracking || o.trackingId === idOrTracking);
   };
 
   return (
-    <OrderContext.Provider value={{ orders, addOrder, updateOrder, getOrder, loading }}>
+    <OrderContext.Provider value={{ orders, addOrder, updateOrder, deleteOrder, getOrder, loading }}>
       {children}
     </OrderContext.Provider>
   );
