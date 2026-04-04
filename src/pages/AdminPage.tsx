@@ -65,7 +65,8 @@ const AdminPage = () => {
   const copyOrderDetails = (order: Order) => {
     const latestCompleted = [...order.trackingSteps].reverse().find(s => s.completed);
     const currentStatus = latestCompleted?.status || order.status;
-    const items = order.items.map(i => `  • ${i.name} (${i.brand}) x${i.qty} — $${(i.price * i.qty).toFixed(2)}`).join("\n");
+    const siteUrl = "https://shipnest-cz.lovable.app";
+    const items = order.items.map(i => `  • ${i.name} (${i.brand}) x${i.qty} — $${(i.price * i.qty).toFixed(2)}\n    📷 Image: ${siteUrl}${i.image}`).join("\n");
     const czechTime = new Date(order.placedAt).toLocaleString("en-GB", { timeZone: "Europe/Prague" });
 
     // Build status-specific subject and message
