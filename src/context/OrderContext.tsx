@@ -6,6 +6,7 @@ interface OrderContextType {
   orders: Order[];
   addOrder: (order: Order) => void;
   updateOrder: (orderId: string, updates: Partial<Order>) => void;
+  deleteOrder: (orderId: string) => Promise<void>;
   getOrder: (idOrTracking: string) => Order | undefined;
   loading: boolean;
 }
