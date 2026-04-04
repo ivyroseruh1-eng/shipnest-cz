@@ -448,6 +448,21 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                               className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
                               <ClipboardCopy className="w-3 h-3" /> Copy
                             </button>
+                            {deleteConfirm === o.orderId ? (
+                              <div className="flex items-center gap-1">
+                                <button onClick={() => handleDeleteOrder(o.orderId)}
+                                  className="flex items-center gap-1 text-destructive font-semibold">
+                                  <AlertTriangle className="w-3 h-3" /> Confirm
+                                </button>
+                                <button onClick={() => setDeleteConfirm(null)}
+                                  className="text-muted-foreground text-[10px]">Cancel</button>
+                              </div>
+                            ) : (
+                              <button onClick={() => setDeleteConfirm(o.orderId)}
+                                className="flex items-center gap-1 text-muted-foreground hover:text-destructive">
+                                <Trash2 className="w-3 h-3" /> Delete
+                              </button>
+                            )}
                           </div>
                         </td>
                       </tr>
