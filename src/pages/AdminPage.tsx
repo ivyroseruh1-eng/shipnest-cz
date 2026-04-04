@@ -661,10 +661,16 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
               )}
             </div>
 
-            <button onClick={saveOrder}
-              className="w-full bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
-              <Save className="w-4 h-4" /> Save All Changes
-            </button>
+            <div className="flex gap-2">
+              <button onClick={saveOrder}
+                className="flex-1 bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
+                <Save className="w-4 h-4" /> Save All Changes
+              </button>
+              <button onClick={() => { if (confirm("Delete this order permanently?")) handleDeleteOrder(editingOrder.orderId); }}
+                className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive hover:bg-destructive/20 transition-colors">
+                <Trash2 className="w-4 h-4" /> Delete
+              </button>
+            </div>
           </div>
         </div>
       )}
