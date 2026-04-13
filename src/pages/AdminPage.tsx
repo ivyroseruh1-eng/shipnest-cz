@@ -675,6 +675,12 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                 className="flex-1 bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
                 <Save className="w-4 h-4" /> Save All Changes
               </button>
+              {editingOrder.status !== "Cancelled" && editingOrder.status !== "Delivered" && (
+                <button onClick={() => { cancelOrder(editingOrder.orderId); setEditingOrder(null); toast.success("Order cancelled — return tracking generated"); }}
+                  className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-500 hover:bg-orange-500/20 transition-colors">
+                  <XCircle className="w-4 h-4" /> Cancel Order
+                </button>
+              )}
               <button onClick={() => { if (confirm("Delete this order permanently?")) handleDeleteOrder(editingOrder.orderId); }}
                 className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive hover:bg-destructive/20 transition-colors">
                 <Trash2 className="w-4 h-4" /> Delete
