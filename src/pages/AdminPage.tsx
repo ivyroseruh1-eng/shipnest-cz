@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps } from "@/context/OrderContext";
+import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps, createCancelledReturnSteps } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy, Shuffle, AlertTriangle } from "lucide-react";
+import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy, Shuffle, AlertTriangle, XCircle } from "lucide-react";
 
 const ADMIN_PASSWORD = "shipnest2024";
 const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
@@ -11,21 +11,23 @@ const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", 
 const FAKE_NAMES = ["James Wilson", "Emma Thompson", "Liam Carter", "Sophia Martinez", "Noah Brown", "Olivia Davis", "Ethan Garcia", "Ava Johnson", "Mason Lee", "Isabella Clark"];
 const FAKE_EMAILS = ["james.w@gmail.com", "emma.t@outlook.com", "liam.c@yahoo.com", "sophia.m@gmail.com", "noah.b@hotmail.com", "olivia.d@gmail.com", "ethan.g@yahoo.com", "ava.j@outlook.com", "mason.l@gmail.com", "isabella.c@hotmail.com"];
 const FAKE_CITIES = [
-  { city: "New York", state: "NY", country: "United States", zip: "10001" },
-  { city: "London", state: "England", country: "United Kingdom", zip: "SW1A 1AA" },
-  { city: "Toronto", state: "Ontario", country: "Canada", zip: "M5V 3L9" },
-  { city: "Sydney", state: "NSW", country: "Australia", zip: "2000" },
-  { city: "Dubai", state: "Dubai", country: "UAE", zip: "00000" },
-  { city: "Berlin", state: "Berlin", country: "Germany", zip: "10115" },
   { city: "Mumbai", state: "Maharashtra", country: "India", zip: "400001" },
-  { city: "Tokyo", state: "Tokyo", country: "Japan", zip: "100-0001" },
+  { city: "Kolkata", state: "West Bengal", country: "India", zip: "700001" },
+  { city: "Bangalore", state: "Karnataka", country: "India", zip: "560001" },
+  { city: "Chennai", state: "Tamil Nadu", country: "India", zip: "600001" },
+  { city: "Hyderabad", state: "Telangana", country: "India", zip: "500001" },
+  { city: "Pune", state: "Maharashtra", country: "India", zip: "411001" },
+  { city: "Dibrugarh", state: "Assam", country: "India", zip: "786001" },
+  { city: "Jorhat", state: "Assam", country: "India", zip: "785001" },
+  { city: "Silchar", state: "Assam", country: "India", zip: "788001" },
+  { city: "Tezpur", state: "Assam", country: "India", zip: "784001" },
 ];
 
 const AdminPage = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<"dashboard" | "orders" | "products" | "settings">("dashboard");
-  const { orders, updateOrder, addOrder, deleteOrder } = useOrders();
+  const { orders, updateOrder, addOrder, deleteOrder, cancelOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
@@ -87,16 +89,17 @@ const AdminPage = () => {
     placedDate.setDate(placedDate.getDate() - daysAgo);
     
     const deliveryDate = new Date(placedDate);
-    deliveryDate.setDate(deliveryDate.getDate() + Math.floor(Math.random() * 14) + 7);
+    deliveryDate.setDate(deliveryDate.getDate() + 25);
     
     const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
-    // Randomly complete some steps based on how old the order is
-    const completedCount = Math.min(Math.floor(daysAgo / 3), steps.length);
+    // Day offsets for each step: 0,1,6,6,8,13,15,19,21,22,23,23,24,25
+    const dayOffsets = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25];
     steps.forEach((step, i) => {
-      if (i < completedCount) {
+      const stepDay = dayOffsets[i] || i * 2;
+      if (daysAgo >= stepDay) {
         step.completed = true;
         const stepDate = new Date(placedDate);
-        stepDate.setDate(stepDate.getDate() + i * 2);
+        stepDate.setDate(stepDate.getDate() + stepDay);
         step.timestamp = stepDate.toISOString();
       }
     });
@@ -109,7 +112,7 @@ const AdminPage = () => {
       trackingId: generateTrackingId(),
       customer: {
         name: FAKE_NAMES[nameIdx], email: FAKE_EMAILS[nameIdx],
-        phone: `+1 ${Math.floor(200 + Math.random() * 800)}-${Math.floor(100 + Math.random() * 900)}-${Math.floor(1000 + Math.random() * 9000)}`,
+        phone: `+91 ${Math.floor(70000 + Math.random() * 29999)}${Math.floor(10000 + Math.random() * 89999)}`,
         address: `${Math.floor(1 + Math.random() * 999)} ${["Oak St", "Main Ave", "Elm Rd", "Park Blvd", "King St"][Math.floor(Math.random() * 5)]}`,
         city: loc.city, state: loc.state, country: loc.country, zip: loc.zip,
       },
@@ -448,6 +451,12 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                               className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
                               <ClipboardCopy className="w-3 h-3" /> Copy
                             </button>
+                            {o.status !== "Cancelled" && o.status !== "Delivered" && (
+                              <button onClick={() => { cancelOrder(o.orderId); toast.success("Order cancelled — return tracking generated"); }}
+                                className="flex items-center gap-1 text-muted-foreground hover:text-orange-500">
+                                <XCircle className="w-3 h-3" /> Cancel
+                              </button>
+                            )}
                             {deleteConfirm === o.orderId ? (
                               <div className="flex items-center gap-1">
                                 <button onClick={() => handleDeleteOrder(o.orderId)}
@@ -666,6 +675,12 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                 className="flex-1 bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
                 <Save className="w-4 h-4" /> Save All Changes
               </button>
+              {editingOrder.status !== "Cancelled" && editingOrder.status !== "Delivered" && (
+                <button onClick={() => { cancelOrder(editingOrder.orderId); setEditingOrder(null); toast.success("Order cancelled — return tracking generated"); }}
+                  className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-500 hover:bg-orange-500/20 transition-colors">
+                  <XCircle className="w-4 h-4" /> Cancel Order
+                </button>
+              )}
               <button onClick={() => { if (confirm("Delete this order permanently?")) handleDeleteOrder(editingOrder.orderId); }}
                 className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive hover:bg-destructive/20 transition-colors">
                 <Trash2 className="w-4 h-4" /> Delete

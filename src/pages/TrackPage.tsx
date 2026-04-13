@@ -52,7 +52,7 @@ const TrackPage = () => {
                 <button onClick={() => copyToClipboard(order.trackingId, "Tracking ID")} className="p-1.5 rounded bg-muted hover:bg-primary/20"><Copy className="w-4 h-4 text-primary" /></button>
               </div>
             </div>
-            <span className="px-4 py-1.5 rounded-full gold-gradient text-primary-foreground text-sm font-bold font-orbitron">{order.status}</span>
+            <span className={`px-4 py-1.5 rounded-full text-sm font-bold font-orbitron ${order.status === "Cancelled" ? "bg-red-600 text-white" : "gold-gradient text-primary-foreground"}`}>{order.status}</span>
           </div>
 
           {/* Progress bar */}
