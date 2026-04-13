@@ -89,16 +89,17 @@ const AdminPage = () => {
     placedDate.setDate(placedDate.getDate() - daysAgo);
     
     const deliveryDate = new Date(placedDate);
-    deliveryDate.setDate(deliveryDate.getDate() + Math.floor(Math.random() * 14) + 7);
+    deliveryDate.setDate(deliveryDate.getDate() + 25);
     
     const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
-    // Randomly complete some steps based on how old the order is
-    const completedCount = Math.min(Math.floor(daysAgo / 3), steps.length);
+    // Day offsets for each step: 0,1,6,6,8,13,15,19,21,22,23,23,24,25
+    const dayOffsets = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25];
     steps.forEach((step, i) => {
-      if (i < completedCount) {
+      const stepDay = dayOffsets[i] || i * 2;
+      if (daysAgo >= stepDay) {
         step.completed = true;
         const stepDate = new Date(placedDate);
-        stepDate.setDate(stepDate.getDate() + i * 2);
+        stepDate.setDate(stepDate.getDate() + stepDay);
         step.timestamp = stepDate.toISOString();
       }
     });
@@ -111,7 +112,7 @@ const AdminPage = () => {
       trackingId: generateTrackingId(),
       customer: {
         name: FAKE_NAMES[nameIdx], email: FAKE_EMAILS[nameIdx],
-        phone: `+1 ${Math.floor(200 + Math.random() * 800)}-${Math.floor(100 + Math.random() * 900)}-${Math.floor(1000 + Math.random() * 9000)}`,
+        phone: `+91 ${Math.floor(70000 + Math.random() * 29999)}${Math.floor(10000 + Math.random() * 89999)}`,
         address: `${Math.floor(1 + Math.random() * 999)} ${["Oak St", "Main Ave", "Elm Rd", "Park Blvd", "King St"][Math.floor(Math.random() * 5)]}`,
         city: loc.city, state: loc.state, country: loc.country, zip: loc.zip,
       },
