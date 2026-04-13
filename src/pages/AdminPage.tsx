@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps } from "@/context/OrderContext";
+import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps, createCancelledReturnSteps } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy, Shuffle, AlertTriangle } from "lucide-react";
+import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy, Shuffle, AlertTriangle, XCircle } from "lucide-react";
 
 const ADMIN_PASSWORD = "shipnest2024";
 const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
@@ -11,21 +11,23 @@ const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", 
 const FAKE_NAMES = ["James Wilson", "Emma Thompson", "Liam Carter", "Sophia Martinez", "Noah Brown", "Olivia Davis", "Ethan Garcia", "Ava Johnson", "Mason Lee", "Isabella Clark"];
 const FAKE_EMAILS = ["james.w@gmail.com", "emma.t@outlook.com", "liam.c@yahoo.com", "sophia.m@gmail.com", "noah.b@hotmail.com", "olivia.d@gmail.com", "ethan.g@yahoo.com", "ava.j@outlook.com", "mason.l@gmail.com", "isabella.c@hotmail.com"];
 const FAKE_CITIES = [
-  { city: "New York", state: "NY", country: "United States", zip: "10001" },
-  { city: "London", state: "England", country: "United Kingdom", zip: "SW1A 1AA" },
-  { city: "Toronto", state: "Ontario", country: "Canada", zip: "M5V 3L9" },
-  { city: "Sydney", state: "NSW", country: "Australia", zip: "2000" },
-  { city: "Dubai", state: "Dubai", country: "UAE", zip: "00000" },
-  { city: "Berlin", state: "Berlin", country: "Germany", zip: "10115" },
   { city: "Mumbai", state: "Maharashtra", country: "India", zip: "400001" },
-  { city: "Tokyo", state: "Tokyo", country: "Japan", zip: "100-0001" },
+  { city: "Kolkata", state: "West Bengal", country: "India", zip: "700001" },
+  { city: "Bangalore", state: "Karnataka", country: "India", zip: "560001" },
+  { city: "Chennai", state: "Tamil Nadu", country: "India", zip: "600001" },
+  { city: "Hyderabad", state: "Telangana", country: "India", zip: "500001" },
+  { city: "Pune", state: "Maharashtra", country: "India", zip: "411001" },
+  { city: "Dibrugarh", state: "Assam", country: "India", zip: "786001" },
+  { city: "Jorhat", state: "Assam", country: "India", zip: "785001" },
+  { city: "Silchar", state: "Assam", country: "India", zip: "788001" },
+  { city: "Tezpur", state: "Assam", country: "India", zip: "784001" },
 ];
 
 const AdminPage = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [tab, setTab] = useState<"dashboard" | "orders" | "products" | "settings">("dashboard");
-  const { orders, updateOrder, addOrder, deleteOrder } = useOrders();
+  const { orders, updateOrder, addOrder, deleteOrder, cancelOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
