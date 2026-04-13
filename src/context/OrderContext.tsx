@@ -203,12 +203,23 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     if (error) console.error("Failed to delete order:", error);
   };
 
+  const cancelOrder = (orderId: string) => {
+    const order = orders.find(o => o.orderId === orderId);
+    if (!order) return;
+    const newSteps = createCancelledReturnSteps(order);
+    const updates: Partial<Order> = {
+      status: "Cancelled",
+      trackingSteps: newSteps,
+    };
+    updateOrder(orderId, updates);
+  };
+
   const getOrder = (idOrTracking: string) => {
     return orders.find(o => o.orderId === idOrTracking || o.trackingId === idOrTracking);
   };
 
   return (
-    <OrderContext.Provider value={{ orders, addOrder, updateOrder, deleteOrder, getOrder, loading }}>
+    <OrderContext.Provider value={{ orders, addOrder, updateOrder, deleteOrder, cancelOrder, getOrder, loading }}>
       {children}
     </OrderContext.Provider>
   );
