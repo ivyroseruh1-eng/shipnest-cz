@@ -451,6 +451,12 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                               className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
                               <ClipboardCopy className="w-3 h-3" /> Copy
                             </button>
+                            {o.status !== "Cancelled" && o.status !== "Delivered" && (
+                              <button onClick={() => { cancelOrder(o.orderId); toast.success("Order cancelled — return tracking generated"); }}
+                                className="flex items-center gap-1 text-muted-foreground hover:text-orange-500">
+                                <XCircle className="w-3 h-3" /> Cancel
+                              </button>
+                            )}
                             {deleteConfirm === o.orderId ? (
                               <div className="flex items-center gap-1">
                                 <button onClick={() => handleDeleteOrder(o.orderId)}
