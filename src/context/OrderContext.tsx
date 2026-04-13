@@ -7,6 +7,7 @@ interface OrderContextType {
   addOrder: (order: Order) => void;
   updateOrder: (orderId: string, updates: Partial<Order>) => void;
   deleteOrder: (orderId: string) => Promise<void>;
+  cancelOrder: (orderId: string) => void;
   getOrder: (idOrTracking: string) => Order | undefined;
   loading: boolean;
 }
@@ -19,13 +20,90 @@ export const generateOrderId = () => "SN" + Date.now().toString().slice(-8) + Ma
 export const createDefaultTrackingSteps = (customerCity: string, customerState: string, customerCountry: string): TrackingStep[] => [
   { id: "1", status: "Order Placed", icon: "📦", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: new Date().toISOString(), completed: true },
   { id: "2", status: "Processing at Warehouse", icon: "🏭", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
-  { id: "3", status: "Dispatched", icon: "🚚", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
-  { id: "4", status: "In Transit", icon: "✈️", city: "Frankfurt", state: "Hesse", country: "Germany", timestamp: "", completed: false },
-  { id: "5", status: "Arrived at Hub", icon: "🛬", city: "Amsterdam", state: "North Holland", country: "Netherlands", timestamp: "", completed: false },
-  { id: "6", status: "Customs Clearance", icon: "🔍", city: customerCity || "Local Hub", state: customerState, country: customerCountry || "Destination", timestamp: "", completed: false },
-  { id: "7", status: "Out for Delivery", icon: "🛵", city: customerCity || "Your City", state: customerState, country: customerCountry || "Destination", timestamp: "", completed: false },
-  { id: "8", status: "Delivered", icon: "✅", city: customerCity || "Your City", state: customerState, country: customerCountry || "Destination", timestamp: "", completed: false },
+  { id: "3", status: "Departed from Prague", icon: "✈️", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
+  { id: "4", status: "In Transit to Istanbul", icon: "🌍", city: "Istanbul", state: "Marmara", country: "Turkey", timestamp: "", completed: false },
+  { id: "5", status: "Arrived at Istanbul Hub", icon: "🛬", city: "Istanbul", state: "Marmara", country: "Turkey", timestamp: "", completed: false },
+  { id: "6", status: "In Transit to Beijing", icon: "✈️", city: "Beijing", state: "Beijing", country: "China", timestamp: "", completed: false },
+  { id: "7", status: "Arrived at Beijing Hub", icon: "🛬", city: "Beijing", state: "Beijing", country: "China", timestamp: "", completed: false },
+  { id: "8", status: "In Transit to New Delhi", icon: "✈️", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
+  { id: "9", status: "Arrived at New Delhi", icon: "🛬", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
+  { id: "10", status: "Received at Local Warehouse", icon: "🏭", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
+  { id: "11", status: "Moving to Regional Hub", icon: "🚚", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
+  { id: "12", status: "Arrived at Regional Hub", icon: "📍", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
+  { id: "13", status: "Out for Delivery", icon: "🛵", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
+  { id: "14", status: "Delivered", icon: "✅", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
 ];
+
+export const createCancelledReturnSteps = (order: Order): TrackingStep[] => {
+  // Find the last completed step to know where the package currently is
+  const completedSteps = order.trackingSteps.filter(s => s.completed);
+  const lastCompleted = completedSteps[completedSteps.length - 1];
+  if (!lastCompleted) return [];
+
+  const now = new Date();
+  const cancelStep: TrackingStep = {
+    id: crypto.randomUUID(), status: "❌ Order Cancelled", icon: "🚫",
+    city: lastCompleted.city, state: lastCompleted.state, country: lastCompleted.country,
+    timestamp: now.toISOString(), completed: true,
+  };
+
+  // Build return journey based on where the package currently is
+  const returnRoute: { status: string; icon: string; city: string; state: string; country: string }[] = [];
+  const locationKey = `${lastCompleted.city}-${lastCompleted.country}`;
+
+  // Reverse route: wherever it is → back through hubs → Prague
+  const hubOrder = [
+    { city: "Guwahati", state: "Assam", country: "India" },
+    { city: "New Delhi", state: "Delhi", country: "India" },
+    { city: "Beijing", state: "Beijing", country: "China" },
+    { city: "Istanbul", state: "Marmara", country: "Turkey" },
+    { city: "Prague", state: "Bohemia", country: "Czech Republic" },
+  ];
+
+  // Find the index of the last completed location in the hub order
+  let startIdx = -1;
+  for (let i = 0; i < hubOrder.length; i++) {
+    if (lastCompleted.city === hubOrder[i].city && lastCompleted.country === hubOrder[i].country) {
+      startIdx = i;
+      break;
+    }
+  }
+
+  // If location is a customer city (not a hub), start return from nearest hub
+  if (startIdx === -1) {
+    // Check if it's an Indian city (customer destination)
+    if (lastCompleted.country === "India") {
+      returnRoute.push({ status: "Return: Picked up from customer", icon: "📦", city: lastCompleted.city, state: lastCompleted.state, country: "India" });
+      startIdx = 0; // Start from Guwahati
+    } else {
+      startIdx = hubOrder.length - 1; // Default to Prague
+    }
+  }
+
+  // Add return hubs from current position back to Prague
+  for (let i = startIdx; i < hubOrder.length; i++) {
+    const hub = hubOrder[i];
+    if (hub.city === "Prague") {
+      returnRoute.push({ status: "Return: Arrived back at Prague warehouse", icon: "🏭", ...hub });
+      returnRoute.push({ status: "Return: Refund processed", icon: "💰", ...hub });
+    } else {
+      returnRoute.push({ status: `Return: Departed from ${hub.city}`, icon: "✈️", ...hub });
+    }
+  }
+
+  const returnSteps: TrackingStep[] = returnRoute.map((r, i) => ({
+    id: crypto.randomUUID(),
+    status: r.status,
+    icon: r.icon,
+    city: r.city,
+    state: r.state,
+    country: r.country,
+    timestamp: "",
+    completed: false,
+  }));
+
+  return [...completedSteps, cancelStep, ...returnSteps];
+};
 
 const mapDbToOrder = (row: any): Order => ({
   id: row.id,
