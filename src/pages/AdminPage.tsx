@@ -420,6 +420,7 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                     <th className="p-3 text-left font-medium">Customer</th>
                     <th className="p-3 text-left font-medium">Tracking</th>
                     <th className="p-3 text-left font-medium">Items</th>
+                    <th className="p-3 text-left font-medium">PIN</th>
                     <th className="p-3 text-left font-medium">Total</th>
                     <th className="p-3 text-left font-medium">Status</th>
                     <th className="p-3 text-left font-medium">Actions</th>
@@ -438,6 +439,9 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                         </td>
                         <td className="p-3 text-foreground font-medium">{o.trackingId}</td>
                         <td className="p-3 text-foreground">{o.items.length} item{o.items.length > 1 ? "s" : ""}</td>
+                        <td className="p-3">
+                          <span className="inline-block font-mono font-bold tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded text-[11px]">{o.deliveryPin || "—"}</span>
+                        </td>
                         <td className="p-3 font-medium text-foreground">${o.total.toFixed(2)}</td>
                         <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-foreground text-background">{o.status}</span></td>
                         <td className="p-3">
