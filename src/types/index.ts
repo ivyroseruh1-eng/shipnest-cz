@@ -72,5 +72,6 @@ export interface Order {
   placedAt: string;
   notes: string;
   paymentMethod?: string;
+  deliveryPin?: string;
   trackingSteps: TrackingStep[];
 }
