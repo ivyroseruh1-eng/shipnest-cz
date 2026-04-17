@@ -48,22 +48,17 @@ const HomePage = () => {
 
   const Section = ({ title, subtitle, items, link }: { title: string; subtitle?: string; items: typeof products; link: string }) => (
     <section>
-      <div className="flex items-end justify-between mb-8">
+      <div className="flex items-end justify-between mb-10">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">{title}</h2>
-          {subtitle && <p className="text-[13px] text-muted-foreground mt-1">{subtitle}</p>}
+          <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl font-medium text-foreground tracking-tight">{title}</h2>
+          {subtitle && <p className="text-[11px] text-muted-foreground mt-2 tracking-[0.2em] uppercase">{subtitle}</p>}
         </div>
-        <Link to={link} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 font-medium">
-          View All <ArrowRight className="w-3.5 h-3.5" />
+        <Link to={link} className="text-[11px] text-primary hover:opacity-80 transition-opacity flex items-center gap-1.5 font-semibold tracking-[0.15em] uppercase border-b border-primary/40 hover:border-primary pb-1">
+          View All <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12">
         {items.map(p => <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />)}
-      </div>
-      <div className="text-center mt-8">
-        <Link to={link} className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-full px-6 py-2.5 hover:border-foreground/30 font-medium">
-          View more <ChevronRight className="w-3 h-3" />
-        </Link>
       </div>
     </section>
   );
