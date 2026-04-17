@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps, createCancelledReturnSteps } from "@/context/OrderContext";
+import { useOrders, generateTrackingId, generateOrderId, generateDeliveryPin, createDefaultTrackingSteps, createCancelledReturnSteps, STEP_DAY_OFFSETS } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
@@ -92,10 +92,8 @@ const AdminPage = () => {
     deliveryDate.setDate(deliveryDate.getDate() + 25);
     
     const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
-    // Day offsets for each step: 0,1,6,6,8,13,15,19,21,22,23,23,24,25
-    const dayOffsets = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25];
     steps.forEach((step, i) => {
-      const stepDay = dayOffsets[i] || i * 2;
+      const stepDay = STEP_DAY_OFFSETS[i] ?? i * 2;
       if (daysAgo >= stepDay) {
         step.completed = true;
         const stepDate = new Date(placedDate);
@@ -103,9 +101,9 @@ const AdminPage = () => {
         step.timestamp = stepDate.toISOString();
       }
     });
-    
+
     const latestCompleted = [...steps].reverse().find(s => s.completed);
-    
+
     const order: Order = {
       id: crypto.randomUUID(),
       orderId: generateOrderId(),
@@ -122,6 +120,7 @@ const AdminPage = () => {
       placedAt: placedDate.toISOString(),
       notes: "",
       paymentMethod: ["Credit Card", "PayPal", "Apple Pay", "Google Pay"][Math.floor(Math.random() * 4)],
+      deliveryPin: generateDeliveryPin(),
       trackingSteps: steps,
     };
     
