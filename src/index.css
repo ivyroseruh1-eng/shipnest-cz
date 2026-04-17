@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
@@ -5,40 +6,61 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =====================================================
+   ShipNest — Dark Luxury (Black + Gold)
+   Inspired by Rolex / Bottega editorial sites.
+   All colors HSL.
+   ===================================================== */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 9%;
+    --background: 0 0% 4%;            /* near-black #0a0a0a */
+    --foreground: 40 30% 96%;         /* warm off-white */
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 9%;
+    --card: 0 0% 7%;                  /* #121212 */
+    --card-foreground: 40 30% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 9%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 40 30% 96%;
 
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 100%;
+    /* Champagne gold */
+    --primary: 43 56% 54%;            /* #c9a84c */
+    --primary-foreground: 0 0% 6%;
+    --primary-glow: 45 78% 76%;       /* #f0d78c */
 
-    --secondary: 0 0% 97%;
-    --secondary-foreground: 0 0% 9%;
+    --secondary: 0 0% 10%;            /* #1a1a1a */
+    --secondary-foreground: 40 30% 96%;
 
-    --muted: 0 0% 97%;
-    --muted-foreground: 0 0% 44%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 40 6% 64%;    /* warm grey */
 
-    --accent: 0 0% 97%;
-    --accent-foreground: 0 0% 9%;
+    --accent: 43 56% 54%;
+    --accent-foreground: 0 0% 6%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 75% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 152 60% 40%;
+    --success: 152 50% 45%;
     --success-foreground: 0 0% 100%;
 
-    --border: 0 0% 92%;
-    --input: 0 0% 92%;
-    --ring: 0 0% 9%;
+    --border: 0 0% 14%;               /* #242424 hairline */
+    --input: 0 0% 12%;
+    --ring: 43 56% 54%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
+
+    /* Premium gradients & shadows */
+    --gradient-gold: linear-gradient(135deg, hsl(43 60% 48%) 0%, hsl(45 78% 76%) 50%, hsl(43 60% 48%) 100%);
+    --gradient-onyx: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 4%) 100%);
+    --gradient-radial-gold: radial-gradient(circle at 50% 0%, hsl(43 56% 54% / 0.18) 0%, transparent 60%);
+
+    --shadow-luxe: 0 30px 80px -30px hsl(43 56% 54% / 0.35);
+    --shadow-card: 0 1px 0 hsl(40 30% 96% / 0.04) inset, 0 20px 40px -20px hsl(0 0% 0% / 0.6);
+    --shadow-glow: 0 0 40px hsl(43 56% 54% / 0.25);
+  }
+
+  .dark {
+    /* Same — site is dark by default */
   }
 }
 
@@ -46,52 +68,118 @@
   * {
     @apply border-border;
   }
+
+  html {
+    background: hsl(var(--background));
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: 'cv11', 'ss01';
+    font-feature-settings: 'cv11', 'ss01', 'liga';
+    background-image: var(--gradient-radial-gold);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
+
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    @apply font-semibold tracking-tight;
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    @apply font-medium tracking-tight;
+    letter-spacing: -0.01em;
+  }
+
+  /* Display headings get extra weight */
+  .display, h1.display {
+    font-weight: 500;
+    letter-spacing: -0.02em;
   }
 }
 
 @layer utilities {
+  /* Gold gradient utilities */
   .gold-gradient {
-    background: hsl(0 0% 9%);
+    background: var(--gradient-gold);
+    color: hsl(var(--primary-foreground));
   }
   .gold-text {
-    color: hsl(0 0% 9%);
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: hsl(var(--primary));
   }
+  .gold-border {
+    border-image: var(--gradient-gold) 1;
+  }
+
+  /* Hairline divider */
+  .hairline {
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  /* Premium card hover */
   .card-hover {
-    @apply transition-all duration-300;
+    @apply transition-all duration-500;
   }
   .card-hover:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px hsl(0 0% 0% / 0.06);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-luxe);
+  }
+
+  /* Subtle noise texture for depth */
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Tracking number / mono accent */
+  .tracking-mono {
+    font-family: 'Cormorant Garamond', serif;
+    font-feature-settings: 'tnum';
+    letter-spacing: 0.05em;
+  }
+
+  /* Serif display class */
+  .font-serif-display {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+  }
+
+  /* Glow pulse for active tracking */
+  .gold-glow {
+    box-shadow: var(--shadow-glow);
   }
 }
 
-/* Scrollbar */
+/* Custom scrollbar — slim, gold accent */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(0 0% 82%);
+  background: hsl(0 0% 18%);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(0 0% 65%);
+  background: hsl(43 56% 54% / 0.6);
 }
 
-/* Selection */
+/* Selection — gold highlight */
 ::selection {
-  background: hsl(0 0% 9%);
-  color: hsl(0 0% 100%);
+  background: hsl(43 56% 54% / 0.3);
+  color: hsl(40 30% 96%);
+}
+
+/* Focus rings */
+:focus-visible {
+  outline: 1px solid hsl(var(--primary) / 0.6);
+  outline-offset: 2px;
 }
