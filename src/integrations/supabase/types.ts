@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           created_at: string
           customer: Json
+          delivery_pin: string | null
           estimated_delivery: string
           id: string
           items: Json
@@ -36,6 +37,7 @@ export type Database = {
         Insert: {
           created_at?: string
           customer: Json
+          delivery_pin?: string | null
           estimated_delivery: string
           id?: string
           items: Json
@@ -54,6 +56,7 @@ export type Database = {
         Update: {
           created_at?: string
           customer?: Json
+          delivery_pin?: string | null
           estimated_delivery?: string
           id?: string
           items?: Json
