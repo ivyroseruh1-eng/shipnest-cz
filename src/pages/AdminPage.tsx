@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useOrders, generateTrackingId, generateOrderId, createDefaultTrackingSteps, createCancelledReturnSteps } from "@/context/OrderContext";
+import { useOrders, generateTrackingId, generateOrderId, generateDeliveryPin, createDefaultTrackingSteps, createCancelledReturnSteps, STEP_DAY_OFFSETS } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
@@ -92,10 +92,8 @@ const AdminPage = () => {
     deliveryDate.setDate(deliveryDate.getDate() + 25);
     
     const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
-    // Day offsets for each step: 0,1,6,6,8,13,15,19,21,22,23,23,24,25
-    const dayOffsets = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25];
     steps.forEach((step, i) => {
-      const stepDay = dayOffsets[i] || i * 2;
+      const stepDay = STEP_DAY_OFFSETS[i] ?? i * 2;
       if (daysAgo >= stepDay) {
         step.completed = true;
         const stepDate = new Date(placedDate);
@@ -103,9 +101,9 @@ const AdminPage = () => {
         step.timestamp = stepDate.toISOString();
       }
     });
-    
+
     const latestCompleted = [...steps].reverse().find(s => s.completed);
-    
+
     const order: Order = {
       id: crypto.randomUUID(),
       orderId: generateOrderId(),
@@ -122,6 +120,7 @@ const AdminPage = () => {
       placedAt: placedDate.toISOString(),
       notes: "",
       paymentMethod: ["Credit Card", "PayPal", "Apple Pay", "Google Pay"][Math.floor(Math.random() * 4)],
+      deliveryPin: generateDeliveryPin(),
       trackingSteps: steps,
     };
     
@@ -233,7 +232,7 @@ Order ID: ${order.orderId}
 Tracking ID: ${order.trackingId}
 Status: ${currentStatus}
 Placed: ${czechTime} (CET)
-
+${order.deliveryPin ? `Delivery PIN: ${order.deliveryPin} (share with delivery agent at the door)\n` : ""}
 ITEMS
 ${items}
 
@@ -421,6 +420,7 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                     <th className="p-3 text-left font-medium">Customer</th>
                     <th className="p-3 text-left font-medium">Tracking</th>
                     <th className="p-3 text-left font-medium">Items</th>
+                    <th className="p-3 text-left font-medium">PIN</th>
                     <th className="p-3 text-left font-medium">Total</th>
                     <th className="p-3 text-left font-medium">Status</th>
                     <th className="p-3 text-left font-medium">Actions</th>
@@ -439,6 +439,9 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                         </td>
                         <td className="p-3 text-foreground font-medium">{o.trackingId}</td>
                         <td className="p-3 text-foreground">{o.items.length} item{o.items.length > 1 ? "s" : ""}</td>
+                        <td className="p-3">
+                          <span className="inline-block font-mono font-bold tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded text-[11px]">{o.deliveryPin || "—"}</span>
+                        </td>
                         <td className="p-3 font-medium text-foreground">${o.total.toFixed(2)}</td>
                         <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-foreground text-background">{o.status}</span></td>
                         <td className="p-3">
@@ -588,6 +591,17 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                       <label className={labelClass}>Estimated Delivery</label>
                       <input type="date" value={editingOrder.estimatedDelivery.split("T")[0]}
                         onChange={e => setEditingOrder({ ...editingOrder, estimatedDelivery: new Date(e.target.value).toISOString() })} className={inputClass} />
+                    </div>
+                    <div>
+                      <label className={labelClass}>Delivery PIN</label>
+                      <div className="flex gap-2">
+                        <input value={editingOrder.deliveryPin || ""} onChange={e => setEditingOrder({ ...editingOrder, deliveryPin: e.target.value.replace(/\D/g, "").slice(0, 4) })}
+                          placeholder="4-digit" className={inputClass} />
+                        <button onClick={() => setEditingOrder({ ...editingOrder, deliveryPin: generateDeliveryPin() })}
+                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors" title="Regenerate PIN">
+                          <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
+                        </button>
+                      </div>
                     </div>
                   </div>
                   <div>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { Search, Copy, Share2, Printer } from "lucide-react";
+import { Search, Copy, Share2, Printer, Lock } from "lucide-react";
 import { useOrders } from "@/context/OrderContext";
 import TrackingTimeline from "@/components/TrackingTimeline";
 import { toast } from "sonner";
@@ -97,10 +97,29 @@ const TrackPage = () => {
           ))}
         </div>
 
+        {/* Delivery PIN */}
+        {order.deliveryPin && order.status !== "Delivered" && order.status !== "Cancelled" && (
+          <div className="bg-gradient-to-br from-primary/10 via-card to-card border border-primary/30 rounded-2xl p-6 space-y-2">
+            <div className="flex items-center gap-2">
+              <Lock className="w-4 h-4 text-primary" />
+              <p className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-semibold">Delivery Verification PIN</p>
+            </div>
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="text-4xl sm:text-5xl font-black tracking-[0.4em] text-primary tabular-nums">{order.deliveryPin}</span>
+              <button onClick={() => copyToClipboard(order.deliveryPin!, "PIN")} className="p-2 rounded-lg bg-muted hover:bg-primary/10 transition-colors shrink-0">
+                <Copy className="w-4 h-4 text-muted-foreground" />
+              </button>
+            </div>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              Share this 4-digit PIN with the delivery agent at the door to confirm receipt. Do not share over phone or message.
+            </p>
+          </div>
+        )}
+
         {/* Timeline */}
         <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
           <h3 className="font-bold text-foreground font-orbitron">Shipment Timeline</h3>
-          <TrackingTimeline steps={order.trackingSteps} />
+          <TrackingTimeline steps={order.trackingSteps} placedAt={order.placedAt} />
         </div>
 
         {/* Actions */}

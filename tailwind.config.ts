@@ -14,9 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Plus Jakarta Sans"', '"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        heading: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
         body: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        orbitron: ['"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
+        orbitron: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
         rajdhani: ['"Inter"', 'sans-serif'],
       },
       colors: {
@@ -58,17 +59,17 @@ export default {
           foreground: "hsl(var(--success-foreground))",
         },
         gold: {
-          DEFAULT: "hsl(var(--gold))",
-          light: "hsl(var(--gold-light))",
+          DEFAULT: "hsl(var(--primary))",
+          light: "hsl(var(--primary-glow))",
         },
         navy: {
-          DEFAULT: "hsl(var(--navy))",
-          light: "hsl(var(--navy-light))",
+          DEFAULT: "hsl(var(--background))",
+          light: "hsl(var(--card))",
         },
-        "blue-glow": "hsl(var(--blue-glow))",
+        "blue-glow": "hsl(var(--primary))",
         silver: {
-          DEFAULT: "hsl(var(--silver))",
-          light: "hsl(var(--silver-light))",
+          DEFAULT: "hsl(var(--muted-foreground))",
+          light: "hsl(var(--foreground))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background, var(--background)))",

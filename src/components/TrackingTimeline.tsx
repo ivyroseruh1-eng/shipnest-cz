@@ -1,12 +1,21 @@
 import { TrackingStep } from "@/types";
+import { STEP_DAY_OFFSETS, getScheduledTimestamp } from "@/context/OrderContext";
 
 interface Props {
   steps: TrackingStep[];
+  placedAt?: string;
 }
 
-const TrackingTimeline = ({ steps }: Props) => {
+const TrackingTimeline = ({ steps, placedAt }: Props) => {
   const lastCompletedIdx = steps.reduce((acc, s, i) => (s.completed ? i : acc), -1);
-  const isCancelled = steps.some(s => s.status.includes("Cancelled"));
+
+  const formatEta = (i: number) => {
+    if (!placedAt) return "Pending";
+    const sched = getScheduledTimestamp(placedAt, i);
+    const opts: Intl.DateTimeFormatOptions = { timeZone: "Europe/Prague", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" };
+    const isOutForDelivery = steps[i]?.status === "Out for Delivery";
+    return `Est. ${sched.toLocaleString("en-GB", opts)}${isOutForDelivery ? " · 9 AM – 6 PM window" : ""}`;
+  };
 
   return (
     <div className="relative space-y-0">
@@ -19,27 +28,26 @@ const TrackingTimeline = ({ steps }: Props) => {
 
         return (
           <div key={step.id} className="relative flex gap-4">
-            {/* Vertical line */}
             {i < steps.length - 1 && (
               <div className="absolute left-5 top-10 w-0.5 h-full"
-                style={{ background: isCancelStep || isReturnStep ? (isCompleted ? "#f97316" : "hsl(210 40% 22%)") : isCompleted ? "hsl(45 70% 47%)" : "hsl(210 40% 22%)" }} />
+                style={{ background: isCancelStep || isReturnStep ? (isCompleted ? "hsl(20 90% 55%)" : "hsl(var(--border))") : isCompleted ? "hsl(var(--primary))" : "hsl(var(--border))" }} />
             )}
-            {/* Icon circle */}
             <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-lg border-2
-              ${isCancelStep ? "border-red-500 bg-red-500/20" : isReturnStep ? (isCompleted ? "border-orange-500 bg-orange-500/20" : "border-border bg-muted") : isCurrent ? "border-accent bg-accent/20 blue-glow" : isCompleted ? "border-primary bg-primary/20" : "border-border bg-muted"}`}>
-              {isCurrent && !isCancelStep && <span className="absolute w-3 h-3 rounded-full bg-accent animate-pulse" />}
+              ${isCancelStep ? "border-destructive bg-destructive/10" : isReturnStep ? (isCompleted ? "border-orange-500 bg-orange-500/10" : "border-border bg-muted") : isCurrent ? "border-primary bg-primary/15 shadow-[0_0_18px_hsl(var(--primary)/0.4)]" : isCompleted ? "border-primary bg-primary/10" : "border-border bg-muted"}`}>
+              {isCurrent && !isCancelStep && <span className="absolute w-3 h-3 rounded-full bg-primary animate-pulse" />}
               <span>{step.icon}</span>
             </div>
-            {/* Content */}
-            <div className={`pb-8 ${isPending && !isCancelStep ? "opacity-40" : ""}`}>
-              <p className={`font-semibold text-sm ${isCancelStep ? "text-red-500" : isReturnStep ? (isCompleted ? "text-orange-500" : "text-muted-foreground") : isCurrent ? "text-accent" : isCompleted ? "text-primary" : "text-muted-foreground"}`}>
+            <div className={`pb-8 flex-1 ${isPending && !isCancelStep ? "opacity-50" : ""}`}>
+              <p className={`font-semibold text-sm ${isCancelStep ? "text-destructive" : isReturnStep ? (isCompleted ? "text-orange-500" : "text-muted-foreground") : isCurrent ? "text-primary" : isCompleted ? "text-foreground" : "text-muted-foreground"}`}>
                 {step.status}
               </p>
               <p className="text-xs text-muted-foreground">
                 {[step.city, step.state, step.country].filter(Boolean).join(", ")}
               </p>
-              <p className="text-xs text-muted-foreground mt-0.5">
-                {isCompleted && step.timestamp ? new Date(step.timestamp).toLocaleString() : "Pending"}
+              <p className="text-[11px] text-muted-foreground mt-0.5 italic">
+                {isCompleted && step.timestamp
+                  ? new Date(step.timestamp).toLocaleString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
+                  : isPending && !isCancelStep && !isReturnStep ? formatEta(i) : "Pending"}
               </p>
             </div>
           </div>

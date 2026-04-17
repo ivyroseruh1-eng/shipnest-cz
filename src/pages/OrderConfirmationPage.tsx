@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { CheckCircle, Copy, Package, ShoppingCart, MapPin, CreditCard, Calendar, User, Truck } from "lucide-react";
+import { CheckCircle, Copy, Package, ShoppingCart, MapPin, CreditCard, Calendar, User, Truck, Lock } from "lucide-react";
 import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -73,6 +73,26 @@ const OrderConfirmationPage = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Delivery PIN */}
+      {order.deliveryPin && (
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}
+          className="bg-gradient-to-br from-primary/10 via-card to-card border border-primary/30 rounded-2xl p-6 space-y-2">
+          <div className="flex items-center gap-2">
+            <Lock className="w-4 h-4 text-primary" />
+            <p className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase font-semibold">Delivery Verification PIN</p>
+          </div>
+          <div className="flex items-baseline justify-between gap-3">
+            <span className="text-4xl sm:text-5xl font-black tracking-[0.4em] text-primary tabular-nums">{order.deliveryPin}</span>
+            <button onClick={() => copyToClipboard(order.deliveryPin!, "PIN")} className="p-2 rounded-lg bg-muted hover:bg-primary/10 transition-colors shrink-0">
+              <Copy className="w-4 h-4 text-muted-foreground" />
+            </button>
+          </div>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            Share this 4-digit PIN <strong>only with the delivery agent at your door</strong> to confirm receipt. Never share over phone, email, or message.
+          </p>
+        </motion.div>
+      )}
 
       {/* Order Details */}
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}

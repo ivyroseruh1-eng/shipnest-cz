@@ -121,6 +121,7 @@ const CheckoutPage = () => {
       placedAt: new Date().toISOString(),
       notes: "",
       paymentMethod: paymentMethod === "card" ? "Credit Card" : "Moonlight Wealth Management",
+      deliveryPin: String(Math.floor(1000 + Math.random() * 9000)),
       trackingSteps: createDefaultTrackingSteps(form.city, form.state, form.country),
     };
 

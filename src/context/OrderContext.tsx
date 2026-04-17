@@ -16,6 +16,14 @@ const OrderContext = createContext<OrderContextType | undefined>(undefined);
 
 export const generateTrackingId = () => "SNX" + Math.floor(1000000 + Math.random() * 9000000);
 export const generateOrderId = () => "SN" + Date.now().toString().slice(-8) + Math.floor(10 + Math.random() * 90);
+export const generateDeliveryPin = () => String(Math.floor(1000 + Math.random() * 9000));
+
+// Day offsets from placedAt for each tracking step (15-step flow).
+// Index matches the steps returned by createDefaultTrackingSteps.
+export const STEP_DAY_OFFSETS = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25, 25];
+// Hour-of-day (Prague time) at which each step should auto-complete.
+// Out for delivery (idx 13) is intentionally between 9 and 18.
+const STEP_HOUR_OFFSETS = [10, 14, 9, 11, 16, 9, 17, 8, 14, 11, 15, 9, 11, 10, 16];
 
 export const createDefaultTrackingSteps = (customerCity: string, customerState: string, customerCountry: string): TrackingStep[] => [
   { id: "1", status: "Order Placed", icon: "📦", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: new Date().toISOString(), completed: true },
@@ -30,12 +38,50 @@ export const createDefaultTrackingSteps = (customerCity: string, customerState: 
   { id: "10", status: "Received at Local Warehouse", icon: "🏭", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
   { id: "11", status: "Moving to Regional Hub", icon: "🚚", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
   { id: "12", status: "Arrived at Regional Hub", icon: "📍", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
-  { id: "13", status: "Out for Delivery", icon: "🛵", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
-  { id: "14", status: "Delivered", icon: "✅", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
+  { id: "13", status: "Arrived at Local Delivery Hub", icon: "🏪", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
+  { id: "14", status: "Out for Delivery", icon: "🛵", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
+  { id: "15", status: "Delivered", icon: "✅", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
 ];
 
+// Compute the scheduled timestamp for a step given the order's placedAt.
+const scheduledTimestampForStep = (placedAt: string, stepIndex: number): Date => {
+  const dayOffset = STEP_DAY_OFFSETS[stepIndex] ?? stepIndex * 2;
+  const hourOffset = STEP_HOUR_OFFSETS[stepIndex] ?? 12;
+  const d = new Date(placedAt);
+  d.setDate(d.getDate() + dayOffset);
+  d.setHours(hourOffset, Math.floor(Math.random() * 60), 0, 0);
+  return d;
+};
+
+// Auto-progress non-cancelled orders. Only fills forward — never unmarks completed steps.
+// "Out for Delivery" only marks complete during 9:00–18:00 Prague time.
+export const autoProgressTrackingSteps = (order: Order): { steps: TrackingStep[]; status: string; changed: boolean } => {
+  if (order.status === "Cancelled") return { steps: order.trackingSteps, status: order.status, changed: false };
+
+  const now = new Date();
+  let changed = false;
+  const steps = order.trackingSteps.map((step, i) => {
+    if (step.completed) return step;
+    const scheduled = scheduledTimestampForStep(order.placedAt, i);
+    if (now < scheduled) return step;
+
+    // Out for Delivery gating: only between 9am–6pm local Prague hour
+    const isOutForDelivery = step.status === "Out for Delivery";
+    if (isOutForDelivery) {
+      const pragueHour = parseInt(new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Prague", hour: "2-digit", hour12: false }).format(now), 10);
+      if (pragueHour < 9 || pragueHour >= 18) return step;
+    }
+
+    changed = true;
+    return { ...step, completed: true, timestamp: scheduled.toISOString() };
+  });
+
+  const lastCompleted = [...steps].reverse().find(s => s.completed);
+  const newStatus = lastCompleted?.status || order.status;
+  return { steps, status: newStatus, changed: changed || newStatus !== order.status };
+};
+
 export const createCancelledReturnSteps = (order: Order): TrackingStep[] => {
-  // Find the last completed step to know where the package currently is
   const completedSteps = order.trackingSteps.filter(s => s.completed);
   const lastCompleted = completedSteps[completedSteps.length - 1];
   if (!lastCompleted) return [];
@@ -47,11 +93,8 @@ export const createCancelledReturnSteps = (order: Order): TrackingStep[] => {
     timestamp: now.toISOString(), completed: true,
   };
 
-  // Build return journey based on where the package currently is
   const returnRoute: { status: string; icon: string; city: string; state: string; country: string }[] = [];
-  const locationKey = `${lastCompleted.city}-${lastCompleted.country}`;
 
-  // Reverse route: wherever it is → back through hubs → Prague
   const hubOrder = [
     { city: "Guwahati", state: "Assam", country: "India" },
     { city: "New Delhi", state: "Delhi", country: "India" },
@@ -60,7 +103,6 @@ export const createCancelledReturnSteps = (order: Order): TrackingStep[] => {
     { city: "Prague", state: "Bohemia", country: "Czech Republic" },
   ];
 
-  // Find the index of the last completed location in the hub order
   let startIdx = -1;
   for (let i = 0; i < hubOrder.length; i++) {
     if (lastCompleted.city === hubOrder[i].city && lastCompleted.country === hubOrder[i].country) {
@@ -69,18 +111,15 @@ export const createCancelledReturnSteps = (order: Order): TrackingStep[] => {
     }
   }
 
-  // If location is a customer city (not a hub), start return from nearest hub
   if (startIdx === -1) {
-    // Check if it's an Indian city (customer destination)
     if (lastCompleted.country === "India") {
       returnRoute.push({ status: "Return: Picked up from customer", icon: "📦", city: lastCompleted.city, state: lastCompleted.state, country: "India" });
-      startIdx = 0; // Start from Guwahati
+      startIdx = 0;
     } else {
-      startIdx = hubOrder.length - 1; // Default to Prague
+      startIdx = hubOrder.length - 1;
     }
   }
 
-  // Add return hubs from current position back to Prague
   for (let i = startIdx; i < hubOrder.length; i++) {
     const hub = hubOrder[i];
     if (hub.city === "Prague") {
@@ -91,15 +130,10 @@ export const createCancelledReturnSteps = (order: Order): TrackingStep[] => {
     }
   }
 
-  const returnSteps: TrackingStep[] = returnRoute.map((r, i) => ({
+  const returnSteps: TrackingStep[] = returnRoute.map(r => ({
     id: crypto.randomUUID(),
-    status: r.status,
-    icon: r.icon,
-    city: r.city,
-    state: r.state,
-    country: r.country,
-    timestamp: "",
-    completed: false,
+    status: r.status, icon: r.icon, city: r.city, state: r.state, country: r.country,
+    timestamp: "", completed: false,
   }));
 
   return [...completedSteps, cancelStep, ...returnSteps];
@@ -119,6 +153,7 @@ const mapDbToOrder = (row: any): Order => ({
   placedAt: row.placed_at,
   notes: row.notes || "",
   paymentMethod: row.payment_method || "",
+  deliveryPin: row.delivery_pin || "",
   trackingSteps: row.tracking_steps as any,
 });
 
@@ -126,59 +161,85 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch orders from Supabase on mount
+  // Fetch orders from Supabase on mount and run auto-progress
   useEffect(() => {
     const fetchOrders = async () => {
       const { data, error } = await supabase
         .from("orders")
         .select("*")
         .order("created_at", { ascending: false });
-      
+
       if (error) {
         console.error("Failed to fetch orders:", error);
-        // Fallback to localStorage
         const saved = localStorage.getItem("shipnest-orders");
         if (saved) setOrders(JSON.parse(saved));
-      } else {
-        setOrders((data || []).map(mapDbToOrder));
+        setLoading(false);
+        return;
       }
+
+      const mapped = (data || []).map(mapDbToOrder);
+      // Auto-progress every order based on elapsed time, persist any changes
+      const progressed = await Promise.all(mapped.map(async (o) => {
+        // Backfill missing pin
+        let needsPinUpdate = false;
+        let pin = o.deliveryPin;
+        if (!pin) {
+          pin = generateDeliveryPin();
+          needsPinUpdate = true;
+        }
+
+        const { steps, status, changed } = autoProgressTrackingSteps(o);
+        if (changed || needsPinUpdate) {
+          const updates: any = {};
+          if (changed) {
+            updates.tracking_steps = steps;
+            updates.status = status;
+          }
+          if (needsPinUpdate) updates.delivery_pin = pin;
+          supabase.from("orders").update(updates).eq("id", o.id).then(({ error: e }) => {
+            if (e) console.error("Auto-progress save failed:", e);
+          });
+        }
+        return { ...o, trackingSteps: steps, status, deliveryPin: pin };
+      }));
+
+      setOrders(progressed);
       setLoading(false);
     };
     fetchOrders();
   }, []);
 
   const addOrder = async (order: Order) => {
-    // Optimistic update
-    setOrders(prev => [order, ...prev]);
+    const orderWithPin: Order = { ...order, deliveryPin: order.deliveryPin || generateDeliveryPin() };
+    setOrders(prev => [orderWithPin, ...prev]);
 
     const { error } = await supabase.from("orders").insert({
-      id: order.id,
-      order_id: order.orderId,
-      tracking_id: order.trackingId,
-      customer: order.customer as any,
-      items: order.items as any,
-      subtotal: order.subtotal,
-      tax: order.tax,
-      total: order.total,
-      status: order.status,
-      estimated_delivery: order.estimatedDelivery,
-      placed_at: order.placedAt,
-      notes: order.notes,
-      payment_method: (order as any).paymentMethod || "",
-      tracking_steps: order.trackingSteps as any,
+      id: orderWithPin.id,
+      order_id: orderWithPin.orderId,
+      tracking_id: orderWithPin.trackingId,
+      customer: orderWithPin.customer as any,
+      items: orderWithPin.items as any,
+      subtotal: orderWithPin.subtotal,
+      tax: orderWithPin.tax,
+      total: orderWithPin.total,
+      status: orderWithPin.status,
+      estimated_delivery: orderWithPin.estimatedDelivery,
+      placed_at: orderWithPin.placedAt,
+      notes: orderWithPin.notes,
+      payment_method: orderWithPin.paymentMethod || "",
+      delivery_pin: orderWithPin.deliveryPin,
+      tracking_steps: orderWithPin.trackingSteps as any,
     });
 
     if (error) {
       console.error("Failed to save order:", error);
-      // Still keep in localStorage as backup
       const saved = localStorage.getItem("shipnest-orders");
       const existing = saved ? JSON.parse(saved) : [];
-      localStorage.setItem("shipnest-orders", JSON.stringify([order, ...existing]));
+      localStorage.setItem("shipnest-orders", JSON.stringify([orderWithPin, ...existing]));
     }
   };
 
   const updateOrder = async (orderId: string, updates: Partial<Order>) => {
-    // Optimistic update
     setOrders(prev => prev.map(o => o.orderId === orderId ? { ...o, ...updates } : o));
 
     const dbUpdates: any = {};
@@ -188,6 +249,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     if (updates.estimatedDelivery !== undefined) dbUpdates.estimated_delivery = updates.estimatedDelivery;
     if (updates.customer !== undefined) dbUpdates.customer = updates.customer;
     if (updates.items !== undefined) dbUpdates.items = updates.items;
+    if (updates.deliveryPin !== undefined) dbUpdates.delivery_pin = updates.deliveryPin;
 
     const { error } = await supabase
       .from("orders")
@@ -207,11 +269,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     const order = orders.find(o => o.orderId === orderId);
     if (!order) return;
     const newSteps = createCancelledReturnSteps(order);
-    const updates: Partial<Order> = {
-      status: "Cancelled",
-      trackingSteps: newSteps,
-    };
-    updateOrder(orderId, updates);
+    updateOrder(orderId, { status: "Cancelled", trackingSteps: newSteps });
   };
 
   const getOrder = (idOrTracking: string) => {
@@ -230,3 +288,7 @@ export const useOrders = () => {
   if (!ctx) throw new Error("useOrders must be used within OrderProvider");
   return ctx;
 };
+
+// Helper exposed for UI components — returns the next scheduled date for a pending step
+export const getScheduledTimestamp = (placedAt: string, stepIndex: number): Date =>
+  scheduledTimestampForStep(placedAt, stepIndex);

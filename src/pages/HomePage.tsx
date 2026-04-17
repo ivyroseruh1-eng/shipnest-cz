@@ -48,48 +48,46 @@ const HomePage = () => {
 
   const Section = ({ title, subtitle, items, link }: { title: string; subtitle?: string; items: typeof products; link: string }) => (
     <section>
-      <div className="flex items-end justify-between mb-8">
+      <div className="flex items-end justify-between mb-10">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">{title}</h2>
-          {subtitle && <p className="text-[13px] text-muted-foreground mt-1">{subtitle}</p>}
+          <h2 className="font-serif-display text-3xl sm:text-4xl md:text-5xl font-medium text-foreground tracking-tight">{title}</h2>
+          {subtitle && <p className="text-[11px] text-muted-foreground mt-2 tracking-[0.2em] uppercase">{subtitle}</p>}
         </div>
-        <Link to={link} className="text-[13px] text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 font-medium">
-          View All <ArrowRight className="w-3.5 h-3.5" />
+        <Link to={link} className="text-[11px] text-primary hover:opacity-80 transition-opacity flex items-center gap-1.5 font-semibold tracking-[0.15em] uppercase border-b border-primary/40 hover:border-primary pb-1">
+          View All <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12">
         {items.map(p => <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />)}
-      </div>
-      <div className="text-center mt-8">
-        <Link to={link} className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors border border-border rounded-full px-6 py-2.5 hover:border-foreground/30 font-medium">
-          View more <ChevronRight className="w-3 h-3" />
-        </Link>
       </div>
     </section>
   );
 
   return (
     <div className="pb-20">
-      {/* Hero */}
-      <section className="bg-secondary/50">
-        <div className="max-w-7xl mx-auto px-4 py-20 sm:py-28 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-foreground/5 border border-foreground/10 text-[12px] text-foreground font-medium mb-6">
-            <Zap className="w-3 h-3" /> New iPhone 17 Series Now Available
+      {/* Hero — Dark Luxury */}
+      <section className="relative overflow-hidden border-b border-border">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,hsl(var(--primary)/0.18),transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 noise pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-4 py-24 sm:py-36 text-center relative">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-[11px] text-primary font-medium mb-8 tracking-[0.2em] uppercase">
+            <Zap className="w-3 h-3" /> iPhone 17 · Now Available
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-foreground max-w-4xl mx-auto">
+          <h1 className="font-serif-display text-5xl sm:text-7xl md:text-8xl font-medium tracking-tight leading-[0.95] text-foreground max-w-5xl mx-auto">
             Premium Tech.
             <br />
-            <span className="text-muted-foreground">Delivered Worldwide.</span>
+            <span className="gold-text italic">Delivered Worldwide.</span>
           </h1>
-          <p className="text-[15px] sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed mt-6">
-            Authentic products shipped from Prague, Czech Republic. Smart logistics & fulfillment for 180+ countries.
+          <p className="text-[15px] sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed mt-8 font-light">
+            Authentic products handpicked and shipped from Prague, Czech Republic.<br className="hidden sm:block" />
+            Concierge logistics across 180+ countries.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-8">
-            <Link to="/shop" className="bg-foreground text-background px-8 py-3.5 rounded-full font-semibold text-[14px] hover:bg-foreground/90 transition-colors inline-flex items-center justify-center gap-2">
-              Shop Now <ArrowRight className="w-4 h-4" />
+          <div className="flex flex-col sm:flex-row gap-3 justify-center mt-10">
+            <Link to="/shop" className="gold-gradient px-10 py-3.5 rounded-sm font-semibold text-[13px] tracking-[0.15em] uppercase hover:opacity-90 transition-all inline-flex items-center justify-center gap-2 shadow-[0_10px_40px_-10px_hsl(var(--primary)/0.5)]">
+              Shop Collection <ArrowRight className="w-4 h-4" />
             </Link>
-            <Link to="/shop?category=iPhone+17" className="border border-foreground/20 text-foreground px-8 py-3.5 rounded-full font-semibold text-[14px] hover:bg-foreground/5 transition-colors inline-flex items-center justify-center gap-2">
-              <Star className="w-4 h-4" /> iPhone 17 Series
+            <Link to="/shop?category=iPhone+17" className="border border-primary/40 text-foreground px-10 py-3.5 rounded-sm font-semibold text-[13px] tracking-[0.15em] uppercase hover:bg-primary/5 hover:border-primary transition-colors inline-flex items-center justify-center gap-2">
+              <Star className="w-4 h-4 text-primary" /> iPhone 17 Series
             </Link>
           </div>
         </div>
