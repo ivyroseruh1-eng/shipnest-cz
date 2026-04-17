@@ -588,6 +588,17 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                       <input type="date" value={editingOrder.estimatedDelivery.split("T")[0]}
                         onChange={e => setEditingOrder({ ...editingOrder, estimatedDelivery: new Date(e.target.value).toISOString() })} className={inputClass} />
                     </div>
+                    <div>
+                      <label className={labelClass}>Delivery PIN</label>
+                      <div className="flex gap-2">
+                        <input value={editingOrder.deliveryPin || ""} onChange={e => setEditingOrder({ ...editingOrder, deliveryPin: e.target.value.replace(/\D/g, "").slice(0, 4) })}
+                          placeholder="4-digit" className={inputClass} />
+                        <button onClick={() => setEditingOrder({ ...editingOrder, deliveryPin: generateDeliveryPin() })}
+                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors" title="Regenerate PIN">
+                          <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
+                        </button>
+                      </div>
+                    </div>
                   </div>
                   <div>
                     <label className={labelClass}>Admin Notes</label>
