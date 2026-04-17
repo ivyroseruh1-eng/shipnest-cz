@@ -232,7 +232,7 @@ Order ID: ${order.orderId}
 Tracking ID: ${order.trackingId}
 Status: ${currentStatus}
 Placed: ${czechTime} (CET)
-
+${order.deliveryPin ? `Delivery PIN: ${order.deliveryPin} (share with delivery agent at the door)\n` : ""}
 ITEMS
 ${items}
 
