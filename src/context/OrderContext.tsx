@@ -18,30 +18,37 @@ export const generateTrackingId = () => "SNX" + Math.floor(1000000 + Math.random
 export const generateOrderId = () => "SN" + Date.now().toString().slice(-8) + Math.floor(10 + Math.random() * 90);
 export const generateDeliveryPin = () => String(Math.floor(1000 + Math.random() * 9000));
 
-// Day offsets from placedAt for each tracking step (15-step flow).
+// Day offsets from placedAt for each tracking step (16-step flow).
 // Index matches the steps returned by createDefaultTrackingSteps.
-export const STEP_DAY_OFFSETS = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25, 25];
+export const STEP_DAY_OFFSETS = [0, 1, 6, 6, 8, 13, 15, 19, 21, 22, 23, 23, 24, 25, 26, 26];
 // Hour-of-day (Prague time) at which each step should auto-complete.
-// Out for delivery (idx 13) is intentionally between 9 and 18.
-const STEP_HOUR_OFFSETS = [10, 14, 9, 11, 16, 9, 17, 8, 14, 11, 15, 9, 11, 10, 16];
+// Out for delivery (idx 14) is intentionally between 9 and 18.
+const STEP_HOUR_OFFSETS = [10, 14, 9, 11, 16, 9, 17, 8, 14, 11, 15, 9, 18, 10, 11, 16];
 
-export const createDefaultTrackingSteps = (customerCity: string, customerState: string, customerCountry: string): TrackingStep[] => [
-  { id: "1", status: "Order Placed", icon: "📦", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: new Date().toISOString(), completed: true },
-  { id: "2", status: "Processing at Warehouse", icon: "🏭", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
-  { id: "3", status: "Departed from Prague", icon: "✈️", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
-  { id: "4", status: "In Transit to Istanbul", icon: "🌍", city: "Istanbul", state: "Marmara", country: "Turkey", timestamp: "", completed: false },
-  { id: "5", status: "Arrived at Istanbul Hub", icon: "🛬", city: "Istanbul", state: "Marmara", country: "Turkey", timestamp: "", completed: false },
-  { id: "6", status: "In Transit to Beijing", icon: "✈️", city: "Beijing", state: "Beijing", country: "China", timestamp: "", completed: false },
-  { id: "7", status: "Arrived at Beijing Hub", icon: "🛬", city: "Beijing", state: "Beijing", country: "China", timestamp: "", completed: false },
-  { id: "8", status: "In Transit to New Delhi", icon: "✈️", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
-  { id: "9", status: "Arrived at New Delhi", icon: "🛬", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
-  { id: "10", status: "Received at Local Warehouse", icon: "🏭", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
-  { id: "11", status: "Moving to Regional Hub", icon: "🚚", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
-  { id: "12", status: "Arrived at Regional Hub", icon: "📍", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
-  { id: "13", status: "Arrived at Local Delivery Hub", icon: "🏪", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
-  { id: "14", status: "Out for Delivery", icon: "🛵", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
-  { id: "15", status: "Delivered", icon: "✅", city: customerCity || "Your City", state: customerState, country: customerCountry || "India", timestamp: "", completed: false },
-];
+export const createDefaultTrackingSteps = (customerCity: string, customerState: string, customerCountry: string): TrackingStep[] => {
+  const city = customerCity || "Your City";
+  const state = customerState || "";
+  const country = customerCountry || "India";
+  const stateOrCity = state || city;
+  return [
+    { id: "1", status: "Order Placed", icon: "📦", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: new Date().toISOString(), completed: true },
+    { id: "2", status: "Processing at Warehouse", icon: "🏭", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
+    { id: "3", status: "Departed from Prague", icon: "✈️", city: "Prague", state: "Bohemia", country: "Czech Republic", timestamp: "", completed: false },
+    { id: "4", status: "In Transit to Istanbul", icon: "🌍", city: "Istanbul", state: "Marmara", country: "Turkey", timestamp: "", completed: false },
+    { id: "5", status: "Arrived at Istanbul Hub", icon: "🛬", city: "Istanbul", state: "Marmara", country: "Turkey", timestamp: "", completed: false },
+    { id: "6", status: "In Transit to Beijing", icon: "✈️", city: "Beijing", state: "Beijing", country: "China", timestamp: "", completed: false },
+    { id: "7", status: "Arrived at Beijing Hub", icon: "🛬", city: "Beijing", state: "Beijing", country: "China", timestamp: "", completed: false },
+    { id: "8", status: "In Transit to New Delhi", icon: "✈️", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
+    { id: "9", status: "Arrived at New Delhi", icon: "🛬", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
+    { id: "10", status: "Received at Local Warehouse", icon: "🏭", city: "New Delhi", state: "Delhi", country: "India", timestamp: "", completed: false },
+    { id: "11", status: "Moving to Regional Hub", icon: "🚚", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
+    { id: "12", status: "Arrived at Regional Hub", icon: "📍", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
+    { id: "13", status: `Dispatched to ${stateOrCity}`, icon: "🚛", city: "Guwahati", state: "Assam", country: "India", timestamp: "", completed: false },
+    { id: "14", status: "Arrived at Local Delivery Hub", icon: "🏪", city, state, country, timestamp: "", completed: false },
+    { id: "15", status: "Out for Delivery", icon: "🛵", city, state, country, timestamp: "", completed: false },
+    { id: "16", status: "Delivered", icon: "✅", city, state, country, timestamp: "", completed: false },
+  ];
+};
 
 // Compute the scheduled timestamp for a step given the order's placedAt.
 const scheduledTimestampForStep = (placedAt: string, stepIndex: number): Date => {
