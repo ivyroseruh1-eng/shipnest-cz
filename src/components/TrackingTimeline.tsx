@@ -1,5 +1,5 @@
 import { TrackingStep } from "@/types";
-import { STEP_DAY_OFFSETS, getScheduledTimestamp } from "@/context/OrderContext";
+import { getScheduledTimestamp } from "@/context/OrderContext";
 
 interface Props {
   steps: TrackingStep[];
@@ -32,19 +32,19 @@ const TrackingTimeline = ({ steps, placedAt }: Props) => {
               <div className="absolute left-5 top-10 w-0.5 h-full"
                 style={{ background: isCancelStep || isReturnStep ? (isCompleted ? "hsl(20 90% 55%)" : "hsl(var(--border))") : isCompleted ? "hsl(var(--primary))" : "hsl(var(--border))" }} />
             )}
-            <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-lg border-2
-              ${isCancelStep ? "border-destructive bg-destructive/10" : isReturnStep ? (isCompleted ? "border-orange-500 bg-orange-500/10" : "border-border bg-muted") : isCurrent ? "border-primary bg-primary/15 shadow-[0_0_18px_hsl(var(--primary)/0.4)]" : isCompleted ? "border-primary bg-primary/10" : "border-border bg-muted"}`}>
+            <div className={`relative z-10 w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-lg border-2 transition-all
+              ${isCancelStep ? "border-destructive bg-destructive/10" : isReturnStep ? (isCompleted ? "border-orange-500 bg-orange-500/10" : "border-border bg-secondary") : isCurrent ? "border-primary bg-primary/10" : isCompleted ? "border-primary bg-primary/5" : "border-border bg-secondary"}`}>
               {isCurrent && !isCancelStep && <span className="absolute w-3 h-3 rounded-full bg-primary animate-pulse" />}
               <span>{step.icon}</span>
             </div>
             <div className={`pb-8 flex-1 ${isPending && !isCancelStep ? "opacity-50" : ""}`}>
-              <p className={`font-semibold text-sm ${isCancelStep ? "text-destructive" : isReturnStep ? (isCompleted ? "text-orange-500" : "text-muted-foreground") : isCurrent ? "text-primary" : isCompleted ? "text-foreground" : "text-muted-foreground"}`}>
+              <p className={`font-semibold text-[14px] ${isCancelStep ? "text-destructive" : isReturnStep ? (isCompleted ? "text-orange-500" : "text-muted-foreground") : isCurrent ? "text-primary" : isCompleted ? "text-foreground" : "text-muted-foreground"}`}>
                 {step.status}
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-[12px] text-muted-foreground">
                 {[step.city, step.state, step.country].filter(Boolean).join(", ")}
               </p>
-              <p className="text-[11px] text-muted-foreground mt-0.5 italic">
+              <p className="text-[11px] text-muted-foreground mt-0.5">
                 {isCompleted && step.timestamp
                   ? new Date(step.timestamp).toLocaleString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })
                   : isPending && !isCancelStep && !isReturnStep ? formatEta(i) : "Pending"}

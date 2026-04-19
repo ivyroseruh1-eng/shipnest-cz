@@ -14,10 +14,11 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
+        heading: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', 'sans-serif'],
         body: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        serif: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
-        orbitron: ['"Cormorant Garamond"', '"Times New Roman"', 'serif'],
+        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        serif: ['"Inter"', 'sans-serif'],
+        orbitron: ['"Inter"', 'sans-serif'],
         rajdhani: ['"Inter"', 'sans-serif'],
       },
       colors: {
@@ -63,8 +64,8 @@ export default {
           light: "hsl(var(--primary-glow))",
         },
         navy: {
-          DEFAULT: "hsl(var(--background))",
-          light: "hsl(var(--card))",
+          DEFAULT: "hsl(var(--foreground))",
+          light: "hsl(var(--secondary))",
         },
         "blue-glow": "hsl(var(--primary))",
         silver: {
