@@ -1,106 +1,88 @@
 
+The user wants the site to feel as authentic and trustworthy as apple.com and samsung.com. Right now we have a "Dark Luxury / Black + Gold" theme (Cormorant Garamond serif + champagne gold), which reads more like a boutique jewelry/watch site than a real consumer-electronics retailer. Apple and Samsung look credible because they use:
 
-# Making ShipNest More Real & Authentic — Plan
+- Clean white/very-light backgrounds (or pure black for hero moments) — never gold
+- Sans-serif system-style typography (SF Pro / SamsungOne)
+- Huge product photography on white, lots of breathing room
+- Restrained color palette — black text, blue or red accents only on CTAs
+- Tight, dense product grids with consistent imagery
+- Trust elements: sticky compare bar, financing line under price, "Pickup available", spec ladder, real review counts
 
-## What's Missing Today
+I'll propose a full visual + structural overhaul to match that language, then list the concrete file changes.
 
-After reviewing the full codebase, here are the gaps that make the site feel "templated" rather than like a real premium e-commerce store:
+## What I'll change
 
----
+### 1. Theme overhaul → Apple/Samsung style
+- Switch from black+gold to **clean white background, near-black text, electric blue accent** (Apple-style `#0071e3` or Samsung-style `#1428a0` — I'll use Apple's blue since it works on both light and dark heroes).
+- Replace **Cormorant Garamond** serif everywhere with **Inter / SF Pro fallback** sans-serif. Headings get tight tracking and heavy weight (600–700), not light serif.
+- Remove gold gradients, gold glow shadows, radial gold background, film-noise texture, gold scrollbar, and gold selection color.
+- Update `index.css` HSL tokens + `tailwind.config.ts` font families.
 
-## 1. Real Legal & Policy Pages (Currently Dead Links)
+### 2. Homepage hero — Apple-style
+- Full-bleed product hero: huge product name in heavy sans-serif, one-line tagline, two text links ("Learn more →" / "Buy"), giant centered product image on white.
+- Below: a **2-up tile grid** ("Pixel 9 Pro" / "iPhone 17 Pro") like apple.com/shop landing — each tile is a square with product name, tagline, two links, product photo.
+- Strip of brand logos (Apple, Samsung, Google, Xiaomi, OnePlus, Sony, Nothing, Garmin) — flat monochrome, no gold.
 
-The footer has "Privacy Policy", "Terms of Service", "Cookie Policy", "Returns & Refunds", "Warranty Info", "Contact Us" — all are plain `<span>` tags that go nowhere. Real stores always have these.
+### 3. Product card redesign
+- White card, no border, product image fills top, name in semibold sans, price in regular weight below, tiny "From $X/mo" financing line — exactly like apple.com/shop.
+- Hover: subtle lift only, no gold glow.
 
-**Build:** 4 actual pages — Privacy Policy, Terms of Service, Returns & Refunds, Contact Us — with realistic content referencing ShipNest s.r.o., Prague address, Czech consumer law.
+### 4. Product page polish
+- Larger gallery, white background, sticky right rail with: name, star rating + review count link, price + monthly financing line, color picker (already there), "Add to Bag" (Apple-style blue pill) + secondary "Save".
+- Spec accordion below ("Display", "Camera", "Chip", "Battery", "In the Box") — Apple-style.
 
----
+### 5. Navbar
+- Slim, translucent-on-scroll, centered category links (Shop / iPhone / Galaxy / Pixel / Audio / Support), search icon + bag icon on right. Remove gold accents.
 
-## 2. Cookie Consent Banner
+### 6. Cart / Checkout / Confirmation
+- Re-skin to white surfaces, blue CTA, neutral grey hairlines. Keep all logic.
 
-Every legitimate EU-based store shows a cookie consent popup. Missing this is a dead giveaway.
+### 7. Tracking page
+- Keep all 16-step logic + PIN. Re-skin timeline to neutral with blue active dot, remove gold glow.
 
-**Build:** A bottom banner with "Accept" / "Manage Preferences" that saves preference to localStorage and doesn't reappear.
+### 8. Trust elements added
+- Under every price: "or $XX.XX/mo. for 12 mo."
+- Footer adds: "Free delivery / Free returns / Pay over time, your way / Get help buying" (Apple-style 4-up).
+- Product page: "In Stock — Free delivery + Free Returns" line with truck icon.
 
----
+## Files I'll touch
 
-## 3. Favicon & Proper Meta Tags
+- `src/index.css` — replace theme tokens (white bg, near-black fg, blue primary, neutral borders), remove gold gradients/glow/noise.
+- `tailwind.config.ts` — `heading` + `serif` fonts → Inter (drop Cormorant).
+- `src/components/Navbar.tsx` — Apple-style slim nav.
+- `src/pages/HomePage.tsx` — hero + 2-up tile grid + brand strip.
+- `src/components/ProductCard.tsx` — white minimal card + financing line.
+- `src/pages/ProductPage.tsx` — white gallery, blue "Add to Bag", spec accordion, financing line.
+- `src/pages/ShopPage.tsx` — white grid, cleaner filters.
+- `src/pages/CartPage.tsx`, `CheckoutPage.tsx`, `OrderConfirmationPage.tsx` — white re-skin, blue CTAs.
+- `src/pages/TrackPage.tsx` + `src/components/TrackingTimeline.tsx` — neutral timeline, blue active step.
+- `src/components/TrustBadges.tsx`, `PaymentIcons.tsx` — neutralize colors.
+- Footer (in `App.tsx` or wherever) — 4-up trust grid.
 
-Currently no favicon set. The browser tab shows a generic icon. Real stores have branded favicons.
+No DB / logistics / PIN logic changes — pure visual + structural.
 
-**Build:** Add the ShipNest logo as favicon. Update `index.html` with proper Open Graph image, structured data (JSON-LD for Organization + Product).
+## Memory updates
+- Update `mem://style/design-system` to "Apple/Samsung-style: white bg, near-black text, blue (#0071e3) accent, Inter sans-serif, no serif, no gold."
+- Update Core in `mem://index.md` accordingly (remove "Dark luxury / gold", replace).
 
----
+## ASCII of new homepage
 
-## 4. Customer Reviews Section on Product Pages
-
-Product pages show star ratings but no actual review text. Real stores show written reviews with names and dates.
-
-**Build:** Add a "Customer Reviews" section below product details with 3-5 realistic generated reviews per product (name, date, rating, comment). Stored in the product data.
-
----
-
-## 5. Order Confirmation Email-Style Details
-
-The confirmation page works, but real stores show estimated delivery with a progress tracker and send-to-email option.
-
-**Build:** Add a "Send confirmation to email" button on the order confirmation page (even if it just copies details — already partially exists).
-
----
-
-## 6. Proper 404 Page
-
-Currently shows a plain "Not Found" text. A branded 404 page with navigation back to shop increases trust.
-
-**Build:** Branded 404 with ShipNest styling, "Back to Shop" CTA.
-
----
-
-## 7. "About Us" Page
-
-No about page exists. Real companies have one.
-
-**Build:** An About page with company story, Prague warehouse photo placeholder, team values, and mission statement.
-
----
-
-## 8. Stock/Availability Indicators
-
-Products show "inStock: true" in data but the UI doesn't display availability status.
-
-**Build:** Show "In Stock" / "Low Stock" / "Ships in 24h" badges on product cards and detail pages.
-
----
-
-## 9. Announcement Bar Rotation
-
-The top bar only shows one message. Real stores rotate between shipping info, sale announcements, etc.
-
-**Build:** Rotating text in the utility bar (e.g., "Free shipping worldwide", "Authentic products only", "Ships from Prague, CZ").
-
----
-
-## 10. Payment Trust Logos (Visual, Not Text)
-
-The footer shows "VISA MASTERCARD AMEX" as plain text. Real stores show actual card brand SVG icons.
-
-**Build:** Replace text with proper SVG payment icons (Visa, Mastercard, Amex, Apple Pay).
-
----
-
-## Summary of Changes
-
-| Area | Files Affected |
-|------|---------------|
-| Legal pages (4) | New: `PrivacyPage.tsx`, `TermsPage.tsx`, `ReturnsPage.tsx`, `ContactPage.tsx` + routes in `App.tsx` |
-| Cookie banner | New: `CookieConsent.tsx` component |
-| Favicon + meta | `index.html`, public assets |
-| Product reviews | `src/data/products.ts`, `ProductPage.tsx` |
-| 404 page | `NotFound.tsx` |
-| About page | New: `AboutPage.tsx` + route |
-| Stock badges | `ProductCard.tsx`, `ProductPage.tsx` |
-| Rotating announcements | `Navbar.tsx` |
-| Payment SVG icons | `HomePage.tsx` footer, `CheckoutPage.tsx` |
-
-This covers the major trust signals that separate a template from a real store. No backend changes needed — all frontend improvements.
-
+```text
+┌──────────────────────────────────────────┐
+│  Shop  iPhone  Galaxy  Pixel  …  ⌕  🛍   │  slim nav
+├──────────────────────────────────────────┤
+│                                          │
+│            iPhone 17 Pro                 │  56px bold
+│      Titanium. So strong. So light.      │  20px regular
+│       Learn more →    Buy →              │  blue links
+│                                          │
+│             [ huge photo ]               │
+│                                          │
+├────────────────────┬─────────────────────┤
+│   Pixel 9 Pro      │   Galaxy S24 Ultra  │  2-up tiles
+│   AI, reimagined   │   Galaxy AI is here │
+│   Learn  Buy       │   Learn  Buy        │
+│   [photo]          │   [photo]           │
+└────────────────────┴─────────────────────┘
+   Apple  Samsung  Google  Xiaomi  …          brand strip
+```
