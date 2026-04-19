@@ -138,17 +138,17 @@ const CheckoutPage = () => {
     return null;
   }
 
-  const inputClass = "w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary text-sm font-rajdhani";
+  const inputClass = "w-full bg-background border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/30 focus:border-primary text-[14px]";
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold font-orbitron text-foreground mb-8">Checkout</h1>
+    <div className="max-w-[980px] mx-auto px-4 py-12">
+      <h1 className="display text-4xl sm:text-5xl text-foreground text-center mb-10">Checkout</h1>
 
       <form onSubmit={handleAddressSubmit} className="grid md:grid-cols-2 gap-8">
         {/* Shipping */}
         <div className="space-y-6">
-          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
-            <h2 className="font-bold text-foreground font-orbitron text-sm tracking-wider">SHIPPING INFORMATION</h2>
+          <div className="bg-secondary rounded-2xl p-6 space-y-4">
+            <h2 className="font-semibold text-foreground text-[15px]">Shipping Information</h2>
             <input type="text" placeholder="Full Name *" value={form.name} onChange={e => update("name", e.target.value)} className={inputClass} required />
             <input type="email" placeholder="Email Address *" value={form.email} onChange={e => update("email", e.target.value)} className={inputClass} required />
             <input type="tel" placeholder="Phone (with country code)" value={form.phone} onChange={e => update("phone", e.target.value)} className={inputClass} />
@@ -163,46 +163,46 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          <div className="bg-card border border-border rounded-xl p-4 flex items-center gap-3">
+          <div className="bg-secondary rounded-2xl p-4 flex items-center gap-3">
             <Shield className="w-5 h-5 text-success shrink-0" />
             <div>
-              <p className="text-xs font-semibold text-foreground">Secure & Encrypted</p>
-              <p className="text-[10px] text-muted-foreground">Your data is protected with 256-bit SSL encryption</p>
+              <p className="text-[13px] font-semibold text-foreground">Secure & Encrypted</p>
+              <p className="text-[11px] text-muted-foreground">Your data is protected with 256-bit SSL encryption</p>
             </div>
           </div>
         </div>
 
         {/* Order Summary */}
         <div className="space-y-6">
-          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
-            <h2 className="font-bold text-foreground font-orbitron text-sm tracking-wider">ORDER SUMMARY</h2>
+          <div className="bg-secondary rounded-2xl p-6 space-y-4">
+            <h2 className="font-semibold text-foreground text-[15px]">Order Summary</h2>
             {items.map(item => (
               <div key={item.product.id} className="flex gap-3">
-                <img src={item.product.image} alt={item.product.name} className="w-14 h-14 object-contain rounded bg-muted/30" />
+                <img src={item.product.image} alt={item.product.name} className="w-14 h-14 object-contain rounded bg-background p-1" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-foreground truncate font-medium">{item.product.name}</p>
-                  <p className="text-xs text-muted-foreground">{item.product.brand} · Qty: {item.qty}</p>
+                  <p className="text-[14px] text-foreground truncate font-medium">{item.product.name}</p>
+                  <p className="text-[12px] text-muted-foreground">{item.product.brand} · Qty: {item.qty}</p>
                 </div>
-                <p className="text-sm font-bold text-foreground font-orbitron">${(item.product.price * item.qty).toFixed(2)}</p>
+                <p className="text-[14px] font-semibold text-foreground">${(item.product.price * item.qty).toFixed(2)}</p>
               </div>
             ))}
-            <div className="border-t border-border pt-3 space-y-2 text-sm">
-              <div className="flex justify-between text-muted-foreground"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-              <div className="flex justify-between text-muted-foreground"><span>Shipping</span><span className="text-success font-semibold">FREE</span></div>
-              <div className="flex justify-between text-muted-foreground"><span>VAT (20%)</span><span>${tax.toFixed(2)}</span></div>
-              <div className="border-t border-border pt-2 flex justify-between font-bold text-lg text-foreground">
-                <span>Total</span><span className="font-orbitron gold-text">${total.toFixed(2)}</span>
+            <div className="border-t border-border pt-3 space-y-2 text-[14px]">
+              <div className="flex justify-between text-foreground"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+              <div className="flex justify-between text-foreground"><span>Shipping</span><span className="text-success font-medium">FREE</span></div>
+              <div className="flex justify-between text-foreground"><span>VAT (20%)</span><span>${tax.toFixed(2)}</span></div>
+              <div className="border-t border-border pt-2 flex justify-between font-semibold text-[18px] text-foreground">
+                <span>Total</span><span>${total.toFixed(2)}</span>
               </div>
             </div>
           </div>
 
           <button type="submit"
-            className="w-full gold-gradient text-primary-foreground py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
-            <Lock className="w-5 h-5" /> Continue to Payment
+            className="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium text-[15px] hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+            <Lock className="w-4 h-4" /> Continue to Payment
           </button>
 
-          <p className="text-center text-xs text-muted-foreground">
-            📍 Ships from Prague, Czech Republic 🇨🇿 · Estimated 23-29 business days
+          <p className="text-center text-[12px] text-muted-foreground">
+            Ships from Prague, Czech Republic · Estimated 23-29 business days
           </p>
         </div>
       </form>
@@ -220,10 +220,10 @@ const CheckoutPage = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-card border border-border rounded-2xl max-w-md w-full p-6 space-y-6 shadow-2xl"
+              className="bg-background border border-border rounded-2xl max-w-md w-full p-6 space-y-6 shadow-2xl"
             >
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-bold font-orbitron text-foreground">Select Payment</h2>
+                <h2 className="text-[18px] font-semibold text-foreground">Select Payment</h2>
                 <button onClick={() => setShowPaymentModal(false)} className="p-1 text-muted-foreground hover:text-foreground"><X className="w-5 h-5" /></button>
               </div>
 
@@ -297,7 +297,7 @@ const CheckoutPage = () => {
               </div>
 
               <button onClick={handlePayment}
-                className="w-full gold-gradient text-primary-foreground py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
+                className="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium text-[15px] hover:bg-primary/90 transition-colors">
                 Pay Now — ${total.toFixed(2)}
               </button>
             </motion.div>
