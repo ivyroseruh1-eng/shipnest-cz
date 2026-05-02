@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Search, ShoppingBag, Menu, X, User, Heart, Truck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
+import shipnestLogo from "@/assets/shipnest-logo.png";
 
 const announcements = [
   "Free delivery and free returns. Ships from Prague, CZ.",
@@ -57,7 +58,7 @@ const Navbar = () => {
         <div className="max-w-[980px] mx-auto px-4 h-12 flex items-center justify-between gap-6">
           {/* Logo */}
           <Link to="/" className="flex items-center shrink-0" aria-label="ShipNest">
-            <span className="font-heading text-[18px] font-semibold tracking-tight">ShipNest</span>
+            <img src={shipnestLogo} alt="ShipNest" className="h-7 md:h-8 w-auto object-contain" />
           </Link>
 
           {/* Desktop nav — centered */}

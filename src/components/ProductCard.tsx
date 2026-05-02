@@ -15,11 +15,11 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const monthly = (product.price / 12).toFixed(2);
 
   return (
-    <div className="group relative flex flex-col">
+    <div className="group relative flex flex-col bg-card border border-border rounded-2xl p-4 sm:p-5 card-hover hover:shadow-md hover:border-foreground/20">
       {/* Wishlist */}
       {onToggleWishlist && (
         <button onClick={() => onToggleWishlist(product.id)}
-          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-background/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-105 shadow-sm"
+          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-background/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-105 shadow-sm border border-border"
           aria-label="Save">
           <Heart className={`w-4 h-4 ${isWishlisted ? "fill-destructive text-destructive" : "text-muted-foreground"}`} />
         </button>
@@ -27,7 +27,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
       {/* Image */}
       <Link to={`/product/${product.id}`} className="block">
-        <div className="aspect-square bg-secondary rounded-2xl flex items-center justify-center p-8 overflow-hidden mb-5">
+        <div className="aspect-square bg-white rounded-xl flex items-center justify-center p-6 overflow-hidden mb-5">
           {!imgError ? (
             <img
               src={(product.colors?.[selectedColor]?.image) || product.image}
