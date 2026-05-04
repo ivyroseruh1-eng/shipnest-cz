@@ -60,8 +60,8 @@ const ShopPage = () => {
         </div>
       </div>
 
-      <div className="max-w-[980px] mx-auto px-4 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-12">
+      <div className="max-w-[1100px] mx-auto px-3 sm:px-4 py-10 sm:py-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 sm:gap-x-5 gap-y-8 sm:gap-y-12">
           {filtered.map(p => (
             <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />
           ))}
