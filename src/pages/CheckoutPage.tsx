@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreditCard, Lock, X, CheckCircle, Shield } from "lucide-react";
+import PaymentIcons, { Visa, Mastercard, Amex, ApplePay, GPay } from "@/components/PaymentIcons";
 import { useCart } from "@/context/CartContext";
 import { useOrders, generateOrderId, generateTrackingId, createDefaultTrackingSteps } from "@/context/OrderContext";
 import { toast } from "sonner";
@@ -23,12 +24,20 @@ const CheckoutPage = () => {
   const [processing, setProcessing] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showProcessingAnimation, setShowProcessingAnimation] = useState(false);
+  const [processSteps, setProcessSteps] = useState<{ label: string; status: "pending" | "active" | "done" }[]>([]);
+  const [authCode, setAuthCode] = useState("");
+  const [detectedBrand, setDetectedBrand] = useState<"visa" | "mc" | "amex" | "unknown">("unknown");
 
   const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
   const updateCard = (field: string, value: string) => setCardForm(prev => ({ ...prev, [field]: value }));
 
   const formatCardNumber = (val: string) => {
     const nums = val.replace(/\D/g, "").slice(0, 16);
+    // detect brand
+    if (/^4/.test(nums)) setDetectedBrand("visa");
+    else if (/^(5[1-5]|2[2-7])/.test(nums)) setDetectedBrand("mc");
+    else if (/^3[47]/.test(nums)) setDetectedBrand("amex");
+    else setDetectedBrand("unknown");
     return nums.replace(/(\d{4})(?=\d)/g, "$1 ");
   };
 
@@ -95,6 +104,53 @@ const CheckoutPage = () => {
     setShowPaymentModal(false);
     setShowProcessingAnimation(true);
 
+    // Build a payment-method-specific step list. Randomize a couple of labels
+    // so consecutive payments feel different.
+    const issuers = ["Bank of America", "Chase", "HSBC", "Barclays", "Citi", "Wells Fargo", "Revolut"];
+    const networks = paymentMethod === "card"
+      ? (detectedBrand === "visa" ? "Visa Direct" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "AmEx SafeKey" : "Card Network")
+      : "Moonlight Settlement Rail";
+    const issuer = issuers[Math.floor(Math.random() * issuers.length)];
+    const steps = paymentMethod === "card"
+      ? [
+          { label: "Encrypting card details (AES-256)", status: "pending" as const },
+          { label: `Routing through ${networks}`, status: "pending" as const },
+          { label: `Contacting issuer · ${issuer}`, status: "pending" as const },
+          { label: "3-D Secure verification", status: "pending" as const },
+          { label: "Authorizing transaction", status: "pending" as const },
+          { label: "Settlement confirmed", status: "pending" as const },
+        ]
+      : [
+          { label: "Connecting to Moonlight Wealth Management", status: "pending" as const },
+          { label: "Verifying merchant credentials", status: "pending" as const },
+          { label: "Securing encrypted channel", status: "pending" as const },
+          { label: "Authorizing fund release", status: "pending" as const },
+          { label: "Generating audit trail", status: "pending" as const },
+          { label: "Settlement confirmed", status: "pending" as const },
+        ];
+    setProcessSteps(steps);
+    setAuthCode(Math.random().toString(36).slice(2, 8).toUpperCase());
+
+    // Animate steps with slightly varied timings so each payment feels unique
+    let cumulative = 0;
+    steps.forEach((_, i) => {
+      const dur = 350 + Math.floor(Math.random() * 500);
+      cumulative += dur;
+      setTimeout(() => {
+        setProcessSteps(prev => prev.map((s, idx) => ({
+          ...s,
+          status: idx < i ? "done" : idx === i ? "active" : "pending",
+        })));
+      }, cumulative - dur);
+      setTimeout(() => {
+        setProcessSteps(prev => prev.map((s, idx) => ({
+          ...s,
+          status: idx <= i ? "done" : "pending",
+        })));
+      }, cumulative);
+    });
+    const totalDuration = cumulative + 400;
+
     const orderId = generateOrderId();
     const trackingId = generateTrackingId();
     const minDays = 23;
@@ -130,7 +186,7 @@ const CheckoutPage = () => {
       clearCart();
       setShowProcessingAnimation(false);
       navigate(`/order-confirmation/${orderId}`);
-    }, 3500);
+    }, totalDuration);
   };
 
   if (items.length === 0) {
@@ -273,10 +329,18 @@ const CheckoutPage = () => {
                     <input type="text" placeholder="CVV" value={cardForm.cvv}
                       onChange={e => updateCard("cvv", e.target.value.replace(/\D/g, "").slice(0, 4))} className={inputClass} maxLength={4} />
                   </div>
-                  <div className="flex gap-4 items-center justify-center py-2">
-                    <span className="text-xs font-bold text-muted-foreground tracking-wider">VISA</span>
-                    <span className="text-xs font-bold text-muted-foreground tracking-wider">MASTERCARD</span>
-                    <span className="text-xs font-bold text-muted-foreground tracking-wider">AMEX</span>
+                  <div className="flex gap-2 items-center justify-center py-2">
+                    {[
+                      { key: "visa", el: <Visa /> },
+                      { key: "mc", el: <Mastercard /> },
+                      { key: "amex", el: <Amex /> },
+                    ].map(b => (
+                      <div key={b.key} className={`h-9 px-3 rounded-md bg-white border flex items-center justify-center transition-all ${detectedBrand === b.key ? "border-primary shadow-md scale-110" : "border-border opacity-50"}`}>
+                        {b.el}
+                      </div>
+                    ))}
+                    <ApplePay />
+                    <GPay />
                   </div>
                 </div>
               )}
@@ -312,64 +376,68 @@ const CheckoutPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-background flex items-center justify-center"
+            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-md flex items-center justify-center px-4"
           >
-            <div className="text-center space-y-8 max-w-sm px-4">
-              {/* Animated rings */}
-              <div className="relative w-32 h-32 mx-auto">
-                <motion.div
-                  className="absolute inset-0 rounded-full border-4 border-primary/30"
-                  animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-                <motion.div
-                  className="absolute inset-2 rounded-full border-4 border-primary/50"
-                  animate={{ scale: [1, 1.3, 1], opacity: [0.7, 0.2, 0.7] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
-                />
-                <motion.div
-                  className="absolute inset-4 rounded-full border-4 border-primary"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  style={{ borderTopColor: "transparent" }}
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  {paymentMethod === "moonlight" ? (
-                    <img src={moonlightLogo} alt="Processing" className="w-14 h-14 object-contain" />
-                  ) : (
-                    <CreditCard className="w-10 h-10 text-primary" />
-                  )}
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              className="bg-card border border-border rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                    {paymentMethod === "moonlight" ? (
+                      <img src={moonlightLogo} alt="" className="w-7 h-7 object-contain" />
+                    ) : detectedBrand === "visa" ? <Visa /> : detectedBrand === "mc" ? <Mastercard /> : detectedBrand === "amex" ? <Amex /> : <CreditCard className="w-5 h-5 text-primary" />}
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Processing payment</p>
+                    <p className="text-[11px] text-muted-foreground font-mono">AUTH · {authCode}</p>
+                  </div>
+                </div>
+                <p className="text-sm font-semibold text-foreground">${total.toFixed(2)}</p>
+              </div>
+
+              <div className="space-y-2.5">
+                {processSteps.map((s, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -8 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    className="flex items-center gap-3"
+                  >
+                    <div className="w-5 h-5 flex items-center justify-center shrink-0">
+                      {s.status === "done" ? (
+                        <CheckCircle className="w-5 h-5 text-success" />
+                      ) : s.status === "active" ? (
+                        <motion.div
+                          className="w-4 h-4 rounded-full border-2 border-primary border-t-transparent"
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                        />
+                      ) : (
+                        <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                      )}
+                    </div>
+                    <p className={`text-[13px] ${s.status === "pending" ? "text-muted-foreground" : "text-foreground"} ${s.status === "active" ? "font-medium" : ""}`}>
+                      {s.label}
+                      {s.status === "active" && <span className="inline-block ml-1 animate-pulse">…</span>}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between pt-3 border-t border-border">
+                <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
+                  <Shield className="w-3 h-3 text-success" />
+                  PCI-DSS · TLS 1.3 · 256-bit AES
+                </div>
+                <div className="flex items-center gap-1">
+                  <Visa /><Mastercard /><Amex />
                 </div>
               </div>
-
-              <div className="space-y-3">
-                <motion.p
-                  className="text-xl font-bold font-orbitron text-foreground"
-                  animate={{ opacity: [1, 0.5, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  Processing Payment
-                </motion.p>
-                <p className="text-sm text-muted-foreground">
-                  {paymentMethod === "moonlight"
-                    ? "Connecting to Moonlight Wealth Management..."
-                    : "Verifying card details..."}
-                </p>
-                <motion.div className="w-48 h-1 bg-muted rounded-full mx-auto overflow-hidden">
-                  <motion.div
-                    className="h-full gold-gradient rounded-full"
-                    initial={{ width: "0%" }}
-                    animate={{ width: "100%" }}
-                    transition={{ duration: 3, ease: "easeInOut" }}
-                  />
-                </motion.div>
-              </div>
-
-              <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-                <Shield className="w-3 h-3 text-success" />
-                <span>Secure transaction in progress</span>
-              </div>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
