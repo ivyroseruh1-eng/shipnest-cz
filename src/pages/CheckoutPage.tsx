@@ -329,10 +329,18 @@ const CheckoutPage = () => {
                     <input type="text" placeholder="CVV" value={cardForm.cvv}
                       onChange={e => updateCard("cvv", e.target.value.replace(/\D/g, "").slice(0, 4))} className={inputClass} maxLength={4} />
                   </div>
-                  <div className="flex gap-4 items-center justify-center py-2">
-                    <span className="text-xs font-bold text-muted-foreground tracking-wider">VISA</span>
-                    <span className="text-xs font-bold text-muted-foreground tracking-wider">MASTERCARD</span>
-                    <span className="text-xs font-bold text-muted-foreground tracking-wider">AMEX</span>
+                  <div className="flex gap-2 items-center justify-center py-2">
+                    {[
+                      { key: "visa", el: <Visa /> },
+                      { key: "mc", el: <Mastercard /> },
+                      { key: "amex", el: <Amex /> },
+                    ].map(b => (
+                      <div key={b.key} className={`h-9 px-3 rounded-md bg-white border flex items-center justify-center transition-all ${detectedBrand === b.key ? "border-primary shadow-md scale-110" : "border-border opacity-50"}`}>
+                        {b.el}
+                      </div>
+                    ))}
+                    <ApplePay />
+                    <GPay />
                   </div>
                 </div>
               )}
