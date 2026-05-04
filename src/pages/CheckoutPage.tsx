@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreditCard, Lock, X, CheckCircle, Shield } from "lucide-react";
+import PaymentIcons, { Visa, Mastercard, Amex, ApplePay, GPay } from "@/components/PaymentIcons";
 import { useCart } from "@/context/CartContext";
 import { useOrders, generateOrderId, generateTrackingId, createDefaultTrackingSteps } from "@/context/OrderContext";
 import { toast } from "sonner";
@@ -23,12 +24,20 @@ const CheckoutPage = () => {
   const [processing, setProcessing] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showProcessingAnimation, setShowProcessingAnimation] = useState(false);
+  const [processSteps, setProcessSteps] = useState<{ label: string; status: "pending" | "active" | "done" }[]>([]);
+  const [authCode, setAuthCode] = useState("");
+  const [detectedBrand, setDetectedBrand] = useState<"visa" | "mc" | "amex" | "unknown">("unknown");
 
   const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
   const updateCard = (field: string, value: string) => setCardForm(prev => ({ ...prev, [field]: value }));
 
   const formatCardNumber = (val: string) => {
     const nums = val.replace(/\D/g, "").slice(0, 16);
+    // detect brand
+    if (/^4/.test(nums)) setDetectedBrand("visa");
+    else if (/^(5[1-5]|2[2-7])/.test(nums)) setDetectedBrand("mc");
+    else if (/^3[47]/.test(nums)) setDetectedBrand("amex");
+    else setDetectedBrand("unknown");
     return nums.replace(/(\d{4})(?=\d)/g, "$1 ");
   };
 
@@ -95,6 +104,53 @@ const CheckoutPage = () => {
     setShowPaymentModal(false);
     setShowProcessingAnimation(true);
 
+    // Build a payment-method-specific step list. Randomize a couple of labels
+    // so consecutive payments feel different.
+    const issuers = ["Bank of America", "Chase", "HSBC", "Barclays", "Citi", "Wells Fargo", "Revolut"];
+    const networks = paymentMethod === "card"
+      ? (detectedBrand === "visa" ? "Visa Direct" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "AmEx SafeKey" : "Card Network")
+      : "Moonlight Settlement Rail";
+    const issuer = issuers[Math.floor(Math.random() * issuers.length)];
+    const steps = paymentMethod === "card"
+      ? [
+          { label: "Encrypting card details (AES-256)", status: "pending" as const },
+          { label: `Routing through ${networks}`, status: "pending" as const },
+          { label: `Contacting issuer · ${issuer}`, status: "pending" as const },
+          { label: "3-D Secure verification", status: "pending" as const },
+          { label: "Authorizing transaction", status: "pending" as const },
+          { label: "Settlement confirmed", status: "pending" as const },
+        ]
+      : [
+          { label: "Connecting to Moonlight Wealth Management", status: "pending" as const },
+          { label: "Verifying merchant credentials", status: "pending" as const },
+          { label: "Securing encrypted channel", status: "pending" as const },
+          { label: "Authorizing fund release", status: "pending" as const },
+          { label: "Generating audit trail", status: "pending" as const },
+          { label: "Settlement confirmed", status: "pending" as const },
+        ];
+    setProcessSteps(steps);
+    setAuthCode(Math.random().toString(36).slice(2, 8).toUpperCase());
+
+    // Animate steps with slightly varied timings so each payment feels unique
+    let cumulative = 0;
+    steps.forEach((_, i) => {
+      const dur = 350 + Math.floor(Math.random() * 500);
+      cumulative += dur;
+      setTimeout(() => {
+        setProcessSteps(prev => prev.map((s, idx) => ({
+          ...s,
+          status: idx < i ? "done" : idx === i ? "active" : "pending",
+        })));
+      }, cumulative - dur);
+      setTimeout(() => {
+        setProcessSteps(prev => prev.map((s, idx) => ({
+          ...s,
+          status: idx <= i ? "done" : "pending",
+        })));
+      }, cumulative);
+    });
+    const totalDuration = cumulative + 400;
+
     const orderId = generateOrderId();
     const trackingId = generateTrackingId();
     const minDays = 23;
@@ -130,7 +186,7 @@ const CheckoutPage = () => {
       clearCart();
       setShowProcessingAnimation(false);
       navigate(`/order-confirmation/${orderId}`);
-    }, 3500);
+    }, totalDuration);
   };
 
   if (items.length === 0) {
