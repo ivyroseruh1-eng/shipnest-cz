@@ -15,7 +15,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const monthly = (product.price / 12).toFixed(2);
 
   return (
-    <div className="group relative flex flex-col bg-card border border-border rounded-2xl p-4 sm:p-5 card-hover hover:shadow-md hover:border-foreground/20">
+    <div className="group relative flex flex-col bg-card border border-border rounded-2xl p-3 sm:p-5 card-hover hover:shadow-md hover:border-foreground/20 overflow-hidden">
       {/* Wishlist */}
       {onToggleWishlist && (
         <button onClick={() => onToggleWishlist(product.id)}
@@ -26,13 +26,13 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       )}
 
       {/* Image */}
-      <Link to={`/product/${product.id}`} className="block">
-        <div className="aspect-square bg-white rounded-xl flex items-center justify-center p-6 overflow-hidden mb-5">
+      <Link to={`/product/${product.id}`} className="block -mx-1 sm:mx-0">
+        <div className="aspect-[1/1.08] sm:aspect-square bg-white rounded-xl flex items-center justify-center p-0 overflow-hidden mb-5">
           {!imgError ? (
             <img
               src={(product.colors?.[selectedColor]?.image) || product.image}
               alt={product.name}
-              className="max-h-full max-w-full object-contain group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+              className="w-full h-full object-cover scale-[1.9] sm:scale-[1.72] group-hover:scale-[1.98] sm:group-hover:scale-[1.8] transition-transform duration-500 ease-out"
               loading="lazy"
               onError={() => setImgError(true)}
             />
@@ -46,7 +46,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       </Link>
 
       {/* Info — Apple/Samsung minimal */}
-      <div className="space-y-1 flex-1 flex flex-col text-center">
+      <div className="space-y-1 flex-1 flex flex-col text-center px-1">
         {product.badge && (
           <p className="text-[11px] text-primary font-medium uppercase tracking-wider">
             {product.badge === "NEW" ? "New" : product.badge === "HOT" ? "Best Seller" : product.badge === "PRO" ? "Pro" : product.badge === "ELITE" ? "Featured" : product.badge === "BEST" ? "Editor's Choice" : product.badge}
