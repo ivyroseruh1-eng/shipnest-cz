@@ -25,13 +25,13 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       )}
 
       {/* Image */}
-      <Link to={`/product/${product.id}`} className="block -mx-1 sm:mx-0">
-        <div className="aspect-[0.82] sm:aspect-[0.86] bg-white rounded-xl flex items-center justify-center p-0 overflow-hidden mb-5">
+      <Link to={`/product/${product.id}`} className="block">
+        <div className="aspect-square bg-white rounded-xl flex items-center justify-center p-3 sm:p-4 overflow-hidden mb-5">
           {!imgError ? (
             <img
               src={product.colors?.[0]?.image || product.image}
               alt={product.name}
-              className="w-full h-full object-contain scale-[1.18] group-hover:scale-[1.24] transition-transform duration-500 ease-out"
+              className="max-w-full max-h-full w-auto h-auto object-contain group-hover:scale-105 transition-transform duration-500 ease-out"
               loading="lazy"
               onError={() => setImgError(true)}
             />
