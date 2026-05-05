@@ -10,7 +10,6 @@ interface Props {
 }
 
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
-  const [selectedColor, setSelectedColor] = useState(0);
   const [imgError, setImgError] = useState(false);
   const monthly = (product.price / 12).toFixed(2);
 
@@ -30,7 +29,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
         <div className="aspect-[0.82] sm:aspect-[0.86] bg-white rounded-xl flex items-center justify-center p-0 overflow-hidden mb-5">
           {!imgError ? (
             <img
-              src={(product.colors?.[selectedColor]?.image) || product.image}
+              src={product.colors?.[0]?.image || product.image}
               alt={product.name}
               className="w-full h-full object-contain scale-[1.18] group-hover:scale-[1.24] transition-transform duration-500 ease-out"
               loading="lazy"
