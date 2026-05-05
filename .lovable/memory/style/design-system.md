@@ -19,9 +19,9 @@ type: design
 
 ## Components
 
-- **Navbar**: slim 48px height, translucent backdrop-blur (`.nav-blur`), centered nav links, max-width 980px.
+- **Navbar**: must show the real `shipnest-logo.png` image plus ShipNest wordmark clearly; never text-only branding.
 - **Buttons**: rounded-full, blue primary `bg-primary text-primary-foreground` for "Buy", grey secondary `bg-secondary` for "Add to Bag".
-- **Product cards**: centered text, grey square image tile, "From $X" + "or $X/mo. for 12 mo." financing line, blue Buy pill.
+- **Product cards**: white bordered containers; product images must fill the card visibly and consistently; no color swatches on grid cards.
 - **Spec accordion**: Apple-style chevron down, divided rows, bold spec titles.
 - **Tracking timeline**: blue active dot (no glow), neutral pending grey.
 - **Hero**: full-bleed centered, Apple two-link pattern (Learn more → / Buy →).

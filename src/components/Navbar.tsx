@@ -55,11 +55,11 @@ const Navbar = () => {
 
       {/* Main nav — branded, translucent, centered */}
       <nav className="sticky top-0 z-50 nav-blur border-b border-border/60">
-        <div className="max-w-[980px] mx-auto px-4 h-16 md:h-14 flex items-center justify-between gap-6">
+        <div className="max-w-[980px] mx-auto px-4 h-20 md:h-16 flex items-center justify-between gap-6">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label="ShipNest">
-            <img src={shipnestLogo} alt="ShipNest" className="h-12 md:h-11 w-auto object-contain drop-shadow-sm" />
-            <span className="hidden sm:inline text-[15px] font-semibold tracking-tight text-foreground">ShipNest</span>
+            <img src={shipnestLogo} alt="ShipNest" className="h-16 w-16 md:h-14 md:w-14 object-contain drop-shadow-sm" />
+            <span className="text-[17px] md:text-[15px] font-semibold tracking-tight text-foreground">ShipNest</span>
           </Link>
 
           {/* Desktop nav — centered */}

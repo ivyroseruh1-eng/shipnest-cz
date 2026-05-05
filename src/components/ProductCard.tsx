@@ -10,7 +10,6 @@ interface Props {
 }
 
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
-  const [selectedColor, setSelectedColor] = useState(0);
   const [imgError, setImgError] = useState(false);
   const monthly = (product.price / 12).toFixed(2);
 
@@ -27,12 +26,12 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
       {/* Image */}
       <Link to={`/product/${product.id}`} className="block -mx-1 sm:mx-0">
-        <div className="aspect-[1/1.08] sm:aspect-square bg-white rounded-xl flex items-center justify-center p-0 overflow-hidden mb-5">
+        <div className="aspect-[0.82] sm:aspect-[0.86] bg-white rounded-xl flex items-center justify-center p-0 overflow-hidden mb-5">
           {!imgError ? (
             <img
-              src={(product.colors?.[selectedColor]?.image) || product.image}
+              src={product.colors?.[0]?.image || product.image}
               alt={product.name}
-              className="w-full h-full object-cover scale-[1.9] sm:scale-[1.72] group-hover:scale-[1.98] sm:group-hover:scale-[1.8] transition-transform duration-500 ease-out"
+              className="w-full h-full object-contain scale-[1.18] group-hover:scale-[1.24] transition-transform duration-500 ease-out"
               loading="lazy"
               onError={() => setImgError(true)}
             />
@@ -72,26 +71,8 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
           </p>
         </div>
 
-        {/* Color swatches — subtle */}
-        {product.colors && product.colors.length > 0 && (
-          <div className="flex items-center justify-center gap-1.5 pt-3">
-            {product.colors.slice(0, 6).map((c, i) => (
-              <button
-                key={c.name}
-                onClick={() => { setSelectedColor(i); setImgError(false); }}
-                title={c.name}
-                aria-label={c.name}
-                className={`w-3 h-3 rounded-full border transition-all ${
-                  selectedColor === i ? "border-foreground scale-125" : "border-border hover:scale-110"
-                }`}
-                style={{ backgroundColor: c.hex }}
-              />
-            ))}
-          </div>
-        )}
-
         {/* CTA — Apple blue pill */}
-        <div className="pt-4">
+        <div className="pt-5">
           <Link to={`/product/${product.id}`}
             className="inline-block bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-[13px] hover:bg-primary/90 transition-colors">
             Buy

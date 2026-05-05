@@ -60,8 +60,8 @@ const HomePage = () => {
         <Link to={`/product/${product.id}`} className="text-primary text-[15px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-4 h-4" /></Link>
         <Link to={`/product/${product.id}`} className="text-primary text-[15px] hover:opacity-75 transition-opacity">Buy <ChevronRight className="inline w-4 h-4" /></Link>
       </div>
-      <div className="flex-1 flex items-end justify-center mt-6 w-full">
-        <img src={product.colors?.[0]?.image || product.image} alt={product.name} className="max-h-[320px] object-contain" />
+      <div className="flex-1 flex items-end justify-center mt-6 w-full overflow-hidden">
+        <img src={product.colors?.[0]?.image || product.image} alt={product.name} className="h-[360px] w-full object-contain scale-[1.45]" />
       </div>
     </div>
   );
@@ -78,8 +78,8 @@ const HomePage = () => {
             <Link to={`/product/${heroProduct.id}`} className="text-primary text-[17px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-5 h-5" /></Link>
             <Link to={`/product/${heroProduct.id}`} className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-[15px] font-medium hover:bg-primary/90 transition-colors">Buy</Link>
           </div>
-          <div className="mt-10 flex justify-center">
-            <img src={heroProduct.colors?.[0]?.image || heroProduct.image} alt={heroProduct.name} className="max-h-[480px] object-contain" />
+          <div className="mt-10 flex justify-center overflow-hidden h-[360px] sm:h-[520px]">
+            <img src={heroProduct.colors?.[0]?.image || heroProduct.image} alt={heroProduct.name} className="h-full w-full object-contain scale-[1.55] sm:scale-[1.35]" />
           </div>
         </div>
       </section>
