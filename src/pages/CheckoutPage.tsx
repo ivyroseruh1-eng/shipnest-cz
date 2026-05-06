@@ -104,29 +104,28 @@ const CheckoutPage = () => {
     setShowPaymentModal(false);
     setShowProcessingAnimation(true);
 
-    // Build a payment-method-specific step list. Randomize a couple of labels
-    // so consecutive payments feel different.
-    const issuers = ["Bank of America", "Chase", "HSBC", "Barclays", "Citi", "Wells Fargo", "Revolut"];
+    const issuers = ["HDFC Bank", "ICICI Bank", "Axis Bank", "Chase", "HSBC", "Barclays", "Revolut"];
     const networks = paymentMethod === "card"
-      ? (detectedBrand === "visa" ? "Visa Direct" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "AmEx SafeKey" : "Card Network")
+      ? (detectedBrand === "visa" ? "VisaNet" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "Amex SafeKey" : "Card Network")
       : "Moonlight Settlement Rail";
     const issuer = issuers[Math.floor(Math.random() * issuers.length)];
+    const riskId = `RISK-${Math.floor(100000 + Math.random() * 900000)}`;
     const steps = paymentMethod === "card"
       ? [
-          { label: "Encrypting card details (AES-256)", status: "pending" as const },
-          { label: `Routing through ${networks}`, status: "pending" as const },
-          { label: `Contacting issuer · ${issuer}`, status: "pending" as const },
-          { label: "3-D Secure verification", status: "pending" as const },
-          { label: "Authorizing transaction", status: "pending" as const },
-          { label: "Settlement confirmed", status: "pending" as const },
+          { label: "Tokenizing card credentials", status: "pending" as const },
+          { label: `Routing authorization via ${networks}`, status: "pending" as const },
+          { label: `Issuer risk review · ${issuer}`, status: "pending" as const },
+          { label: `Fraud score cleared · ${riskId}`, status: "pending" as const },
+          { label: "Capturing merchant authorization", status: "pending" as const },
+          { label: "Settlement instruction queued", status: "pending" as const },
         ]
       : [
-          { label: "Connecting to Moonlight Wealth Management", status: "pending" as const },
-          { label: "Verifying merchant credentials", status: "pending" as const },
-          { label: "Securing encrypted channel", status: "pending" as const },
-          { label: "Authorizing fund release", status: "pending" as const },
-          { label: "Generating audit trail", status: "pending" as const },
-          { label: "Settlement confirmed", status: "pending" as const },
+          { label: "Opening private treasury session", status: "pending" as const },
+          { label: "Verifying ShipNest merchant mandate", status: "pending" as const },
+          { label: "Screening beneficiary and invoice", status: "pending" as const },
+          { label: "Authorizing escrow release", status: "pending" as const },
+          { label: "Writing immutable audit record", status: "pending" as const },
+          { label: "Settlement instruction queued", status: "pending" as const },
         ];
     setProcessSteps(steps);
     setAuthCode(Math.random().toString(36).slice(2, 8).toUpperCase());
@@ -134,7 +133,7 @@ const CheckoutPage = () => {
     // Animate steps with slightly varied timings so each payment feels unique
     let cumulative = 0;
     steps.forEach((_, i) => {
-      const dur = 350 + Math.floor(Math.random() * 500);
+      const dur = 520 + Math.floor(Math.random() * 680);
       cumulative += dur;
       setTimeout(() => {
         setProcessSteps(prev => prev.map((s, idx) => ({
