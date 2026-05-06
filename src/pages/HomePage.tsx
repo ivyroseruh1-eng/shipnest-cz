@@ -54,7 +54,7 @@ const HomePage = () => {
   const HeroTile = ({ product, eyebrow }: { product: typeof products[0]; eyebrow?: string }) => {
     const isAppleDevice = product.brand === "Apple" && product.category !== "Audio";
     return (
-    <div className="bg-secondary rounded-2xl overflow-hidden flex flex-col items-center text-center pt-12 px-6 min-h-[560px]">
+    <div className={`${isAppleDevice ? "bg-secondary" : "bg-card border border-border"} rounded-2xl overflow-hidden flex flex-col items-center text-center pt-12 px-6 min-h-[560px]`}>
       {eyebrow && <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2">{eyebrow}</p>}
       <h3 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight">{product.name}</h3>
       <p className="text-[16px] text-muted-foreground mt-2 max-w-xs">{product.specs[0]}</p>
@@ -62,7 +62,7 @@ const HomePage = () => {
         <Link to={`/product/${product.id}`} className="text-primary text-[15px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-4 h-4" /></Link>
         <Link to={`/product/${product.id}`} className="text-primary text-[15px] hover:opacity-75 transition-opacity">Buy <ChevronRight className="inline w-4 h-4" /></Link>
       </div>
-      <div className={`flex-1 flex items-end justify-center mt-6 w-full overflow-hidden rounded-xl ${isAppleDevice ? "bg-secondary" : "bg-card"}`}>
+      <div className="flex-1 flex items-end justify-center mt-6 w-full overflow-hidden rounded-xl">
         <img src={product.image} alt={product.name} className="h-[350px] w-full object-contain" />
       </div>
     </div>
