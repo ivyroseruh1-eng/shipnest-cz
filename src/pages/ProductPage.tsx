@@ -23,9 +23,13 @@ const ProductPage = () => {
   const monthly = (product.price / 12).toFixed(2);
   const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
   const reviews = getProductReviews(product.id);
+  const selectedVariant = product.colors?.[selectedColor];
+  const selectedImage = selectedVariant?.image || product.image;
+  const selectedProduct = selectedVariant ? { ...product, image: selectedImage, name: `${product.name} - ${selectedVariant.name}` } : product;
+  const imagePanelClass = product.brand === "Apple" && product.category !== "Audio" ? "bg-secondary" : "bg-card";
 
   const handleBuyNow = () => {
-    addToCart(product, 1);
+    addToCart(selectedProduct, 1);
     navigate("/checkout");
   };
 
@@ -66,12 +70,12 @@ const ProductPage = () => {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Image */}
           <div className="space-y-4 md:sticky md:top-24 md:self-start">
-            <div className="bg-secondary rounded-2xl p-10 flex items-center justify-center aspect-square">
+            <div className={`${imagePanelClass} rounded-2xl p-6 sm:p-10 flex items-center justify-center aspect-square overflow-hidden`}>
               {!imgError ? (
                 <img
-                  src={(product.colors?.[selectedColor]?.image) || product.image}
+                  src={selectedImage}
                   alt={`${product.name}${product.colors?.[selectedColor] ? ` - ${product.colors[selectedColor].name}` : ''}`}
-                  className="max-h-full max-w-full object-contain"
+                  className="w-full h-full object-contain"
                   onError={() => setImgError(true)}
                 />
               ) : (
@@ -155,7 +159,7 @@ const ProductPage = () => {
                 className="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium text-[15px] hover:bg-primary/90 transition-colors">
                 Buy
               </button>
-              <button onClick={() => addToCart(product)}
+              <button onClick={() => addToCart(selectedProduct)}
                 className="w-full bg-secondary text-foreground py-3 rounded-full font-medium text-[15px] hover:bg-secondary/70 transition-colors">
                 Add to Bag
               </button>
