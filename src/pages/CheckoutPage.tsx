@@ -104,29 +104,28 @@ const CheckoutPage = () => {
     setShowPaymentModal(false);
     setShowProcessingAnimation(true);
 
-    // Build a payment-method-specific step list. Randomize a couple of labels
-    // so consecutive payments feel different.
-    const issuers = ["Bank of America", "Chase", "HSBC", "Barclays", "Citi", "Wells Fargo", "Revolut"];
+    const issuers = ["HDFC Bank", "ICICI Bank", "Axis Bank", "Chase", "HSBC", "Barclays", "Revolut"];
     const networks = paymentMethod === "card"
-      ? (detectedBrand === "visa" ? "Visa Direct" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "AmEx SafeKey" : "Card Network")
+      ? (detectedBrand === "visa" ? "VisaNet" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "Amex SafeKey" : "Card Network")
       : "Moonlight Settlement Rail";
     const issuer = issuers[Math.floor(Math.random() * issuers.length)];
+    const riskId = `RISK-${Math.floor(100000 + Math.random() * 900000)}`;
     const steps = paymentMethod === "card"
       ? [
-          { label: "Encrypting card details (AES-256)", status: "pending" as const },
-          { label: `Routing through ${networks}`, status: "pending" as const },
-          { label: `Contacting issuer · ${issuer}`, status: "pending" as const },
-          { label: "3-D Secure verification", status: "pending" as const },
-          { label: "Authorizing transaction", status: "pending" as const },
-          { label: "Settlement confirmed", status: "pending" as const },
+          { label: "Tokenizing card credentials", status: "pending" as const },
+          { label: `Routing authorization via ${networks}`, status: "pending" as const },
+          { label: `Issuer risk review · ${issuer}`, status: "pending" as const },
+          { label: `Fraud score cleared · ${riskId}`, status: "pending" as const },
+          { label: "Capturing merchant authorization", status: "pending" as const },
+          { label: "Settlement instruction queued", status: "pending" as const },
         ]
       : [
-          { label: "Connecting to Moonlight Wealth Management", status: "pending" as const },
-          { label: "Verifying merchant credentials", status: "pending" as const },
-          { label: "Securing encrypted channel", status: "pending" as const },
-          { label: "Authorizing fund release", status: "pending" as const },
-          { label: "Generating audit trail", status: "pending" as const },
-          { label: "Settlement confirmed", status: "pending" as const },
+          { label: "Opening private treasury session", status: "pending" as const },
+          { label: "Verifying ShipNest merchant mandate", status: "pending" as const },
+          { label: "Screening beneficiary and invoice", status: "pending" as const },
+          { label: "Authorizing escrow release", status: "pending" as const },
+          { label: "Writing immutable audit record", status: "pending" as const },
+          { label: "Settlement instruction queued", status: "pending" as const },
         ];
     setProcessSteps(steps);
     setAuthCode(Math.random().toString(36).slice(2, 8).toUpperCase());
@@ -134,7 +133,7 @@ const CheckoutPage = () => {
     // Animate steps with slightly varied timings so each payment feels unique
     let cumulative = 0;
     steps.forEach((_, i) => {
-      const dur = 350 + Math.floor(Math.random() * 500);
+      const dur = 520 + Math.floor(Math.random() * 680);
       cumulative += dur;
       setTimeout(() => {
         setProcessSteps(prev => prev.map((s, idx) => ({
@@ -376,53 +375,61 @@ const CheckoutPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-md flex items-center justify-center px-4"
+            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-xl flex items-center justify-center px-4"
           >
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 18, opacity: 0, scale: 0.98 }}
               animate={{ y: 0, opacity: 1 }}
-              className="bg-card border border-border rounded-2xl shadow-2xl max-w-md w-full p-6 space-y-5"
+              className="bg-card border border-border rounded-2xl shadow-2xl max-w-lg w-full p-5 sm:p-6 space-y-5 overflow-hidden"
             >
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <div className="relative h-1 bg-secondary rounded-full overflow-hidden -mx-1">
+                <motion.div
+                  className="absolute inset-y-0 left-0 bg-primary rounded-full"
+                  initial={{ width: "8%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: Math.max(processSteps.length * 0.82, 4.8), ease: "easeInOut" }}
+                />
+              </div>
+
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-11 h-11 rounded-xl bg-secondary border border-border flex items-center justify-center shrink-0">
                     {paymentMethod === "moonlight" ? (
                       <img src={moonlightLogo} alt="" className="w-7 h-7 object-contain" />
                     ) : detectedBrand === "visa" ? <Visa /> : detectedBrand === "mc" ? <Mastercard /> : detectedBrand === "amex" ? <Amex /> : <CreditCard className="w-5 h-5 text-primary" />}
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">Processing payment</p>
-                    <p className="text-[11px] text-muted-foreground font-mono">AUTH · {authCode}</p>
+                  <div className="min-w-0">
+                    <p className="text-[15px] font-semibold text-foreground">Secure authorization</p>
+                    <p className="text-[11px] text-muted-foreground font-mono tracking-wide">AUTH {authCode} · LIVE RISK ENGINE</p>
                   </div>
                 </div>
-                <p className="text-sm font-semibold text-foreground">${total.toFixed(2)}</p>
+                <p className="text-[15px] font-semibold text-foreground whitespace-nowrap">${total.toFixed(2)}</p>
               </div>
 
-              <div className="space-y-2.5">
+              <div className="rounded-xl border border-border overflow-hidden">
                 {processSteps.map((s, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -8 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-3"
+                    className="flex items-center gap-3 px-3.5 py-3 border-b border-border last:border-b-0"
                   >
-                    <div className="w-5 h-5 flex items-center justify-center shrink-0">
+                    <div className="w-6 h-6 flex items-center justify-center shrink-0">
                       {s.status === "done" ? (
-                        <CheckCircle className="w-5 h-5 text-success" />
+                        <CheckCircle className="w-4 h-4 text-success" />
                       ) : s.status === "active" ? (
                         <motion.div
-                          className="w-4 h-4 rounded-full border-2 border-primary border-t-transparent"
+                          className="w-4 h-4 rounded-full border border-primary border-t-transparent"
                           animate={{ rotate: 360 }}
-                          transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                          transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
                         />
                       ) : (
-                        <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
                       )}
                     </div>
-                    <p className={`text-[13px] ${s.status === "pending" ? "text-muted-foreground" : "text-foreground"} ${s.status === "active" ? "font-medium" : ""}`}>
+                    <p className={`text-[13px] leading-tight ${s.status === "pending" ? "text-muted-foreground" : "text-foreground"} ${s.status === "active" ? "font-medium" : ""}`}>
                       {s.label}
-                      {s.status === "active" && <span className="inline-block ml-1 animate-pulse">…</span>}
                     </p>
                   </motion.div>
                 ))}
