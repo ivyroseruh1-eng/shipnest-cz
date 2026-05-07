@@ -12,17 +12,9 @@ interface Props {
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const [imgError, setImgError] = useState(false);
   const monthly = (product.price / 12).toFixed(2);
-  const isAppleDevice = product.brand === "Apple" && product.category !== "Audio";
-  const isWearable = /watch|garmin/i.test(`${product.name} ${product.category}`);
-  const isLaptopOrTablet = /mac|ipad|tablet/i.test(`${product.name} ${product.category}`);
-  const imageFitClass = isWearable
-    ? "w-full h-full object-contain scale-[1.03]"
-    : isLaptopOrTablet
-      ? "w-full h-full object-contain scale-[1.04]"
-      : "w-full h-full object-contain scale-[1.13] sm:scale-[1.08]";
 
   return (
-    <div className="group relative flex flex-col bg-card border border-border rounded-2xl p-2.5 sm:p-4 card-hover hover:shadow-md hover:border-foreground/20 overflow-hidden">
+    <div className="group relative flex flex-col bg-card border border-border rounded-2xl p-2.5 sm:p-4 transition-all duration-300 hover:shadow-lg hover:border-foreground/20 hover:-translate-y-1 overflow-hidden animate-fade-in">
       {/* Wishlist */}
       {onToggleWishlist && (
         <button onClick={() => onToggleWishlist(product.id)}
@@ -34,12 +26,12 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
       {/* Image */}
       <Link to={`/product/${product.id}`} className="block">
-        <div className={`h-[188px] sm:h-[220px] rounded-xl flex items-center justify-center overflow-hidden mb-4 ${isAppleDevice ? "bg-secondary" : "bg-card"}`}>
+        <div className="aspect-square rounded-xl flex items-center justify-center overflow-hidden mb-4 bg-secondary/40">
           {!imgError ? (
             <img
               src={product.image}
               alt={product.name}
-              className={`${imageFitClass} group-hover:scale-[1.16] sm:group-hover:scale-[1.1] transition-transform duration-500 ease-out`}
+              className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:scale-[1.08]"
               loading="lazy"
               onError={() => setImgError(true)}
             />
