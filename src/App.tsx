@@ -15,6 +15,7 @@ import OrderConfirmationPage from "@/pages/OrderConfirmationPage";
 import TrackPage from "@/pages/TrackPage";
 import WishlistPage from "@/pages/WishlistPage";
 import AdminPage from "@/pages/AdminPage";
+import ComparePage from "@/pages/ComparePage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
 import ReturnsPage from "@/pages/ReturnsPage";
@@ -50,6 +51,7 @@ const App = () => (
               <Route path="/track" element={<TrackPage />} />
               <Route path="/track/:id" element={<TrackPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
+              <Route path="/compare" element={<ComparePage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
