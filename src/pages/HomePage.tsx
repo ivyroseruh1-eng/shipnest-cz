@@ -7,6 +7,8 @@ import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
 import PaymentIcons from "@/components/PaymentIcons";
+import PressStrip from "@/components/PressStrip";
+import Reveal from "@/components/Reveal";
 
 const HomePage = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
@@ -35,6 +37,7 @@ const HomePage = () => {
   const Section = ({ title, subtitle, items, link }: { title: string; subtitle?: string; items: typeof products; link: string }) => (
     <section className="py-10">
       <div className="max-w-[980px] mx-auto px-4">
+        <Reveal>
         <div className="flex items-end justify-between mb-8">
           <div>
             <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight">{title}</h2>
@@ -44,8 +47,13 @@ const HomePage = () => {
             Shop all <ChevronRight className="w-4 h-4" />
           </Link>
         </div>
+        </Reveal>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12">
-          {items.map(p => <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />)}
+          {items.map((p, i) => (
+            <Reveal key={p.id} delay={i * 80}>
+              <ProductCard product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -91,12 +99,15 @@ const HomePage = () => {
         <section className="bg-background pb-3">
           <div className="max-w-[980px] mx-auto px-4">
             <div className="grid md:grid-cols-2 gap-3">
-              <HeroTile product={tile1} eyebrow="New" />
-              <HeroTile product={tile2} eyebrow="Galaxy AI" />
+              <Reveal><HeroTile product={tile1} eyebrow="New" /></Reveal>
+              <Reveal delay={150}><HeroTile product={tile2} eyebrow="Galaxy AI" /></Reveal>
             </div>
           </div>
         </section>
       )}
+
+      {/* Press strip */}
+      <PressStrip />
 
       {/* Brand strip */}
       <section className="border-y border-border py-8 bg-secondary/30">
