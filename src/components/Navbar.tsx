@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, ShoppingBag, Menu, X, User, Heart, Truck } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, User, Heart, Truck, GitCompare, ChevronDown } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { products } from "@/data/products";
 import shipnestLogo from "@/assets/shipnest-logo.png";
@@ -11,13 +11,18 @@ const announcements = [
   "iPhone 17 Pro is here. Buy now.",
 ];
 
-const navLinks = [
-  { label: "Shop", to: "/shop" },
-  { label: "iPhone", to: "/shop?category=iPhone+17" },
-  { label: "Galaxy", to: "/shop?brand=Samsung" },
-  { label: "Pixel", to: "/shop?brand=Google" },
-  { label: "Mac", to: "/shop?category=Mac" },
-  { label: "Audio", to: "/shop?category=Audio" },
+type MegaItem = {
+  label: string;
+  to: string;
+  mega?: { brand?: string; category?: string; tagline: string };
+};
+
+const navLinks: MegaItem[] = [
+  { label: "Shop", to: "/shop", mega: { tagline: "Browse every device we carry." } },
+  { label: "iPhone", to: "/shop?category=iPhone+17", mega: { brand: "Apple", tagline: "Pro cameras. Titanium design. A19 Pro." } },
+  { label: "Galaxy", to: "/shop?brand=Samsung", mega: { brand: "Samsung", tagline: "Galaxy AI. One UI. Bold design." } },
+  { label: "Pixel", to: "/shop?brand=Google", mega: { brand: "Google", tagline: "Built by Google. Magic in every shot." } },
+  { label: "Compare", to: "/compare" },
   { label: "Support", to: "/contact" },
 ];
 
@@ -27,6 +32,8 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [announcementIndex, setAnnouncementIndex] = useState(0);
+  const [megaOpen, setMegaOpen] = useState<string | null>(null);
+  const closeTimer = useRef<number | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,6 +46,24 @@ const Navbar = () => {
   const filtered = searchQuery.length > 1
     ? products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.brand.toLowerCase().includes(searchQuery.toLowerCase())).slice(0, 6)
     : [];
+
+  const openMega = (label: string) => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    setMegaOpen(label);
+  };
+  const scheduleClose = () => {
+    if (closeTimer.current) window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setMegaOpen(null), 150);
+  };
+
+  const megaProducts = (link: MegaItem) => {
+    if (!link.mega) return [];
+    let pool = products;
+    if (link.mega.brand) pool = pool.filter(p => p.brand === link.mega!.brand);
+    if (link.mega.category) pool = pool.filter(p => p.category === link.mega!.category);
+    if (!link.mega.brand && !link.mega.category) pool = products.filter(p => p.badge);
+    return pool.slice(0, 4);
+  };
 
   return (
     <>
@@ -65,9 +90,16 @@ const Navbar = () => {
           {/* Desktop nav — centered */}
           <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
             {navLinks.map(link => (
-              <Link key={link.label} to={link.to} className="px-3 py-2 text-[13px] text-foreground/80 hover:text-foreground transition-colors font-normal">
-                {link.label}
-              </Link>
+              <div key={link.label}
+                onMouseEnter={() => link.mega && openMega(link.label)}
+                onMouseLeave={scheduleClose}
+                className="relative">
+                <Link to={link.to}
+                  className={`px-3 py-2 text-[13px] transition-colors font-normal flex items-center gap-1 ${megaOpen === link.label ? "text-foreground" : "text-foreground/80 hover:text-foreground"}`}>
+                  {link.label}
+                  {link.mega && <ChevronDown className={`w-3 h-3 transition-transform ${megaOpen === link.label ? "rotate-180" : ""}`} />}
+                </Link>
+              </div>
             ))}
           </div>
 
@@ -130,6 +162,35 @@ const Navbar = () => {
           </div>
         )}
 
+        {/* Mega menu panel */}
+        {megaOpen && navLinks.find(l => l.label === megaOpen)?.mega && (
+          <div
+            onMouseEnter={() => openMega(megaOpen)}
+            onMouseLeave={scheduleClose}
+            className="hidden md:block absolute left-0 right-0 top-full bg-background/95 backdrop-blur-xl border-b border-border shadow-lg animate-fade-in">
+            <div className="max-w-[980px] mx-auto px-4 py-8">
+              <p className="text-[13px] text-muted-foreground mb-5">{navLinks.find(l => l.label === megaOpen)?.mega?.tagline}</p>
+              <div className="grid grid-cols-4 gap-5">
+                {megaProducts(navLinks.find(l => l.label === megaOpen)!).map(p => (
+                  <Link key={p.id} to={`/product/${p.id}`}
+                    onClick={() => setMegaOpen(null)}
+                    className="group">
+                    <div className="aspect-square bg-secondary/60 rounded-xl flex items-center justify-center overflow-hidden mb-2 group-hover:bg-secondary transition-colors">
+                      <img src={p.image} alt={p.name} className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform" />
+                    </div>
+                    <p className="text-[13px] font-semibold text-foreground leading-tight">{p.name}</p>
+                    <p className="text-[12px] text-muted-foreground mt-0.5">From ${p.price}</p>
+                  </Link>
+                ))}
+              </div>
+              <div className="flex gap-5 mt-6 pt-5 border-t border-border text-[13px]">
+                <Link to={navLinks.find(l => l.label === megaOpen)?.to || "/shop"} onClick={() => setMegaOpen(null)} className="text-primary hover:opacity-75 transition-opacity">Shop all {megaOpen} →</Link>
+                <Link to="/compare" onClick={() => setMegaOpen(null)} className="text-primary hover:opacity-75 transition-opacity">Compare models →</Link>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden border-t border-border bg-background">
@@ -139,6 +200,7 @@ const Navbar = () => {
                   className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors text-[15px] font-medium">{link.label}</Link>
               ))}
               <div className="border-t border-border my-2" />
+              <Link to="/compare" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><GitCompare className="w-4 h-4" /> Compare</Link>
               <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><Heart className="w-4 h-4" /> Wishlist</Link>
               <Link to="/track" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><Truck className="w-4 h-4" /> Track Order</Link>
               <Link to="/admin" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><User className="w-4 h-4" /> Account</Link>
