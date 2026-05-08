@@ -26,7 +26,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
       {/* Image */}
       <Link to={`/product/${product.id}`} className="block">
-        <div className="aspect-square rounded-xl flex items-center justify-center overflow-hidden mb-4 bg-secondary/40">
+        <div className="aspect-square rounded-xl flex items-center justify-center overflow-hidden mb-4 bg-card">
           {!imgError ? (
             <img
               src={product.image}

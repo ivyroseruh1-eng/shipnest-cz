@@ -61,7 +61,7 @@ const HomePage = () => {
 
   const HeroTile = ({ product, eyebrow }: { product: typeof products[0]; eyebrow?: string }) => {
     return (
-    <div className="bg-secondary rounded-2xl overflow-hidden flex flex-col items-center text-center pt-12 px-6 min-h-[560px] transition-all duration-300 hover:shadow-xl group">
+    <div className="bg-card border border-border rounded-2xl overflow-hidden flex flex-col items-center text-center pt-12 px-6 min-h-[560px] transition-all duration-300 hover:shadow-xl group">
       {eyebrow && <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2">{eyebrow}</p>}
       <h3 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight">{product.name}</h3>
       <p className="text-[16px] text-muted-foreground mt-2 max-w-xs">{product.specs[0]}</p>
@@ -88,7 +88,7 @@ const HomePage = () => {
             <Link to={`/product/${heroProduct.id}`} className="text-primary text-[17px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-5 h-5" /></Link>
             <Link to={`/product/${heroProduct.id}`} className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-[15px] font-medium hover:bg-primary/90 transition-colors">Buy</Link>
           </div>
-          <div className="mt-10 flex justify-center items-center overflow-hidden h-[390px] sm:h-[540px] bg-secondary rounded-2xl p-4 animate-fade-in">
+          <div className="mt-10 flex justify-center items-center overflow-hidden h-[390px] sm:h-[540px] bg-card border border-border rounded-2xl p-4 animate-fade-in">
             <img src={heroProduct.image} alt={heroProduct.name} className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-700 hover:scale-105" />
           </div>
         </div>
