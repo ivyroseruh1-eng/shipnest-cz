@@ -94,7 +94,7 @@ const ProductPage = () => {
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
           {/* Image */}
           <div className="space-y-4 md:sticky md:top-24 md:self-start">
-            <div className="bg-secondary/60 backdrop-blur-sm rounded-2xl p-6 sm:p-10 flex items-center justify-center aspect-square overflow-hidden transition-all duration-500">
+            <div className="bg-background border border-border rounded-2xl p-4 sm:p-8 flex items-center justify-center aspect-square overflow-hidden transition-all duration-500">
               {!imgError ? (
                 <img
                   key={selectedImage}
