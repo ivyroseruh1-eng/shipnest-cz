@@ -69,8 +69,8 @@ const HomePage = () => {
         <Link to={`/product/${product.id}`} className="text-primary text-[15px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-4 h-4" /></Link>
         <Link to={`/product/${product.id}`} className="text-primary text-[15px] hover:opacity-75 transition-opacity">Buy <ChevronRight className="inline w-4 h-4" /></Link>
       </div>
-      <div className="flex-1 flex items-center justify-center mt-6 w-full overflow-hidden rounded-xl p-2">
-        <img src={product.image} alt={product.name} className="max-h-[340px] max-w-full w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-105" />
+      <div className="flex-1 flex items-center justify-center mt-6 w-full overflow-hidden rounded-xl bg-background p-3">
+        <img src={product.image} alt={product.name} className="max-h-[340px] max-w-full w-auto h-auto object-contain transition-transform duration-700 group-hover:scale-[1.03]" />
       </div>
     </div>
   );
@@ -88,8 +88,8 @@ const HomePage = () => {
             <Link to={`/product/${heroProduct.id}`} className="text-primary text-[17px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-5 h-5" /></Link>
             <Link to={`/product/${heroProduct.id}`} className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-[15px] font-medium hover:bg-primary/90 transition-colors">Buy</Link>
           </div>
-          <div className="mt-10 flex justify-center items-center overflow-hidden h-[390px] sm:h-[540px] bg-card border border-border rounded-2xl p-4 animate-fade-in">
-            <img src={heroProduct.image} alt={heroProduct.name} className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-700 hover:scale-105" />
+          <div className="mt-10 flex justify-center items-center overflow-hidden h-[390px] sm:h-[540px] bg-background border border-border rounded-2xl p-4 animate-fade-in">
+            <img src={heroProduct.image} alt={heroProduct.name} className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-700 hover:scale-[1.03]" />
           </div>
         </div>
       </section>
