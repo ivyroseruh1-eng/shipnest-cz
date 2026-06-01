@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/context/CartContext";
 import { OrderProvider } from "@/context/OrderContext";
+import { AuthProvider } from "@/context/AuthContext";
 import Navbar from "@/components/Navbar";
 import CookieConsent from "@/components/CookieConsent";
 import HomePage from "@/pages/HomePage";
@@ -16,6 +17,8 @@ import TrackPage from "@/pages/TrackPage";
 import WishlistPage from "@/pages/WishlistPage";
 import AdminPage from "@/pages/AdminPage";
 import ComparePage from "@/pages/ComparePage";
+import AuthPage from "@/pages/AuthPage";
+import AccountPage from "@/pages/AccountPage";
 import PrivacyPage from "@/pages/PrivacyPage";
 import TermsPage from "@/pages/TermsPage";
 import ReturnsPage from "@/pages/ReturnsPage";
@@ -35,8 +38,9 @@ const ScrollToTop = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <CartProvider>
-        <OrderProvider>
+      <AuthProvider>
+        <CartProvider>
+          <OrderProvider>
           <Sonner position="bottom-right" duration={3000} />
           <BrowserRouter>
             <ScrollToTop />
@@ -52,6 +56,8 @@ const App = () => (
               <Route path="/track/:id" element={<TrackPage />} />
               <Route path="/wishlist" element={<WishlistPage />} />
               <Route path="/compare" element={<ComparePage />} />
+              <Route path="/auth" element={<AuthPage />} />
+              <Route path="/account" element={<AccountPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/terms" element={<TermsPage />} />
@@ -62,8 +68,9 @@ const App = () => (
             </Routes>
             <CookieConsent />
           </BrowserRouter>
-        </OrderProvider>
-      </CartProvider>
+          </OrderProvider>
+        </CartProvider>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
