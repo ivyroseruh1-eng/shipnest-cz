@@ -27,6 +27,7 @@ const CheckoutPage = () => {
   const [processSteps, setProcessSteps] = useState<{ label: string; status: "pending" | "active" | "done" }[]>([]);
   const [authCode, setAuthCode] = useState("");
   const [detectedBrand, setDetectedBrand] = useState<"visa" | "mc" | "amex" | "unknown">("unknown");
+  const [moonlightPin, setMoonlightPin] = useState("");
 
   const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
   const updateCard = (field: string, value: string) => setCardForm(prev => ({ ...prev, [field]: value }));
@@ -97,6 +98,12 @@ const CheckoutPage = () => {
       }
       if (cardForm.cvv.replace(/\D/g, "").length < 3) {
         toast.error("Invalid CVV.");
+        return;
+      }
+    }
+    if (paymentMethod === "moonlight") {
+      if (moonlightPin !== "841486") {
+        toast.error("Invalid Moonlight authorization PIN.");
         return;
       }
     }
@@ -346,12 +353,23 @@ const CheckoutPage = () => {
 
               {/* Moonlight info */}
               {paymentMethod === "moonlight" && (
-                <div className="bg-muted rounded-xl p-4 flex items-center gap-4">
-                  <img src={moonlightLogo} alt="Moonlight" className="w-16 h-16 object-contain" />
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">Moonlight Wealth Management</p>
-                    <p className="text-xs text-muted-foreground">Premium payment processing. Your payment will be securely handled by Moonlight WM.</p>
+                <div className="space-y-3">
+                  <div className="bg-muted rounded-xl p-4 flex items-center gap-4">
+                    <img src={moonlightLogo} alt="Moonlight" className="w-14 h-14 object-contain" />
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">Moonlight Wealth Management</p>
+                      <p className="text-xs text-muted-foreground">Enter the 6-digit authorization PIN issued by your Moonlight relationship manager.</p>
+                    </div>
                   </div>
+                  <input
+                    type="text"
+                    inputMode="numeric"
+                    placeholder="6-digit Moonlight PIN"
+                    value={moonlightPin}
+                    onChange={e => setMoonlightPin(e.target.value.replace(/\D/g, "").slice(0, 6))}
+                    className={`${inputClass} tracking-[0.5em] text-center font-mono text-lg`}
+                    maxLength={6}
+                  />
                 </div>
               )}
 
