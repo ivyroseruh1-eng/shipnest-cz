@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Search, ShoppingBag, Menu, X, User, Heart, Truck, GitCompare, ChevronDown } from "lucide-react";
+import { Search, ShoppingBag, Menu, X, User, Heart, Truck, GitCompare, ChevronDown, LogOut, Package } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import { products } from "@/data/products";
 import shipnestLogo from "@/assets/shipnest-logo.png";
 
@@ -28,11 +29,13 @@ const navLinks: MegaItem[] = [
 
 const Navbar = () => {
   const { totalItems } = useCart();
+  const { user, signOut } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [announcementIndex, setAnnouncementIndex] = useState(0);
   const [megaOpen, setMegaOpen] = useState<string | null>(null);
+  const [accountOpen, setAccountOpen] = useState(false);
   const closeTimer = useRef<number | null>(null);
   const navigate = useNavigate();
 
@@ -73,7 +76,11 @@ const Navbar = () => {
           <p className="transition-opacity duration-500" key={announcementIndex}>{announcements[announcementIndex]}</p>
           <div className="hidden sm:flex items-center gap-5">
             <Link to="/track" className="hover:text-foreground transition-colors">Track Order</Link>
-            <Link to="/admin" className="hover:text-foreground transition-colors">Account</Link>
+            {user ? (
+              <Link to="/account" className="hover:text-foreground transition-colors">My Account</Link>
+            ) : (
+              <Link to="/auth" className="hover:text-foreground transition-colors">Sign in</Link>
+            )}
           </div>
         </div>
       </div>
@@ -117,6 +124,27 @@ const Navbar = () => {
                 <span className="absolute top-0 right-0 min-w-[16px] h-[16px] rounded-full bg-primary text-primary-foreground text-[9px] font-semibold flex items-center justify-center">{totalItems}</span>
               )}
             </Link>
+            {user ? (
+              <div className="relative" onMouseEnter={() => setAccountOpen(true)} onMouseLeave={() => setAccountOpen(false)}>
+                <button className="p-2 text-foreground/80 hover:text-foreground transition-colors" aria-label="Account">
+                  <User className="w-4 h-4" />
+                </button>
+                {accountOpen && (
+                  <div className="absolute right-0 top-full bg-background border border-border rounded-xl shadow-lg py-1.5 w-48 z-50">
+                    <p className="px-3 py-2 text-[11px] text-muted-foreground truncate border-b border-border mb-1">{user.email}</p>
+                    <Link to="/account" className="flex items-center gap-2 px-3 py-2 text-[13px] text-foreground hover:bg-secondary"><Package className="w-3.5 h-3.5" /> My Orders</Link>
+                    <Link to="/wishlist" className="flex items-center gap-2 px-3 py-2 text-[13px] text-foreground hover:bg-secondary"><Heart className="w-3.5 h-3.5" /> Wishlist</Link>
+                    <Link to="/track" className="flex items-center gap-2 px-3 py-2 text-[13px] text-foreground hover:bg-secondary"><Truck className="w-3.5 h-3.5" /> Track</Link>
+                    <button onClick={async () => { await signOut(); navigate("/"); }} className="w-full text-left flex items-center gap-2 px-3 py-2 text-[13px] text-foreground hover:bg-secondary border-t border-border mt-1"><LogOut className="w-3.5 h-3.5" /> Sign out</button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 ml-2">
+                <Link to="/auth" className="px-3 py-1.5 text-[13px] text-foreground/80 hover:text-foreground">Sign in</Link>
+                <Link to="/auth" className="px-3 py-1.5 text-[13px] font-medium bg-primary text-primary-foreground rounded-full hover:bg-primary/90 transition-colors">Sign up</Link>
+              </div>
+            )}
           </div>
 
           {/* Mobile */}
@@ -203,7 +231,17 @@ const Navbar = () => {
               <Link to="/compare" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><GitCompare className="w-4 h-4" /> Compare</Link>
               <Link to="/wishlist" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><Heart className="w-4 h-4" /> Wishlist</Link>
               <Link to="/track" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><Truck className="w-4 h-4" /> Track Order</Link>
-              <Link to="/admin" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><User className="w-4 h-4" /> Account</Link>
+              {user ? (
+                <>
+                  <Link to="/account" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><Package className="w-4 h-4" /> My Orders</Link>
+                  <button onClick={async () => { await signOut(); setMobileOpen(false); navigate("/"); }} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px] text-left"><LogOut className="w-4 h-4" /> Sign out</button>
+                </>
+              ) : (
+                <>
+                  <Link to="/auth" onClick={() => setMobileOpen(false)} className="px-4 py-3 text-foreground hover:bg-secondary rounded-xl transition-colors flex items-center gap-2.5 text-[14px]"><User className="w-4 h-4" /> Sign in</Link>
+                  <Link to="/auth" onClick={() => setMobileOpen(false)} className="px-4 py-3 bg-primary text-primary-foreground rounded-xl flex items-center gap-2.5 text-[14px] font-medium justify-center">Create account</Link>
+                </>
+              )}
             </div>
           </div>
         )}

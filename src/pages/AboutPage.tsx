@@ -67,6 +67,13 @@ const AboutPage = () => (
         Browse Products
       </Link>
     </div>
+
+    {/* Discreet staff access — hidden from main nav */}
+    <div className="pt-6 border-t border-border/40 flex items-center justify-center">
+      <Link to="/admin" className="text-[11px] text-muted-foreground/60 hover:text-muted-foreground transition-colors tracking-wider">
+        Staff Access
+      </Link>
+    </div>
   </div>
 );
 

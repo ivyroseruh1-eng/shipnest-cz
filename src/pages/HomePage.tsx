@@ -9,6 +9,11 @@ import { toast } from "sonner";
 import PaymentIcons from "@/components/PaymentIcons";
 import PressStrip from "@/components/PressStrip";
 import Reveal from "@/components/Reveal";
+import CategoryTiles from "@/components/CategoryTiles";
+import TrustPillars from "@/components/TrustPillars";
+import LiveStats from "@/components/LiveStats";
+import RecentDeliveries from "@/components/RecentDeliveries";
+import ActivityFeed from "@/components/ActivityFeed";
 
 const HomePage = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
@@ -109,6 +114,15 @@ const HomePage = () => {
       {/* Press strip */}
       <PressStrip />
 
+      {/* Shop by category */}
+      <CategoryTiles />
+
+      {/* Why shop with ShipNest */}
+      <TrustPillars />
+
+      {/* Live stats */}
+      <LiveStats />
+
       {/* Brand strip */}
       <section className="border-y border-border py-8 bg-secondary/30">
         <div className="max-w-[980px] mx-auto px-4">
@@ -137,6 +151,12 @@ const HomePage = () => {
           <Section title="Audio." subtitle="Sound that moves you." items={audio} link="/shop?category=Audio" />
         </>
       )}
+
+      {/* Recent deliveries */}
+      <RecentDeliveries />
+
+      {/* Activity feed */}
+      <ActivityFeed />
 
       {/* Tracking — Apple style */}
       <section className="border-t border-border bg-secondary py-16">
@@ -195,7 +215,8 @@ const HomePage = () => {
             <div>
               <h4 className="font-semibold text-foreground mb-3 text-[12px]">Account</h4>
               <div className="space-y-2">
-                <Link to="/admin" className="block text-muted-foreground hover:text-foreground hover:underline transition-colors">Manage Account</Link>
+                <Link to="/auth" className="block text-muted-foreground hover:text-foreground hover:underline transition-colors">Sign in / Sign up</Link>
+                <Link to="/account" className="block text-muted-foreground hover:text-foreground hover:underline transition-colors">My Account</Link>
                 <Link to="/wishlist" className="block text-muted-foreground hover:text-foreground hover:underline transition-colors">Wishlist</Link>
                 <Link to="/track" className="block text-muted-foreground hover:text-foreground hover:underline transition-colors">Order Status</Link>
               </div>
