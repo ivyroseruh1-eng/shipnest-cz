@@ -88,7 +88,7 @@ const HomePage = () => {
         <div className="max-w-[980px] mx-auto px-4 pt-14 pb-12 text-center">
           <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2">New</p>
           <h1 className="display text-5xl sm:text-6xl md:text-7xl text-foreground">{heroProduct.name}</h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground mt-3 font-normal">Titanium. So strong. So light. So Pro.</p>
+          <p className="text-xl sm:text-2xl text-muted-foreground mt-3 font-normal">Forged aluminum. A19 Pro. Pro Fusion camera.</p>
           <div className="flex items-center justify-center gap-6 mt-5">
             <Link to={`/product/${heroProduct.id}`} className="text-primary text-[17px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-5 h-5" /></Link>
             <Link to={`/product/${heroProduct.id}`} className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-[15px] font-medium hover:bg-primary/90 transition-colors">Buy</Link>

@@ -21,10 +21,12 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 9% 12%;
 
-    /* Apple electric blue */
-    --primary: 211 100% 45%;             /* #0071e3 */
+    /* ShipNest brand blue (from logo) */
+    --primary: 205 100% 56%;             /* #1E9CFF */
     --primary-foreground: 0 0% 100%;
-    --primary-glow: 211 100% 55%;
+    --primary-glow: 205 100% 66%;
+    --brand: 205 100% 56%;
+    --brand-ink: 213 60% 11%;            /* deep navy from wordmark */
 
     --secondary: 220 14% 96%;            /* #f5f5f7 Apple grey */
     --secondary-foreground: 220 9% 12%;
@@ -32,7 +34,7 @@
     --muted: 220 14% 96%;
     --muted-foreground: 220 6% 40%;      /* #6e6e73 */
 
-    --accent: 211 100% 45%;
+    --accent: 205 100% 56%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 75% 50%;
@@ -43,7 +45,7 @@
 
     --border: 220 13% 91%;               /* #e5e5e7 hairline */
     --input: 220 13% 91%;
-    --ring: 211 100% 45%;
+    --ring: 205 100% 56%;
 
     --radius: 0.75rem;
   }
@@ -150,10 +152,23 @@
   background: hsl(220 9% 60%);
 }
 
-/* Selection — blue highlight */
+/* Selection — brand highlight */
 ::selection {
-  background: hsl(211 100% 45% / 0.2);
+  background: hsl(var(--brand) / 0.2);
   color: hsl(var(--foreground));
+}
+
+/* Brand mark utilities */
+.brand-text { color: hsl(var(--brand-ink)); }
+.brand-blue { color: hsl(var(--brand)); }
+@keyframes brand-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.92; }
+}
+.animate-brand-pulse { animation: brand-pulse 2.4s ease-in-out infinite; }
+
+@keyframes draw-path {
+  to { stroke-dashoffset: 0; }
 }
 
 /* Focus rings */

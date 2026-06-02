@@ -4,7 +4,7 @@ import { Search, ShoppingBag, Menu, X, User, Heart, Truck, GitCompare, ChevronDo
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { products } from "@/data/products";
-import shipnestLogo from "@/assets/shipnest-logo.png";
+import Logo from "@/components/brand/Logo";
 
 const announcements = [
   "Free delivery and free returns. Ships from Prague, CZ.",
@@ -20,7 +20,7 @@ type MegaItem = {
 
 const navLinks: MegaItem[] = [
   { label: "Shop", to: "/shop", mega: { tagline: "Browse every device we carry." } },
-  { label: "iPhone", to: "/shop?category=iPhone+17", mega: { brand: "Apple", tagline: "Pro cameras. Titanium design. A19 Pro." } },
+  { label: "iPhone", to: "/shop?category=iPhone+17", mega: { brand: "Apple", tagline: "Forged aluminum unibody. A19 Pro. Pro cameras." } },
   { label: "Galaxy", to: "/shop?brand=Samsung", mega: { brand: "Samsung", tagline: "Galaxy AI. One UI. Bold design." } },
   { label: "Pixel", to: "/shop?brand=Google", mega: { brand: "Google", tagline: "Built by Google. Magic in every shot." } },
   { label: "Compare", to: "/compare" },
@@ -89,10 +89,7 @@ const Navbar = () => {
       <nav className="sticky top-0 z-50 nav-blur border-b border-border/60">
         <div className="max-w-[980px] mx-auto px-4 h-20 md:h-16 flex items-center justify-between gap-6">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0" aria-label="ShipNest">
-            <img src={shipnestLogo} alt="ShipNest" className="h-16 w-16 md:h-14 md:w-14 object-contain drop-shadow-sm" />
-            <span className="text-[17px] md:text-[15px] font-semibold tracking-tight text-foreground">ShipNest</span>
-          </Link>
+          <Logo variant="full" size={36} className="md:!h-[34px]" />
 
           {/* Desktop nav — centered */}
           <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
