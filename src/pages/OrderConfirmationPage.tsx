@@ -4,6 +4,8 @@ import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import moonlightLogo from "@/assets/moonlight-logo.png";
+import Logo from "@/components/brand/Logo";
+import { getShipmentMeta } from "@/lib/courier";
 
 const getCzechTime = () => {
   return new Date().toLocaleString("en-GB", { timeZone: "Europe/Prague" });
@@ -26,6 +28,8 @@ const OrderConfirmationPage = () => {
 
   if (!order) return <div className="text-center py-20 text-foreground">Order not found</div>;
 
+  const meta = getShipmentMeta(order.trackingId, order.total);
+
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
     toast.success(`${label} copied!`);
@@ -35,16 +39,37 @@ const OrderConfirmationPage = () => {
 
   return (
     <div className="max-w-[680px] mx-auto px-4 py-12 space-y-6">
-      {/* Success */}
-      <motion.div className="text-center space-y-4"
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200, damping: 15 }}>
-          <div className="w-20 h-20 rounded-full bg-primary mx-auto flex items-center justify-center">
-            <CheckCircle className="w-10 h-10 text-primary-foreground" />
-          </div>
+      {/* Branded confirmation scene */}
+      <motion.div className="text-center space-y-5 relative" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ type: "spring", stiffness: 180, damping: 14 }} className="relative inline-block">
+          <Logo variant="mark" size={64} linkTo={false} className="animate-brand-pulse" />
+          <motion.span
+            initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.5, type: "spring", stiffness: 300 }}
+            className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-success border-2 border-background flex items-center justify-center"
+          >
+            <CheckCircle className="w-4 h-4 text-success-foreground" />
+          </motion.span>
         </motion.div>
-        <h1 className="display text-4xl sm:text-5xl text-foreground">Thank you.</h1>
-        <p className="text-muted-foreground text-[15px]">Your order is confirmed and being prepared at our Prague warehouse.</p>
+        <div>
+          <p className="text-[12px] text-success font-medium uppercase tracking-wider">Order Confirmed</p>
+          <h1 className="display text-3xl sm:text-5xl text-foreground mt-2">Thank you, {order.customer.name.split(" ")[0]}.</h1>
+          <p className="text-muted-foreground text-[15px] mt-3 max-w-md mx-auto">
+            Your package is being prepared at our Prague warehouse and will leave with {meta.courier} within 24 hours.
+          </p>
+        </div>
+
+        {/* Mini route preview */}
+        <motion.svg viewBox="0 0 400 60" className="w-full max-w-md mx-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}>
+          <motion.path
+            d="M 30 40 Q 200 -10 370 40"
+            fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeDasharray="4 4"
+            initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.8, delay: 0.7, ease: "easeInOut" }}
+          />
+          <circle cx="30" cy="40" r="5" fill="hsl(var(--primary))" />
+          <circle cx="370" cy="40" r="5" fill="hsl(var(--success))" />
+          <text x="30" y="58" textAnchor="middle" className="fill-muted-foreground" fontSize="9">Prague</text>
+          <text x="370" y="58" textAnchor="middle" className="fill-muted-foreground" fontSize="9">{order.customer.city || "India"}</text>
+        </motion.svg>
       </motion.div>
 
       {/* IDs */}
