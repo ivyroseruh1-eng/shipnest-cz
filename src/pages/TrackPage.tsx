@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { Search, Copy, Share2, Printer, Lock } from "lucide-react";
+import { Search, Copy, Share2, Printer, Lock, Plane, Package, Shield, Weight, Ruler, Building2, MapPin } from "lucide-react";
 import { useOrders } from "@/context/OrderContext";
 import TrackingTimeline from "@/components/TrackingTimeline";
+import { getShipmentMeta } from "@/lib/courier";
+import Logo from "@/components/brand/Logo";
 import { toast } from "sonner";
 
 const TrackPage = () => {
@@ -36,26 +38,112 @@ const TrackPage = () => {
   if (order) {
     const completedSteps = order.trackingSteps.filter(s => s.completed).length;
     const progress = (completedSteps / order.trackingSteps.length) * 100;
+    const meta = getShipmentMeta(order.trackingId, order.total);
+    const lastCompleted = [...order.trackingSteps].filter(s => s.completed).pop();
+    const lastUpdate = lastCompleted?.timestamp ? new Date(lastCompleted.timestamp) : new Date(order.placedAt);
+    const inIndia = lastCompleted && lastCompleted.country === "India";
 
     return (
-      <div className="max-w-[680px] mx-auto px-4 py-10 space-y-6">
-        {/* Header card */}
-        <div className="bg-secondary rounded-2xl p-6 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Tracking ID</p>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-2xl font-semibold text-foreground tracking-tight">{order.trackingId}</span>
-                <button onClick={() => copyToClipboard(order.trackingId, "Tracking ID")} className="p-1.5 rounded-md hover:bg-background transition-colors"><Copy className="w-3.5 h-3.5 text-muted-foreground" /></button>
+      <div className="max-w-[720px] mx-auto px-4 py-10 space-y-5">
+        {/* Carrier header card — courier branding */}
+        <div className="bg-background border border-border rounded-2xl overflow-hidden">
+          <div className="bg-gradient-to-r from-primary/8 via-primary/4 to-transparent px-6 py-4 flex items-center justify-between border-b border-border">
+            <div className="flex items-center gap-2.5">
+              <Logo variant="mark" size={28} linkTo={false} />
+              <div>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Tracked by</p>
+                <p className="text-[13px] font-semibold text-foreground">ShipNest International · {meta.courier}</p>
               </div>
             </div>
-            <span className={`px-4 py-1.5 rounded-full text-[12px] font-semibold ${order.status === "Cancelled" ? "bg-destructive text-destructive-foreground" : "bg-primary text-primary-foreground"}`}>{order.status}</span>
+            <span className={`px-3 py-1 rounded-full text-[11px] font-semibold ${order.status === "Cancelled" ? "bg-destructive/10 text-destructive" : "bg-success/10 text-success"}`}>
+              {order.status === "Cancelled" ? "Cancelled" : "Active"}
+            </span>
+          </div>
+          <div className="p-6 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Tracking ID</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <span className="text-2xl font-semibold text-foreground tracking-tight">{order.trackingId}</span>
+                  <button onClick={() => copyToClipboard(order.trackingId, "Tracking ID")} className="p-1.5 rounded-md hover:bg-secondary transition-colors"><Copy className="w-3.5 h-3.5 text-muted-foreground" /></button>
+              </div>
+                <p className="text-[11px] text-muted-foreground mt-1 font-mono">AWB {meta.awb}</p>
+            </div>
+              <div className="sm:text-right">
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-medium">Current Status</p>
+                <p className="text-[14px] font-semibold text-foreground mt-1">{order.status}</p>
+                <p className="text-[11px] text-muted-foreground mt-0.5">
+                  Last update {lastUpdate.toLocaleString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" })} CET
+                </p>
+              </div>
           </div>
 
-          <div className="w-full bg-background rounded-full h-1.5 overflow-hidden">
+            <div className="w-full bg-secondary rounded-full h-1.5 overflow-hidden">
             <div className="h-full bg-primary rounded-full transition-all duration-500" style={{ width: `${progress}%` }} />
           </div>
-          <p className="text-[11px] text-muted-foreground text-right">{progress.toFixed(0)}% complete</p>
+            <div className="flex justify-between items-center text-[11px] text-muted-foreground">
+              <span>{completedSteps} of {order.trackingSteps.length} milestones</span>
+              <span className="tabular-nums">{progress.toFixed(0)}% complete</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Shipment specifics — what makes it look real */}
+        <div className="bg-secondary/40 border border-border rounded-2xl p-5 space-y-4">
+          <h3 className="text-[13px] font-semibold text-foreground uppercase tracking-wider">Shipment Details</h3>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-[12px]">
+            <div className="flex items-start gap-2">
+              <Plane className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">Service Level</p>
+                <p className="text-foreground font-medium">{meta.serviceLevel}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Package className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">Origin Facility</p>
+                <p className="text-foreground font-medium">{meta.originFacility}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Weight className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">Billable Weight</p>
+                <p className="text-foreground font-medium">{meta.weightKg}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Ruler className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">Dimensions (L×W×H)</p>
+                <p className="text-foreground font-medium">{meta.dimensions}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Building2 className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">India Last-Mile Partner</p>
+                <p className="text-foreground font-medium">{meta.indiaCourier}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Shield className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">Insurance</p>
+                <p className="text-foreground font-medium">{meta.insured}</p>
+              </div>
+            </div>
+            {inIndia && (
+              <div className="flex items-start gap-2 col-span-2">
+                <MapPin className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-muted-foreground">Current Facility</p>
+                  <p className="text-foreground font-medium">{meta.indiaFacility}</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Meta grid */}
@@ -65,12 +153,13 @@ const TrackPage = () => {
             { label: "Placed On", value: new Date(order.placedAt).toLocaleDateString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", year: "numeric" }) },
             { label: "Est. Delivery", value: new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { timeZone: "Europe/Prague", day: "numeric", month: "short", year: "numeric" }) },
             { label: "Recipient", value: order.customer.name },
-            { label: "Total", value: `$${order.total.toFixed(2)}` },
+            { label: "Declared Value", value: meta.declaredValue },
+            { label: "Total Paid", value: `$${order.total.toFixed(2)}` },
           ].map(m => (
             <div key={m.label} className="bg-secondary rounded-xl p-3">
               <p className="text-[11px] text-muted-foreground">{m.label}</p>
               <div className="flex items-center gap-1 mt-0.5">
-                <p className="text-[13px] font-semibold text-foreground">{m.value}</p>
+                <p className="text-[13px] font-semibold text-foreground truncate">{m.value}</p>
                 {m.copyable && <button onClick={() => copyToClipboard(m.value, m.label)} className="p-1"><Copy className="w-3 h-3 text-muted-foreground" /></button>}
               </div>
             </div>
