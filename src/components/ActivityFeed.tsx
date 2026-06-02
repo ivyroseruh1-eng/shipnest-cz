@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
-import { Truck, Package, MapPin, CheckCircle2, Plane } from "lucide-react";
+import { Truck, Package, MapPin, CheckCircle2, Plane, Warehouse } from "lucide-react";
 
 const events = [
-  { icon: CheckCircle2, color: "text-success", text: "Order delivered in Mumbai, India" },
-  { icon: Plane, color: "text-primary", text: "Order shipped to Tokyo, Japan" },
-  { icon: MapPin, color: "text-foreground", text: "Order arrived at customs in Frankfurt" },
-  { icon: CheckCircle2, color: "text-success", text: "Order delivered in Prague, Czechia" },
-  { icon: Package, color: "text-primary", text: "Order processed in Singapore hub" },
-  { icon: Truck, color: "text-foreground", text: "Out for delivery in Toronto, Canada" },
-  { icon: Plane, color: "text-primary", text: "Departed Istanbul transit hub" },
-  { icon: CheckCircle2, color: "text-success", text: "Delivered in Sydney, Australia" },
+  { icon: CheckCircle2, color: "text-success", text: "Delivered in Pune, IN", time: "2 min ago" },
+  { icon: Truck, color: "text-foreground", text: "Out for delivery in Bengaluru, IN", time: "11 min ago" },
+  { icon: Plane, color: "text-primary", text: "Departed New Delhi IGI Cargo", time: "23 min ago" },
+  { icon: MapPin, color: "text-foreground", text: "Cleared Indian customs · Delhi FPO", time: "38 min ago" },
+  { icon: Plane, color: "text-primary", text: "Departed Istanbul transit hub", time: "1 hr ago" },
+  { icon: Warehouse, color: "text-primary", text: "Scanned at Prague PRG Gateway", time: "1 hr ago" },
+  { icon: CheckCircle2, color: "text-success", text: "Delivered in Hyderabad, IN", time: "2 hr ago" },
+  { icon: Package, color: "text-primary", text: "Packed at Prague warehouse", time: "3 hr ago" },
+  { icon: Truck, color: "text-foreground", text: "Out for delivery in Mumbai, IN", time: "3 hr ago" },
+  { icon: CheckCircle2, color: "text-success", text: "Delivered in Chennai, IN", time: "4 hr ago" },
 ];
 
 const ActivityFeed = () => {
-  const [visible, setVisible] = useState(events.slice(0, 4));
+  const [visible, setVisible] = useState(events.slice(0, 5));
   useEffect(() => {
-    let i = 4;
+    let i = 5;
     const id = setInterval(() => {
-      setVisible(prev => [events[i % events.length], ...prev.slice(0, 3)]);
+      setVisible(prev => [events[i % events.length], ...prev.slice(0, 4)]);
       i++;
-    }, 3500);
+    }, 6000);
     return () => clearInterval(id);
   }, []);
 
@@ -39,7 +41,7 @@ const ActivityFeed = () => {
               style={{ opacity: 1 - idx * 0.2 }}>
               <e.icon className={`w-4 h-4 ${e.color} shrink-0`} strokeWidth={1.8} />
               <p className="text-[13px] text-foreground flex-1">{e.text}</p>
-              <span className="text-[11px] text-muted-foreground">just now</span>
+              <span className="text-[11px] text-muted-foreground tabular-nums">{idx === 0 ? "just now" : e.time}</span>
             </div>
           ))}
         </div>
