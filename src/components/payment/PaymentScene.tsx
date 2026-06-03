@@ -41,8 +41,7 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
     ts.push(setTimeout(() => setChips([true, true, false]), 2100));
     ts.push(setTimeout(() => setChips([true, true, true]), 2700));
     ts.push(setTimeout(() => setAct(2), 2900));
-    ts.push(setTimeout(onDone, durationMs);
-    );
+    ts.push(setTimeout(onDone, durationMs));
     return () => ts.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
