@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { Search, Copy, Share2, Printer, Lock, Plane, Package, Shield, Weight, Ruler, Building2, MapPin } from "lucide-react";
+import { Search, Copy, Share2, Printer, Lock, Plane, Package, Shield, Weight, Ruler, Building2, MapPin, Leaf, Info, Clock } from "lucide-react";
 import { useOrders } from "@/context/OrderContext";
 import TrackingTimeline from "@/components/TrackingTimeline";
 import { getShipmentMeta } from "@/lib/courier";
 import Logo from "@/components/brand/Logo";
+import RouteMap from "@/components/RouteMap";
+import CourierHandoff from "@/components/CourierHandoff";
+import EtaCountdown from "@/components/EtaCountdown";
+import TrackingSupportFAQ from "@/components/TrackingSupportFAQ";
+import { explainStatus } from "@/data/statusExplanations";
 import { toast } from "sonner";
 
 const TrackPage = () => {
@@ -42,9 +47,64 @@ const TrackPage = () => {
     const lastCompleted = [...order.trackingSteps].filter(s => s.completed).pop();
     const lastUpdate = lastCompleted?.timestamp ? new Date(lastCompleted.timestamp) : new Date(order.placedAt);
     const inIndia = lastCompleted && lastCompleted.country === "India";
+    const delivered = order.status === "Delivered";
+    const cancelled = order.status === "Cancelled";
+    const explanation = lastCompleted ? explainStatus(lastCompleted.status) : undefined;
+    const minsAgo = Math.floor((Date.now() - lastUpdate.getTime()) / 60000);
+    const relTime = minsAgo < 60 ? `${minsAgo}m ago` : minsAgo < 1440 ? `${Math.floor(minsAgo / 60)}h ago` : `${Math.floor(minsAgo / 1440)}d ago`;
 
     return (
-      <div className="max-w-[720px] mx-auto px-4 py-10 space-y-5">
+      <div className="max-w-[760px] mx-auto px-4 py-8 space-y-5">
+        {/* Live status banner */}
+        {!cancelled && (
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-success/5 border border-primary/20 p-5">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-between">
+              <div className="flex items-start gap-3 min-w-0">
+                <div className="w-11 h-11 rounded-full bg-primary text-primary-foreground flex items-center justify-center shrink-0 relative">
+                  {!delivered && <span className="absolute -inset-1 rounded-full bg-primary/30 animate-ping" />}
+                  <Plane className="w-5 h-5 relative" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Current status</p>
+                  <p className="text-[16px] font-semibold text-foreground leading-tight truncate">{lastCompleted?.status || "Order Placed"}</p>
+                  <p className="text-[11px] text-muted-foreground mt-0.5">
+                    <Clock className="w-3 h-3 inline -mt-0.5 mr-1" />
+                    Last scan {relTime} · {lastCompleted?.city || "Prague"}
+                  </p>
+                </div>
+              </div>
+              <div className="text-left sm:text-right shrink-0">
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Arriving in</p>
+                <p className="text-2xl font-semibold text-foreground tabular-nums tracking-tight">
+                  <EtaCountdown target={order.estimatedDelivery} delivered={delivered} />
+                </p>
+                <p className="text-[11px] text-muted-foreground">By {new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}</p>
+              </div>
+            </div>
+            {explanation && (
+              <div className="mt-4 pt-4 border-t border-primary/10 flex gap-2 text-[12px] text-foreground/80">
+                <Info className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
+                <p>{explanation}</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Route map */}
+        <div className="bg-card border border-border rounded-2xl p-5">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-[13px] font-semibold text-foreground uppercase tracking-wider">Route</h3>
+            <span className="text-[11px] text-muted-foreground tabular-nums">{progress.toFixed(0)}% complete</span>
+          </div>
+          <RouteMap
+            origin={{ label: "Prague, CZ", sub: meta.courier.split(" ")[0] }}
+            destination={{ label: `${order.customer.city || "India"}, IN`, sub: meta.indiaCourier.split(" ")[0] }}
+            progress={Math.min(Math.max(completedSteps / order.trackingSteps.length, 0.02), 1)}
+            height={180}
+            animate={false}
+          />
+        </div>
+
         {/* Carrier header card — courier branding */}
         <div className="bg-background border border-border rounded-2xl overflow-hidden">
           <div className="bg-gradient-to-r from-primary/8 via-primary/4 to-transparent px-6 py-4 flex items-center justify-between border-b border-border">
@@ -87,6 +147,9 @@ const TrackPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Carrier handoff */}
+        {!cancelled && <CourierHandoff meta={meta} inIndia={!!inIndia} city={order.customer.city} />}
 
         {/* Shipment specifics — what makes it look real */}
         <div className="bg-secondary/40 border border-border rounded-2xl p-5 space-y-4">
@@ -134,6 +197,20 @@ const TrackPage = () => {
                 <p className="text-foreground font-medium">{meta.insured}</p>
               </div>
             </div>
+            <div className="flex items-start gap-2">
+              <Lock className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">Signature</p>
+                <p className="text-foreground font-medium">Required on delivery</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-2">
+              <Leaf className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
+              <div>
+                <p className="text-muted-foreground">CO₂e estimate</p>
+                <p className="text-foreground font-medium">{meta.co2eKg} · offset by ShipNest</p>
+              </div>
+            </div>
             {inIndia && (
               <div className="flex items-start gap-2 col-span-2">
                 <MapPin className="w-3.5 h-3.5 text-primary mt-0.5 shrink-0" />
@@ -168,7 +245,10 @@ const TrackPage = () => {
 
         {/* Items */}
         <div className="bg-secondary rounded-2xl p-6 space-y-4">
-          <h3 className="font-semibold text-foreground">Items in this Order</h3>
+          <div>
+            <h3 className="font-semibold text-foreground">Package contents</h3>
+            <p className="text-[11px] text-muted-foreground">Declared to customs at full value</p>
+          </div>
           {order.items.map(item => (
             <div key={item.productId} className="flex gap-3 items-center">
               <img src={item.image} alt={item.name} className="w-14 h-14 object-contain rounded-lg bg-background p-1"
@@ -206,6 +286,9 @@ const TrackPage = () => {
           <h3 className="font-semibold text-foreground">Shipment Timeline</h3>
           <TrackingTimeline steps={order.trackingSteps} placedAt={order.placedAt} />
         </div>
+
+        {/* Support FAQ */}
+        <TrackingSupportFAQ orderId={order.orderId} />
 
         {/* Actions */}
         <div className="flex gap-3">

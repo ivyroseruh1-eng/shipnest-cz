@@ -32,6 +32,9 @@ export interface ShipmentMeta {
   indiaFacility: string;
   insured: string;
   declaredValue: string;
+  signatureRequired: boolean;
+  co2eKg: string;
+  courierRef: string;
 }
 
 export const getShipmentMeta = (trackingId: string, total: number): ShipmentMeta => {
@@ -45,6 +48,8 @@ export const getShipmentMeta = (trackingId: string, total: number): ShipmentMeta
     4 + ((h >> 4) % 3),
   ];
   const awbDigits = String(100000000 + (h % 899999999));
+  const co2 = (1.2 + ((h % 41) / 10)).toFixed(2);
+  const refDigits = String(100000 + ((h >> 5) % 899999));
   return {
     courier: c.name,
     awb: `${c.awbPrefix} ${awbDigits.slice(0, 4)} ${awbDigits.slice(4, 8)}`,
@@ -56,5 +61,8 @@ export const getShipmentMeta = (trackingId: string, total: number): ShipmentMeta
     indiaFacility: ic.facility,
     insured: `Up to $${Math.max(500, Math.round(total * 1.1))} (ShipNest Protect)`,
     declaredValue: `$${total.toFixed(2)} USD`,
+    signatureRequired: true,
+    co2eKg: `${co2} kg`,
+    courierRef: `${c.code}-${refDigits}`,
   };
 };

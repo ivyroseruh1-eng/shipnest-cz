@@ -176,3 +176,17 @@
   outline: 2px solid hsl(var(--primary) / 0.5);
   outline-offset: 2px;
 }
+
+/* Print stylesheet — clean A4 invoice */
+@media print {
+  body { background: white !important; }
+  nav, footer, .print\:hidden { display: none !important; }
+  .print\:py-4 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+  a { color: inherit !important; text-decoration: none !important; }
+  .bg-card, .bg-secondary, .bg-secondary\/30, .bg-secondary\/40, .bg-background {
+    background: white !important;
+  }
+  .border, .border-border { border-color: #e5e5e7 !important; }
+  .shadow-2xl, .shadow-lg { box-shadow: none !important; }
+}
+
