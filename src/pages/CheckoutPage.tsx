@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreditCard, Lock, X, CheckCircle, Shield } from "lucide-react";
 import PaymentIcons, { Visa, Mastercard, Amex, ApplePay, GPay } from "@/components/PaymentIcons";
-import Logo from "@/components/brand/Logo";
+import PaymentScene from "@/components/payment/PaymentScene";
 import { useCart } from "@/context/CartContext";
 import { useOrders, generateOrderId, generateTrackingId, createDefaultTrackingSteps } from "@/context/OrderContext";
 import { toast } from "sonner";
@@ -25,8 +25,11 @@ const CheckoutPage = () => {
   const [processing, setProcessing] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
   const [showProcessingAnimation, setShowProcessingAnimation] = useState(false);
-  const [processSteps, setProcessSteps] = useState<{ label: string; status: "pending" | "active" | "done" }[]>([]);
   const [authCode, setAuthCode] = useState("");
+  const [refCode, setRefCode] = useState("");
+  const [issuer, setIssuer] = useState("");
+  const [network, setNetwork] = useState("");
+  const [pendingOrder, setPendingOrder] = useState<any>(null);
   const [detectedBrand, setDetectedBrand] = useState<"visa" | "mc" | "amex" | "unknown">("unknown");
   const [moonlightPin, setMoonlightPin] = useState("");
 
@@ -110,53 +113,17 @@ const CheckoutPage = () => {
     }
     setProcessing(true);
     setShowPaymentModal(false);
-    setShowProcessingAnimation(true);
 
-    const issuers = ["HDFC Bank", "ICICI Bank", "Axis Bank", "Chase", "HSBC", "Barclays", "Revolut"];
-    const networks = paymentMethod === "card"
+    const issuers = paymentMethod === "moonlight"
+      ? ["Moonlight Treasury"]
+      : ["HDFC Bank", "ICICI Bank", "Axis Bank", "Chase", "HSBC", "Barclays", "Revolut"];
+    const networkLabel = paymentMethod === "card"
       ? (detectedBrand === "visa" ? "VisaNet" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "Amex SafeKey" : "Card Network")
       : "Moonlight Settlement Rail";
-    const issuer = issuers[Math.floor(Math.random() * issuers.length)];
-    const riskId = `RISK-${Math.floor(100000 + Math.random() * 900000)}`;
-    const steps = paymentMethod === "card"
-      ? [
-          { label: "Tokenizing card credentials", status: "pending" as const },
-          { label: `Routing authorization via ${networks}`, status: "pending" as const },
-          { label: `Issuer risk review · ${issuer}`, status: "pending" as const },
-          { label: `Fraud score cleared · ${riskId}`, status: "pending" as const },
-          { label: "Capturing merchant authorization", status: "pending" as const },
-          { label: "Settlement instruction queued", status: "pending" as const },
-        ]
-      : [
-          { label: "Opening private treasury session", status: "pending" as const },
-          { label: "Verifying ShipNest merchant mandate", status: "pending" as const },
-          { label: "Screening beneficiary and invoice", status: "pending" as const },
-          { label: "Authorizing escrow release", status: "pending" as const },
-          { label: "Writing immutable audit record", status: "pending" as const },
-          { label: "Settlement instruction queued", status: "pending" as const },
-        ];
-    setProcessSteps(steps);
+    setIssuer(issuers[Math.floor(Math.random() * issuers.length)]);
+    setNetwork(networkLabel);
     setAuthCode(Math.random().toString(36).slice(2, 8).toUpperCase());
-
-    // Animate steps with slightly varied timings so each payment feels unique
-    let cumulative = 0;
-    steps.forEach((_, i) => {
-      const dur = 520 + Math.floor(Math.random() * 680);
-      cumulative += dur;
-      setTimeout(() => {
-        setProcessSteps(prev => prev.map((s, idx) => ({
-          ...s,
-          status: idx < i ? "done" : idx === i ? "active" : "pending",
-        })));
-      }, cumulative - dur);
-      setTimeout(() => {
-        setProcessSteps(prev => prev.map((s, idx) => ({
-          ...s,
-          status: idx <= i ? "done" : "pending",
-        })));
-      }, cumulative);
-    });
-    const totalDuration = cumulative + 400;
+    setRefCode(String(Math.floor(1000000 + Math.random() * 9000000)));
 
     const orderId = generateOrderId();
     const trackingId = generateTrackingId();
@@ -187,13 +154,16 @@ const CheckoutPage = () => {
       deliveryPin: String(Math.floor(1000 + Math.random() * 9000)),
       trackingSteps: createDefaultTrackingSteps(form.city, form.state, form.country),
     };
+    setPendingOrder(order);
+    setShowProcessingAnimation(true);
+  };
 
-    setTimeout(() => {
-      addOrder(order);
-      clearCart();
-      setShowProcessingAnimation(false);
-      navigate(`/order-confirmation/${orderId}`);
-    }, totalDuration);
+  const handlePaymentSceneDone = () => {
+    if (!pendingOrder) return;
+    addOrder(pendingOrder);
+    clearCart();
+    setShowProcessingAnimation(false);
+    navigate(`/order-confirmation/${pendingOrder.orderId}`);
   };
 
   if (items.length === 0) {
@@ -390,84 +360,17 @@ const CheckoutPage = () => {
       {/* Processing Animation */}
       <AnimatePresence>
         {showProcessingAnimation && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-background/95 backdrop-blur-xl flex items-center justify-center px-4"
-          >
-            <motion.div
-              initial={{ y: 18, opacity: 0, scale: 0.98 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="bg-card border border-border rounded-2xl shadow-2xl max-w-lg w-full p-5 sm:p-6 space-y-5 overflow-hidden"
-            >
-              <div className="relative h-1 bg-secondary rounded-full overflow-hidden -mx-1">
-                <motion.div
-                  className="absolute inset-y-0 left-0 bg-primary rounded-full"
-                  initial={{ width: "8%" }}
-                  animate={{ width: "100%" }}
-                  transition={{ duration: Math.max(processSteps.length * 0.82, 4.8), ease: "easeInOut" }}
-                />
-              </div>
-
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="relative w-11 h-11 rounded-xl bg-background border border-border flex items-center justify-center shrink-0">
-                    <Logo variant="mark" size={28} linkTo={false} />
-                    <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-background border border-border flex items-center justify-center overflow-hidden">
-                      {paymentMethod === "moonlight" ? (
-                        <img src={moonlightLogo} alt="" className="w-3.5 h-3.5 object-contain" />
-                      ) : detectedBrand === "visa" ? <Visa /> : detectedBrand === "mc" ? <Mastercard /> : detectedBrand === "amex" ? <Amex /> : <CreditCard className="w-3 h-3 text-primary" />}
-                    </div>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-[15px] font-semibold text-foreground">ShipNest secure authorization</p>
-                    <p className="text-[11px] text-muted-foreground font-mono tracking-wide">AUTH {authCode} · LIVE RISK ENGINE</p>
-                  </div>
-                </div>
-                <p className="text-[15px] font-semibold text-foreground whitespace-nowrap tabular-nums">${total.toFixed(2)}</p>
-              </div>
-
-              <div className="rounded-xl border border-border overflow-hidden">
-                {processSteps.map((s, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="flex items-center gap-3 px-3.5 py-3 border-b border-border last:border-b-0"
-                  >
-                    <div className="w-6 h-6 flex items-center justify-center shrink-0">
-                      {s.status === "done" ? (
-                        <CheckCircle className="w-4 h-4 text-success" />
-                      ) : s.status === "active" ? (
-                        <motion.div
-                          className="w-4 h-4 rounded-full border border-primary border-t-transparent"
-                          animate={{ rotate: 360 }}
-                          transition={{ duration: 0.9, repeat: Infinity, ease: "linear" }}
-                        />
-                      ) : (
-                        <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/30" />
-                      )}
-                    </div>
-                    <p className={`text-[13px] leading-tight ${s.status === "pending" ? "text-muted-foreground" : "text-foreground"} ${s.status === "active" ? "font-medium" : ""}`}>
-                      {s.label}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="flex items-center justify-between pt-3 border-t border-border">
-                <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                  <Shield className="w-3 h-3 text-success" />
-                  PCI-DSS · TLS 1.3 · 256-bit AES
-                </div>
-                <div className="flex items-center gap-1">
-                  <Visa /><Mastercard /><Amex />
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+          <PaymentScene
+            total={total}
+            method={paymentMethod}
+            brand={detectedBrand}
+            cardLast4={cardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242"}
+            issuer={issuer}
+            network={network}
+            authCode={authCode}
+            refCode={refCode}
+            onDone={handlePaymentSceneDone}
+          />
         )}
       </AnimatePresence>
     </div>
