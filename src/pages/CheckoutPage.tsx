@@ -5,6 +5,9 @@ import PaymentIcons, { Visa, Mastercard, Amex, ApplePay, GPay } from "@/componen
 import PaymentScene from "@/components/payment/PaymentScene";
 import { useCart } from "@/context/CartContext";
 import { useOrders, generateOrderId, generateTrackingId, createDefaultTrackingSteps } from "@/context/OrderContext";
+import { lookupPincode } from "@/lib/pincode";
+import { useLocation } from "@/context/LocationContext";
+import { useEffect } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import moonlightLogo from "@/assets/moonlight-logo.png";
@@ -12,6 +15,7 @@ import moonlightLogo from "@/assets/moonlight-logo.png";
 const CheckoutPage = () => {
   const { items, subtotal, clearCart } = useCart();
   const { addOrder } = useOrders();
+  const { location } = useLocation();
   const navigate = useNavigate();
   const tax = subtotal * 0.2;
   const total = subtotal + tax;
@@ -19,6 +23,35 @@ const CheckoutPage = () => {
   const [form, setForm] = useState({
     name: "", email: "", phone: "", address: "", city: "", state: "", country: "", zip: "",
   });
+
+  // Prefill from saved location
+  useEffect(() => {
+    if (location && !form.zip) {
+      setForm((f) => ({
+        ...f,
+        zip: location.pincode,
+        city: f.city || location.city,
+        state: f.state || location.state,
+        country: f.country || location.country,
+      }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleZipBlur = async () => {
+    const zip = form.zip.trim();
+    if (!zip || (form.city && form.country)) return;
+    const result = await lookupPincode(zip);
+    if (result) {
+      setForm((f) => ({
+        ...f,
+        city: f.city || result.city,
+        state: f.state || result.state,
+        country: f.country || result.country,
+      }));
+      toast.success(`Detected ${result.city}, ${result.country}`);
+    }
+  };
   const [step, setStep] = useState<"address" | "payment">("address");
   const [paymentMethod, setPaymentMethod] = useState<"card" | "moonlight">("card");
   const [cardForm, setCardForm] = useState({ cardNumber: "", expiry: "", cvv: "", cardName: "" });
@@ -192,8 +225,12 @@ const CheckoutPage = () => {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <input type="text" placeholder="Country *" value={form.country} onChange={e => update("country", e.target.value)} className={inputClass} required />
-              <input type="text" placeholder="ZIP/Postal Code" value={form.zip} onChange={e => update("zip", e.target.value)} className={inputClass} />
+              <input type="text" placeholder="ZIP/Postal Code" value={form.zip}
+                onChange={e => update("zip", e.target.value)}
+                onBlur={handleZipBlur}
+                className={inputClass} />
             </div>
+            <p className="text-[11px] text-muted-foreground -mt-1">Tip: enter your postal code first — we'll auto-fill the rest.</p>
           </div>
 
           <div className="bg-secondary rounded-2xl p-4 flex items-center gap-3">
