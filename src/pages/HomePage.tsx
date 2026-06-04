@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ChevronRight, Search, Truck, RotateCcw, CreditCard, Headphones } from "lucide-react";
+import { ChevronRight, Search, Truck, RotateCcw, CreditCard, Headphones, Plane, Shield, Sparkles } from "lucide-react";
 import { products } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
 import { useWishlist } from "@/hooks/useWishlist";
@@ -14,6 +14,10 @@ import TrustPillars from "@/components/TrustPillars";
 import LiveStats from "@/components/LiveStats";
 import RecentDeliveries from "@/components/RecentDeliveries";
 import ActivityFeed from "@/components/ActivityFeed";
+import DeliveryEstimator from "@/components/home/DeliveryEstimator";
+import HowItWorks from "@/components/home/HowItWorks";
+import ReviewsCarousel from "@/components/home/ReviewsCarousel";
+import HomeFAQ from "@/components/home/HomeFAQ";
 
 const HomePage = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
@@ -86,12 +90,19 @@ const HomePage = () => {
       {/* HERO — Apple-style full-bleed */}
       <section className="bg-background">
         <div className="max-w-[980px] mx-auto px-4 pt-14 pb-12 text-center">
-          <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2">New</p>
+          <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2 inline-flex items-center gap-1.5">
+            <Sparkles className="w-3 h-3" /> New · Ships worldwide
+          </p>
           <h1 className="display text-5xl sm:text-6xl md:text-7xl text-foreground">{heroProduct.name}</h1>
           <p className="text-xl sm:text-2xl text-muted-foreground mt-3 font-normal">Forged aluminum. A19 Pro. Pro Fusion camera.</p>
           <div className="flex items-center justify-center gap-6 mt-5">
             <Link to={`/product/${heroProduct.id}`} className="text-primary text-[17px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-5 h-5" /></Link>
             <Link to={`/product/${heroProduct.id}`} className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-[15px] font-medium hover:bg-primary/90 transition-colors">Buy</Link>
+          </div>
+          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1 text-[12px] text-muted-foreground">
+            <span className="flex items-center gap-1.5"><Plane className="w-3 h-3" /> Express worldwide</span>
+            <span className="flex items-center gap-1.5"><Shield className="w-3 h-3" /> 2-year warranty</span>
+            <span className="flex items-center gap-1.5"><RotateCcw className="w-3 h-3" /> 30-day returns</span>
           </div>
           <div className="mt-10 flex justify-center items-center overflow-hidden h-[390px] sm:h-[540px] bg-background border border-border rounded-2xl p-4 animate-fade-in">
             <img src={heroProduct.image} alt={heroProduct.name} className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-700 hover:scale-[1.03]" />
@@ -114,14 +125,20 @@ const HomePage = () => {
       {/* Press strip */}
       <PressStrip />
 
+      {/* How it works */}
+      <HowItWorks />
+
+      {/* Live stats */}
+      <LiveStats />
+
+      {/* Delivery estimator (pincode → city/state/country) */}
+      <DeliveryEstimator />
+
       {/* Shop by category */}
       <CategoryTiles />
 
       {/* Why shop with ShipNest */}
       <TrustPillars />
-
-      {/* Live stats */}
-      <LiveStats />
 
       {/* Brand strip */}
       <section className="border-y border-border py-8 bg-secondary/30">
@@ -154,6 +171,12 @@ const HomePage = () => {
 
       {/* Recent deliveries */}
       <RecentDeliveries />
+
+      {/* Reviews carousel */}
+      <ReviewsCarousel />
+
+      {/* FAQ */}
+      <HomeFAQ />
 
       {/* Activity feed */}
       <ActivityFeed />
