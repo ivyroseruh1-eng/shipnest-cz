@@ -1,1 +1,7 @@
 project_id = "juklayjdeotznvrcyngv"
+
+[functions.nest-chat]
+verify_jwt = false
+
+[functions.review-summary]
+verify_jwt = false

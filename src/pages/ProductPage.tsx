@@ -7,6 +7,8 @@ import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
 import { getProductReviews } from "@/data/reviews";
 import Reveal from "@/components/Reveal";
+import DeliverTo from "@/components/product/DeliverTo";
+import ReviewSummary from "@/components/ai/ReviewSummary";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -178,6 +180,9 @@ const ProductPage = () => {
               <p className="text-muted-foreground text-[12px]">Dispatched from Prague, Czech Republic 🇨🇿</p>
             </div>
 
+            {/* Deliver to (pincode) */}
+            <DeliverTo />
+
             {/* CTAs — Apple blue pills */}
             <div className="space-y-3">
               <button onClick={handleBuyNow}
@@ -316,6 +321,9 @@ const ProductPage = () => {
             <span className="text-[13px] text-muted-foreground">{reviews.length} reviews</span>
           </div>
           {/* Rating distribution */}
+          {reviews.length > 0 && (
+            <ReviewSummary productId={product.id} productName={product.name} reviews={reviews} />
+          )}
           {reviews.length > 0 && (
             <div className="bg-secondary/50 rounded-2xl p-6 mb-6 grid sm:grid-cols-2 gap-6 items-center">
               <div className="text-center">

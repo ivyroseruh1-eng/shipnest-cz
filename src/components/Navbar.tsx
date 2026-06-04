@@ -5,6 +5,7 @@ import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { products } from "@/data/products";
 import Logo from "@/components/brand/Logo";
+import LocationChip from "@/components/location/LocationChip";
 
 const announcements = [
   "Free delivery and free returns. Ships from Prague, CZ.",
@@ -75,6 +76,7 @@ const Navbar = () => {
         <div className="max-w-[980px] mx-auto px-4 h-9 flex items-center justify-between">
           <p className="transition-opacity duration-500" key={announcementIndex}>{announcements[announcementIndex]}</p>
           <div className="hidden sm:flex items-center gap-5">
+            <LocationChip />
             <Link to="/track" className="hover:text-foreground transition-colors">Track Order</Link>
             {user ? (
               <Link to="/account" className="hover:text-foreground transition-colors">My Account</Link>
