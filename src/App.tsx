@@ -5,8 +5,10 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/context/CartContext";
 import { OrderProvider } from "@/context/OrderContext";
 import { AuthProvider } from "@/context/AuthContext";
+import { LocationProvider } from "@/context/LocationContext";
 import Navbar from "@/components/Navbar";
 import CookieConsent from "@/components/CookieConsent";
+import ShoppingAssistant from "@/components/ai/ShoppingAssistant";
 import HomePage from "@/pages/HomePage";
 import ShopPage from "@/pages/ShopPage";
 import ProductPage from "@/pages/ProductPage";
@@ -39,8 +41,9 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <AuthProvider>
-        <CartProvider>
-          <OrderProvider>
+        <LocationProvider>
+          <CartProvider>
+            <OrderProvider>
           <Sonner position="bottom-right" duration={3000} />
           <BrowserRouter>
             <ScrollToTop />
@@ -67,9 +70,11 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
             <CookieConsent />
+            <ShoppingAssistant />
           </BrowserRouter>
-          </OrderProvider>
-        </CartProvider>
+            </OrderProvider>
+          </CartProvider>
+        </LocationProvider>
       </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
