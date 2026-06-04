@@ -1,140 +1,86 @@
-## What's actually wrong
+## 1. Homepage rebuild — premium ecommerce feel
 
-- **Payment animation** is a vertical list of fake-sounding log lines with a spinner. It reads like a debug console, not a payment.
-- **Receipt page** dumps everything in one column of grey cards. No hierarchy, no "this is your receipt" moment, no downloadable invoice, no next-step guidance, the route SVG is tiny and decorative.
-- **Tracking page** has good data but lacks the things people actually look for on DHL/FedEx/Blue Dart: a **map / route visual**, a **countdown / ETA banner**, the **courier handoff** (who has it right now), a **package contents** summary, a **delivery instructions** block, and a **support / "where is my package"** strip. Timeline alone feels flat.
+Right now the home page reads as a stack of generic sections. Rebuild into a real storefront flow with stronger hierarchy, motion, and credibility.
 
----
+**New section order (top → bottom):**
 
-## 1. Payment animation — 3-act cinematic scene
+1. **Editorial hero (full-bleed)** — Large product still life of the iPhone 17 Pro on a soft gradient, animated reveal. Left: oversized headline "Shipped from Prague. Delivered to your door in India.", subline with 23–29 day promise, two CTAs (`Shop now`, `Track a parcel`). Right: floating product card with live "Arriving in {city} in ~26 days" line that updates if user has entered a pincode (ties to feature #2).
+2. **Live trust strip** — Slim band with: orders shipped this month (counter animates), avg delivery days, on-time %, ₹ insured value. Pulled from existing `LiveStats` but redesigned as a single tabular row with micro icons.
+3. **Featured product showcase** — Apple-style: 2 large cards (iPhone 17 Pro Max, Galaxy S25 Ultra), each with parallax image, spec bullets, "Forged aluminum unibody" (corrected), color dots, `Buy` + `Compare` CTAs.
+4. **Category rail** — Horizontal scroll of premium category tiles (Phones, Laptops, Audio, Wearables, Gaming), each with a hero image and item count.
+5. **"How ShipNest works"** — 4-step horizontal timeline: Order → Prague hub → International air → India last-mile. Each step has an icon, ETA, and a small carrier wordmark.
+6. **Pincode-aware delivery estimator** (feature #2 surface) — Big card: "Enter your pincode to see your delivery date." Auto-detects city/state, shows arc map preview, exact estimated date.
+7. **Best sellers grid** — 6–8 product cards with rating stars and "Delivered to 14 cities this week" microcopy.
+8. **Reviews carousel** — Real-looking testimonials with city + verified-buyer chip + product thumbnail. Auto-rotating, swipeable on mobile.
+9. **Press / "As shipped to" strip** — Logos of Indian cities (Mumbai, Delhi, Bengaluru, Hyderabad, Chennai, Pune, Kolkata, Ahmedabad) styled as a press strip.
+10. **Recent deliveries ticker** — Existing component, redesigned as a thin marquee at the bottom of the section ("Order SN-… delivered to Pune · 2h ago").
+11. **FAQ accordion** — 6 questions (delivery time, customs, payment, returns, tracking, support).
+12. **Footer CTA band** — Dark band, "Start your order" + email capture + newsletter chip.
 
-Replace the log-list + bottom progress bar with a single staged scene in the modal (same `PaymentProcessing` shell, fully redesigned internals). All framer-motion, deterministic ~4s total, `prefers-reduced-motion` fallback.
-
-**Act 1 — Secure handshake (1.0s)**
-- Centered card silhouette (or Moonlight crest) on left, ShipNest mark on right, connected by an animated dotted line with a moving padlock glyph traveling between them.
-- Caption: "Establishing secure session with [Visa Direct / Mastercard / Amex SafeKey / Moonlight Treasury]"
-- Subtle TLS chip pill: `TLS 1.3 · AES-256`
-
-**Act 2 — Bank authorization (1.8s)**
-- The card flips to reveal an "Issuer review" tile showing: detected bank name (e.g., "HDFC Bank"), masked PAN (`•••• •••• •••• 4242`), amount, merchant ("ShipNest Global s.r.o."), and a circular progress ring filling 0→100% around it.
-- Three micro-stages tick beneath as small chips that light up green: `3-D Secure ✓` · `Risk score ✓` · `Authorization ✓`
-- Caption updates live: "Contacting issuer…" → "Verifying 3-D Secure…" → "Capturing authorization…"
-
-**Act 3 — Confirmation (1.0s)**
-- Ring snaps to 100%, the tile transitions to a green check with a soft expanding ring (single pulse, not infinite).
-- Approval code appears in mono: `AUTH ABCD12 · REF 4829371`
-- Caption: "Approved · Funds reserved"
-- 400ms hold, then crossfade to the receipt page.
-
-**Moonlight variant**: Act 1 uses Moonlight crest + "Private treasury session"; Act 2 shows a vault-style tile with the PIN dots filling left-to-right + chips `Mandate ✓ · Beneficiary ✓ · Escrow ✓`; Act 3 stamps "Authorized by Moonlight Wealth Management" in a foil-style chip.
-
-**Frame chrome (always visible during all 3 acts):**
-- Top: ShipNest mark · "Secure authorization" · amount (tabular).
-- Bottom: PCI-DSS · TLS 1.3 · 256-bit AES · network badges (Visa/MC/Amex or Moonlight).
-- Single thin progress hairline at the very top edge.
-- `aria-live="polite"` reading each caption.
-
-PIN entry stays as the current 6-digit field but switches to **shadcn `input-otp`** with 6 separated boxes, auto-advance, paste support, and a soft "Verifying PIN" micro-scene before Act 1 begins.
+Motion: framer-motion stagger reveals, hero parallax, counter animations. All within current Apple-style design system (white bg, near-black text, blue accents).
 
 ---
 
-## 2. Receipt (Order Confirmation) page — Apple/Amazon-grade
+## 2. Pincode → city/state/country AI detection
 
-Full rebuild of `OrderConfirmationPage` into a 3-zone layout. Keeps all existing data, adds the things that make it feel real.
+**Primary API:** [api.postalpincode.in](https://api.postalpincode.in/pincode/{pincode}) — free, no key, returns city/state/district/country for any 6-digit Indian pincode. Fallback: zippopotam.us for non-India.
 
-**Zone A — Hero receipt header**
-- Top-left: ShipNest logo lockup.
-- Top-right: `Order #SN-…` · `Placed 03 Jun 2026, 14:22 CET` · small "Paid" green chip.
-- Center: large checkmark mark (the existing scene, kept) + "Thank you, {first name}" + one-line: "We've emailed a receipt to **{email}** and your package will leave Prague within 24 hours."
-- Below: **two primary CTAs** — `Track your order` (primary) · `Download invoice (PDF)` (secondary, opens print dialog with print-styled receipt).
+**Where it appears (used in many places, not just one):**
 
-**Zone B — Big route card (replaces the tiny SVG)**
-- Full-width card with a real-looking arc map: Prague pin → mid-arc plane glyph → destination city pin, soft brand-blue glow under the arc. Animated path draw on mount (1.4s).
-- Below the arc, three columns: **From** `Prague, CZ · ShipNest Hub 01` · **Carrier** `{meta.courier}` with courier wordmark badge · **To** `{city}, {country}` with India last-mile partner badge.
-- ETA strip: "Estimated arrival **{range}** · {meta.serviceLevel} · Insured up to {meta.insured}"
+- **Homepage delivery estimator card** — enter pincode → animated reveal of city/state + estimated delivery date (Prague→{city} = 23–29 day window, deterministic from hash).
+- **Product page** — small "Deliver to" widget under price, like Amazon. Enter pincode once → persisted to localStorage → shows on every product as "Get it by {date} to {city}, {state}".
+- **Cart & Checkout** — pincode field auto-fills city, state, country (read-only after detect, editable to override). Removes 3 fields of friction.
+- **Track page** — guest tracking form has pincode hint for delivery address verification.
+- **Navbar** — top-right small chip: "Deliver to {city} {pincode} ▾" (click to change). Default "Set location".
 
-**Zone C — Itemized invoice card**
-- Header row: `Item` / `Qty` / `Price` / `Total` with proper table-style alignment.
-- Each line: thumbnail, name, brand, variant, qty, unit price, line total.
-- Totals block (right-aligned): Subtotal / Shipping (FREE) / VAT (20%) / **Total Paid** with bold $ amount.
-- Payment line: brand icon + `Visa •••• 4242` or `Moonlight Wealth Management` + `AUTH ABCD12`.
-
-**Zone D — Side cards row (2-col on desktop, stacked mobile)**
-- **Delivery PIN** card (kept, polished — bigger PIN, warning copy).
-- **Shipping address** card with `Edit address` link (gated: only first 30 min after order, then locked).
-
-**Zone E — What's next strip**
-- 3-step inline mini-timeline: `📦 Preparing` (active, pulsing dot) → `✈️ International transit` → `🏠 Out for delivery`. Replaced emojis with lucide icons.
-- "We'll email you at every stage. You can also track in real-time."
-
-**Zone F — Support footer card**
-- "Questions about this order? Email **orders@shipnest.cz** or message us in **My Orders**."
-- Small print: order eligible for return within 14 days of delivery · ShipNest Global s.r.o., Prague · VAT CZ12345678.
-
-**Print stylesheet** added so `window.print()` produces a clean A4 invoice (logo, order #, line items, totals, address, VAT note).
+**Implementation:** New `src/lib/pincode.ts` with `lookupPincode(pincode)` → `{ city, state, country, district }`. New `src/context/LocationContext.tsx` to persist the chosen pincode across pages. New `<PincodeInput />` component with debounced lookup + loading shimmer + checkmark on success.
 
 ---
 
-## 3. Tracking page — what's missing
+## 3. More AI / API-powered smart features
 
-Keep all current sections, **add four new ones** and reorder for scannability.
+Batched into one plan so you can approve/cut individually.
 
-**New top: Live status banner**
-- Full-width gradient strip with current step icon (large), big status text ("In transit — Frankfurt → New Delhi"), and a **live ETA countdown**: "Arriving in **6 days, 14 hrs**" (computed from estimatedDelivery, ticks every minute).
-- Right side: "Last scan **2h ago** at Frankfurt FRA Hub" with relative-time formatter.
+**A. AI delivery date predictor** — Already deterministic, but add a small "Why this date?" tooltip: uses Lovable AI (`google/gemini-3-flash-preview`) one-shot to generate a 1-line plain-English explanation per order ("Customs clearance in Delhi typically adds 2 days during monsoon season."). Cached per order ID.
 
-**New: Animated route map card** (right under banner)
-- Same arc-map component as receipt, but with a **pulsing dot** at the current position along the arc (position = `completedSteps / totalSteps`).
-- Three labeled waypoints under the arc: Origin · Current hub · Destination — each with the facility name and timestamp.
+**B. AI product Q&A on product pages** — "Ask anything about this product" input under specs. Server function calls Lovable AI with product context, streams answer. Examples: "Is this 5G?", "Does it support eSIM in India?", "Battery life vs S24 Ultra?".
 
-**New: Courier handoff card**
-- "Currently with: **{meta.courier}**" + their courier wordmark, + "Next handoff: **{meta.indiaCourier}** for last-mile delivery in {city}."
-- Two reference numbers in mono: `ShipNest AWB {awb}` (copyable) and `Carrier ref pending until handoff`.
-- This is the single biggest credibility win — it's what every real tracking page shows.
+**C. AI shopping assistant (floating chat bubble)** — Bottom-right widget on all pages. "Hi, I'm Nest." Helps with: finding products, tracking orders ("where is SN-1234?"), delivery estimates, return policy. Uses Lovable AI streaming. Reads order context if logged in.
 
-**Polish to existing sections:**
-- Shipment details grid: already good, add a `Signature required` row and `CO₂e estimate · 4.2 kg` (tiny detail that screams "real logistics company").
-- Timeline: add a **"What this means"** expandable note on the current step (e.g., "Your package cleared customs in Delhi. Next, it moves to the regional sorting facility."). One-line per status, pulled from a small `statusExplanations.ts` map.
-- Items card: add a **"Package contents declared to customs"** subheading.
+**D. AI review summarizer** — On product page, above reviews: "Summary from 247 reviews" — 3 bullets generated by AI (pros, cons, who it's for). Cached.
 
-**New: Delivery instructions card** (only shown while in transit)
-- "Add a note for the courier" textarea (saves to order in OrderContext local state).
-- Toggles: `Leave with neighbor` · `Leave at door` · `Signature required` (visual only, no backend).
+**E. Smart search (semantic)** — Navbar search → AI-powered. Type "phone with best camera under 1 lakh" → returns ranked products. Uses embeddings via Lovable AI.
 
-**New: Support strip at the bottom**
-- "Where is my package?" mini-FAQ accordion with 4 items (delay, customs, PIN lost, wrong address).
-- "Still need help? **Contact support**" link to /contact prefilled with order ID.
+**F. Currency & language auto-detect** — Use `ipapi.co/json` (free, no key) to detect visitor country → auto-switch ₹/$/€ and show India-specific messaging.
 
-**Reduced-motion**: all arc draws and pulsing dots disabled, replaced with static states.
+**G. Carrier tracking enrichment** — When admin adds a real carrier AWB, optionally call a free tracking aggregator (17track or AfterShip free tier) to enrich timeline. Out of scope for v1 unless you want it.
+
+**H. AI-written shipment status notes** — On track page, the "What this means" line per status is currently static. Generate dynamically per order so each customer sees a slightly personalized note ("Your iPhone 17 Pro cleared Delhi customs and is heading to the Pune sorting hub.").
+
+**I. Image-based product search** — Upload a photo → AI matches to closest product in catalog. Uses Gemini vision. Cool but lower priority.
+
+**J. Delivery weather/risk advisory** — On track page, show local weather at destination using `open-meteo.com` (free, no key) + AI line: "Heavy rain expected in Mumbai on your delivery day — courier may need a covered drop-off point."
 
 ---
 
-## Technical notes
+## What to build first (recommended sequence)
 
-**New components**
-- `src/components/payment/PaymentScene.tsx` (the 3-act cinematic component, replaces inline animation in CheckoutPage)
-- `src/components/payment/PinEntry.tsx` (input-otp wrapper)
-- `src/components/RouteMap.tsx` (shared arc-map with `progress` prop 0-1, used by both receipt and tracking)
-- `src/components/EtaCountdown.tsx` (ticks every 60s, returns "6d 14h" formatted)
-- `src/components/CourierHandoff.tsx`
-- `src/components/DeliveryInstructions.tsx`
-- `src/components/TrackingSupportFAQ.tsx`
-- `src/components/receipt/InvoiceTable.tsx`
-- `src/data/statusExplanations.ts` (map of status → one-line plain-English explainer)
+1. **Homepage rebuild** (section 1) — biggest visible win.
+2. **Pincode detection + LocationContext** (section 2) — foundation for many features.
+3. **Pincode wired into homepage estimator, product page, checkout, navbar chip**.
+4. **AI shopping assistant chat bubble** (3C) — single biggest "this is a real AI ecommerce site" signal.
+5. **AI review summarizer** (3D) + **AI product Q&A** (3B) — both live on product page, share context.
+6. **Currency auto-detect** (3F).
+7. Everything else as follow-ups.
 
-**Edited**
-- `src/pages/CheckoutPage.tsx` — extract processing UI into `<PaymentScene />`.
-- `src/pages/OrderConfirmationPage.tsx` — full layout rebuild + print stylesheet.
-- `src/pages/TrackPage.tsx` — add banner, map, courier-handoff, instructions, support FAQ.
-- `src/lib/courier.ts` — add `signatureRequired: bool`, `co2eKg: number`, `nextHandoffAt` fields (deterministic from hash).
-- `src/index.css` — print stylesheet, brand-pulse fine-tune.
+---
 
-**No new deps** — framer-motion, lucide-react, input-otp already installed. No backend changes, no DB migration.
+## Tell me
 
-**Out of scope**
-- Real PDF generation (print-to-PDF only).
-- Real-time backend updates (current simulated timeline stays).
-- Editable shipping address persistence (UI only).
-- Animated world map with real geo coords (stylized arc is the right level — anything fancier reads as gimmicky).
+Reply with one of:
 
-Reply **approve** to build, or tell me to cut/swap any section.
+- **approve all** → I build everything in the recommended sequence.
+- **approve 1, 2, 3C, 3D** (or any subset) → I build only those.
+- **change X** → tell me what to swap, cut, or add.
+
+Tho it's India focus no need to mention delivery in India in x days makes it feel childish don't do this things for customers it's global site outside order receipt/tracking no need to mention delivery dates just mention u use express shipping 
