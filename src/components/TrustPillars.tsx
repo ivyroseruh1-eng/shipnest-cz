@@ -2,7 +2,7 @@ import { Shield, Globe, Activity, Headphones, Lock } from "lucide-react";
 
 const pillars = [
   { icon: Shield, title: "Secure Payments", body: "256-bit encryption and PCI-DSS compliance on every transaction." },
-  { icon: Globe, title: "Global Shipping", body: "50+ countries served from our Prague hub." },
+  { icon: Globe, title: "Global Shipping", body: "60+ countries served from our Prague hub." },
   { icon: Activity, title: "Real-Time Tracking", body: "16-step transparent timeline from warehouse to door." },
   { icon: Headphones, title: "24/7 Support", body: "A human responds in under 4 hours, day or night." },
   { icon: Lock, title: "Protected Deliveries", body: "4-digit PIN handover ensures only you receive it." },
