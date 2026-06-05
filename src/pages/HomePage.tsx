@@ -18,6 +18,7 @@ import DeliveryEstimator from "@/components/home/DeliveryEstimator";
 import HowItWorks from "@/components/home/HowItWorks";
 import ReviewsCarousel from "@/components/home/ReviewsCarousel";
 import HomeFAQ from "@/components/home/HomeFAQ";
+import Certifications from "@/components/Certifications";
 
 const HomePage = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
@@ -87,25 +88,63 @@ const HomePage = () => {
 
   return (
     <div className="bg-background">
-      {/* HERO — Apple-style full-bleed */}
-      <section className="bg-background">
-        <div className="max-w-[980px] mx-auto px-4 pt-14 pb-12 text-center">
-          <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2 inline-flex items-center gap-1.5">
-            <Sparkles className="w-3 h-3" /> New · Ships worldwide
-          </p>
-          <h1 className="display text-5xl sm:text-6xl md:text-7xl text-foreground">{heroProduct.name}</h1>
-          <p className="text-xl sm:text-2xl text-muted-foreground mt-3 font-normal">Forged aluminum. A19 Pro. Pro Fusion camera.</p>
-          <div className="flex items-center justify-center gap-6 mt-5">
-            <Link to={`/product/${heroProduct.id}`} className="text-primary text-[17px] hover:opacity-75 transition-opacity">Learn more <ChevronRight className="inline w-5 h-5" /></Link>
-            <Link to={`/product/${heroProduct.id}`} className="bg-primary text-primary-foreground px-5 py-2 rounded-full text-[15px] font-medium hover:bg-primary/90 transition-colors">Buy</Link>
-          </div>
-          <div className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1 text-[12px] text-muted-foreground">
-            <span className="flex items-center gap-1.5"><Plane className="w-3 h-3" /> Express worldwide</span>
-            <span className="flex items-center gap-1.5"><Shield className="w-3 h-3" /> 2-year warranty</span>
-            <span className="flex items-center gap-1.5"><RotateCcw className="w-3 h-3" /> 30-day returns</span>
-          </div>
-          <div className="mt-10 flex justify-center items-center overflow-hidden h-[390px] sm:h-[540px] bg-background border border-border rounded-2xl p-4 animate-fade-in">
-            <img src={heroProduct.image} alt={heroProduct.name} className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-700 hover:scale-[1.03]" />
+      {/* HERO — editorial split, no oversized single image */}
+      <section className="bg-background border-b border-border">
+        <div className="max-w-[1100px] mx-auto px-4 pt-12 pb-14">
+          <div className="grid lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-12 items-center">
+            {/* Left: editorial copy */}
+            <div className="text-center lg:text-left">
+              <p className="text-[11px] text-primary font-semibold uppercase tracking-[0.18em] mb-4 inline-flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3" /> New season · Free express worldwide
+              </p>
+              <h1 className="display text-[42px] sm:text-6xl lg:text-[72px] leading-[0.95] text-foreground">
+                The world's<br/>best tech.<br/>
+                <span className="text-muted-foreground">Delivered anywhere.</span>
+              </h1>
+              <p className="text-[16px] sm:text-[18px] text-muted-foreground mt-5 font-normal max-w-md mx-auto lg:mx-0 leading-relaxed">
+                Sealed, authentic devices from Apple, Samsung, Google and Sony — shipped from our Prague hub to 60+ countries in days, not weeks.
+              </p>
+              <div className="flex items-center justify-center lg:justify-start gap-3 mt-7">
+                <Link to="/shop" className="bg-foreground text-background px-6 py-3 rounded-full text-[14px] font-semibold hover:bg-foreground/85 transition-colors">
+                  Shop now
+                </Link>
+                <Link to={`/product/${heroProduct.id}`} className="text-primary text-[14px] font-medium hover:opacity-75 transition-opacity inline-flex items-center gap-1">
+                  See the iPhone 17 Pro Max <ChevronRight className="w-4 h-4" />
+                </Link>
+              </div>
+              <div className="mt-7 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-[12px] text-muted-foreground">
+                <span className="flex items-center gap-1.5"><Plane className="w-3.5 h-3.5" /> 3–9 day express</span>
+                <span className="flex items-center gap-1.5"><Shield className="w-3.5 h-3.5" /> 2-year warranty</span>
+                <span className="flex items-center gap-1.5"><RotateCcw className="w-3.5 h-3.5" /> 30-day returns</span>
+              </div>
+            </div>
+
+            {/* Right: framed product card — much smaller than before, looks like a real product tile */}
+            <Link to={`/product/${heroProduct.id}`} className="group block">
+              <div className="relative bg-secondary rounded-3xl p-6 sm:p-8 overflow-hidden aspect-[4/5] sm:aspect-[5/6] flex flex-col">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <p className="text-[10px] text-primary font-semibold uppercase tracking-wider">Featured</p>
+                    <h3 className="text-[20px] sm:text-[24px] font-semibold text-foreground tracking-tight mt-1 leading-tight">{heroProduct.name}</h3>
+                    <p className="text-[12px] text-muted-foreground mt-1">From ${heroProduct.price}</p>
+                  </div>
+                  <span className="text-[10px] font-semibold text-foreground bg-background border border-border rounded-full px-2.5 py-1">★ {heroProduct.rating}</span>
+                </div>
+                <div className="flex-1 flex items-center justify-center mt-4">
+                  <img
+                    src={heroProduct.image}
+                    alt={heroProduct.name}
+                    className="max-h-[280px] sm:max-h-[340px] w-auto object-contain transition-transform duration-700 group-hover:scale-[1.04] drop-shadow-2xl"
+                  />
+                </div>
+                <div className="flex items-center justify-between pt-4 border-t border-border/60">
+                  <span className="text-[11px] text-muted-foreground">Free express delivery</span>
+                  <span className="text-[12px] text-primary font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                    View <ChevronRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -124,6 +163,9 @@ const HomePage = () => {
 
       {/* Press strip */}
       <PressStrip />
+
+      {/* Certifications & trust badges */}
+      <Certifications />
 
       {/* How it works */}
       <HowItWorks />
