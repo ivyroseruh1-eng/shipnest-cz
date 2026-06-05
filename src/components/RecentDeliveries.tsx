@@ -1,12 +1,12 @@
 import { CheckCircle2, MapPin } from "lucide-react";
 
 const deliveries = [
-  { id: "SN29481372", to: "Rohan S.", city: "Pune", state: "Maharashtra", item: "iPhone 16 Pro 256GB", courier: "Blue Dart", ago: "2h ago" },
-  { id: "SN29478815", to: "Priya R.", city: "Bengaluru", state: "Karnataka", item: "Galaxy S25 Ultra 512GB", courier: "Delhivery", ago: "5h ago" },
-  { id: "SN29475204", to: "Arjun M.", city: "Hyderabad", state: "Telangana", item: "Pixel 9 Pro 256GB", courier: "DTDC", ago: "9h ago" },
-  { id: "SN29470889", to: "Neha K.", city: "Mumbai", state: "Maharashtra", item: "iPad Pro 13 M4 1TB", courier: "Blue Dart", ago: "14h ago" },
-  { id: "SN29462471", to: "Vikram T.", city: "Delhi", state: "NCR", item: "OnePlus 13 256GB", courier: "Delhivery", ago: "21h ago" },
-  { id: "SN29459003", to: "Ananya P.", city: "Kolkata", state: "West Bengal", item: "iPhone 17 Pro Max 512GB", courier: "Blue Dart", ago: "1d ago" },
+  { id: "SN29481372", to: "Sophie K.", city: "Berlin", state: "Germany", item: "iPhone 16 Pro 256GB", courier: "DHL Express", ago: "2h ago" },
+  { id: "SN29478815", to: "Daniel R.", city: "London", state: "United Kingdom", item: "Galaxy S25 Ultra 512GB", courier: "FedEx Priority", ago: "5h ago" },
+  { id: "SN29475204", to: "Marc D.", city: "Paris", state: "France", item: "Pixel 9 Pro 256GB", courier: "DHL Express", ago: "9h ago" },
+  { id: "SN29470889", to: "Aisha B.", city: "Dubai", state: "UAE", item: "iPad Pro 13 M4 1TB", courier: "Aramex Premium", ago: "14h ago" },
+  { id: "SN29462471", to: "Jakub N.", city: "Warsaw", state: "Poland", item: "OnePlus 13 256GB", courier: "UPS Express", ago: "21h ago" },
+  { id: "SN29459003", to: "Lucas P.", city: "Madrid", state: "Spain", item: "iPhone 17 Pro Max 512GB", courier: "DHL Express", ago: "1d ago" },
 ];
 
 const RecentDeliveries = () => (
@@ -14,7 +14,7 @@ const RecentDeliveries = () => (
     <div className="max-w-[980px] mx-auto px-4">
       <div className="text-center mb-10">
         <p className="text-[12px] text-success font-medium uppercase tracking-wider">Signed for at the door</p>
-        <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mt-2">Recently delivered across India</h2>
+        <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mt-2">Recently delivered worldwide</h2>
         <p className="text-[14px] text-muted-foreground mt-2">Names abbreviated for customer privacy. Live data refreshed hourly.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

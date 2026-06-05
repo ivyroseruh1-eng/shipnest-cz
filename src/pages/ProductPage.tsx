@@ -52,18 +52,18 @@ const ProductPage = () => {
   ];
 
   const faqs = [
-    { q: "Does this work in India?", a: `Yes — the ${product.name} is fully compatible with Indian networks (4G/5G bands), works with all Indian SIM cards, and supports UPI payments via the relevant pay app.` },
-    { q: "What's included in the warranty?", a: "Every ShipNest device comes with a 2-year manufacturer warranty covering defects, plus 30-day no-questions-asked returns from the date of delivery in India." },
-    { q: "How long does shipping take?", a: "Orders ship from our Prague, Czech Republic warehouse and arrive in India within 23–29 business days. You'll receive a tracking ID at every milestone." },
+    { q: "Will this work in my country?", a: `Yes — the ${product.name} ships as an international/EU model with unlocked global bands (4G/5G), works on every major carrier, and supports the standard payment & wallet apps for your region.` },
+    { q: "What's included in the warranty?", a: "Every device carries a 2-year manufacturer warranty against defects, plus 30-day no-questions-asked returns from the date of delivery." },
+    { q: "How long does shipping take?", a: "Orders dispatch from our Prague hub within 24 hours and reach most destinations in 3–9 business days via DHL, FedEx or UPS Express. You'll get tracking at every milestone." },
     { q: "Is this a genuine, sealed product?", a: "100%. Sealed in original manufacturer packaging with serial numbers verifiable on the brand's official site. ShipNest is an authorized retailer." },
-    { q: "Can I pay in EMI?", a: "Yes — choose 6, 12, or 24-month financing at checkout, or pay in full. No-cost EMI available on select cards." },
+    { q: "Can I pay in instalments?", a: "Yes — choose 6, 12 or 24-month financing at checkout, or pay in full. Region-specific options like EMI, Klarna and Affirm appear automatically based on your address." },
   ];
 
   // Spec ladder — Apple style accordion
   const specSections = [
     { id: "overview", title: "Overview", items: product.specs },
     { id: "in-the-box", title: "In the box", items: [`${product.name}`, "USB-C charging cable", "Quick start guide", "Authorized warranty card"] },
-    { id: "shipping", title: "Shipping & Returns", items: ["Free delivery from Prague", "Estimated 23-29 business days to India", "30-day free returns", "2-year manufacturer warranty"] },
+    { id: "shipping", title: "Shipping & Returns", items: ["Free express delivery from Prague", "Most destinations 3–9 business days", "30-day free returns", "2-year manufacturer warranty"] },
   ];
 
   return (

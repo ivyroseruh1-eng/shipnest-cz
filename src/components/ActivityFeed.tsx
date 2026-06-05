@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { Truck, Package, MapPin, CheckCircle2, Plane, Warehouse } from "lucide-react";
 
 const events = [
-  { icon: CheckCircle2, color: "text-success", text: "Delivered in Pune, IN", time: "2 min ago" },
-  { icon: Truck, color: "text-foreground", text: "Out for delivery in Bengaluru, IN", time: "11 min ago" },
-  { icon: Plane, color: "text-primary", text: "Departed New Delhi IGI Cargo", time: "23 min ago" },
-  { icon: MapPin, color: "text-foreground", text: "Cleared Indian customs · Delhi FPO", time: "38 min ago" },
+  { icon: CheckCircle2, color: "text-success", text: "Delivered in Berlin, DE", time: "2 min ago" },
+  { icon: Truck, color: "text-foreground", text: "Out for delivery in London, UK", time: "11 min ago" },
+  { icon: Plane, color: "text-primary", text: "Departed Frankfurt FRA Cargo", time: "23 min ago" },
+  { icon: MapPin, color: "text-foreground", text: "Cleared customs · Amsterdam Schiphol", time: "38 min ago" },
   { icon: Plane, color: "text-primary", text: "Departed Istanbul transit hub", time: "1 hr ago" },
   { icon: Warehouse, color: "text-primary", text: "Scanned at Prague PRG Gateway", time: "1 hr ago" },
-  { icon: CheckCircle2, color: "text-success", text: "Delivered in Hyderabad, IN", time: "2 hr ago" },
+  { icon: CheckCircle2, color: "text-success", text: "Delivered in Madrid, ES", time: "2 hr ago" },
   { icon: Package, color: "text-primary", text: "Packed at Prague warehouse", time: "3 hr ago" },
-  { icon: Truck, color: "text-foreground", text: "Out for delivery in Mumbai, IN", time: "3 hr ago" },
-  { icon: CheckCircle2, color: "text-success", text: "Delivered in Chennai, IN", time: "4 hr ago" },
+  { icon: Truck, color: "text-foreground", text: "Out for delivery in Dubai, AE", time: "3 hr ago" },
+  { icon: CheckCircle2, color: "text-success", text: "Delivered in Warsaw, PL", time: "4 hr ago" },
 ];
 
 const ActivityFeed = () => {
