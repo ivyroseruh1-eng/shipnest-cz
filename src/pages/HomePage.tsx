@@ -109,7 +109,7 @@ const HomePage = () => {
                   Shop now
                 </Link>
                 <Link to={`/product/${heroProduct.id}`} className="text-primary text-[14px] font-medium hover:opacity-75 transition-opacity inline-flex items-center gap-1">
-                  See the iPhone 17 Pro Max <ChevronRight className="w-4 h-4" />
+                  See the {heroProduct.name} <ChevronRight className="w-4 h-4" />
                 </Link>
               </div>
               <div className="mt-7 flex flex-wrap justify-center lg:justify-start gap-x-5 gap-y-2 text-[12px] text-muted-foreground">
@@ -121,7 +121,7 @@ const HomePage = () => {
 
             {/* Right: framed product card — much smaller than before, looks like a real product tile */}
             <Link to={`/product/${heroProduct.id}`} className="group block">
-              <div className="relative bg-secondary rounded-3xl p-6 sm:p-8 overflow-hidden aspect-[4/5] sm:aspect-[5/6] flex flex-col">
+              <div className="relative bg-card border border-border shadow-sm rounded-3xl p-6 sm:p-8 overflow-hidden aspect-[4/5] sm:aspect-[5/6] flex flex-col">
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-[10px] text-primary font-semibold uppercase tracking-wider">Featured</p>
@@ -134,7 +134,7 @@ const HomePage = () => {
                   <img
                     src={heroProduct.image}
                     alt={heroProduct.name}
-                    className="max-h-[280px] sm:max-h-[340px] w-auto object-contain transition-transform duration-700 group-hover:scale-[1.04] drop-shadow-2xl"
+                    className="max-h-[280px] sm:max-h-[340px] w-auto object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 </div>
                 <div className="flex items-center justify-between pt-4 border-t border-border/60">
