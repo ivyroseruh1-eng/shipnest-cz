@@ -1,6 +1,67 @@
 import { Product } from "@/types";
 
 export const products: Product[] = [
+  // Latest 2026 launches
+  {
+    id: "iphone-18-pro-max", name: "iPhone 18 Pro Max", brand: "Apple", category: "iPhone 18",
+    price: 1299, originalPrice: 1399, image: "/product-images/apple-iphone18-pro-max.jpg", fallbackImages: [],
+    rating: 4.9, reviews: 412, badge: "NEW", inStock: true,
+    specs: ["6.9\" Super Retina XDR, 120Hz", "A20 Pro chip (2nm)", "48MP Fusion camera with variable aperture", "48MP 4x Telephoto", "Up to 45 hrs video playback", "Up to 2TB storage"],
+  },
+  {
+    id: "iphone-18-pro", name: "iPhone 18 Pro", brand: "Apple", category: "iPhone 18",
+    price: 1199, originalPrice: 1299, image: "/product-images/apple-iphone18-pro.jpg", fallbackImages: [],
+    rating: 4.8, reviews: 356, badge: "NEW", inStock: true,
+    specs: ["6.3\" Super Retina XDR, 120Hz", "A20 Pro chip (2nm)", "48MP variable-aperture main camera", "Aluminum unibody, Ceramic Shield", "Siri AI on iOS 27", "Up to 1TB storage"],
+  },
+  {
+    id: "iphone-duo", name: "iPhone Duo", brand: "Apple", category: "iPhone 18",
+    price: 2199, originalPrice: 2399, image: "/product-images/apple-iphone-duo.jpg", fallbackImages: [],
+    rating: 4.7, reviews: 128, badge: "NEW", inStock: true,
+    specs: ["Apple's first foldable iPhone", "Inner foldable OLED display", "A20 Pro chip", "Titanium hinge", "48MP dual camera", "iOS 27"],
+  },
+  {
+    id: "galaxy-s26-ultra", name: "Galaxy S26 Ultra", brand: "Samsung", category: "Galaxy S",
+    price: 1299, originalPrice: 1419, image: "/product-images/samsung-galaxy-s26-ultra.jpg", fallbackImages: [],
+    rating: 4.8, reviews: 689, badge: "NEW", inStock: true,
+    specs: ["6.9\" Dynamic AMOLED 2X", "Snapdragon 8 Elite Gen 5 for Galaxy", "200MP main camera", "Built-in S Pen", "Galaxy AI", "5000mAh, 60W charging"],
+  },
+  {
+    id: "galaxy-s26-plus", name: "Galaxy S26+", brand: "Samsung", category: "Galaxy S",
+    price: 999, originalPrice: 1099, image: "/product-images/samsung-galaxy-s26-plus.jpg", fallbackImages: [],
+    rating: 4.7, reviews: 301, badge: "NEW", inStock: true,
+    specs: ["6.7\" Dynamic AMOLED 2X", "Flagship Galaxy chipset", "50MP triple camera", "Galaxy AI", "4900mAh battery", "IP68"],
+  },
+  {
+    id: "galaxy-s26", name: "Galaxy S26", brand: "Samsung", category: "Galaxy S",
+    price: 799, originalPrice: 899, image: "/product-images/samsung-galaxy-s26.jpg", fallbackImages: [],
+    rating: 4.7, reviews: 412, badge: "NEW", inStock: true,
+    specs: ["6.3\" Dynamic AMOLED 2X", "Flagship Galaxy chipset", "50MP triple camera", "Galaxy AI", "4300mAh battery", "IP68"],
+  },
+  {
+    id: "galaxy-z-fold8", name: "Galaxy Z Fold8", brand: "Samsung", category: "Galaxy Z",
+    price: 1999, originalPrice: 2199, image: "/product-images/samsung-galaxy-z-fold8.jpg", fallbackImages: [],
+    rating: 4.8, reviews: 214, badge: "NEW", inStock: true,
+    specs: ["8\" foldable main display", "Snapdragon 8 Elite Gen 5", "200MP main camera", "Ultra-thin folding design", "Galaxy AI", "IP48"],
+  },
+  {
+    id: "galaxy-z-flip8", name: "Galaxy Z Flip8", brand: "Samsung", category: "Galaxy Z",
+    price: 1099, originalPrice: 1199, image: "/product-images/samsung-galaxy-z-flip8.jpg", fallbackImages: [],
+    rating: 4.7, reviews: 233, badge: "NEW", inStock: true,
+    specs: ["6.9\" foldable display", "4.1\" FlexWindow cover screen", "50MP dual camera", "Galaxy AI", "Compact flip design", "IP48"],
+  },
+  {
+    id: "galaxy-z-fold7", name: "Galaxy Z Fold7", brand: "Samsung", category: "Galaxy Z",
+    price: 1799, originalPrice: 1999, image: "/product-images/samsung-galaxy-z-fold7.jpg", fallbackImages: [],
+    rating: 4.8, reviews: 921, badge: "HOT", inStock: true,
+    specs: ["8\" foldable main display", "Snapdragon 8 Elite for Galaxy", "200MP main camera", "8.9mm folded", "Galaxy AI", "4400mAh"],
+  },
+  {
+    id: "galaxy-z-flip7", name: "Galaxy Z Flip7", brand: "Samsung", category: "Galaxy Z",
+    price: 999, originalPrice: 1099, image: "/product-images/samsung-galaxy-z-flip7.jpg", fallbackImages: [],
+    rating: 4.6, reviews: 804, badge: "HOT", inStock: true,
+    specs: ["6.9\" foldable display", "4.1\" FlexWindow", "Exynos 2500", "50MP dual camera", "Galaxy AI", "4300mAh"],
+  },
   // iPhone 17 Series — no per-color images available, single image only
   {
     id: "iphone-17-pro-max",
@@ -892,4 +953,4 @@ export const products: Product[] = [
 ];
 
 export const brands = ["All", "Apple", "Samsung", "Google", "Xiaomi", "OnePlus", "Sony", "Garmin", "Nothing"];
-export const categories = ["All", "iPhone 17", "iPhone 16", "iPhone 15", "Pixel", "Xiaomi", "OnePlus", "Galaxy S", "Galaxy A", "Galaxy Z", "Mac", "iPad", "Tablet", "Watch", "Audio", "Premium Tech"];
+export const categories = ["All", "iPhone 18", "iPhone 17", "iPhone 16", "iPhone 15", "Pixel", "Xiaomi", "OnePlus", "Galaxy S", "Galaxy A", "Galaxy Z", "Mac", "iPad", "Tablet", "Watch", "Audio", "Premium Tech"];
