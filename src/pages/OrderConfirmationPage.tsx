@@ -3,7 +3,7 @@ import { CheckCircle2, Copy, Package, ShoppingBag, MapPin, CreditCard, Calendar,
 import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
-import moonlightLogo from "@/assets/moonlight-logo.png";
+const moonlightLogo = "/assets/brand/moonlight-logo.png";
 import Logo from "@/components/brand/Logo";
 import { getShipmentMeta } from "@/lib/courier";
 import RouteMap from "@/components/RouteMap";

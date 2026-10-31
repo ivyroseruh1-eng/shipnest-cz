@@ -10,7 +10,7 @@ import { useLocation } from "@/context/LocationContext";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
-import moonlightLogo from "@/assets/moonlight-logo.png";
+const moonlightLogo = "/assets/brand/moonlight-logo.png";
 
 const CheckoutPage = () => {
   const { items, subtotal, clearCart } = useCart();

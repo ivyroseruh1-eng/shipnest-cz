@@ -91,7 +91,7 @@ const Navbar = () => {
       <nav className="sticky top-0 z-50 nav-blur border-b border-border/60">
         <div className="max-w-[980px] mx-auto px-4 h-20 md:h-16 flex items-center justify-between gap-6">
           {/* Logo */}
-          <Logo variant="full" size={36} className="md:!h-[34px]" />
+          <Logo variant="full" size={48} className="md:!h-[52px]" />
 
           {/* Desktop nav — centered */}
           <div className="hidden md:flex items-center gap-1 flex-1 justify-center">
