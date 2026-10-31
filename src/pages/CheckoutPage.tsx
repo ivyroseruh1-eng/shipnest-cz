@@ -117,7 +117,7 @@ const CheckoutPage = () => {
   };
 
   const handlePayment = () => {
-    if (paymentMethod === "card") {
+    {
       if (!cardForm.cardNumber || !cardForm.expiry || !cardForm.cvv || !cardForm.cardName) {
         toast.error("Please fill in all card details");
         return;
@@ -288,8 +288,7 @@ const CheckoutPage = () => {
               <div className="space-y-3">
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("card")}
-                  className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${paymentMethod === "card" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
+                  className="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-primary bg-primary/5 transition-all"
                 >
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-glow to-accent flex items-center justify-center">
                     <CreditCard className="w-6 h-6 text-accent-foreground" />
@@ -298,12 +297,12 @@ const CheckoutPage = () => {
                     <p className="font-semibold text-foreground text-sm">Credit / Debit Card</p>
                     <p className="text-xs text-muted-foreground">Visa, Mastercard, Amex</p>
                   </div>
-                  {paymentMethod === "card" && <CheckCircle className="w-5 h-5 text-primary ml-auto" />}
+                  <CheckCircle className="w-5 h-5 text-primary ml-auto" />
                 </button>
               </div>
 
-              {/* Card form - only for credit card */}
-              {paymentMethod === "card" && (
+              {/* Card form */}
+              (
                 <div className="space-y-3">
                   <input type="text" placeholder="Cardholder Name" value={cardForm.cardName}
                     onChange={e => updateCard("cardName", e.target.value)} className={inputClass} />
@@ -329,9 +328,6 @@ const CheckoutPage = () => {
                     <GPay />
                   </div>
                 </div>
-              )}
-
-              {/* Moonlight info */}
               {paymentMethod === "moonlight" && (
                 <div className="space-y-3">
                   <div className="bg-muted rounded-xl p-4 flex items-center gap-4">
