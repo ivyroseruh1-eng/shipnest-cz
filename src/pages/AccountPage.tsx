@@ -19,6 +19,8 @@ import {
   KeyRound,
 } from "lucide-react";
 import { toast } from "sonner";
+import ProductImage from "@/components/ProductImage";
+import { getProductImageBackground } from "@/lib/productPresentation";
 
 type Filter = "all" | "active" | "delivered" | "cancelled";
 

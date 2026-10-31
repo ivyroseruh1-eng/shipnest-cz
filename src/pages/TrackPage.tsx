@@ -11,6 +11,8 @@ import EtaCountdown from "@/components/EtaCountdown";
 import TrackingSupportFAQ from "@/components/TrackingSupportFAQ";
 import { explainStatus } from "@/data/statusExplanations";
 import { toast } from "sonner";
+import ProductImage from "@/components/ProductImage";
+import { getProductImageBackground } from "@/lib/productPresentation";
 
 const TrackPage = () => {
   const { id } = useParams();
@@ -248,7 +250,7 @@ const TrackPage = () => {
               {order.items.map((item, idx) => (
                 <div key={idx} className="py-3 first:pt-0 last:pb-0 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <img src={item.image} alt={item.name} className="w-11 h-11 object-contain rounded-xl bg-secondary/50 p-1 border border-border/50 shrink-0" />
+                    <div className="w-11 h-11 rounded-xl p-1 border flex items-center justify-center overflow-hidden shrink-0" style={{ background: getProductImageBackground(item.image).background, borderColor: getProductImageBackground(item.image).borderColor }}><ProductImage src={item.image} alt={item.name} width={44} height={44} className="w-full h-full object-contain" /></div>
                     <div>
                       <p className="text-[13px] font-semibold text-foreground">{item.name}</p>
                       <p className="text-[11px] text-muted-foreground">Brand: {item.brand} · Qty: {item.qty}</p>

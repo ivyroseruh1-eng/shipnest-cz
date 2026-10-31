@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Loader2 } from "lucide-react";
-import { processProductImage, StageTheme } from "@/lib/productPresentation";
+import { processProductImage, getProductImageBackground, StageTheme } from "@/lib/productPresentation";
 
 interface ProductImageProps {
   src: string;
@@ -65,6 +65,7 @@ export const ProductImage = ({
   }, [src]);
 
   const currentSrc = candidates[candidateIndex];
+  const effectiveTheme = stageTheme || getProductImageBackground(currentSrc);
 
   const handleError = () => {
     if (candidateIndex < candidates.length - 1) {
@@ -84,7 +85,7 @@ export const ProductImage = ({
   const handleLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.currentTarget;
     try {
-      // Process if image has dark studio background that needs alpha isolation and centering
+      // Re-frame and center wide/off-center landscape banners (iPhone 18 Pro, Pro Max, Duo)
       const optimizedSrc = await processProductImage(target);
       if (optimizedSrc && optimizedSrc !== displaySrc) {
         setDisplaySrc(optimizedSrc);
@@ -102,16 +103,16 @@ export const ProductImage = ({
 
   return (
     <div
-      className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-colors duration-300 ${containerClassName}`}
-      style={stageTheme ? { background: stageTheme.background } : undefined}
+      className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-colors duration-200 ${containerClassName}`}
+      style={{ background: effectiveTheme.background }}
     >
       {/* Subtle loader skeleton during initial network decode */}
       {!isLoaded && !failedAll && (
         <div
           className="absolute inset-0 flex items-center justify-center z-10"
-          style={stageTheme ? { background: stageTheme.background } : undefined}
+          style={{ background: effectiveTheme.background }}
         >
-          <Loader2 className="w-5 h-5 text-muted-foreground/30 animate-spin" />
+          <Loader2 className={`w-5 h-5 animate-spin ${effectiveTheme.isLight ? "text-neutral-400" : "text-neutral-600"}`} />
         </div>
       )}
 
@@ -129,7 +130,7 @@ export const ProductImage = ({
           sizes={sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"}
           onLoad={handleLoad}
           onError={handleError}
-          className={`${className} transition-opacity duration-300 ${
+          className={`${className} transition-opacity duration-200 ${
             isLoaded ? "opacity-100" : "opacity-0"
           }`}
         />

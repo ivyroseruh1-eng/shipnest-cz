@@ -6,7 +6,7 @@ import ProductCard from "@/components/ProductCard";
 import ProductImage from "@/components/ProductImage";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
-import { getProductStageTheme } from "@/lib/productPresentation";
+import { getProductStageTheme, getProductImageBackground } from "@/lib/productPresentation";
 import { toast } from "sonner";
 import Reveal from "@/components/Reveal";
 import CategoryTiles from "@/components/CategoryTiles";
