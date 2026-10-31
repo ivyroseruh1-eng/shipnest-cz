@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Product } from "@/types";
-import { Heart, Star, ShoppingBag, Check } from "lucide-react";
+import { Heart, Star, ShoppingBag, Check, Camera, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 
@@ -14,11 +14,12 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const [imgError, setImgError] = useState(false);
   const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
-  const monthly = (product.price / 12).toFixed(2);
+  const monthly = product.price ? (product.price / 12).toFixed(2) : null;
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (product.price === null) return;
     addToCart(product, 1);
     setAdded(true);
     setTimeout(() => setAdded(false), 1600);
@@ -29,7 +30,11 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       {/* Top badges: Stock / Variant Badge */}
       <div className="flex items-center justify-between mb-2">
         {product.badge ? (
-          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${
+            product.badge === "LUXURY"
+              ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20"
+              : "bg-primary/10 text-primary"
+          }`}>
             {product.badge}
           </span>
         ) : (
@@ -66,9 +71,10 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="text-center text-muted-foreground p-4">
-              <span className="text-2xl font-mono text-muted-foreground/50">SN</span>
-              <p className="text-[11px] mt-1 font-medium">{product.name}</p>
+            <div className="text-center text-muted-foreground p-4 flex flex-col items-center justify-center">
+              <Camera className="w-8 h-8 text-muted-foreground/30 mb-1" />
+              <span className="text-[11px] font-medium text-muted-foreground">Photograph Pending</span>
+              <p className="text-[10px] text-muted-foreground/60 mt-0.5 max-w-[140px] truncate">{product.name}</p>
             </div>
           )}
         </div>
@@ -102,53 +108,81 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
           {product.specs[0] || product.brand}
         </p>
 
-        {/* Rating strip */}
+        {/* Rating / Verification strip */}
         <div className="flex items-center gap-1.5 mt-2 text-[11px] text-muted-foreground">
-          <div className="flex items-center text-amber-500">
-            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span className="ml-1 font-semibold text-foreground">{product.rating}</span>
-          </div>
-          <span>·</span>
-          <span>{product.reviews.toLocaleString()} reviews</span>
+          {product.reviews > 0 ? (
+            <>
+              <div className="flex items-center text-amber-500">
+                <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+                <span className="ml-1 font-semibold text-foreground">{product.rating}</span>
+              </div>
+              <span>·</span>
+              <span>{product.reviews.toLocaleString()} reviews</span>
+            </>
+          ) : (
+            <span className="text-[11px] text-muted-foreground">
+              {product.department === "Technology" ? "Flagship · Sealed Box" : "Authentic Luxury · Verified Sourcing"}
+            </span>
+          )}
         </div>
 
         {/* Pricing Block */}
         <div className="mt-3 pt-3 border-t border-border/60 flex items-end justify-between">
           <div>
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-[17px] font-semibold text-foreground tabular-nums">${product.price}</span>
-              {product.originalPrice > product.price && (
-                <span className="text-[12px] text-muted-foreground line-through tabular-nums">
-                  ${product.originalPrice}
-                </span>
-              )}
-            </div>
-            <p className="text-[11px] text-muted-foreground">
-              or ${monthly}/mo.
-            </p>
-          </div>
-
-          {/* Quick Add Button */}
-          <button
-            onClick={handleQuickAdd}
-            disabled={!product.inStock}
-            className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-all flex items-center gap-1.5 ${
-              added
-                ? "bg-emerald-600 text-white"
-                : "bg-foreground text-background hover:bg-foreground/85 active:scale-95"
-            } disabled:opacity-40 disabled:cursor-not-allowed`}
-            aria-label="Add to cart"
-          >
-            {added ? (
+            {product.price !== null ? (
               <>
-                <Check className="w-3 h-3" /> Added
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-[17px] font-semibold text-foreground tabular-nums">${product.price}</span>
+                  {product.originalPrice && product.originalPrice > product.price && (
+                    <span className="text-[12px] text-muted-foreground line-through tabular-nums">
+                      ${product.originalPrice}
+                    </span>
+                  )}
+                </div>
+                {monthly && (
+                  <p className="text-[11px] text-muted-foreground">
+                    or ${monthly}/mo.
+                  </p>
+                )}
               </>
             ) : (
-              <>
-                <ShoppingBag className="w-3 h-3" /> Add
-              </>
+              <div>
+                <span className="text-[13px] font-semibold text-foreground block">Price Upon Inquiry</span>
+                <p className="text-[11px] text-muted-foreground">Concierge Sourcing</p>
+              </div>
             )}
-          </button>
+          </div>
+
+          {/* Action Button */}
+          {product.price !== null ? (
+            <button
+              onClick={handleQuickAdd}
+              disabled={!product.inStock}
+              className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-all flex items-center gap-1.5 ${
+                added
+                  ? "bg-emerald-600 text-white"
+                  : "bg-foreground text-background hover:bg-foreground/85 active:scale-95"
+              } disabled:opacity-40 disabled:cursor-not-allowed`}
+              aria-label="Add to cart"
+            >
+              {added ? (
+                <>
+                  <Check className="w-3 h-3" /> Added
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-3 h-3" /> Add
+                </>
+              )}
+            </button>
+          ) : (
+            <Link
+              to={`/product/${product.id}`}
+              className="px-3 py-1.5 rounded-full text-[12px] font-medium bg-secondary text-foreground hover:bg-foreground hover:text-background transition-colors flex items-center gap-1"
+            >
+              Details <ArrowRight className="w-3 h-3" />
+            </Link>
+          )}
         </div>
       </div>
     </div>

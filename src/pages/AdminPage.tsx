@@ -499,49 +499,85 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                 </button>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <thead>
-                    <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
-                      <th className="p-4 font-semibold">Order ID</th>
-                      <th className="p-4 font-semibold">Customer</th>
-                      <th className="p-4 font-semibold">Destination</th>
-                      <th className="p-4 font-semibold">Status</th>
-                      <th className="p-4 font-semibold">Total</th>
-                      <th className="p-4 font-semibold text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60">
-                    {orders.slice(0, 6).map(o => (
-                      <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
-                        <td className="p-4 font-mono font-medium text-foreground">{o.orderId}</td>
-                        <td className="p-4 font-medium text-foreground">{o.customer.name}</td>
-                        <td className="p-4 text-muted-foreground">
-                          {o.customer.city}, {o.customer.country}
-                        </td>
-                        <td className="p-4">{getStatusBadge(o.status)}</td>
-                        <td className="p-4 font-semibold text-foreground">${o.total.toLocaleString()}</td>
-                        <td className="p-4 text-right">
-                          <div className="flex items-center justify-end gap-2">
-                            <button
-                              onClick={() => setEditingOrder({ ...o })}
-                              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
-                            >
-                              <Edit className="w-3 h-3" /> Edit
-                            </button>
-                            <Link
-                              to={`/track/${o.trackingId}`}
-                              target="_blank"
-                              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
-                            >
-                              <ExternalLink className="w-3 h-3" /> Track
-                            </Link>
-                          </div>
-                        </td>
+              <div>
+                {/* Mobile View: Stacked Order Cards (Zero horizontal scroll) */}
+                <div className="block sm:hidden divide-y divide-border/60">
+                  {orders.slice(0, 6).map((o) => (
+                    <div key={o.orderId} className="p-4 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono font-semibold text-xs text-foreground">{o.orderId}</span>
+                        {getStatusBadge(o.status)}
+                      </div>
+                      <p className="text-xs text-foreground font-medium">
+                        {o.customer.name} · {o.customer.city}, {o.customer.country}
+                      </p>
+                      <div className="flex items-center justify-between pt-1">
+                        <span className="text-xs font-bold text-foreground">${o.total.toLocaleString()}</span>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setEditingOrder({ ...o })}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary border border-border rounded-lg text-foreground"
+                          >
+                            <Edit className="w-3 h-3" /> Edit
+                          </button>
+                          <Link
+                            to={`/track/${o.trackingId}`}
+                            target="_blank"
+                            className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary border border-border rounded-lg text-foreground"
+                          >
+                            <ExternalLink className="w-3 h-3" /> Track
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop View */}
+                <div className="hidden sm:block">
+                  <table className="w-full text-left text-xs">
+                    <thead>
+                      <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
+                        <th className="p-4 font-semibold">Order ID</th>
+                        <th className="p-4 font-semibold">Customer</th>
+                        <th className="p-4 font-semibold">Destination</th>
+                        <th className="p-4 font-semibold">Status</th>
+                        <th className="p-4 font-semibold">Total</th>
+                        <th className="p-4 font-semibold text-right">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-border/60">
+                      {orders.slice(0, 6).map((o) => (
+                        <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
+                          <td className="p-4 font-mono font-medium text-foreground">{o.orderId}</td>
+                          <td className="p-4 font-medium text-foreground">{o.customer.name}</td>
+                          <td className="p-4 text-muted-foreground">
+                            {o.customer.city}, {o.customer.country}
+                          </td>
+                          <td className="p-4">{getStatusBadge(o.status)}</td>
+                          <td className="p-4 font-semibold text-foreground">${o.total.toLocaleString()}</td>
+                          <td className="p-4 text-right">
+                            <div className="flex items-center justify-end gap-2">
+                              <button
+                                onClick={() => setEditingOrder({ ...o })}
+                                className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
+                              >
+                                <Edit className="w-3 h-3" /> Edit
+                              </button>
+                              <Link
+                                to={`/track/${o.trackingId}`}
+                                target="_blank"
+                                className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
+                              >
+                                <ExternalLink className="w-3 h-3" /> Track
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </div>
@@ -604,95 +640,146 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                 </button>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-left text-xs">
-                  <thead>
-                    <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
-                      <th className="p-3.5 w-10">
-                        <input
-                          type="checkbox"
-                          checked={selectedOrders.size === filteredOrders.length && filteredOrders.length > 0}
-                          onChange={toggleSelectAll}
-                          className="rounded border-border w-3.5 h-3.5"
-                        />
-                      </th>
-                      <th className="p-3.5 font-semibold">Order</th>
-                      <th className="p-3.5 font-semibold">Tracking Number</th>
-                      <th className="p-3.5 font-semibold">Recipient</th>
-                      <th className="p-3.5 font-semibold">Items</th>
-                      <th className="p-3.5 font-semibold">Status</th>
-                      <th className="p-3.5 font-semibold">Total</th>
-                      <th className="p-3.5 font-semibold text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-border/60">
-                    {filteredOrders.map(o => (
-                      <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
-                        <td className="p-3.5">
-                          <input
-                            type="checkbox"
-                            checked={selectedOrders.has(o.orderId)}
-                            onChange={() => toggleSelectOrder(o.orderId)}
-                            className="rounded border-border w-3.5 h-3.5"
-                          />
-                        </td>
-                        <td className="p-3.5">
-                          <span className="font-mono font-semibold text-foreground">{o.orderId}</span>
-                          <span className="block text-[10px] text-muted-foreground">
-                            {new Date(o.placedAt).toLocaleDateString("en-GB")}
-                          </span>
-                        </td>
-                        <td className="p-3.5 font-mono text-muted-foreground">
+              <div>
+                {/* Mobile View: Order Cards (Zero horizontal scroll) */}
+                <div className="block sm:hidden divide-y divide-border/60">
+                  {filteredOrders.map((o) => (
+                    <div key={o.orderId} className="p-4 space-y-2.5">
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono font-semibold text-xs text-foreground">{o.orderId}</span>
+                        {getStatusBadge(o.status)}
+                      </div>
+                      <div className="text-xs text-muted-foreground flex justify-between">
+                        <span>Tracking: {o.trackingId}</span>
+                        <span>{new Date(o.placedAt).toLocaleDateString("en-GB")}</span>
+                      </div>
+                      <p className="text-xs text-foreground font-medium">
+                        {o.customer.name} · {o.customer.city}, {o.customer.country}
+                      </p>
+                      <p className="text-[11px] text-muted-foreground">
+                        {o.items.length} item(s) · {o.items[0]?.name}
+                      </p>
+                      <div className="flex items-center justify-between pt-2 border-t border-border/40">
+                        <span className="text-xs font-bold text-foreground">${o.total.toLocaleString()}</span>
+                        <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => setEditingOrder({ ...o })}
+                            className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg"
+                            title="Edit order"
+                          >
+                            <Edit className="w-3.5 h-3.5" />
+                          </button>
                           <Link
                             to={`/track/${o.trackingId}`}
-                            className="hover:text-primary transition-colors hover:underline"
+                            className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg"
+                            title="Track shipment"
                           >
-                            {o.trackingId}
+                            <ExternalLink className="w-3.5 h-3.5" />
                           </Link>
-                        </td>
-                        <td className="p-3.5">
-                          <p className="font-medium text-foreground">{o.customer.name}</p>
-                          <p className="text-[10px] text-muted-foreground">
-                            {o.customer.city}, {o.customer.country}
-                          </p>
-                        </td>
-                        <td className="p-3.5">
-                          <span className="text-foreground">{o.items.length} item(s)</span>
-                          <span className="block text-[10px] text-muted-foreground truncate max-w-[140px]">
-                            {o.items[0]?.name}
-                          </span>
-                        </td>
-                        <td className="p-3.5">{getStatusBadge(o.status)}</td>
-                        <td className="p-3.5 font-semibold text-foreground">${o.total.toLocaleString()}</td>
-                        <td className="p-3.5 text-right">
-                          <div className="flex items-center justify-end gap-1.5">
-                            <button
-                              onClick={() => setEditingOrder({ ...o })}
-                              className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
-                              title="Edit order & checkpoints"
-                            >
-                              <Edit className="w-3.5 h-3.5" />
-                            </button>
-                            <button
-                              onClick={() => copyOrderDetails(o)}
-                              className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
-                              title="Copy dispatch manifest"
-                            >
-                              <ClipboardCopy className="w-3.5 h-3.5" />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteOrder(o.orderId)}
-                              className="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
-                              title="Delete record"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                            </button>
-                          </div>
-                        </td>
+                          <button
+                            onClick={() => handleDeleteOrder(o.orderId)}
+                            className="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg"
+                            title="Delete order"
+                          >
+                            <Trash2 className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop View */}
+                <div className="hidden sm:block">
+                  <table className="w-full text-left text-xs">
+                    <thead>
+                      <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
+                        <th className="p-3.5 w-10">
+                          <input
+                            type="checkbox"
+                            checked={selectedOrders.size === filteredOrders.length && filteredOrders.length > 0}
+                            onChange={toggleSelectAll}
+                            className="rounded border-border w-3.5 h-3.5"
+                          />
+                        </th>
+                        <th className="p-3.5 font-semibold">Order</th>
+                        <th className="p-3.5 font-semibold">Tracking Number</th>
+                        <th className="p-3.5 font-semibold">Recipient</th>
+                        <th className="p-3.5 font-semibold">Items</th>
+                        <th className="p-3.5 font-semibold">Status</th>
+                        <th className="p-3.5 font-semibold">Total</th>
+                        <th className="p-3.5 font-semibold text-right">Actions</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody className="divide-y divide-border/60">
+                      {filteredOrders.map(o => (
+                        <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
+                          <td className="p-3.5">
+                            <input
+                              type="checkbox"
+                              checked={selectedOrders.has(o.orderId)}
+                              onChange={() => toggleSelectOrder(o.orderId)}
+                              className="rounded border-border w-3.5 h-3.5"
+                            />
+                          </td>
+                          <td className="p-3.5">
+                            <span className="font-mono font-semibold text-foreground">{o.orderId}</span>
+                            <span className="block text-[10px] text-muted-foreground">
+                              {new Date(o.placedAt).toLocaleDateString("en-GB")}
+                            </span>
+                          </td>
+                          <td className="p-3.5 font-mono text-muted-foreground">
+                            <Link
+                              to={`/track/${o.trackingId}`}
+                              className="hover:text-primary transition-colors hover:underline"
+                            >
+                              {o.trackingId}
+                            </Link>
+                          </td>
+                          <td className="p-3.5">
+                            <p className="font-medium text-foreground">{o.customer.name}</p>
+                            <p className="text-[10px] text-muted-foreground">
+                              {o.customer.city}, {o.customer.country}
+                            </p>
+                          </td>
+                          <td className="p-3.5">
+                            <span className="text-foreground">{o.items.length} item(s)</span>
+                            <span className="block text-[10px] text-muted-foreground truncate max-w-[140px]">
+                              {o.items[0]?.name}
+                            </span>
+                          </td>
+                          <td className="p-3.5">{getStatusBadge(o.status)}</td>
+                          <td className="p-3.5 font-semibold text-foreground">${o.total.toLocaleString()}</td>
+                          <td className="p-3.5 text-right">
+                            <div className="flex items-center justify-end gap-1.5">
+                              <button
+                                onClick={() => setEditingOrder({ ...o })}
+                                className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
+                                title="Edit order & checkpoints"
+                              >
+                                <Edit className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => copyOrderDetails(o)}
+                                className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
+                                title="Copy dispatch manifest"
+                              >
+                                <ClipboardCopy className="w-3.5 h-3.5" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteOrder(o.orderId)}
+                                className="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+                                title="Delete record"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
           </div>

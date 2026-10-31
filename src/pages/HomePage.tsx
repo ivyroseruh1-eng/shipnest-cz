@@ -20,24 +20,24 @@ const HomePage = () => {
   const { getOrder } = useOrders();
   const navigate = useNavigate();
   const [trackInput, setTrackInput] = useState("");
-  const [activeTab, setActiveTab] = useState<"flagships" | "apple" | "samsung" | "google" | "audio">("flagships");
+  const [activeTab, setActiveTab] = useState<"flagships" | "apple" | "luxury" | "samsung" | "watches">("flagships");
 
   // Flagship Hero Products
-  const heroProduct = products.find(p => p.id === "iphone-17-pro-max") || products[0];
-  const secondaryHero = products.find(p => p.id === "galaxy-s26-ultra") || products[3];
+  const heroProduct = products.find(p => p.id === "iphone-18-pro-max") || products[0];
+  const secondaryHero = products.find(p => p.id === "iphone-duo") || products.find(p => p.id === "galaxy-s26-ultra") || products[3];
 
   // Curated Collections
-  const flagships = products.filter(p => p.badge === "NEW" || p.badge === "PRO" || p.badge === "HOT").slice(0, 8);
+  const flagships = products.filter(p => p.department === "Technology" && (p.badge === "NEW" || p.badge === "PRO" || p.badge === "HOT")).slice(0, 8);
   const appleProducts = products.filter(p => p.brand === "Apple").slice(0, 8);
+  const luxuryHighlights = products.filter(p => p.department !== "Technology").slice(0, 8);
   const samsungProducts = products.filter(p => p.brand === "Samsung").slice(0, 8);
-  const googleProducts = products.filter(p => p.brand === "Google").slice(0, 8);
-  const audioProducts = products.filter(p => p.category === "Audio" || p.category === "Wearables").slice(0, 8);
+  const watchProducts = products.filter(p => p.department === "Watches & Jewellery" || p.category === "Watch").slice(0, 8);
 
   const displayedProducts = 
     activeTab === "apple" ? appleProducts :
+    activeTab === "luxury" ? luxuryHighlights :
     activeTab === "samsung" ? samsungProducts :
-    activeTab === "google" ? googleProducts :
-    activeTab === "audio" ? audioProducts : flagships;
+    activeTab === "watches" ? watchProducts : flagships;
 
   const handleTrack = (customId?: string) => {
     const idToSearch = (customId || trackInput).trim();
@@ -351,9 +351,9 @@ const HomePage = () => {
               {[
                 { id: "flagships", label: "Flagships" },
                 { id: "apple", label: "Apple" },
+                { id: "luxury", label: "Luxury Goods" },
+                { id: "watches", label: "Timepieces" },
                 { id: "samsung", label: "Samsung" },
-                { id: "google", label: "Google" },
-                { id: "audio", label: "Audio & Wearables" },
               ].map(tab => (
                 <button
                   key={tab.id}

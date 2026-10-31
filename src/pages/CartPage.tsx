@@ -103,7 +103,7 @@ const CartPage = () => {
                       {item.product.specs[0] || "Sealed EU Model"}
                     </p>
                     <p className="text-[14px] font-semibold text-foreground sm:hidden tabular-nums pt-1">
-                      ${(item.product.price * item.qty).toFixed(2)}
+                      {item.product.price !== null ? `$${(item.product.price * item.qty).toFixed(2)}` : "Upon Inquiry"}
                     </p>
                   </div>
                 </div>
@@ -132,7 +132,7 @@ const CartPage = () => {
                   </div>
 
                   <span className="text-[16px] font-bold text-foreground tabular-nums hidden sm:block w-24 text-right">
-                    ${(item.product.price * item.qty).toFixed(2)}
+                    {item.product.price !== null ? `$${(item.product.price * item.qty).toFixed(2)}` : "Upon Inquiry"}
                   </span>
 
                   <button

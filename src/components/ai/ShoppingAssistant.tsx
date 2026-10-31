@@ -3,11 +3,13 @@ import { MessageCircle, X, Send, Sparkles, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLocation } from "@/context/LocationContext";
 
+import { products } from "@/data/products";
+
 type Msg = { role: "user" | "assistant"; content: string };
 
 const INITIAL: Msg = {
   role: "assistant",
-  content: "Hi, I'm Nest — your ShipNest shopping assistant. Ask me about products, delivery, payments or your order status.",
+  content: "Welcome to ShipNest. I'm Nest — your assistant for our Flagship Technology and 600-item Luxury Catalogue. How may I assist your search, product specifications, or order tracking today?",
 };
 
 const ShoppingAssistant = () => {
@@ -22,31 +24,50 @@ const ShoppingAssistant = () => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, loading]);
 
-const getLocalSmartResponse = (query: string): string => {
-  const q = query.toLowerCase();
-  if (q.includes("shipping") || q.includes("delivery") || q.includes("how long")) {
-    return "All orders dispatch from our Central European Hub in Prague, Czech Republic. Standard delivery takes 5–10 business days worldwide with complimentary express air freight. Every shipment includes real-time radar tracking and doorstep 4-digit PIN verification.";
-  }
-  if (q.includes("track") || q.includes("status") || q.includes("where is")) {
-    return "You can track your package anytime on our /track portal using your tracking reference (e.g. SNX4829371). You'll see real-time radar updates, carrier milestones, and your delivery arrival time.";
-  }
-  if (q.includes("warranty") || q.includes("guarantee")) {
-    return "Every device purchased from ShipNest is backed by an official 2-year European warranty as required by EU law, plus full AIG insurance coverage during transit up to $5,000.";
-  }
-  if (q.includes("return") || q.includes("refund")) {
-    return "We offer a 30-day hassle-free return guarantee (exceeding the standard 14-day EU statutory minimum). Contact returns@shipnest.cz with your order number for a complimentary return label.";
-  }
-  if (q.includes("iphone") || q.includes("apple")) {
-    return "We stock factory-unlocked iPhone 16 Pro, 16 Pro Max, and M-series MacBooks sourced directly from authorized European distribution partners with clean international frequency bands.";
-  }
-  if (q.includes("samsung") || q.includes("galaxy") || q.includes("ultra")) {
-    return "Our Galaxy S25 Ultra, Fold, and Flip inventory is brand new, sealed, and eligible for worldwide carrier activation and official manufacturer updates.";
-  }
-  if (q.includes("payment") || q.includes("card") || q.includes("apple pay")) {
-    return "We accept all major international payment methods including Visa, MasterCard, American Express, and Apple Pay with end-to-end 256-bit AES encryption.";
-  }
-  return "ShipNest is an authorized electronics retailer based in Prague, Czech Republic. We ship factory-sealed flagship smartphones, laptops, audio, and wearables to 60+ countries worldwide with full insurance and live tracking. How can I assist you with your order or selection today?";
-};
+  const getLocalSmartResponse = (query: string): string => {
+    const q = query.toLowerCase().trim();
+
+    // 1. Dynamic Brand Matching from our real catalogue
+    const matchedBrand = Array.from(new Set(products.map((p) => p.brand))).find((brand) =>
+      q.includes(brand.toLowerCase())
+    );
+    if (matchedBrand) {
+      const brandProducts = products.filter((p) => p.brand.toLowerCase() === matchedBrand.toLowerCase());
+      const sampleNames = brandProducts.slice(0, 3).map((p) => p.name).join(", ");
+      const isLuxury = brandProducts.some((p) => p.department === "luxury");
+      return `We stock ${brandProducts.length} verified item${brandProducts.length > 1 ? "s" : ""} from ${matchedBrand} in our ${
+        isLuxury ? "Luxury Catalogue" : "Technology Collection"
+      }, including: ${sampleNames}. You can browse all ${matchedBrand} offerings in our Store.`;
+    }
+
+    // 2. Specific Model / Keyword Queries
+    if (q.includes("iphone 18") || q.includes("18 pro")) {
+      return "The iPhone 18 Pro and Pro Max are in stock featuring A19 Pro silicon, aerospace titanium chassis in Burgundy, Glacier, Silver, and Space Black, and next-generation periscope optical zoom. You can configure finishes and storage directly on our product page.";
+    }
+    if (q.includes("iphone duo") || q.includes("duo") || q.includes("foldable")) {
+      return "The iPhone Duo is Apple's flagship foldable device, featuring dual tandem OLED displays, adaptive kickstand for tent/laptop modes, and ultra-thin profile in Star White and Space Black.";
+    }
+    if (q.includes("iphone air") || q.includes("air")) {
+      return "The iPhone Air introduces an ultra-thin 5.6mm aerospace titanium enclosure, uncompromised Pro performance, and high-efficiency silicon in our Technology department.";
+    }
+    if (q.includes("shipping") || q.includes("delivery") || q.includes("how long")) {
+      return "All shipments dispatch directly from our Central European logistics hub in Prague, Czech Republic via DHL Express, FedEx Priority, and UPS. Precise arrival dates and carrier options are calculated at checkout according to your destination address.";
+    }
+    if (q.includes("track") || q.includes("status") || q.includes("where is")) {
+      return "Track your parcel anytime at /track using your tracking number or order ID. You can monitor live carrier radar milestones, customs clearance events, and delivery ETA. Delivery includes a secure 4-digit PIN handover.";
+    }
+    if (q.includes("warranty") || q.includes("guarantee") || q.includes("authentic")) {
+      return "Every item at ShipNest is 100% genuine and brand-new in original factory packaging. Technology hardware includes a 2-year manufacturer warranty, and luxury pieces carry verified European boutique provenance.";
+    }
+    if (q.includes("return") || q.includes("refund")) {
+      return "We provide a 30-day return policy for brand-new, factory-sealed items in original packaging. You can initiate a return through your account or by contacting support@shipnest.cz.";
+    }
+    if (q.includes("payment") || q.includes("card") || q.includes("apple pay")) {
+      return "We accept Visa, MasterCard, American Express, Apple Pay, Google Pay, and Moonlight Private Client transfers with 256-bit AES encryption.";
+    }
+
+    return "ShipNest curates 665 flagship technology devices and authenticated luxury goods with global express dispatch from Prague to 60+ countries. Feel free to ask about any brand (such as Apple, Rolex, Louis Vuitton, Cartier, or Creed) or visit /shop to browse.";
+  };
 
   const send = async () => {
     const text = input.trim();
