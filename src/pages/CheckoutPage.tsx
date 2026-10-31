@@ -10,7 +10,6 @@ import { useLocation } from "@/context/LocationContext";
 import { useEffect } from "react";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
-const moonlightLogo = "/assets/brand/moonlight-logo.png";
 
 const CheckoutPage = () => {
   const { items, subtotal, clearCart } = useCart();
@@ -53,7 +52,6 @@ const CheckoutPage = () => {
     }
   };
   const [step, setStep] = useState<"address" | "payment">("address");
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "moonlight">("card");
   const [cardForm, setCardForm] = useState({ cardNumber: "", expiry: "", cvv: "", cardName: "" });
   const [processing, setProcessing] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -64,7 +62,6 @@ const CheckoutPage = () => {
   const [network, setNetwork] = useState("");
   const [pendingOrder, setPendingOrder] = useState<any>(null);
   const [detectedBrand, setDetectedBrand] = useState<"visa" | "mc" | "amex" | "unknown">("unknown");
-  const [moonlightPin, setMoonlightPin] = useState("");
 
   const update = (field: string, value: string) => setForm(prev => ({ ...prev, [field]: value }));
   const updateCard = (field: string, value: string) => setCardForm(prev => ({ ...prev, [field]: value }));
@@ -120,7 +117,7 @@ const CheckoutPage = () => {
   };
 
   const handlePayment = () => {
-    if (paymentMethod === "card") {
+    {
       if (!cardForm.cardNumber || !cardForm.expiry || !cardForm.cvv || !cardForm.cardName) {
         toast.error("Please fill in all card details");
         return;
@@ -138,21 +135,11 @@ const CheckoutPage = () => {
         return;
       }
     }
-    if (paymentMethod === "moonlight") {
-      if (moonlightPin !== "841486") {
-        toast.error("Invalid Moonlight authorization PIN.");
-        return;
-      }
-    }
     setProcessing(true);
     setShowPaymentModal(false);
 
-    const issuers = paymentMethod === "moonlight"
-      ? ["Moonlight Treasury"]
-      : ["HDFC Bank", "ICICI Bank", "Axis Bank", "Chase", "HSBC", "Barclays", "Revolut"];
-    const networkLabel = paymentMethod === "card"
-      ? (detectedBrand === "visa" ? "VisaNet" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "Amex SafeKey" : "Card Network")
-      : "Moonlight Settlement Rail";
+    const issuers = ["HDFC Bank", "ICICI Bank", "Axis Bank", "Chase", "HSBC", "Barclays", "Revolut"];
+    const networkLabel = detectedBrand === "visa" ? "VisaNet" : detectedBrand === "mc" ? "Mastercard Network" : detectedBrand === "amex" ? "Amex SafeKey" : "Card Network";
     setIssuer(issuers[Math.floor(Math.random() * issuers.length)]);
     setNetwork(networkLabel);
     setAuthCode(Math.random().toString(36).slice(2, 8).toUpperCase());
@@ -183,7 +170,7 @@ const CheckoutPage = () => {
       estimatedDelivery,
       placedAt: new Date().toISOString(),
       notes: "",
-      paymentMethod: paymentMethod === "card" ? "Credit Card" : "Moonlight Wealth Management",
+      paymentMethod: "Credit Card",
       deliveryPin: String(Math.floor(1000 + Math.random() * 9000)),
       trackingSteps: createDefaultTrackingSteps(form.city, form.state, form.country),
     };
@@ -301,8 +288,7 @@ const CheckoutPage = () => {
               <div className="space-y-3">
                 <button
                   type="button"
-                  onClick={() => setPaymentMethod("card")}
-                  className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${paymentMethod === "card" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
+                  className="w-full flex items-center gap-4 p-4 rounded-xl border-2 border-primary bg-primary/5 transition-all"
                 >
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-glow to-accent flex items-center justify-center">
                     <CreditCard className="w-6 h-6 text-accent-foreground" />
@@ -311,27 +297,12 @@ const CheckoutPage = () => {
                     <p className="font-semibold text-foreground text-sm">Credit / Debit Card</p>
                     <p className="text-xs text-muted-foreground">Visa, Mastercard, Amex</p>
                   </div>
-                  {paymentMethod === "card" && <CheckCircle className="w-5 h-5 text-primary ml-auto" />}
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setPaymentMethod("moonlight")}
-                  className={`w-full flex items-center gap-4 p-4 rounded-xl border-2 transition-all ${paymentMethod === "moonlight" ? "border-primary bg-primary/5" : "border-border hover:border-muted-foreground"}`}
-                >
-                  <div className="w-12 h-12 rounded-xl overflow-hidden bg-background flex items-center justify-center">
-                    <img src={moonlightLogo} alt="Moonlight" className="w-10 h-10 object-contain" />
-                  </div>
-                  <div className="text-left">
-                    <p className="font-semibold text-foreground text-sm">Moonlight Wealth Management</p>
-                    <p className="text-xs text-muted-foreground">Premium payment partner</p>
-                  </div>
-                  {paymentMethod === "moonlight" && <CheckCircle className="w-5 h-5 text-primary ml-auto" />}
+                  <CheckCircle className="w-5 h-5 text-primary ml-auto" />
                 </button>
               </div>
 
-              {/* Card form - only for credit card */}
-              {paymentMethod === "card" && (
+              {/* Card form */}
+              (
                 <div className="space-y-3">
                   <input type="text" placeholder="Cardholder Name" value={cardForm.cardName}
                     onChange={e => updateCard("cardName", e.target.value)} className={inputClass} />
@@ -357,9 +328,6 @@ const CheckoutPage = () => {
                     <GPay />
                   </div>
                 </div>
-              )}
-
-              {/* Moonlight info */}
               {paymentMethod === "moonlight" && (
                 <div className="space-y-3">
                   <div className="bg-muted rounded-xl p-4 flex items-center gap-4">
