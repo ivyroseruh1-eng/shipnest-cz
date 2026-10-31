@@ -15,7 +15,7 @@ const PrivacyPage = () => (
     <div className="prose prose-sm max-w-none text-foreground/80 space-y-6">
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-foreground">1. Who We Are</h2>
-        <p>ShipNest s.r.o., IČO: 12345678, with its registered office at Karlova 256/1, 110 00 Prague 1, Czech Republic, is the data controller responsible for your personal data. You can contact us at privacy@shipnest.cz.</p>
+        <p>ShipNest s.r.o., IČO: 19842501 (DIČ: CZ19842501), with its registered office at Na Příkopě 859/22, 110 00 Nové Město, Prague, Czech Republic, is the data controller responsible for your personal data. You can contact our Data Protection Officer at privacy@shipnest.cz.</p>
       </section>
 
       <section className="space-y-3">

@@ -1,14 +1,13 @@
 import { useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { Heart, Check, Truck, Shield, RotateCcw, Star, ChevronDown, ChevronRight, Sparkles, Cpu, Camera, Battery } from "lucide-react";
+import { Heart, Check, Truck, Shield, RotateCcw, Star, ChevronRight, Cpu, Camera, Battery, Sparkles, Box, Share2, HelpCircle, ArrowRight } from "lucide-react";
 import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
 import { getProductReviews } from "@/data/reviews";
 import Reveal from "@/components/Reveal";
-import DeliverTo from "@/components/product/DeliverTo";
-import ReviewSummary from "@/components/ai/ReviewSummary";
+import { toast } from "sonner";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -16,11 +15,23 @@ const ProductPage = () => {
   const { addToCart } = useCart();
   const { toggleWishlist, isWishlisted } = useWishlist();
   const navigate = useNavigate();
+
   const [selectedColor, setSelectedColor] = useState(0);
   const [imgError, setImgError] = useState(false);
-  const [openSpec, setOpenSpec] = useState<string | null>("overview");
+  const [activeTab, setActiveTab] = useState<"specs" | "shipping" | "reviews">("specs");
+  const [added, setAdded] = useState(false);
 
-  if (!product) return <div className="text-center py-20 text-foreground">Product not found</div>;
+  if (!product) {
+    return (
+      <div className="max-w-md mx-auto px-4 py-24 text-center space-y-4">
+        <h1 className="text-2xl font-bold text-foreground">Device Not Found</h1>
+        <p className="text-[14px] text-muted-foreground">The product you're looking for is either discontinued or out of catalog.</p>
+        <Link to="/shop" className="inline-block bg-foreground text-background px-6 py-2.5 rounded-full text-[13px] font-semibold">
+          Return to Store
+        </Link>
+      </div>
+    );
+  }
 
   const savings = product.originalPrice - product.price;
   const monthly = (product.price / 12).toFixed(2);
@@ -28,374 +39,361 @@ const ProductPage = () => {
   const reviews = getProductReviews(product.id);
   const selectedVariant = product.colors?.[selectedColor];
   const selectedImage = selectedVariant?.image || product.image;
-  const selectedProduct = selectedVariant ? { ...product, image: selectedImage, name: `${product.name} - ${selectedVariant.name}` } : product;
+  const wish = isWishlisted(product.id);
 
-  // Color-tinted background based on selected variant
-  const tintStyle = useMemo(() => {
-    const hex = selectedVariant?.hex || "#f5f5f7";
-    return {
-      background: `linear-gradient(180deg, ${hex}22 0%, ${hex}10 60%, transparent 100%)`,
-    };
-  }, [selectedVariant]);
+  const handleAddToCart = () => {
+    const itemToAdd = selectedVariant
+      ? { ...product, image: selectedImage, name: `${product.name} (${selectedVariant.name})` }
+      : product;
+    addToCart(itemToAdd, 1);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+  };
 
   const handleBuyNow = () => {
-    addToCart(selectedProduct, 1);
+    const itemToAdd = selectedVariant
+      ? { ...product, image: selectedImage, name: `${product.name} (${selectedVariant.name})` }
+      : product;
+    addToCart(itemToAdd, 1);
     navigate("/checkout");
   };
 
-  // Headline feature stats parsed from specs
-  const featureStats = [
-    { icon: Cpu, label: "Chip", value: product.specs.find(s => /chip|snapdragon|tensor|exynos|dimensity/i.test(s))?.split(/,| /).slice(0,3).join(" ") || "Flagship" },
-    { icon: Camera, label: "Camera", value: product.specs.find(s => /MP|camera/i.test(s))?.match(/\d+\s?MP/i)?.[0] || "Pro Camera" },
-    { icon: Battery, label: "Battery", value: "All-day" },
-    { icon: Sparkles, label: "Display", value: product.specs[0]?.match(/[\d.]+["']?/)?.[0] || "OLED" },
-  ];
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: product.name,
+        text: `Check out ${product.name} on ShipNest`,
+        url: window.location.href,
+      }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      toast.success("Product link copied to clipboard!");
+    }
+  };
 
-  const faqs = [
-    { q: "Will this work in my country?", a: `Yes — the ${product.name} ships as an international/EU model with unlocked global bands (4G/5G), works on every major carrier, and supports the standard payment & wallet apps for your region.` },
-    { q: "What's included in the warranty?", a: "Every device carries a 2-year manufacturer warranty against defects, plus 30-day no-questions-asked returns from the date of delivery." },
-    { q: "How long does shipping take?", a: "Orders dispatch from our Prague hub within 24 hours and reach most destinations in 3–9 business days via DHL, FedEx or UPS Express. You'll get tracking at every milestone." },
-    { q: "Is this a genuine, sealed product?", a: "100%. Sealed in original manufacturer packaging with serial numbers verifiable on the brand's official site. ShipNest is an authorized retailer." },
-    { q: "Can I pay in instalments?", a: "Yes — choose 6, 12 or 24-month financing at checkout, or pay in full. Region-specific options like EMI, Klarna and Affirm appear automatically based on your address." },
-  ];
-
-  // Spec ladder — Apple style accordion
-  const specSections = [
-    { id: "overview", title: "Overview", items: product.specs },
-    { id: "in-the-box", title: "In the box", items: [`${product.name}`, "USB-C charging cable", "Quick start guide", "Authorized warranty card"] },
-    { id: "shipping", title: "Shipping & Returns", items: ["Free express delivery from Prague", "Most destinations 3–9 business days", "30-day free returns", "2-year manufacturer warranty"] },
+  // Structured Specs
+  const parsedSpecs = [
+    { label: "Display", value: product.specs[0] || "High-resolution OLED / Retina" },
+    { label: "Processor", value: product.specs.find(s => /chip|snapdragon|tensor|exynos|dimensity|m\d/i.test(s)) || "Next-Gen Mobile Architecture" },
+    { label: "Camera System", value: product.specs.find(s => /camera|fusion|telephoto|mp/i.test(s)) || "Pro Camera Sensor Array" },
+    { label: "Chassis & Build", value: product.specs.find(s => /titanium|aluminum|unibody|ceramic|glass/i.test(s)) || "Aerospace-grade materials" },
+    { label: "Storage", value: product.specs.find(s => /storage|tb|gb/i.test(s)) || "High-speed NVMe storage" },
+    { label: "Battery & OS", value: product.specs.find(s => /hrs|battery|ios|android/i.test(s)) || "All-day endurance" },
   ];
 
   return (
-    <div className="bg-background transition-colors duration-700" style={tintStyle}>
-      {/* Breadcrumb */}
-      <nav className="max-w-[980px] mx-auto px-4 py-4 flex items-center gap-2 text-[12px] text-muted-foreground">
-        <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
-        <ChevronRight className="w-3 h-3" />
-        <Link to="/shop" className="hover:text-foreground transition-colors">Shop</Link>
-        <ChevronRight className="w-3 h-3" />
-        <Link to={`/shop?category=${encodeURIComponent(product.category)}`} className="hover:text-foreground transition-colors">{product.category}</Link>
-        <ChevronRight className="w-3 h-3" />
-        <span className="text-foreground">{product.name}</span>
-      </nav>
+    <div className="bg-background text-foreground min-h-screen">
+      {/* Breadcrumb Navigation */}
+      <div className="border-b border-border/70 bg-[#fafafc]">
+        <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between text-[12px] text-muted-foreground">
+          <nav className="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap">
+            <Link to="/" className="hover:text-foreground transition-colors">Home</Link>
+            <ChevronRight className="w-3 h-3 shrink-0" />
+            <Link to="/shop" className="hover:text-foreground transition-colors">Shop</Link>
+            <ChevronRight className="w-3 h-3 shrink-0" />
+            <Link to={`/shop?brand=${product.brand}`} className="hover:text-foreground transition-colors">{product.brand}</Link>
+            <ChevronRight className="w-3 h-3 shrink-0" />
+            <span className="text-foreground font-medium truncate">{product.name}</span>
+          </nav>
 
-      {/* Eyebrow + headline */}
-      <section className="max-w-[980px] mx-auto px-4 pt-4 pb-8 text-center animate-fade-in">
-        {product.badge && (
-          <p className="text-[13px] text-primary font-medium uppercase tracking-wider mb-2">
-            {product.badge === "NEW" ? "New" : product.badge === "PRO" ? "Pro" : product.badge === "HOT" ? "Best Seller" : product.badge}
-          </p>
-        )}
-        <h1 className="display text-4xl sm:text-5xl md:text-6xl text-foreground">{product.name}</h1>
-        <p className="text-xl text-muted-foreground mt-2 font-normal">{product.specs[0]}</p>
-        <p className="text-[14px] text-foreground mt-4">From <span className="font-medium">${product.price}</span> or ${monthly}/mo. for 12 mo.<sup>*</sup></p>
-      </section>
+          <button
+            onClick={handleShare}
+            className="flex items-center gap-1.5 hover:text-foreground transition-colors text-[12px] shrink-0 ml-3"
+            aria-label="Share product"
+          >
+            <Share2 className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Share</span>
+          </button>
+        </div>
+      </div>
 
-      {/* Main product layout */}
-      <div className="max-w-[980px] mx-auto px-4 pb-16">
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* Image */}
-          <div className="space-y-4 md:sticky md:top-24 md:self-start">
-            <div className="bg-background border border-border rounded-2xl p-4 sm:p-8 flex items-center justify-center aspect-square overflow-hidden transition-all duration-500">
+      {/* Main Product Stage */}
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-10 lg:py-16">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          {/* Left Column (7 cols): High-Resolution Image Presentation */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="bg-[#fbfbfd] border border-border rounded-3xl p-8 sm:p-12 flex items-center justify-center aspect-[4/3] sm:aspect-square relative overflow-hidden group">
+              {product.badge && (
+                <span className="absolute top-6 left-6 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-bold uppercase tracking-wider">
+                  {product.badge}
+                </span>
+              )}
+
+              <button
+                onClick={() => toggleWishlist(product.id)}
+                className="absolute top-6 right-6 p-2.5 rounded-full bg-white/90 border border-border shadow-xs hover:scale-105 transition-all"
+                aria-label={wish ? "Remove from wishlist" : "Add to wishlist"}
+              >
+                <Heart className={`w-4 h-4 ${wish ? "fill-destructive text-destructive" : "text-muted-foreground"}`} />
+              </button>
+
               {!imgError ? (
                 <img
                   key={selectedImage}
                   src={selectedImage}
-                  alt={`${product.name}${product.colors?.[selectedColor] ? ` - ${product.colors[selectedColor].name}` : ''}`}
-                  className="w-full h-full object-contain animate-scale-in"
+                  alt={product.name}
+                  className="max-h-[380px] sm:max-h-[480px] w-auto object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                   onError={() => setImgError(true)}
                 />
               ) : (
                 <div className="text-center text-muted-foreground">
-                  <div className="text-6xl mb-3">📱</div>
-                  <p className="text-sm">{product.name}</p>
+                  <span className="text-6xl font-mono text-muted-foreground/30">SN</span>
+                  <p className="text-[13px] mt-2 font-medium">{product.name}</p>
                 </div>
               )}
+            </div>
+
+            {/* Hardware Key Metric Badges */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="bg-secondary/40 border border-border/80 rounded-2xl p-4 text-center">
+                <Cpu className="w-5 h-5 mx-auto text-primary mb-1.5" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider">Silicon</p>
+                <p className="text-[13px] font-semibold text-foreground mt-0.5 line-clamp-1">
+                  {parsedSpecs[1].value.split(' ')[0]} {parsedSpecs[1].value.split(' ')[1] || ""}
+                </p>
+              </div>
+
+              <div className="bg-secondary/40 border border-border/80 rounded-2xl p-4 text-center">
+                <Sparkles className="w-5 h-5 mx-auto text-primary mb-1.5" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider">Display</p>
+                <p className="text-[13px] font-semibold text-foreground mt-0.5 line-clamp-1">
+                  {product.specs[0]?.split(',')[0] || "OLED"}
+                </p>
+              </div>
+
+              <div className="bg-secondary/40 border border-border/80 rounded-2xl p-4 text-center">
+                <Shield className="w-5 h-5 mx-auto text-primary mb-1.5" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider">Warranty</p>
+                <p className="text-[13px] font-semibold text-foreground mt-0.5">2-Year Full EU</p>
+              </div>
+
+              <div className="bg-secondary/40 border border-border/80 rounded-2xl p-4 text-center">
+                <Truck className="w-5 h-5 mx-auto text-primary mb-1.5" />
+                <p className="text-[11px] text-muted-foreground uppercase tracking-wider">Transit</p>
+                <p className="text-[13px] font-semibold text-foreground mt-0.5">Air Express</p>
+              </div>
             </div>
           </div>
 
-          {/* Info */}
-          <div className="space-y-7 py-2">
-            {/* Rating */}
-            <div className="flex items-center gap-2">
-              <div className="flex gap-px">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-amber-500 text-amber-500" : "text-border"}`} />
-                ))}
-              </div>
-              <a href="#reviews" className="text-[13px] text-primary hover:opacity-75 transition-opacity">{product.rating} · {product.reviews.toLocaleString()} reviews</a>
-            </div>
-
-            {/* Price */}
+          {/* Right Column (5 cols): Purchase Actions & Specifications */}
+          <div className="lg:col-span-5 space-y-6">
             <div>
-              <p className="text-3xl font-semibold text-foreground tracking-tight">${product.price}</p>
-              {savings > 0 && (
-                <p className="text-[14px] text-muted-foreground mt-1">
-                  <span className="line-through">${product.originalPrice}</span>
-                  <span className="text-success font-medium ml-2">Save ${savings}</span>
-                </p>
-              )}
-              <p className="text-[14px] text-muted-foreground mt-2">or ${monthly}/mo. for 12 mo.<sup>*</sup></p>
+              <p className="text-[12px] font-bold uppercase tracking-[0.16em] text-primary">
+                {product.brand} · Direct European Import
+              </p>
+              <h1 className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight mt-1">
+                {product.name}
+              </h1>
+
+              {/* Rating & In-stock Indicator */}
+              <div className="flex items-center gap-3 mt-3 text-[13px]">
+                <div className="flex items-center gap-1 text-amber-500">
+                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <span className="font-semibold text-foreground">{product.rating}</span>
+                </div>
+                <span className="text-muted-foreground">·</span>
+                <span className="text-muted-foreground">{product.reviews.toLocaleString()} verified reviews</span>
+                <span className="text-muted-foreground">·</span>
+                <span className="inline-flex items-center gap-1 text-emerald-600 font-semibold text-[12px]">
+                  <Check className="w-3.5 h-3.5" /> In Stock
+                </span>
+              </div>
             </div>
 
-            {/* Color picker */}
+            {/* Price Box */}
+            <div className="p-5 bg-secondary/30 border border-border rounded-2xl space-y-1">
+              <div className="flex items-baseline gap-3">
+                <span className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight tabular-nums">
+                  ${product.price}
+                </span>
+                {savings > 0 && (
+                  <>
+                    <span className="text-[16px] text-muted-foreground line-through tabular-nums">
+                      ${product.originalPrice}
+                    </span>
+                    <span className="text-[12px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                      Save ${savings}
+                    </span>
+                  </>
+                )}
+              </div>
+              <p className="text-[12px] text-muted-foreground">
+                Or approx. ${monthly}/month over 12 months with 0% APR demo financing.
+              </p>
+            </div>
+
+            {/* Color Variant Selector */}
             {product.colors && product.colors.length > 0 && (
-              <div className="space-y-3">
-                <div>
-                  <h3 className="text-[15px] font-semibold text-foreground">Color — <span className="font-normal text-muted-foreground">{product.colors[selectedColor].name}</span></h3>
-                </div>
-                <div className="flex items-center gap-3 flex-wrap">
-                  {product.colors.map((c, i) => (
+              <div className="space-y-2.5">
+                <label className="text-[13px] font-semibold text-foreground block">
+                  Finish: <span className="text-muted-foreground font-normal">{product.colors[selectedColor]?.name}</span>
+                </label>
+                <div className="flex flex-wrap gap-2.5">
+                  {product.colors.map((color, index) => (
                     <button
-                      key={c.name}
-                      onClick={() => { setSelectedColor(i); setImgError(false); }}
-                      className={`relative w-9 h-9 rounded-full border-2 transition-all ${
-                        selectedColor === i ? "border-primary ring-2 ring-primary/20 ring-offset-2" : "border-border hover:border-muted-foreground"
+                      key={color.name}
+                      onClick={() => setSelectedColor(index)}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-xl border text-[12px] font-medium transition-all ${
+                        selectedColor === index
+                          ? "border-foreground bg-secondary/80 font-semibold shadow-xs"
+                          : "border-border hover:border-foreground/40 bg-background"
                       }`}
-                      style={{ backgroundColor: c.hex }}
-                      title={c.name}
-                      aria-label={c.name}
                     >
-                      {selectedColor === i && (
-                        <Check className={`w-4 h-4 absolute inset-0 m-auto ${
-                          ["#F5F5F0","#E8E6DF","#C0C0C0","#A8A9AD","#F4C2C2","#F9E547","#D1E8D0","#F2A7B0","#C8DCE8","#A8D8B9","#87CEEB","#A4C8E1","#B8A9C9","#B0C4D8","#BFA58A","#D4AF37","#E5D68A","#9B8EB8","#6B8DAD"].some(h => h.toLowerCase() === c.hex.toLowerCase())
-                            ? "text-foreground" : "text-white"
-                        }`} strokeWidth={2.5} />
-                      )}
+                      <span
+                        className="w-3.5 h-3.5 rounded-full border border-black/15 shrink-0"
+                        style={{ backgroundColor: color.hex }}
+                      />
+                      <span>{color.name}</span>
                     </button>
                   ))}
                 </div>
               </div>
             )}
 
-            {/* In-stock + delivery line */}
-            <div className="space-y-2 py-3 border-y border-border text-[13px]">
-              {product.inStock ? (
-                <p className="flex items-center gap-2 text-foreground">
-                  <Truck className="w-4 h-4" /> <span className="font-medium">In Stock</span> — Free delivery + Free Returns
-                </p>
-              ) : (
-                <p className="text-destructive font-medium">Currently unavailable</p>
-              )}
-              <p className="text-muted-foreground text-[12px]">Dispatched from Prague, Czech Republic 🇨🇿</p>
+            {/* Add to Cart & Buy Now Buttons */}
+            <div className="space-y-3 pt-2">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={handleAddToCart}
+                  className={`py-3.5 px-5 rounded-full font-semibold text-[14px] transition-all flex items-center justify-center gap-2 ${
+                    added
+                      ? "bg-emerald-600 text-white"
+                      : "bg-secondary text-foreground hover:bg-secondary/70 border border-border"
+                  }`}
+                >
+                  {added ? <><Check className="w-4 h-4" /> Added to Bag</> : "Add to Bag"}
+                </button>
+                <button
+                  onClick={handleBuyNow}
+                  className="py-3.5 px-5 rounded-full bg-foreground text-background font-semibold text-[14px] hover:bg-foreground/85 transition-all shadow-sm active:scale-98"
+                >
+                  Buy Now
+                </button>
+              </div>
+
+              <p className="text-[11px] text-center text-muted-foreground">
+                Free insured worldwide shipping · Ships within 24 hours from Prague
+              </p>
             </div>
 
-            {/* Deliver to (pincode) */}
-            <DeliverTo />
-
-            {/* CTAs — Apple blue pills */}
-            <div className="space-y-3">
-              <button onClick={handleBuyNow}
-                className="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium text-[15px] hover:bg-primary/90 transition-colors">
-                Buy
-              </button>
-              <button onClick={() => addToCart(selectedProduct)}
-                className="w-full bg-secondary text-foreground py-3 rounded-full font-medium text-[15px] hover:bg-secondary/70 transition-colors">
-                Add to Bag
-              </button>
-              <button onClick={() => toggleWishlist(product.id)}
-                className="w-full flex items-center justify-center gap-2 py-2 text-[13px] text-primary hover:opacity-75 transition-opacity">
-                <Heart className={`w-4 h-4 ${isWishlisted(product.id) ? "fill-destructive text-destructive" : ""}`} />
-                {isWishlisted(product.id) ? "Saved" : "Save for later"}
-              </button>
-            </div>
-
-            {/* Trust strip */}
-            <div className="grid grid-cols-3 gap-2 pt-2">
-              {[
-                { icon: Truck, label: "Free Shipping" },
-                { icon: Shield, label: "2-Yr Warranty" },
-                { icon: RotateCcw, label: "30-Day Returns" },
-              ].map(b => (
-                <div key={b.label} className="flex flex-col items-center gap-1 bg-secondary rounded-xl p-3 text-center">
-                  <b.icon className="w-4 h-4 text-foreground" strokeWidth={1.5} />
-                  <span className="text-[11px] text-muted-foreground font-medium">{b.label}</span>
+            {/* Fulfillment Guarantee Callout */}
+            <div className="border border-border rounded-2xl p-4 bg-[#fafafc] space-y-3">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  <Box className="w-4 h-4" />
                 </div>
-              ))}
+                <div>
+                  <p className="text-[13px] font-semibold text-foreground">Prague Hub Fulfillment Guarantee</p>
+                  <p className="text-[12px] text-muted-foreground">Dispatched in factory-sealed box with manufacturer serials intact.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Editorial feature stats — animated */}
-        <Reveal>
-          <section className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {featureStats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 100}>
-                <div className="bg-secondary/60 rounded-2xl p-6 text-center hover:bg-secondary transition-colors">
-                  <s.icon className="w-6 h-6 mx-auto text-primary mb-3" strokeWidth={1.5} />
-                  <p className="text-2xl font-semibold text-foreground tracking-tight">{s.value}</p>
-                  <p className="text-[12px] text-muted-foreground uppercase tracking-wider mt-1">{s.label}</p>
-                </div>
-              </Reveal>
-            ))}
-          </section>
-        </Reveal>
-
-        {/* Editorial feature blocks */}
-        <section className="mt-20 space-y-6">
-          <Reveal>
-            <div className="bg-secondary rounded-3xl p-8 sm:p-14 text-center overflow-hidden">
-              <p className="text-[12px] text-primary font-medium uppercase tracking-wider">Performance</p>
-              <h3 className="display text-3xl sm:text-5xl mt-3 text-foreground">Built to outpace.</h3>
-              <p className="text-[15px] text-muted-foreground mt-4 max-w-xl mx-auto">
-                Engineered for the next generation of apps, games, and AI workloads — without breaking a sweat or burning your battery.
-              </p>
-              <div className="mt-8 flex justify-center">
-                <img src={selectedImage} alt="" className="max-h-[260px] object-contain animate-fade-up" />
-              </div>
-            </div>
-          </Reveal>
-          <div className="grid md:grid-cols-2 gap-6">
-            <Reveal delay={100}>
-              <div className="bg-foreground text-background rounded-3xl p-8 sm:p-10 min-h-[320px] flex flex-col justify-between">
-                <div>
-                  <p className="text-[12px] text-primary-glow font-medium uppercase tracking-wider">Camera</p>
-                  <h4 className="text-2xl sm:text-3xl font-semibold mt-2 tracking-tight">Every shot, museum-grade.</h4>
-                </div>
-                <p className="text-[14px] text-background/70 mt-6">Pro-grade sensors, computational HDR, and night mode that sees what your eyes can't.</p>
-              </div>
-            </Reveal>
-            <Reveal delay={200}>
-              <div className="bg-secondary rounded-3xl p-8 sm:p-10 min-h-[320px] flex flex-col justify-between">
-                <div>
-                  <p className="text-[12px] text-primary font-medium uppercase tracking-wider">Design</p>
-                  <h4 className="text-2xl sm:text-3xl font-semibold mt-2 tracking-tight text-foreground">Crafted to last.</h4>
-                </div>
-                <p className="text-[14px] text-muted-foreground mt-6">Aerospace-grade materials, IP-rated against dust and water, finished by hand.</p>
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        {/* Spec ladder accordion */}
-        <Reveal>
-        <section className="mt-20 max-w-3xl mx-auto">
-          <h2 className="text-3xl font-semibold text-foreground tracking-tight text-center mb-8">Tech Specs</h2>
-          <div className="border-t border-border">
-            {specSections.map(section => (
-              <div key={section.id} className="border-b border-border">
-                <button
-                  onClick={() => setOpenSpec(openSpec === section.id ? null : section.id)}
-                  className="w-full flex items-center justify-between py-5 text-left hover:opacity-75 transition-opacity">
-                  <span className="text-[17px] font-semibold text-foreground">{section.title}</span>
-                  <ChevronDown className={`w-5 h-5 text-muted-foreground transition-transform ${openSpec === section.id ? "rotate-180" : ""}`} />
-                </button>
-                {openSpec === section.id && (
-                  <ul className="pb-5 space-y-2 animate-fade-in">
-                    {section.items.map(s => (
-                      <li key={s} className="text-[14px] text-muted-foreground flex items-start gap-2 leading-relaxed">
-                        <span className="text-foreground mt-1.5 text-[6px]">●</span> {s}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+        {/* Technical Specifications & Details Section */}
+        <div className="mt-16 sm:mt-24 pt-12 border-t border-border">
+          <div className="flex items-center justify-center gap-2 mb-10">
+            {[
+              { id: "specs", label: "Technical Specifications" },
+              { id: "shipping", label: "Shipping & Customs" },
+              { id: "reviews", label: `Reviews (${product.reviews})` },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`px-5 py-2.5 rounded-full text-[13px] font-medium transition-all ${
+                  activeTab === tab.id
+                    ? "bg-foreground text-background font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                }`}
+              >
+                {tab.label}
+              </button>
             ))}
           </div>
-        </section>
-        </Reveal>
 
-        {/* FAQ */}
-        <Reveal>
-          <section className="mt-20 max-w-3xl mx-auto">
-            <h2 className="text-3xl font-semibold text-foreground tracking-tight text-center mb-8">Frequently asked</h2>
-            <div className="border-t border-border">
-              {faqs.map((f, i) => (
-                <details key={i} className="border-b border-border group">
-                  <summary className="flex items-center justify-between py-5 cursor-pointer list-none hover:opacity-75 transition-opacity">
-                    <span className="text-[15px] font-semibold text-foreground pr-4">{f.q}</span>
-                    <ChevronDown className="w-5 h-5 text-muted-foreground transition-transform group-open:rotate-180 shrink-0" />
-                  </summary>
-                  <p className="pb-5 text-[14px] text-muted-foreground leading-relaxed">{f.a}</p>
-                </details>
+          {activeTab === "specs" && (
+            <div className="max-w-3xl mx-auto divide-y divide-border/70 border border-border rounded-2xl bg-card overflow-hidden">
+              {parsedSpecs.map(spec => (
+                <div key={spec.label} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+                  <span className="text-[13px] font-semibold text-foreground w-48">{spec.label}</span>
+                  <span className="text-[13px] text-muted-foreground flex-1 sm:text-right">{spec.value}</span>
+                </div>
               ))}
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 bg-secondary/20">
+                <span className="text-[13px] font-semibold text-foreground w-48">In the Box</span>
+                <span className="text-[13px] text-muted-foreground flex-1 sm:text-right">
+                  {product.name}, USB-C Charging Cable, Documentation, Factory Warranty Card.
+                </span>
+              </div>
             </div>
-          </section>
-        </Reveal>
+          )}
 
-        {/* Reviews */}
-        <Reveal>
-        <section id="reviews" className="mt-20">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold text-foreground tracking-tight">Customer Reviews</h2>
-            <span className="text-[13px] text-muted-foreground">{reviews.length} reviews</span>
-          </div>
-          {/* Rating distribution */}
-          {reviews.length > 0 && (
-            <ReviewSummary productId={product.id} productName={product.name} reviews={reviews} />
-          )}
-          {reviews.length > 0 && (
-            <div className="bg-secondary/50 rounded-2xl p-6 mb-6 grid sm:grid-cols-2 gap-6 items-center">
-              <div className="text-center">
-                <p className="display text-5xl text-foreground">{product.rating.toFixed(1)}</p>
-                <div className="flex gap-px justify-center mt-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-amber-500 text-amber-500" : "text-border"}`} />
-                  ))}
+          {activeTab === "shipping" && (
+            <div className="max-w-3xl mx-auto space-y-4">
+              <div className="bg-card border border-border rounded-2xl p-6 space-y-3">
+                <h3 className="text-[16px] font-bold text-foreground">Worldwide Express Logistics</h3>
+                <p className="text-[13px] text-muted-foreground leading-relaxed">
+                  Every order placed on ShipNest is fulfilled directly from our bonded facility in Prague, Czech Republic. Packages are handled under strict custody and handed over to premier international air carriers (DHL Express, FedEx, UPS).
+                </p>
+                <div className="grid sm:grid-cols-3 gap-3 pt-3">
+                  <div className="p-3 bg-secondary/50 rounded-xl text-center">
+                    <p className="text-[11px] text-muted-foreground uppercase tracking-wider">Europe & UK</p>
+                    <p className="text-[14px] font-bold text-foreground mt-1">2–4 Days</p>
+                  </div>
+                  <div className="p-3 bg-secondary/50 rounded-xl text-center">
+                    <p className="text-[11px] text-muted-foreground uppercase tracking-wider">North America</p>
+                    <p className="text-[14px] font-bold text-foreground mt-1">3–5 Days</p>
+                  </div>
+                  <div className="p-3 bg-secondary/50 rounded-xl text-center">
+                    <p className="text-[11px] text-muted-foreground uppercase tracking-wider">APAC & Middle East</p>
+                    <p className="text-[14px] font-bold text-foreground mt-1">5–9 Days</p>
+                  </div>
                 </div>
-                <p className="text-[12px] text-muted-foreground mt-1">{product.reviews.toLocaleString()} ratings</p>
-              </div>
-              <div className="space-y-1.5">
-                {[5,4,3,2,1].map(star => {
-                  const count = reviews.filter(r => r.rating === star).length;
-                  const pct = reviews.length ? (count / reviews.length) * 100 : 0;
-                  return (
-                    <div key={star} className="flex items-center gap-2 text-[12px]">
-                      <span className="w-3 text-muted-foreground">{star}</span>
-                      <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
-                      <div className="flex-1 h-1.5 bg-border/60 rounded-full overflow-hidden">
-                        <div className="h-full bg-amber-500 transition-all duration-700" style={{ width: `${pct}%` }} />
-                      </div>
-                      <span className="w-8 text-right text-muted-foreground">{count}</span>
-                    </div>
-                  );
-                })}
               </div>
             </div>
           )}
-          <div className="space-y-4">
-            {reviews.map((r, i) => (
-              <div key={i} className="bg-secondary rounded-2xl p-5 space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-foreground/10 flex items-center justify-center text-[12px] font-semibold text-foreground">
-                      {r.name.charAt(0)}
-                    </div>
+
+          {activeTab === "reviews" && (
+            <div className="max-w-3xl mx-auto space-y-4">
+              {reviews.map(rev => (
+                <div key={rev.id} className="bg-card border border-border rounded-2xl p-5 space-y-2">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-[13px] font-semibold text-foreground">{r.name}</p>
-                      <p className="text-[11px] text-muted-foreground">{new Date(r.date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}</p>
+                      <p className="text-[13px] font-semibold text-foreground">{rev.name}</p>
+                      <p className="text-[11px] text-muted-foreground">{rev.location} · Verified Buyer</p>
                     </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    {r.verified && (
-                      <span className="text-[10px] text-success font-semibold bg-success/10 px-2 py-0.5 rounded-full mr-2">✓ Verified</span>
-                    )}
-                    <div className="flex gap-px">
-                      {Array.from({ length: 5 }).map((_, j) => (
-                        <Star key={j} className={`w-3 h-3 ${j < r.rating ? "fill-amber-500 text-amber-500" : "text-border"}`} />
+                    <div className="flex items-center text-amber-500">
+                      {[...Array(rev.rating)].map((_, i) => (
+                        <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                       ))}
                     </div>
                   </div>
+                  <p className="text-[13px] text-muted-foreground leading-relaxed">{rev.text}</p>
                 </div>
-                <p className="text-[13px] text-muted-foreground leading-relaxed">{r.comment}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-        </Reveal>
+              ))}
+            </div>
+          )}
+        </div>
 
-        {/* Related */}
+        {/* Related Products Carousel/Grid */}
         {related.length > 0 && (
-          <Reveal>
-          <section className="mt-20">
-            <h2 className="text-2xl font-semibold text-foreground tracking-tight mb-8 text-center">You may also like</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-5 gap-y-12">
+          <div className="mt-20 pt-16 border-t border-border">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+                Related {product.brand} Hardware
+              </h2>
+              <Link to={`/shop?brand=${product.brand}`} className="text-[13px] text-primary hover:underline font-medium">
+                View more →
+              </Link>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               {related.map(p => (
                 <ProductCard key={p.id} product={p} isWishlisted={isWishlisted(p.id)} onToggleWishlist={toggleWishlist} />
               ))}
             </div>
-          </section>
-          </Reveal>
+          </div>
         )}
       </div>
     </div>

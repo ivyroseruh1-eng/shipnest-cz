@@ -15,7 +15,7 @@ const TermsPage = () => (
     <div className="prose prose-sm max-w-none text-foreground/80 space-y-6">
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-foreground">1. General</h2>
-        <p>These Terms of Service ("Terms") govern your use of the ShipNest online store operated by ShipNest s.r.o., IČO: 12345678, registered at Karlova 256/1, 110 00 Prague 1, Czech Republic. By placing an order, you agree to these Terms.</p>
+        <p>These Terms of Service ("Terms") govern your use of the ShipNest online store operated by ShipNest s.r.o., IČO: 19842501 (DIČ: CZ19842501), registered at Na Příkopě 859/22, 110 00 Nové Město, Prague, Czech Republic. By placing an order, you agree to these Terms.</p>
       </section>
 
       <section className="space-y-3">

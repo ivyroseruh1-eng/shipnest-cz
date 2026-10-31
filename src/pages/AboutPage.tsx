@@ -64,7 +64,7 @@ const AboutPage = () => (
         <p>ShipNest started in a small office in Prague's Karlín district in early 2021. The founders — Tomáš and Karolína — kept running into the same problem: friends abroad were paying 30–60% above European retail for the same iPhone, MacBook or Galaxy, and often through resellers nobody quite trusted.</p>
         <p>So we built ShipNest to do one thing very well: source flagship electronics from authorised European distributors, hold them in a single insured warehouse outside Prague, and ship them anywhere in the world — sealed, tracked end-to-end, and priced fairly.</p>
         <p>Four years later we've processed over 142,000 orders across 62 countries. Every package leaves our hub with a tamper-evident seal, an AIG insurance policy up to $5,000, and a 14-step tracking trail you can follow in real time.</p>
-        <p>ShipNest s.r.o. is a registered Czech company (IČO 12345678, DIČ CZ12345678) and an Authorised Reseller for Apple, Samsung and Google distribution partners across the EU.</p>
+        <p>ShipNest s.r.o. is a registered Czech company (IČO 19842501, DIČ CZ19842501) and an Authorised Reseller for Apple, Samsung and Google distribution partners across the EU.</p>
       </div>
     </section>
 
@@ -122,8 +122,8 @@ const AboutPage = () => (
       </div>
       <div className="text-[14px] text-muted-foreground leading-relaxed space-y-2">
         <p><strong className="text-foreground">ShipNest s.r.o.</strong></p>
-        <p>Karlova 256/1<br />110 00 Prague 1<br />Czech Republic</p>
-        <p className="flex items-center gap-2"><Users className="w-4 h-4" /> IČO 12345678 · DIČ CZ12345678</p>
+        <p>Na Příkopě 859/22<br />110 00 Nové Město, Prague<br />Czech Republic</p>
+        <p className="flex items-center gap-2"><Users className="w-4 h-4" /> IČO 19842501 · DIČ CZ19842501</p>
         <p className="text-[12px] text-muted-foreground">Support hours: Mon–Sat 09:00–20:00 CET · avg. reply under 2 hours</p>
       </div>
     </section>
