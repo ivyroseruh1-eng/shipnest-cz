@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight, Search, Truck, RotateCcw, ShieldCheck, Sparkles, Plane, ArrowRight, Star, Globe, Box, CheckCircle2 } from "lucide-react";
-import { products } from "@/data/products";
+import { homepageProducts } from "@/data/homepageData";
 import ProductCard from "@/components/ProductCard";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
@@ -15,6 +15,14 @@ import HomeFAQ from "@/components/home/HomeFAQ";
 
 const sampleTrackingIds = ["SNX7829104", "SNX4920183", "SNX6104829"];
 
+const tabLinks: Record<string, { url: string; label: string }> = {
+  flagships: { url: "/shop?department=Technology", label: "Flagships" },
+  apple: { url: "/shop?brand=Apple", label: "Apple Products" },
+  luxury: { url: "/shop?department=Designer+Fashion+%26+Accessories", label: "Luxury Goods" },
+  watches: { url: "/shop?department=Watches+%26+Jewellery", label: "Timepieces" },
+  samsung: { url: "/shop?brand=Samsung", label: "Samsung Products" },
+};
+
 const HomePage = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
   const { getOrder } = useOrders();
@@ -23,19 +31,19 @@ const HomePage = () => {
   const [activeTab, setActiveTab] = useState<"flagships" | "apple" | "luxury" | "samsung" | "watches">("flagships");
 
   // Flagship Hero Products
-  const heroProduct = products.find(p => p.id === "iphone-18-pro-max") || products[0];
-  const secondaryHero = products.find(p => p.id === "iphone-duo") || products.find(p => p.id === "galaxy-s26-ultra") || products[3];
+  const heroProduct = homepageProducts.find(p => p.id === "iphone-18-pro-max") || homepageProducts[0];
+  const secondaryHero = homepageProducts.find(p => p.id === "iphone-duo") || homepageProducts.find(p => p.id === "galaxy-s26-ultra") || homepageProducts[3];
 
-  // Curated Collections
-  const flagships = products.filter(p => p.department === "Technology" && (p.badge === "NEW" || p.badge === "PRO" || p.badge === "HOT")).slice(0, 8);
-  const appleProducts = products.filter(p => p.brand === "Apple").slice(0, 8);
-  const luxuryHighlights = products.filter(p => p.department !== "Technology").slice(0, 8);
-  const samsungProducts = products.filter(p => p.brand === "Samsung").slice(0, 8);
-  const watchProducts = products.filter(p => p.department === "Watches & Jewellery" || p.category === "Watch").slice(0, 8);
+  // Curated Collections — 6 products initially per section as requested
+  const flagships = homepageProducts.filter(p => p.department === "Technology" && (p.badge === "NEW" || p.badge === "PRO" || p.badge === "HOT")).slice(0, 6);
+  const appleProducts = homepageProducts.filter(p => p.brand === "Apple").slice(0, 6);
+  const luxuryHighlightsList = homepageProducts.filter(p => p.department !== "Technology").slice(0, 6);
+  const samsungProducts = homepageProducts.filter(p => p.brand === "Samsung").slice(0, 6);
+  const watchProducts = homepageProducts.filter(p => p.department === "Watches & Jewellery" || p.category === "Watch").slice(0, 6);
 
   const displayedProducts = 
     activeTab === "apple" ? appleProducts :
-    activeTab === "luxury" ? luxuryHighlights :
+    activeTab === "luxury" ? luxuryHighlightsList :
     activeTab === "samsung" ? samsungProducts :
     activeTab === "watches" ? watchProducts : flagships;
 
@@ -383,13 +391,22 @@ const HomePage = () => {
             ))}
           </div>
 
-          {/* Section Footer Link */}
-          <div className="mt-12 text-center">
+          {/* Minimal View More & Complete Store Navigation */}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3.5">
+            <Link
+              to={tabLinks[activeTab].url}
+              className="inline-flex items-center gap-2 bg-background border border-border hover:bg-secondary text-foreground px-6 py-3 rounded-full font-medium text-[13px] transition-all shadow-xs"
+            >
+              <span>View More {tabLinks[activeTab].label}</span>
+              <ChevronRight className="w-3.5 h-3.5 text-muted-foreground" />
+            </Link>
+
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 bg-secondary hover:bg-secondary/70 text-foreground px-8 py-3.5 rounded-full font-semibold text-[14px] transition-colors"
+              className="inline-flex items-center gap-2 bg-foreground text-background hover:bg-foreground/85 px-7 py-3 rounded-full font-semibold text-[13px] transition-colors"
             >
-              Browse Complete Catalog ({products.length} devices) <ArrowRight className="w-4 h-4" />
+              <span>Explore Complete 665-Item Store</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         </div>

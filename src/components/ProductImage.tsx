@@ -8,6 +8,10 @@ interface ProductImageProps {
   className?: string;
   containerClassName?: string;
   loading?: "lazy" | "eager";
+  priority?: boolean;
+  width?: number | string;
+  height?: number | string;
+  sizes?: string;
   department?: string;
   category?: string;
   onImageChange?: (resolvedSrc: string) => void;
@@ -29,6 +33,10 @@ export const ProductImage = ({
   className = "w-full h-full object-contain",
   containerClassName = "",
   loading = "lazy",
+  priority = false,
+  width = 600,
+  height = 600,
+  sizes,
   department,
   category,
   onImageChange,
@@ -73,6 +81,8 @@ export const ProductImage = ({
     }
   };
 
+  const isEager = priority || loading === "eager";
+
   return (
     <div
       className={`relative w-full h-full flex items-center justify-center bg-[#fbfbfd] overflow-hidden ${containerClassName}`}
@@ -80,7 +90,7 @@ export const ProductImage = ({
       {/* Subtle loader skeleton during initial network decode */}
       {!isLoaded && !failedAll && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#fbfbfd] z-10">
-          <Loader2 className="w-5 h-5 text-muted-foreground/30 animate-spin" />
+          <Loader2 className="w-5 h-5 text-muted-foreground/20 animate-spin" />
         </div>
       )}
 
@@ -89,7 +99,12 @@ export const ProductImage = ({
           key={currentSrc}
           src={currentSrc}
           alt={alt}
-          loading={loading}
+          loading={isEager ? "eager" : "lazy"}
+          decoding="async"
+          {...({ fetchpriority: isEager ? "high" : "low" } as any)}
+          width={width}
+          height={height}
+          sizes={sizes || "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"}
           onLoad={handleLoad}
           onError={handleError}
           className={`${className} transition-opacity duration-300 ${

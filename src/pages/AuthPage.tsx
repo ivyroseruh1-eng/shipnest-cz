@@ -7,7 +7,7 @@ import { Mail, Lock, User as UserIcon, ArrowLeft } from "lucide-react";
 
 const AuthPage = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isConfigured } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,6 +62,15 @@ const AuthPage = () => {
           <h1 className="display text-3xl text-foreground">{mode === "signin" ? "Sign in" : "Create account"}</h1>
           <p className="text-[13px] text-muted-foreground">Track every order from one place.</p>
         </div>
+
+        {!isConfigured && (
+          <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs leading-relaxed space-y-1">
+            <p className="font-semibold">Backend Authentication Notice</p>
+            <p className="text-[11px] opacity-90">
+              Supabase environment variables (<code className="font-mono">VITE_SUPABASE_URL</code> &amp; <code className="font-mono">VITE_SUPABASE_PUBLISHABLE_KEY</code>) are not yet configured in your hosting dashboard. Add them to enable live user logins.
+            </p>
+          </div>
+        )}
 
         <button onClick={google} disabled={busy}
           className="w-full flex items-center justify-center gap-2 border border-border bg-background hover:bg-secondary py-3 rounded-full text-[14px] font-medium transition-colors">
