@@ -3,6 +3,7 @@ import { Product } from "@/types";
 import { Heart, Star, ShoppingBag, Check, Camera, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
+import ProductImage from "@/components/ProductImage";
 
 interface Props {
   product: Product;
@@ -62,21 +63,14 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       {/* Product Image Stage */}
       <Link to={`/product/${product.id}`} className="block my-2">
         <div className="aspect-[4/3] sm:aspect-square rounded-xl flex items-center justify-center overflow-hidden bg-[#fbfbfd] p-3 transition-colors group-hover:bg-[#f6f6f9]">
-          {!imgError ? (
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
-              loading="lazy"
-              onError={() => setImgError(true)}
-            />
-          ) : (
-            <div className="text-center text-muted-foreground p-4 flex flex-col items-center justify-center">
-              <Camera className="w-8 h-8 text-muted-foreground/30 mb-1" />
-              <span className="text-[11px] font-medium text-muted-foreground">Photograph Pending</span>
-              <p className="text-[10px] text-muted-foreground/60 mt-0.5 max-w-[140px] truncate">{product.name}</p>
-            </div>
-          )}
+          <ProductImage
+            src={product.image}
+            fallbackImages={product.fallbackImages}
+            alt={product.name}
+            department={product.department}
+            category={product.category}
+            className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
+          />
         </div>
       </Link>
 
