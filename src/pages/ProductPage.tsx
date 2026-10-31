@@ -25,6 +25,7 @@ import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
 import ProductImage from "@/components/ProductImage";
 import { getProductReviews } from "@/data/reviews";
+import { getProductStageTheme } from "@/lib/productPresentation";
 import { toast } from "sonner";
 
 const ProductPage = () => {
@@ -51,6 +52,10 @@ const ProductPage = () => {
 
   // Gallery array collation (called unconditionally before early returns)
   const selectedVariant = product?.colors?.[selectedColor];
+  const stageTheme = useMemo(
+    () => getProductStageTheme(product, selectedVariant),
+    [product, selectedVariant]
+  );
   const galleryList = useMemo(() => {
     if (!product) return [];
     const list: string[] = [];
@@ -202,7 +207,8 @@ const ProductPage = () => {
                     <button
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
-                      className={`relative w-14 h-14 sm:w-20 sm:h-20 rounded-xl overflow-hidden border bg-[#fbfbfd] p-1.5 transition-all ${
+                      style={{ background: stageTheme.background }}
+                      className={`relative w-14 h-14 sm:w-20 sm:h-20 rounded-xl overflow-hidden border p-1.5 transition-all ${
                         activeImageIndex === idx
                           ? "border-foreground ring-2 ring-foreground/20 shadow-xs"
                           : "border-border hover:border-foreground/40 opacity-70 hover:opacity-100"
@@ -212,7 +218,7 @@ const ProductPage = () => {
                       <img
                         src={imgUrl}
                         alt=""
-                        className="w-full h-full object-contain mix-blend-multiply"
+                        className="w-full h-full object-contain"
                       />
                     </button>
                   ))}
@@ -220,7 +226,13 @@ const ProductPage = () => {
               )}
 
               {/* Main Stage Image Viewer */}
-              <div className="flex-1 w-full bg-[#fbfbfd] border border-border rounded-3xl p-6 sm:p-10 flex items-center justify-center aspect-square relative overflow-hidden group">
+              <div
+                className="flex-1 w-full border rounded-3xl p-6 sm:p-10 flex items-center justify-center aspect-square relative overflow-hidden group transition-all duration-300 shadow-xs"
+                style={{
+                  background: stageTheme.background,
+                  borderColor: stageTheme.borderColor,
+                }}
+              >
                 {product.badge && (
                   <span className={`absolute top-5 left-5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${
                     product.badge === "LUXURY"
@@ -259,11 +271,12 @@ const ProductPage = () => {
                     alt={product.name}
                     department={product.department}
                     category={product.category}
+                    stageTheme={stageTheme}
                     priority={true}
                     loading="eager"
                     width={800}
                     height={800}
-                    className="max-h-[380px] sm:max-h-[440px] w-auto object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                    className="max-h-[380px] sm:max-h-[440px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
@@ -385,7 +398,7 @@ const ProductPage = () => {
                   </div>
                   {monthly && (
                     <p className="text-[12px] text-muted-foreground">
-                      Or approx. ${monthly}/month over 12 months with demo financing.
+                      Or approx. ${monthly}/month over 12 months with flexible installment financing.
                     </p>
                   )}
                 </>

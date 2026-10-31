@@ -51,7 +51,7 @@ const ContactPage = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="text-[12px] text-muted-foreground font-medium mb-1 block">Name</label>
               <input type="text" required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}

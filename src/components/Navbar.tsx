@@ -126,7 +126,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 flex-1 justify-center">
+          <nav className="hidden lg:flex items-center gap-1 flex-1 justify-center">
             {navLinks.map(link => {
               const isActive = location.pathname === link.to;
               return (
@@ -248,7 +248,7 @@ const Navbar = () => {
             {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 text-foreground md:hidden hover:bg-secondary/60 rounded-full transition-colors"
+              className="p-2 text-foreground lg:hidden hover:bg-secondary/60 rounded-full transition-colors"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -368,7 +368,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation Drawer */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-border bg-background/98 backdrop-blur-2xl animate-fade-in">
+          <div className="lg:hidden border-t border-border bg-background/98 backdrop-blur-2xl animate-fade-in">
             <div className="flex flex-col p-4 space-y-1">
               {navLinks.map(link => (
                 <Link

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { getProductStageTheme } from "@/lib/productPresentation";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Truck, RotateCcw } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
@@ -80,12 +81,13 @@ const CartPage = () => {
                 <div className="flex items-center gap-4 min-w-0">
                   <Link
                     to={`/product/${item.product.id}`}
-                    className="w-20 h-20 sm:w-24 sm:h-24 bg-[#fbfbfd] border border-border/70 rounded-2xl flex items-center justify-center p-2 shrink-0 overflow-hidden"
+                    style={{ background: getProductStageTheme(item.product).background }}
+                    className="w-20 h-20 sm:w-24 sm:h-24 border border-border/70 rounded-2xl flex items-center justify-center p-2 shrink-0 overflow-hidden"
                   >
                     <img
                       src={item.product.image}
                       alt={item.product.name}
-                      className="w-full h-full object-contain mix-blend-multiply"
+                      className="w-full h-full object-contain"
                     />
                   </Link>
 

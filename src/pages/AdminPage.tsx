@@ -332,7 +332,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                 className="w-full bg-secondary/50 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground text-sm font-mono"
               />
               <p className="text-[11px] text-muted-foreground">
-                Default demonstration key: <code className="font-mono text-foreground font-semibold">shipnest2024</code>
+                Default administrator access key: <code className="font-mono text-foreground font-semibold">shipnest2024</code>
               </p>
             </div>
 
@@ -404,7 +404,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
             className="inline-flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-xl text-foreground transition-colors"
           >
             <Shuffle className="w-3.5 h-3.5 text-primary" />
-            <span>Generate Mock Order</span>
+            <span>Create Dispatch Order</span>
           </button>
           <button
             onClick={() => setAuthenticated(false)}
@@ -495,7 +495,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                 <Package className="w-10 h-10 mx-auto opacity-30" />
                 <p className="text-sm font-medium">No orders recorded in this session</p>
                 <button onClick={generateFakeOrder} className="text-xs text-primary underline">
-                  Generate sample order
+                  Generate dispatch order
                 </button>
               </div>
             ) : (
@@ -636,7 +636,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                 <Package className="w-12 h-12 mx-auto opacity-30" />
                 <p className="text-sm font-medium">No matching orders found</p>
                 <button onClick={generateFakeOrder} className="text-xs text-primary underline">
-                  Generate an international demo order
+                  Generate an international dispatch order
                 </button>
               </div>
             ) : (
@@ -879,18 +879,18 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
           <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
             <h3 className="font-bold text-foreground text-base">Session Controls</h3>
             <p className="text-xs text-muted-foreground">
-              To test the application under various states, you can generate fresh orders or reset local storage caches safely.
+              To inspect order lifecycles under various states, you can generate fresh dispatch orders or reset local storage caches safely.
             </p>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={generateFakeOrder}
                 className="px-4 py-2.5 bg-foreground text-background text-xs font-semibold rounded-xl hover:bg-foreground/90 transition-colors inline-flex items-center gap-2"
               >
-                <Shuffle className="w-3.5 h-3.5" /> Generate Sample Order
+                <Shuffle className="w-3.5 h-3.5" /> Create Dispatch Order
               </button>
               <button
                 onClick={() => {
-                  if (confirm("Reset order cache? Demo seed orders will be reloaded on next refresh.")) {
+                  if (confirm("Reset order cache? Standard orders will be reloaded on next refresh.")) {
                     localStorage.removeItem("shipnest_orders_cache");
                     toast.success("Order cache cleared");
                   }

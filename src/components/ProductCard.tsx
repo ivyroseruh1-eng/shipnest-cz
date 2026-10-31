@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Product } from "@/types";
 import { Heart, Star, ShoppingBag, Check, Camera, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext";
 import ProductImage from "@/components/ProductImage";
+import { getProductStageTheme } from "@/lib/productPresentation";
 
 interface Props {
   product: Product;
@@ -16,6 +17,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
   const monthly = product.price ? (product.price / 12).toFixed(2) : null;
+  const stageTheme = useMemo(() => getProductStageTheme(product), [product]);
 
   const handleQuickAdd = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -62,17 +64,21 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
 
       {/* Product Image Stage */}
       <Link to={`/product/${product.id}`} className="block my-2">
-        <div className="aspect-[4/3] sm:aspect-square rounded-xl flex items-center justify-center overflow-hidden bg-[#fbfbfd] p-3 transition-colors group-hover:bg-[#f6f6f9]">
+        <div
+          className="aspect-[4/3] sm:aspect-square rounded-xl flex items-center justify-center overflow-hidden p-3 transition-all duration-300 border border-border/40"
+          style={{ background: stageTheme.background }}
+        >
           <ProductImage
             src={product.image}
             fallbackImages={product.fallbackImages}
             alt={product.name}
             department={product.department}
             category={product.category}
+            stageTheme={stageTheme}
             loading="lazy"
             width={400}
             height={400}
-            className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
+            className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>
       </Link>

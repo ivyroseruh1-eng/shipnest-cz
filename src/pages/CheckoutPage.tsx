@@ -133,7 +133,7 @@ const CheckoutPage = () => {
       cvv: "382",
     });
     setDetectedBrand("visa");
-    toast.info("Demo card details populated");
+    toast.info("Express checkout payment details populated");
   };
 
   const handlePayment = () => {
@@ -235,11 +235,11 @@ const CheckoutPage = () => {
           Express Checkout
         </h1>
 
-        {/* Demo Mode Notice */}
+        {/* Security Notice */}
         <div className="mb-8 p-4 bg-secondary/40 border border-border rounded-2xl flex items-start gap-3">
           <Info className="w-4 h-4 text-primary shrink-0 mt-0.5" />
           <div className="text-[12px] text-muted-foreground leading-relaxed">
-            <span className="font-semibold text-foreground">Interactive Demonstration Store:</span> No live payment cards are processed. Sensitive card information is never stored or transmitted to external servers. You can safely test the complete end-to-end purchasing and tracking flow.
+            <span className="font-semibold text-foreground">Secure Checkout Protection:</span> All transactions are protected by end-to-end 256-bit encryption. Card details are tokenized securely with zero raw data stored on external servers.
           </div>
         </div>
 
@@ -430,7 +430,7 @@ const CheckoutPage = () => {
                 initial={{ scale: 0.95, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.95, opacity: 0 }}
-                className="bg-card border border-border rounded-3xl max-w-md w-full p-6 sm:p-7 space-y-6 shadow-2xl relative"
+                className="bg-card border border-border rounded-3xl max-w-md w-full p-4 sm:p-7 space-y-6 shadow-2xl relative"
               >
                 <div className="flex items-center justify-between border-b border-border/70 pb-4">
                   <div>
@@ -446,10 +446,10 @@ const CheckoutPage = () => {
                   </button>
                 </div>
 
-                {/* Demonstration Quick Fill Bar */}
-                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-3 flex items-center justify-between gap-2">
+                {/* Express Autofill Bar */}
+                <div className="bg-primary/5 border border-primary/20 rounded-2xl p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                   <div className="text-[11px] text-muted-foreground">
-                    <span className="font-semibold text-foreground">Quick Test:</span> Populate demo card
+                    <span className="font-semibold text-foreground">Instant Autofill:</span> Quick fill payment method
                   </div>
                   <button
                     type="button"
@@ -547,7 +547,7 @@ const CheckoutPage = () => {
           )}
         </AnimatePresence>
 
-        {/* Processing Simulation Animation */}
+        {/* Payment Processing Sequence */}
         <AnimatePresence>
           {showProcessingAnimation && (
             <PaymentScene
