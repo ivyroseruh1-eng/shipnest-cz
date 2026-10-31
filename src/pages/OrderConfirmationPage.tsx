@@ -4,6 +4,8 @@ import { useOrders } from "@/context/OrderContext";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
 import Logo from "@/components/brand/Logo";
+import ProductImage from "@/components/ProductImage";
+import { getProductImageBackground } from "@/lib/productPresentation";
 import { getShipmentMeta } from "@/lib/courier";
 import RouteMap from "@/components/RouteMap";
 

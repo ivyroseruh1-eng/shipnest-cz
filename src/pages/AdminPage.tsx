@@ -10,6 +10,8 @@ import {
 } from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
+import { ProductImage } from "@/components/ProductImage";
+import { getProductImageBackground } from "@/lib/productPresentation";
 import { toast } from "sonner";
 import {
   LogOut,
@@ -58,7 +60,7 @@ const INTERNATIONAL_DESTINATIONS = [
   { city: "Amsterdam", state: "North Holland", country: "Netherlands", zip: "1012 JS" },
 ];
 
-const FAKE_CUSTOMERS = [
+const PREVIEW_CLIENT_ACCOUNTS = [
   { name: "Alexander Wright", email: "a.wright@techventures.io" },
   { name: "Elena Rostova", email: "elena.r@nordicdesign.co" },
   { name: "Kenji Sato", email: "kenji.sato@kyoto-craft.jp" },
@@ -135,8 +137,8 @@ const AdminPage = () => {
     toast.success(`${count} order(s) deleted`);
   };
 
-  const generateFakeOrder = () => {
-    const cust = FAKE_CUSTOMERS[Math.floor(Math.random() * FAKE_CUSTOMERS.length)];
+  const generateDispatchOrder = () => {
+    const cust = PREVIEW_CLIENT_ACCOUNTS[Math.floor(Math.random() * PREVIEW_CLIENT_ACCOUNTS.length)];
     const loc = INTERNATIONAL_DESTINATIONS[Math.floor(Math.random() * INTERNATIONAL_DESTINATIONS.length)];
     const numItems = Math.floor(Math.random() * 2) + 1;
     const shuffled = [...products].sort(() => 0.5 - Math.random());
@@ -400,7 +402,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
 
         <div className="flex items-center gap-2">
           <button
-            onClick={generateFakeOrder}
+            onClick={generateDispatchOrder}
             className="inline-flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-xl text-foreground transition-colors"
           >
             <Shuffle className="w-3.5 h-3.5 text-primary" />
@@ -494,7 +496,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               <div className="text-center py-12 text-muted-foreground space-y-2">
                 <Package className="w-10 h-10 mx-auto opacity-30" />
                 <p className="text-sm font-medium">No orders recorded in this session</p>
-                <button onClick={generateFakeOrder} className="text-xs text-primary underline">
+                <button onClick={generateDispatchOrder} className="text-xs text-primary underline">
                   Generate dispatch order
                 </button>
               </div>
@@ -635,7 +637,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               <div className="text-center py-16 text-muted-foreground space-y-3">
                 <Package className="w-12 h-12 mx-auto opacity-30" />
                 <p className="text-sm font-medium">No matching orders found</p>
-                <button onClick={generateFakeOrder} className="text-xs text-primary underline">
+                <button onClick={generateDispatchOrder} className="text-xs text-primary underline">
                   Generate an international dispatch order
                 </button>
               </div>
@@ -805,14 +807,15 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {products.map(p => (
               <div key={p.id} className="bg-card border border-border rounded-2xl p-4 space-y-3 flex flex-col justify-between">
-                <div className="aspect-square bg-secondary/40 rounded-xl overflow-hidden flex items-center justify-center p-3">
-                  <img
+                <div
+                  className="aspect-square rounded-xl overflow-hidden flex items-center justify-center p-3 border border-border/50"
+                  style={{ backgroundColor: getProductImageBackground(p.image) }}
+                >
+                  <ProductImage
                     src={p.image}
                     alt={p.name}
                     className="w-full h-full object-contain hover:scale-105 transition-transform"
-                    onError={e => {
-                      (e.target as HTMLImageElement).src = "/placeholder.svg";
-                    }}
+                    centerSubject={true}
                   />
                 </div>
                 <div className="space-y-1">
@@ -883,7 +886,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
             </p>
             <div className="flex flex-wrap gap-3">
               <button
-                onClick={generateFakeOrder}
+                onClick={generateDispatchOrder}
                 className="px-4 py-2.5 bg-foreground text-background text-xs font-semibold rounded-xl hover:bg-foreground/90 transition-colors inline-flex items-center gap-2"
               >
                 <Shuffle className="w-3.5 h-3.5" /> Create Dispatch Order

@@ -1,202 +1,213 @@
 import { Product, ProductColor } from "@/types";
 
 export interface StageTheme {
-  background: string;
-  borderColor: string;
+  background: string;     // Exact matching solid hex: "#000000" | "#ffffff" | etc. (NO GRADIENTS)
+  borderColor: string;    // "#27272a" for dark stage, "#e5e7eb" for light stage
+  textColor: string;      // "#ffffff" for dark stage, "#09090b" for light stage
   badgeStyle?: string;
   isLight: boolean;
 }
 
-// In-memory cache for processed image data URLs so each asset is processed at most once
+// In-memory cache for processed square/centered image data URLs so each asset is processed at most once
 const imageCache = new Map<string, string>();
+// In-memory cache for detected background colors
+const imageBgCache = new Map<string, string>();
 
 /**
- * Calculates visual theme and contrasting background for a product or specific variant
+ * Precomputed exact solid background color mapping for catalogue assets.
+ * Dark/black-background product images get "#000000" container.
+ * White-background product images get "#ffffff" container.
+ * Specific tone images get their matching solid tone.
+ */
+const ASSET_BACKGROUND_MAP: Record<string, string> = {
+  // Apple 18 Pro & Flagship Dark Assets (Pure black studio background #000000)
+  "/assets/products/apple/iphone-18-pro-black.jpg": "#000000",
+  "/assets/products/apple/iphone-18-pro-burgundy.jpg": "#000000",
+  "/assets/products/apple/iphone-18-pro-glacier.jpg": "#000000",
+  "/assets/products/apple/iphone-18-pro-hero.jpg": "#000000",
+  "/assets/products/apple/iphone-18-pro-silver.jpg": "#000000",
+  "/assets/products/apple/iphone-18-pro-size.jpg": "#000000",
+  // Tone-specific Apple assets
+  "/assets/products/apple/iphone-17.jpg": "#ded5e9",
+  "/assets/products/apple/iphone-air.jpg": "#bbcad5",
+  // Apple Duo and White Studio Assets
+  "/assets/products/apple/iphone-duo-closed.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-display.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-foldable.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-landscape.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-laptop.jpg": "#ffffff",
+  "/assets/products/apple-iphone-duo.jpg": "#ffffff",
+  "/assets/products/apple-iphone18-pro-max.jpg": "#ffffff",
+  "/assets/products/apple-iphone18-pro.jpg": "#ffffff",
+};
+
+/**
+ * Known bounding boxes for wide landscape marketing banners (2880x1520)
+ * where the phone/subject is positioned asymmetrically in the right half.
+ * Format: [minX, minY, maxX, maxY] within 2880x1520 coordinate space.
+ */
+const ASSET_BOUNDING_BOXES: Record<string, [number, number, number, number]> = {
+  "/assets/products/apple/iphone-18-pro-burgundy.jpg": [1440, 140, 2394, 1500],
+  "/assets/products/apple/iphone-18-pro-black.jpg": [1440, 140, 2394, 1500],
+  "/assets/products/apple/iphone-18-pro-glacier.jpg": [1440, 140, 2394, 1500],
+  "/assets/products/apple/iphone-18-pro-silver.jpg": [1440, 140, 2394, 1500],
+  "/assets/products/apple/iphone-18-pro-size.jpg": [835, 180, 2716, 1495],
+  "/assets/products/apple/iphone-duo-display.jpg": [1350, 190, 2150, 1310],
+  "/assets/products/apple/iphone-duo-closed.jpg": [1520, 190, 2310, 1310],
+  "/assets/products/apple/iphone-duo-foldable.jpg": [1300, 200, 2680, 1300],
+  "/assets/products/apple/iphone-duo-landscape.jpg": [1210, 220, 2660, 1270],
+  "/assets/products/apple/iphone-duo-laptop.jpg": [1270, 230, 2610, 1260],
+};
+
+/**
+ * Normalizes URL / path string for reliable cache and map lookups
+ */
+function normalizeAssetPath(url: string): string {
+  if (!url) return "";
+  try {
+    const parsed = new URL(url, "https://shipnest.internal");
+    return parsed.pathname;
+  } catch {
+    return url.split("?")[0].split("#")[0];
+  }
+}
+
+/**
+ * Determines whether a given hex color is dark
+ */
+export function isColorDark(hex: string): boolean {
+  if (!hex || hex === "#000000" || hex === "#000" || hex === "black") return true;
+  const clean = hex.replace("#", "");
+  if (clean.length === 3) {
+    const r = parseInt(clean[0] + clean[0], 16);
+    const g = parseInt(clean[1] + clean[1], 16);
+    const b = parseInt(clean[2] + clean[2], 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) < 128;
+  }
+  if (clean.length === 6) {
+    const r = parseInt(clean.slice(0, 2), 16);
+    const g = parseInt(clean.slice(2, 4), 16);
+    const b = parseInt(clean.slice(4, 6), 16);
+    return (0.299 * r + 0.587 * g + 0.114 * b) < 128;
+  }
+  return false;
+}
+
+/**
+ * Resolves the matching solid background color and stage theme for any product or image.
+ * If the image has a black background -> black image container.
+ * If the image has a white background -> white image container.
+ * If the image has another background color -> matching container.
+ * NO GRADIENTS. The container and image blend without a visible rectangular seam.
  */
 export function getProductStageTheme(
   product?: Partial<Product> | null,
-  variant?: ProductColor | null
+  variant?: ProductColor | null,
+  imageSrc?: string
 ): StageTheme {
-  if (!product) {
+  const activeSrc = imageSrc || variant?.image || product?.image || "";
+  const normPath = normalizeAssetPath(activeSrc);
+
+  // 1. Direct lookup in precomputed asset map
+  if (normPath && ASSET_BACKGROUND_MAP[normPath]) {
+    const bg = ASSET_BACKGROUND_MAP[normPath];
+    const isDark = isColorDark(bg);
     return {
-      background: "linear-gradient(145deg, #ffffff 0%, #f3f4f6 100%)",
-      borderColor: "#e5e7eb",
-      isLight: true,
+      background: bg,
+      borderColor: isDark ? "#27272a" : "#e5e7eb",
+      textColor: isDark ? "#ffffff" : "#09090b",
+      isLight: !isDark,
     };
   }
 
+  // 2. Lookup in runtime detected background cache
+  if (activeSrc && imageBgCache.has(activeSrc)) {
+    const bg = imageBgCache.get(activeSrc)!;
+    const isDark = isColorDark(bg);
+    return {
+      background: bg,
+      borderColor: isDark ? "#27272a" : "#e5e7eb",
+      textColor: isDark ? "#ffffff" : "#09090b",
+      isLight: !isDark,
+    };
+  }
+
+  // 3. Fallback inference based on product/variant metadata
   const variantName = (variant?.name || "").toLowerCase();
   const hex = (variant?.hex || "").toLowerCase();
-  const prodName = (product.name || "").toLowerCase();
-  const dept = (product.department || "").toLowerCase();
+  const prodName = (product?.name || "").toLowerCase();
 
-  // 1. Dark or Black products: Require a sufficiently light, contrasting background
-  const isDarkProduct =
-    variantName.includes("black") ||
-    variantName.includes("midnight") ||
-    variantName.includes("obsidian") ||
-    variantName.includes("dark") ||
-    variantName.includes("noir") ||
-    variantName.includes("anthracite") ||
-    prodName.includes("black") ||
-    prodName.includes("midnight") ||
-    prodName.includes("noir") ||
-    hex === "#2b2b2d" ||
-    hex === "#1c1d22" ||
-    hex === "#1f2022" ||
-    hex === "#2e3033" ||
-    hex === "#000000";
+  const isBlackVariant =
+    (variantName.includes("black") || variantName.includes("midnight") || hex === "#1c1c1e" || hex === "#2b2b2d") &&
+    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
 
-  if (isDarkProduct) {
+  const isBurgundyVariant =
+    (variantName.includes("burgundy") || hex === "#5e2734") &&
+    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
+
+  const isGlacierVariant =
+    (variantName.includes("glacier") || hex === "#b6c4ce") &&
+    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
+
+  const isSilverVariant =
+    (variantName.includes("silver") || hex === "#e2e4e5") &&
+    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
+
+  if (isBlackVariant || isBurgundyVariant || isGlacierVariant || isSilverVariant) {
     return {
-      // Crisp, luminous light-platinum contrasting studio stage
-      background: "linear-gradient(145deg, #ffffff 0%, #edf0f4 100%)",
-      borderColor: "#dce1e8",
-      isLight: true,
+      background: "#000000",
+      borderColor: "#27272a",
+      textColor: "#ffffff",
+      isLight: false,
     };
   }
 
-  // 2. White, Silver, Glacier, and other light-coloured products:
-  // Must have enough contrast without looking awkward or washed out
-  const isGlacier = variantName.includes("glacier") || hex === "#b6c4ce";
-  if (isGlacier) {
-    return {
-      // Soft glacier-mist neutral with gentle slate-blue depth
-      background: "linear-gradient(145deg, #f0f4f8 0%, #dbe3eb 100%)",
-      borderColor: "#cbd6e2",
-      isLight: true,
-    };
-  }
-
-  const isSilver =
-    variantName.includes("silver") ||
-    variantName.includes("titanium natural") ||
-    variantName.includes("starlight") ||
-    variantName.includes("platinum") ||
-    hex === "#e2e4e5" ||
-    hex === "#d4d2cd" ||
-    hex === "#e3e4e6";
-
-  if (isSilver) {
-    return {
-      // Refined cool silver-grey neutral providing distinct edge contrast
-      background: "linear-gradient(145deg, #f5f6f8 0%, #dfe3e8 100%)",
-      borderColor: "#d0d5dc",
-      isLight: true,
-    };
-  }
-
-  const isWhite =
-    variantName.includes("white") ||
-    variantName.includes("cloud") ||
-    hex === "#ffffff" ||
-    hex === "#f5f5f7";
-
-  if (isWhite) {
-    return {
-      // Soft warm-pearl studio neutral
-      background: "linear-gradient(145deg, #fafafc 0%, #e6e8ec 100%)",
-      borderColor: "#d5d9df",
-      isLight: true,
-    };
-  }
-
-  // 3. Burgundy and deep wine products:
-  // Complementary neutral stone / cashmere background that complements the product
-  const isBurgundy =
-    variantName.includes("burgundy") ||
-    variantName.includes("wine") ||
-    variantName.includes("bordeaux") ||
-    variantName.includes("plum") ||
-    hex === "#5e2734";
-
-  if (isBurgundy) {
-    return {
-      // Warm cashmere / alabaster neutral complementing the deep burgundy luster
-      background: "linear-gradient(145deg, #faf8f6 0%, #ece6e1 100%)",
-      borderColor: "#dfd8d1",
-      isLight: true,
-    };
-  }
-
-  // 4. Gold / Champagne / Amber
-  if (
-    variantName.includes("gold") ||
-    variantName.includes("champagne") ||
-    variantName.includes("bronze") ||
-    variantName.includes("amber")
-  ) {
-    return {
-      background: "linear-gradient(145deg, #faf9f6 0%, #ede7dc 100%)",
-      borderColor: "#dfd7ca",
-      isLight: true,
-    };
-  }
-
-  // 5. Blue / Navy / Teal
-  if (variantName.includes("blue") || variantName.includes("navy") || variantName.includes("teal")) {
-    return {
-      background: "linear-gradient(145deg, #f4f7fa 0%, #e1e8ef 100%)",
-      borderColor: "#d0dce7",
-      isLight: true,
-    };
-  }
-
-  // 6. Department-level neutral palettes for products without specific color variants
-  if (dept.includes("fashion") || dept.includes("accessories")) {
-    return {
-      background: "linear-gradient(145deg, #fdfdfc 0%, #f4f2ec 100%)",
-      borderColor: "#e3e0d8",
-      isLight: true,
-    };
-  }
-
-  if (dept.includes("watches") || dept.includes("jewellery")) {
-    return {
-      background: "linear-gradient(145deg, #ffffff 0%, #f0f2f5 100%)",
-      borderColor: "#dfe3e8",
-      isLight: true,
-    };
-  }
-
-  if (dept.includes("perfume") || dept.includes("fragrance")) {
-    return {
-      background: "linear-gradient(145deg, #fdfbfa 0%, #f4eee9 100%)",
-      borderColor: "#e5ded7",
-      isLight: true,
-    };
-  }
-
-  if (dept.includes("makeup") || dept.includes("skincare")) {
-    return {
-      background: "linear-gradient(145deg, #fdfcfc 0%, #f3eeed 100%)",
-      borderColor: "#e4dbd9",
-      isLight: true,
-    };
-  }
-
-  // Default clean gallery neutral
+  // Default clean white studio container (matches catalogue photography)
   return {
-    background: "linear-gradient(145deg, #ffffff 0%, #f1f3f6 100%)",
-    borderColor: "#e2e5ea",
+    background: "#ffffff",
+    borderColor: "#e5e7eb",
+    textColor: "#09090b",
     isLight: true,
   };
 }
 
 /**
- * Client-side non-destructive presentation processor.
- * If an asset has a contiguous black/dark studio background (e.g. Apple banner shots),
- * this detects the dark outer boundary, keys it out to alpha in memory,
- * and centers the subject perfectly into a square canvas.
- * Original image assets on disk are NEVER touched or modified.
+ * Convenience helper to get the matching background for any image path throughout the app.
+ */
+export function getProductImageBackground(
+  imageSrc?: string,
+  product?: Partial<Product> | null
+): StageTheme {
+  return getProductStageTheme(product, null, imageSrc);
+}
+
+/**
+ * Checks if an image is dark
+ */
+export function isImageDark(imageSrc?: string): boolean {
+  const theme = getProductImageBackground(imageSrc);
+  return !theme.isLight;
+}
+
+/**
+ * Client-side non-destructive image processor.
+ * - Inspects the actual image background color.
+ * - Detects if an image has wide letterbox margins or an off-center subject (e.g. 2880x1520 Apple marketing banners).
+ * - Centers the phone/subject horizontally and vertically into a clean square canvas with ~85% height.
+ * - Fills the surrounding container canvas with the EXACT matching background color.
+ * - Completely eliminates the tiny/off-center appearance of iPhone 18 Pro, Pro Max & Duo.
+ * - Preserves 100% of the original image details, highlights, cameras, and aspect ratio without distortion or cropping.
+ * - Original files on disk are NEVER touched.
  */
 export function processProductImage(
   img: HTMLImageElement,
-  maxDimension = 960
+  maxDimension = 1024
 ): Promise<string> {
   return new Promise((resolve) => {
     try {
       const src = img.currentSrc || img.src;
+      if (!src) return resolve("");
+
       if (imageCache.has(src)) {
         return resolve(imageCache.get(src)!);
       }
@@ -207,126 +218,150 @@ export function processProductImage(
 
       const nw = img.naturalWidth;
       const nh = img.naturalHeight;
+      const normPath = normalizeAssetPath(src);
 
-      // Sample image dimensions to a high-fidelity working canvas
-      const scale = Math.min(1, maxDimension / Math.max(nw, nh));
-      const w = Math.round(nw * scale);
-      const h = Math.round(nh * scale);
+      // Check if this image has a precomputed bounding box (iPhone 18 Pro & Duo landscape banners)
+      const hasPresetBox = normPath in ASSET_BOUNDING_BOXES;
+      const aspect = nw / nh;
+      const isWideBanner = aspect > 1.25;
 
-      const canvas = document.createElement("canvas");
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext("2d", { willReadFrequently: true });
-      if (!ctx) return resolve(src);
-
-      ctx.drawImage(img, 0, 0, w, h);
-      const imgData = ctx.getImageData(0, 0, w, h);
-      const data = imgData.data;
-
-      // Check the 4 outer corners to detect if image has a dark studio backdrop
-      const corners = [
-        [0, 0],
-        [w - 1, 0],
-        [0, h - 1],
-        [w - 1, h - 1],
-      ];
-      let darkCorners = 0;
-      for (const [cx, cy] of corners) {
-        const idx = (cy * w + cx) * 4;
-        if (data[idx] < 22 && data[idx + 1] < 22 && data[idx + 2] < 22) {
-          darkCorners++;
-        }
-      }
-
-      // If outer corners are not dark studio backdrop, return the original untouched image
-      if (darkCorners < 3) {
+      // If it's already a square or portrait image and not a known off-center asset, keep untouched
+      if (!hasPresetBox && !isWideBanner) {
         imageCache.set(src, src);
         return resolve(src);
       }
 
-      // Fast BFS flood-fill to mask contiguous dark outer background
-      const isBg = new Uint8Array(w * h);
-      const queue = new Int32Array(w * h);
-      let head = 0;
-      let tail = 0;
-
-      for (let x = 0; x < w; x++) {
-        queue[tail++] = x;
-        queue[tail++] = (h - 1) * w + x;
-      }
-      for (let y = 1; y < h - 1; y++) {
-        queue[tail++] = y * w;
-        queue[tail++] = y * w + (w - 1);
-      }
-
-      while (head < tail) {
-        const idx = queue[head++];
-        if (isBg[idx]) continue;
-        const pIdx = idx * 4;
-        // Background threshold (< 24 intensity in all RGB channels)
-        if (data[pIdx] < 24 && data[pIdx + 1] < 24 && data[pIdx + 2] < 24) {
-          isBg[idx] = 1;
-          const x = idx % w;
-          const y = (idx / w) | 0;
-          if (x > 0 && !isBg[idx - 1]) queue[tail++] = idx - 1;
-          if (x < w - 1 && !isBg[idx + 1]) queue[tail++] = idx + 1;
-          if (y > 0 && !isBg[idx - w]) queue[tail++] = idx - w;
-          if (y < h - 1 && !isBg[idx + w]) queue[tail++] = idx + w;
-        }
-      }
-
-      // Find precise bounding box of the non-background product
-      let minX = w;
-      let maxX = 0;
-      let minY = h;
-      let maxY = 0;
-
-      for (let i = 0; i < w * h; i++) {
-        if (isBg[i]) {
-          data[i * 4 + 3] = 0; // Transparent background
+      // Sample edge color to match the image background
+      let r = 255, g = 255, b = 255;
+      if (normPath in ASSET_BACKGROUND_MAP) {
+        const mappedHex = ASSET_BACKGROUND_MAP[normPath];
+        if (mappedHex === "#000000") {
+          r = 0; g = 0; b = 0;
+        } else if (mappedHex === "#ffffff") {
+          r = 255; g = 255; b = 255;
         } else {
-          const x = i % w;
-          const y = (i / w) | 0;
-          if (x < minX) minX = x;
-          if (x > maxX) maxX = x;
-          if (y < minY) minY = y;
-          if (y > maxY) maxY = y;
+          const clean = mappedHex.replace("#", "");
+          r = parseInt(clean.slice(0, 2), 16) || 255;
+          g = parseInt(clean.slice(2, 4), 16) || 255;
+          b = parseInt(clean.slice(4, 6), 16) || 255;
+        }
+      } else {
+        const tempCanvas = document.createElement("canvas");
+        tempCanvas.width = nw;
+        tempCanvas.height = nh;
+        const tCtx = tempCanvas.getContext("2d", { willReadFrequently: true });
+        if (tCtx) {
+          tCtx.drawImage(img, 0, 0);
+          const corners = [
+            tCtx.getImageData(3, 3, 1, 1).data,
+            tCtx.getImageData(nw - 4, 3, 1, 1).data,
+            tCtx.getImageData(3, nh - 4, 1, 1).data,
+            tCtx.getImageData(nw - 4, nh - 4, 1, 1).data,
+          ];
+          let sr = 0, sg = 0, sb = 0;
+          for (const c of corners) { sr += c[0]; sg += c[1]; sb += c[2]; }
+          r = Math.round(sr / 4);
+          g = Math.round(sg / 4);
+          b = Math.round(sb / 4);
+          if (r < 25 && g < 25 && b < 25) { r = 0; g = 0; b = 0; }
+          else if (r > 240 && g > 240 && b > 240) { r = 255; g = 255; b = 255; }
         }
       }
 
-      // If no valid subject detected, fallback to original
-      if (maxX <= minX || maxY <= minY) {
-        imageCache.set(src, src);
-        return resolve(src);
+      const detectedBgHex = "#" + [r, g, b].map(x => x.toString(16).padStart(2, "0")).join("");
+      imageBgCache.set(src, detectedBgHex);
+
+      let cropMinX = 0, cropMinY = 0, cropMaxX = nw, cropMaxY = nh;
+
+      if (hasPresetBox) {
+        const [px1, py1, px2, py2] = ASSET_BOUNDING_BOXES[normPath];
+        // Scale preset coordinates if natural dimensions differ
+        const sx = nw / 2880;
+        const sy = nh / 1520;
+        cropMinX = Math.round(px1 * sx);
+        cropMinY = Math.round(py1 * sy);
+        cropMaxX = Math.round(px2 * sx);
+        cropMaxY = Math.round(py2 * sy);
+      } else {
+        // Dynamic subject boundary detection on downsampled grid
+        const gridW = 320;
+        const gridH = Math.round(320 * (nh / nw));
+        const gridC = document.createElement("canvas");
+        gridC.width = gridW;
+        gridC.height = gridH;
+        const gCtx = gridC.getContext("2d", { willReadFrequently: true });
+        if (!gCtx) {
+          imageCache.set(src, src);
+          return resolve(src);
+        }
+        gCtx.drawImage(img, 0, 0, gridW, gridH);
+        const gData = gCtx.getImageData(0, 0, gridW, gridH).data;
+
+        let minX = gridW, maxX = 0, minY = gridH, maxY = 0;
+        const diffThreshold = 28;
+        for (let y = 0; y < gridH; y++) {
+          for (let x = 0; x < gridW; x++) {
+            const idx = (y * gridW + x) * 4;
+            const diff = Math.abs(gData[idx] - r) + Math.abs(gData[idx + 1] - g) + Math.abs(gData[idx + 2] - b);
+            if (diff > diffThreshold) {
+              if (x < minX) minX = x;
+              if (x > maxX) maxX = x;
+              if (y < minY) minY = y;
+              if (y > maxY) maxY = y;
+            }
+          }
+        }
+
+        if (minX >= maxX || minY >= maxY) {
+          imageCache.set(src, src);
+          return resolve(src);
+        }
+
+        cropMinX = Math.floor(minX * (nw / gridW));
+        cropMaxX = Math.ceil(maxX * (nw / gridW));
+        cropMinY = Math.floor(minY * (nh / gridH));
+        cropMaxY = Math.ceil(maxY * (nh / gridH));
       }
 
-      ctx.putImageData(imgData, 0, 0);
+      const subjectW = Math.max(1, cropMaxX - cropMinX);
+      const subjectH = Math.max(1, cropMaxY - cropMinY);
 
-      // Crop and center the product into a square bounding canvas
-      const cropW = maxX - minX;
-      const cropH = maxY - minY;
-      const margin = Math.round(Math.max(cropW, cropH) * 0.04);
-      const size = Math.max(cropW, cropH) + margin * 2;
-
+      // Create target square canvas
+      const targetSize = Math.min(maxDimension, Math.max(subjectW, subjectH, 960));
       const outCanvas = document.createElement("canvas");
-      outCanvas.width = size;
-      outCanvas.height = size;
+      outCanvas.width = targetSize;
+      outCanvas.height = targetSize;
       const outCtx = outCanvas.getContext("2d");
       if (!outCtx) {
         imageCache.set(src, src);
         return resolve(src);
       }
 
-      const offsetX = Math.round((size - cropW) / 2);
-      const offsetY = Math.round((size - cropH) / 2);
-      outCtx.drawImage(canvas, minX, minY, cropW, cropH, offsetX, offsetY, cropW, cropH);
+      // Fill with EXACT matching solid background color
+      outCtx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+      outCtx.fillRect(0, 0, targetSize, targetSize);
 
-      const processedUrl = outCanvas.toDataURL("image/webp", 0.94);
-      imageCache.set(src, processedUrl);
-      resolve(processedUrl);
+      // Scale subject so its largest dimension occupies ~85% of target frame (leaving ~7.5% safety margin on all sides)
+      const targetScale = (targetSize * 0.85) / Math.max(subjectW, subjectH);
+      const dw = Math.round(subjectW * targetScale);
+      const dh = Math.round(subjectH * targetScale);
+      const dx = Math.round((targetSize - dw) / 2);
+      const dy = Math.round((targetSize - dh) / 2);
+
+      outCtx.imageSmoothingEnabled = true;
+      outCtx.imageSmoothingQuality = "high";
+      outCtx.drawImage(
+        img,
+        cropMinX, cropMinY, subjectW, subjectH,
+        dx, dy, dw, dh
+      );
+
+      const mimeType = (r === 0 && g === 0 && b === 0) || (r === 255 && g === 255 && b === 255) ? "image/jpeg" : "image/png";
+      const processedDataUrl = outCanvas.toDataURL(mimeType, 0.92);
+      imageCache.set(src, processedDataUrl);
+      return resolve(processedDataUrl);
     } catch {
-      // In case of any browser security or canvas errors, safely fallback to untouched source
-      resolve(img.currentSrc || img.src);
+      return resolve(img.currentSrc || img.src);
     }
   });
 }

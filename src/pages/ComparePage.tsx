@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { products } from "@/data/products";
+import ProductImage from "@/components/ProductImage";
+import { getProductImageBackground } from "@/lib/productPresentation";
 import { useCart } from "@/context/CartContext";
 import { Check, X, Plus, ArrowRight, ShoppingBag, Search, Sparkles } from "lucide-react";
 import Reveal from "@/components/Reveal";
@@ -176,7 +178,7 @@ const ComparePage = () => {
                 {selected.map((p) => (
                   <div key={p.id} className="p-4 space-y-3">
                     <div className="flex items-center gap-3">
-                      <img src={p.image} alt={p.name} className="w-12 h-12 object-contain bg-secondary/30 rounded-lg p-1" />
+                      <div className="w-12 h-12 rounded-lg p-1 border flex items-center justify-center overflow-hidden shrink-0" style={{ background: getProductImageBackground(p.image, p).background, borderColor: getProductImageBackground(p.image, p).borderColor }}><ProductImage src={p.image} alt={p.name} width={48} height={48} className="w-full h-full object-contain" /></div>
                       <div>
                         <p className="text-xs font-bold text-foreground">{p.name}</p>
                         <p className="text-[11px] text-muted-foreground">{p.price !== null ? `$${p.price}` : "Price Upon Inquiry"}</p>

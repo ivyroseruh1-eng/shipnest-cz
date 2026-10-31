@@ -25,7 +25,7 @@ import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
 import ProductImage from "@/components/ProductImage";
 import { getProductReviews } from "@/data/reviews";
-import { getProductStageTheme } from "@/lib/productPresentation";
+import { getProductStageTheme, getProductImageBackground } from "@/lib/productPresentation";
 import { toast } from "sonner";
 
 const ProductPage = () => {
@@ -52,10 +52,6 @@ const ProductPage = () => {
 
   // Gallery array collation (called unconditionally before early returns)
   const selectedVariant = product?.colors?.[selectedColor];
-  const stageTheme = useMemo(
-    () => getProductStageTheme(product, selectedVariant),
-    [product, selectedVariant]
-  );
   const galleryList = useMemo(() => {
     if (!product) return [];
     const list: string[] = [];
@@ -68,6 +64,12 @@ const ProductPage = () => {
     }
     return list.length > 0 ? list : [product.image];
   }, [product, selectedVariant]);
+
+  const activeImage = galleryList[activeImageIndex] || galleryList[0] || product?.image || "";
+  const stageTheme = useMemo(
+    () => getProductStageTheme(product, selectedVariant, activeImage),
+    [product, selectedVariant, activeImage]
+  );
 
   if (!product) {
     return (
@@ -86,7 +88,6 @@ const ProductPage = () => {
     );
   }
 
-  const activeImage = galleryList[activeImageIndex] || galleryList[0] || product.image;
 
   // Safe pricing calculation (protecting null prices)
   const hasPrice = product.price !== null && product.price !== undefined;
@@ -203,31 +204,38 @@ const ProductPage = () => {
               {/* Thumbnail Strip (Vertical on SM+, wrapped grid on Mobile — Zero horizontal scroll) */}
               {galleryList.length > 1 && (
                 <div className="flex sm:flex-col gap-2.5 w-full sm:w-20 shrink-0 overflow-x-hidden flex-wrap sm:flex-nowrap">
-                  {galleryList.map((imgUrl, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveImageIndex(idx)}
-                      style={{ background: stageTheme.background }}
-                      className={`relative w-14 h-14 sm:w-20 sm:h-20 rounded-xl overflow-hidden border p-1.5 transition-all ${
-                        activeImageIndex === idx
-                          ? "border-foreground ring-2 ring-foreground/20 shadow-xs"
-                          : "border-border hover:border-foreground/40 opacity-70 hover:opacity-100"
-                      }`}
-                      aria-label={`View angle ${idx + 1}`}
-                    >
-                      <img
-                        src={imgUrl}
-                        alt=""
-                        className="w-full h-full object-contain"
-                      />
-                    </button>
-                  ))}
+                  {galleryList.map((imgUrl, idx) => {
+                    const thumbTheme = getProductImageBackground(imgUrl);
+                    const isSelected = activeImageIndex === idx;
+                    return (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveImageIndex(idx)}
+                        style={{ background: thumbTheme.background, borderColor: isSelected ? (thumbTheme.isLight ? "#09090b" : "#ffffff") : thumbTheme.borderColor }}
+                        className={`relative w-14 h-14 sm:w-20 sm:h-20 rounded-xl overflow-hidden border p-1 transition-all ${
+                          isSelected
+                            ? "ring-2 ring-foreground/20 shadow-xs opacity-100"
+                            : "hover:border-foreground/40 opacity-70 hover:opacity-100"
+                        }`}
+                        aria-label={`View angle ${idx + 1}`}
+                      >
+                        <ProductImage
+                          src={imgUrl}
+                          alt=""
+                          width={80}
+                          height={80}
+                          stageTheme={thumbTheme}
+                          className="w-full h-full object-contain"
+                        />
+                      </button>
+                    );
+                  })}
                 </div>
               )}
 
               {/* Main Stage Image Viewer */}
               <div
-                className="flex-1 w-full border rounded-3xl p-6 sm:p-10 flex items-center justify-center aspect-square relative overflow-hidden group transition-all duration-300 shadow-xs"
+                className="flex-1 w-full border rounded-3xl p-4 sm:p-6 lg:p-8 flex items-center justify-center aspect-square relative overflow-hidden group transition-all duration-300 shadow-xs"
                 style={{
                   background: stageTheme.background,
                   borderColor: stageTheme.borderColor,
@@ -237,7 +245,9 @@ const ProductPage = () => {
                   <span className={`absolute top-5 left-5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${
                     product.badge === "LUXURY"
                       ? "bg-amber-500/10 text-amber-700 dark:text-amber-400 border border-amber-500/20"
-                      : "bg-primary/10 text-primary border border-primary/20"
+                      : stageTheme.isLight
+                        ? "bg-primary/10 text-primary border border-primary/20"
+                        : "bg-white/10 text-white border border-white/20"
                   }`}>
                     {product.badge}
                   </span>
@@ -246,23 +256,31 @@ const ProductPage = () => {
                 <div className="absolute top-5 right-5 flex items-center gap-2 z-10">
                   <button
                     onClick={() => setZoomOpen(true)}
-                    className="p-2.5 rounded-full bg-white/90 border border-border shadow-xs hover:scale-105 transition-all text-muted-foreground hover:text-foreground"
+                    className={`p-2.5 rounded-full border shadow-xs hover:scale-105 transition-all ${
+                      stageTheme.isLight
+                        ? "bg-white/90 border-border text-muted-foreground hover:text-foreground"
+                        : "bg-zinc-900/90 border-zinc-700 text-zinc-300 hover:text-white"
+                    }`}
                     aria-label="Zoom image"
                   >
                     <ZoomIn className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => toggleWishlist(product.id)}
-                    className="p-2.5 rounded-full bg-white/90 border border-border shadow-xs hover:scale-105 transition-all"
+                    className={`p-2.5 rounded-full border shadow-xs hover:scale-105 transition-all ${
+                      stageTheme.isLight
+                        ? "bg-white/90 border-border"
+                        : "bg-zinc-900/90 border-zinc-700"
+                    }`}
                     aria-label={wish ? "Remove from wishlist" : "Add to wishlist"}
                   >
-                    <Heart className={`w-4 h-4 ${wish ? "fill-destructive text-destructive" : "text-muted-foreground"}`} />
+                    <Heart className={`w-4 h-4 ${wish ? "fill-destructive text-destructive" : stageTheme.isLight ? "text-muted-foreground" : "text-zinc-300"}`} />
                   </button>
                 </div>
 
                 {/* Main Image with Cascading Fallback */}
                 <div
-                  className="max-h-[380px] sm:max-h-[440px] w-full h-full flex items-center justify-center cursor-zoom-in"
+                  className="w-full h-full flex items-center justify-center cursor-zoom-in"
                   onClick={() => setZoomOpen(true)}
                 >
                   <ProductImage
@@ -274,9 +292,9 @@ const ProductPage = () => {
                     stageTheme={stageTheme}
                     priority={true}
                     loading="eager"
-                    width={800}
-                    height={800}
-                    className="max-h-[380px] sm:max-h-[440px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                    width={1000}
+                    height={1000}
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
 
@@ -285,14 +303,22 @@ const ProductPage = () => {
                   <div className="absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
                     <button
                       onClick={prevImage}
-                      className="pointer-events-auto w-9 h-9 rounded-full bg-white/90 border border-border shadow-sm flex items-center justify-center text-foreground hover:scale-105 transition-all"
+                      className={`pointer-events-auto w-9 h-9 rounded-full border shadow-sm flex items-center justify-center hover:scale-105 transition-all ${
+                        stageTheme.isLight
+                          ? "bg-white/90 border-border text-foreground hover:bg-white"
+                          : "bg-zinc-900/90 border-zinc-700 text-white hover:bg-zinc-800"
+                      }`}
                       aria-label="Previous image"
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
                     <button
                       onClick={nextImage}
-                      className="pointer-events-auto w-9 h-9 rounded-full bg-white/90 border border-border shadow-sm flex items-center justify-center text-foreground hover:scale-105 transition-all"
+                      className={`pointer-events-auto w-9 h-9 rounded-full border shadow-sm flex items-center justify-center hover:scale-105 transition-all ${
+                        stageTheme.isLight
+                          ? "bg-white/90 border-border text-foreground hover:bg-white"
+                          : "bg-zinc-900/90 border-zinc-700 text-white hover:bg-zinc-800"
+                      }`}
                       aria-label="Next image"
                     >
                       <ChevronRight className="w-4 h-4" />
@@ -639,19 +665,26 @@ const ProductPage = () => {
 
       {/* 5. Fullscreen Image Lightbox Modal */}
       {zoomOpen && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4 cursor-pointer"
+          onClick={() => setZoomOpen(false)}
+        >
           <button
             onClick={() => setZoomOpen(false)}
-            className="absolute top-5 right-5 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+            className="absolute top-5 right-5 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
             aria-label="Close lightbox"
           >
             <X className="w-6 h-6" />
           </button>
-          <img
-            src={activeImage}
-            alt={product.name}
-            className="max-w-full max-h-[90vh] object-contain rounded-xl"
-          />
+          <div className="max-w-[90vw] max-h-[85vh] aspect-square flex items-center justify-center" onClick={e => e.stopPropagation()}>
+            <ProductImage
+              src={activeImage}
+              alt={product.name}
+              width={1200}
+              height={1200}
+              className="max-w-full max-h-[85vh] object-contain rounded-xl"
+            />
+          </div>
         </div>
       )}
     </div>
