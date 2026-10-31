@@ -9,7 +9,7 @@ import { LocationProvider } from "@/context/LocationContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
-import ShoppingAssistant from "@/components/ai/ShoppingAssistant";
+import ShoppingAssistantLauncher from "@/components/ai/ShoppingAssistantLauncher";
 import { useEffect, lazy, Suspense } from "react";
 
 // Route-based code splitting for ultra-fast initial bundle delivery
@@ -92,7 +92,7 @@ const App = () => (
                 </Suspense>
                 <Footer />
                 <CookieConsent />
-                <ShoppingAssistant />
+                <ShoppingAssistantLauncher />
               </BrowserRouter>
             </OrderProvider>
           </CartProvider>

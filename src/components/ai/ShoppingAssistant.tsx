@@ -12,13 +12,23 @@ const INITIAL: Msg = {
   content: "Welcome to ShipNest. I'm Nest — your assistant for our Flagship Technology and 600-item Luxury Catalogue. How may I assist your search, product specifications, or order tracking today?",
 };
 
-const ShoppingAssistant = () => {
-  const [open, setOpen] = useState(false);
+interface ShoppingAssistantProps {
+  initialOpen?: boolean;
+  onClose?: () => void;
+}
+
+const ShoppingAssistant = ({ initialOpen = false, onClose }: ShoppingAssistantProps) => {
+  const [open, setOpen] = useState(initialOpen);
   const [messages, setMessages] = useState<Msg[]>([INITIAL]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { location } = useLocation();
+
+  const handleClose = () => {
+    setOpen(false);
+    if (onClose) onClose();
+  };
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -121,7 +131,7 @@ const ShoppingAssistant = () => {
                 <p className="text-[11px] text-background/60 leading-tight">ShipNest AI assistant</p>
               </div>
             </div>
-            <button onClick={() => setOpen(false)} className="p-1 hover:opacity-70" aria-label="Close">
+            <button onClick={handleClose} className="p-1 hover:opacity-70" aria-label="Close">
               <X className="w-4 h-4" />
             </button>
           </div>

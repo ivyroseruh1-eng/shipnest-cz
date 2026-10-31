@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Search, ShoppingBag, Menu, X, User, Heart, Truck, GitCompare, ChevronDown, LogOut, Package, ShieldCheck, Globe } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
-import { products } from "@/data/products";
+import { homepageProducts } from "@/data/homepageData";
 import Logo from "@/components/brand/Logo";
 import LocationChip from "@/components/location/LocationChip";
 
@@ -38,6 +38,7 @@ const Navbar = () => {
   const [announcementIndex, setAnnouncementIndex] = useState(0);
   const [megaOpen, setMegaOpen] = useState<string | null>(null);
   const [accountOpen, setAccountOpen] = useState(false);
+  const [searchPool, setSearchPool] = useState(homepageProducts);
   const closeTimer = useRef<number | null>(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -56,8 +57,17 @@ const Navbar = () => {
     setMegaOpen(null);
   }, [location.pathname]);
 
+  // Dynamically load full catalogue only when user opens search modal
+  useEffect(() => {
+    if (searchOpen) {
+      import("@/data/products").then((m) => {
+        setSearchPool(m.products);
+      });
+    }
+  }, [searchOpen]);
+
   const filtered = searchQuery.trim().length > 1
-    ? products.filter(p =>
+    ? searchPool.filter(p =>
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (p.draftListingId && p.draftListingId.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -76,11 +86,11 @@ const Navbar = () => {
 
   const megaProducts = (link: MegaItem) => {
     if (!link.mega) return [];
-    let pool = products;
+    let pool = homepageProducts;
     if (link.mega.department) pool = pool.filter(p => p.department === link.mega!.department);
     if (link.mega.brand) pool = pool.filter(p => p.brand === link.mega!.brand);
     if (link.mega.category) pool = pool.filter(p => p.category === link.mega!.category);
-    if (!link.mega.department && !link.mega.brand && !link.mega.category) pool = products.filter(p => p.badge);
+    if (!link.mega.department && !link.mega.brand && !link.mega.category) pool = homepageProducts.filter(p => p.badge);
     return pool.slice(0, 4);
   };
 

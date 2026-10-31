@@ -69,6 +69,9 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
             alt={product.name}
             department={product.department}
             category={product.category}
+            loading="lazy"
+            width={400}
+            height={400}
             className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
           />
         </div>

@@ -259,6 +259,10 @@ const ProductPage = () => {
                     alt={product.name}
                     department={product.department}
                     category={product.category}
+                    priority={true}
+                    loading="eager"
+                    width={800}
+                    height={800}
                     className="max-h-[380px] sm:max-h-[440px] w-auto object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
