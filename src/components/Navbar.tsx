@@ -8,22 +8,23 @@ import Logo from "@/components/brand/Logo";
 import LocationChip from "@/components/location/LocationChip";
 
 const announcements = [
-  "Free insured express delivery worldwide · Dispatches from Prague hub within 24h",
-  "Official authorized electronics distributor · 2-year warranty on all devices",
-  "New 2025/2026 flagship arrivals in stock · iPhone 17/18 Pro & Galaxy S26 Ultra",
+  "Direct European hub dispatch from Prague · Worldwide insured express air shipping",
+  "Official manufacturer warranty on electronics · Verified authenticity on all luxury items",
+  "Apple iPhone 18 Pro lineup & certified luxury collections available now",
 ];
 
 type MegaItem = {
   label: string;
   to: string;
-  mega?: { brand?: string; category?: string; tagline: string };
+  mega?: { brand?: string; category?: string; department?: string; tagline: string };
 };
 
 const navLinks: MegaItem[] = [
-  { label: "Shop", to: "/shop", mega: { tagline: "Browse our complete catalog of authentic flagships." } },
-  { label: "iPhone", to: "/shop?category=iPhone+17", mega: { brand: "Apple", tagline: "A19 & A20 Pro architecture. Super Retina XDR." } },
-  { label: "Galaxy", to: "/shop?brand=Samsung", mega: { brand: "Samsung", tagline: "Galaxy AI flagships and Ultra foldables." } },
-  { label: "Pixel", to: "/shop?brand=Google", mega: { brand: "Google", tagline: "Engineered by Google. Pro computational photography." } },
+  { label: "Shop", to: "/shop", mega: { tagline: "Browse our complete catalogue of flagships and luxury items." } },
+  { label: "iPhone", to: "/shop?brand=Apple", mega: { brand: "Apple", tagline: "iPhone 18 Pro, iPhone Duo and Apple Silicon hardware." } },
+  { label: "Luxury", to: "/shop?department=Designer+Fashion+%26+Accessories", mega: { department: "Designer Fashion & Accessories", tagline: "Iconic leather goods and accessories from premier fashion houses." } },
+  { label: "Fragrance", to: "/shop?department=Perfumes+%26+Fragrance", mega: { department: "Perfumes & Fragrance", tagline: "Artisanal scents from Creed, Le Labo, Byredo and MFK." } },
+  { label: "Timepieces", to: "/shop?department=Watches+%26+Jewellery", mega: { department: "Watches & Jewellery", tagline: "Master Swiss horology and fine jewellery." } },
   { label: "Compare", to: "/compare" },
   { label: "Track Shipment", to: "/track" },
 ];
@@ -59,6 +60,7 @@ const Navbar = () => {
     ? products.filter(p =>
         p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         p.brand.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (p.draftListingId && p.draftListingId.toLowerCase().includes(searchQuery.toLowerCase())) ||
         p.category.toLowerCase().includes(searchQuery.toLowerCase())
       ).slice(0, 6)
     : [];
@@ -75,9 +77,10 @@ const Navbar = () => {
   const megaProducts = (link: MegaItem) => {
     if (!link.mega) return [];
     let pool = products;
+    if (link.mega.department) pool = pool.filter(p => p.department === link.mega!.department);
     if (link.mega.brand) pool = pool.filter(p => p.brand === link.mega!.brand);
     if (link.mega.category) pool = pool.filter(p => p.category === link.mega!.category);
-    if (!link.mega.brand && !link.mega.category) pool = products.filter(p => p.badge);
+    if (!link.mega.department && !link.mega.brand && !link.mega.category) pool = products.filter(p => p.badge);
     return pool.slice(0, 4);
   };
 
@@ -251,7 +254,7 @@ const Navbar = () => {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search devices, chips, cameras, brands..."
+                  placeholder="Search flagship devices, luxury collections, model names, SNL IDs..."
                   autoFocus
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
@@ -343,7 +346,9 @@ const Navbar = () => {
                       </span>
                     )}
                     <p className="text-[13px] font-semibold text-foreground leading-tight">{p.name}</p>
-                    <p className="text-[12px] text-muted-foreground mt-1 font-medium">From ${p.price}</p>
+                    <p className="text-[12px] text-muted-foreground mt-1 font-medium">
+                      {p.price !== null ? `From $${p.price}` : "Price on Request"}
+                    </p>
                   </Link>
                 ))}
               </div>

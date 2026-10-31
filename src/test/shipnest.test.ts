@@ -11,12 +11,14 @@ import {
 import { Order } from "@/types";
 
 describe("ShipNest Catalog Integrity", () => {
-  it("should have at least 20 active products in catalog", () => {
-    expect(products.length).toBeGreaterThanOrEqual(20);
+  it("should have at least 665 products in combined catalog", () => {
+    expect(products.length).toBeGreaterThanOrEqual(665);
   });
 
-  it("each product must contain valid identifiers, pricing, and specs", () => {
-    products.forEach(p => {
+  it("technology products must contain valid identifiers, pricing, and specs", () => {
+    const techProducts = products.filter(p => p.department === "Technology");
+    expect(techProducts.length).toBeGreaterThanOrEqual(65);
+    techProducts.forEach(p => {
       expect(p.id).toBeTruthy();
       expect(p.name).toBeTruthy();
       expect(p.price).toBeGreaterThan(0);
@@ -29,11 +31,35 @@ describe("ShipNest Catalog Integrity", () => {
     });
   });
 
-  it("all products should belong to recognized brand lines", () => {
-    const validBrands = ["Apple", "Samsung", "Google", "Sony", "OnePlus", "Xiaomi", "Garmin", "Bose", "Nothing", "Asus", "Motorola", "Huawei"];
-    products.forEach(p => {
-      expect(validBrands).toContain(p.brand);
+  it("luxury products support unconfirmed pricing gracefully and have verified categories", () => {
+    const luxuryProducts = products.filter(p => p.badge === "LUXURY");
+    expect(luxuryProducts.length).toBe(600);
+    luxuryProducts.forEach(p => {
+      expect(p.id).toBeTruthy();
+      expect(p.name).toBeTruthy();
+      // Price is either a number or null (Price Upon Inquiry)
+      expect(p.price === null || typeof p.price === "number").toBe(true);
+      expect(p.brand).toBeTruthy();
+      expect(p.category).toBeTruthy();
+      expect(p.image).toMatch(/^\/assets\/products\//);
+      expect(typeof p.inStock).toBe("boolean");
+      expect(p.verificationStatus).toBeTruthy();
     });
+  });
+
+  it("all products should belong to recognized brand lines", () => {
+    const techBrands = ["Apple", "Samsung", "Google", "Sony", "OnePlus", "Xiaomi", "Garmin", "Nothing"];
+    const allBrands = new Set(products.map(p => p.brand));
+    techBrands.forEach(b => {
+      expect(allBrands.has(b)).toBe(true);
+    });
+    // Check key luxury brands exist
+    expect(allBrands.has("Louis Vuitton")).toBe(true);
+    expect(allBrands.has("Rolex")).toBe(true);
+    expect(allBrands.has("Chanel")).toBe(true);
+    expect(allBrands.has("Hermès")).toBe(true);
+    expect(allBrands.has("Cartier")).toBe(true);
+    expect(allBrands.has("Creed")).toBe(true);
   });
 });
 

@@ -187,7 +187,7 @@ const CheckoutPage = () => {
         name: i.product.name,
         brand: i.product.brand,
         image: i.product.image,
-        price: i.product.price,
+        price: i.product.price || 0,
         qty: i.qty,
       })),
       subtotal,
@@ -376,7 +376,7 @@ const CheckoutPage = () => {
                       <p className="text-[11px] text-muted-foreground">Qty: {item.qty} · Sealed Box</p>
                     </div>
                     <span className="text-[14px] font-semibold text-foreground tabular-nums">
-                      ${(item.product.price * item.qty).toFixed(2)}
+                      {item.product.price !== null ? `$${(item.product.price * item.qty).toFixed(2)}` : "Upon Inquiry"}
                     </span>
                   </div>
                 ))}

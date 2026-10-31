@@ -161,7 +161,7 @@ const ComparePage = () => {
           </div>
         </Reveal>
 
-        {/* Detailed Spec Comparison Table */}
+        {/* Detailed Spec Comparison Table / Mobile Layout */}
         {selected.length > 0 && (
           <Reveal>
             <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-xs">
@@ -170,7 +170,32 @@ const ComparePage = () => {
                   Technical Specifications Comparison
                 </h2>
               </div>
-              <div className="overflow-x-auto">
+
+              {/* Mobile View: Stacked per product (Zero horizontal scrolling) */}
+              <div className="block sm:hidden divide-y divide-border">
+                {selected.map((p) => (
+                  <div key={p.id} className="p-4 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <img src={p.image} alt={p.name} className="w-12 h-12 object-contain bg-secondary/30 rounded-lg p-1" />
+                      <div>
+                        <p className="text-xs font-bold text-foreground">{p.name}</p>
+                        <p className="text-[11px] text-muted-foreground">{p.price !== null ? `$${p.price}` : "Price Upon Inquiry"}</p>
+                      </div>
+                    </div>
+                    <div className="space-y-1.5 pt-2">
+                      {rows.map((row) => (
+                        <div key={row.label} className="flex justify-between text-xs py-1 border-b border-border/40">
+                          <span className="text-muted-foreground">{row.label}</span>
+                          <span className="font-medium text-foreground text-right">{String(row.get(p))}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Desktop / Tablet View */}
+              <div className="hidden sm:block">
                 <table className="w-full text-xs">
                   <tbody className="divide-y divide-border">
                     {rows.map((row, idx) => (
@@ -191,7 +216,7 @@ const ComparePage = () => {
                                 </span>
                               )
                             ) : (
-                              <span className="text-foreground font-medium">{row.get(p)}</span>
+                              <span className="text-foreground font-medium">{String(row.get(p))}</span>
                             )}
                           </td>
                         ))}

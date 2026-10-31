@@ -6,18 +6,32 @@ export interface ColorVariant {
 
 export interface Product {
   id: string;
+  draftListingId?: string;
   name: string;
   brand: string;
+  department?: string;
   category: string;
-  price: number;
-  originalPrice: number;
+  subcategory?: string;
+  productType?: string;
+  price: number | null;
+  originalPrice?: number | null;
+  currency?: string;
   image: string;
+  gallery?: string[];
   fallbackImages: string[];
   rating: number;
   reviews: number;
   badge?: string;
   specs: string[];
   inStock: boolean;
+  stockStatus?: string;
+  supplierStatus?: string;
+  authenticityEvidence?: string;
+  verificationStatus?: string;
+  merchandisingNotes?: string;
+  marketFocus?: string;
+  variantsToVerify?: string;
+  description?: string;
   colors?: ColorVariant[];
 }
 

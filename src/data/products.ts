@@ -1,24 +1,94 @@
 import { Product } from "@/types";
+import { luxuryProducts } from "@/data/luxuryProducts";
 
-export const products: Product[] = [
-  // Latest 2026 launches
+export const technologyProducts: Product[] = [
+  // Latest Apple 2026 Launches with Verified Official Apple Assets
   {
-    id: "iphone-18-pro-max", name: "iPhone 18 Pro Max", brand: "Apple", category: "iPhone 18",
-    price: 1299, originalPrice: 1399, image: "/assets/products/apple-iphone18-pro-max.jpg", fallbackImages: [],
-    rating: 4.9, reviews: 412, badge: "NEW", inStock: true,
-    specs: ["6.9\" Super Retina XDR, 120Hz", "A20 Pro chip (2nm)", "48MP Fusion camera with variable aperture", "48MP 4x Telephoto", "Up to 45 hrs video playback", "Up to 2TB storage"],
+    id: "iphone-18-pro-max",
+    name: "iPhone 18 Pro Max",
+    brand: "Apple",
+    category: "iPhone 18",
+    department: "Technology",
+    price: 1299,
+    originalPrice: 1399,
+    image: "/assets/products/apple/iphone-18-pro-hero.jpg",
+    gallery: [
+      "/assets/products/apple/iphone-18-pro-burgundy.jpg",
+      "/assets/products/apple/iphone-18-pro-glacier.jpg",
+      "/assets/products/apple/iphone-18-pro-silver.jpg",
+      "/assets/products/apple/iphone-18-pro-black.jpg",
+      "/assets/products/apple/iphone-18-pro-hero.jpg",
+      "/assets/products/apple/iphone-18-pro-size.jpg",
+    ],
+    fallbackImages: ["/assets/products/apple-iphone18-pro-max.jpg"],
+    rating: 4.9,
+    reviews: 412,
+    badge: "NEW",
+    inStock: true,
+    specs: ["6.9\" Super Retina XDR OLED, 120Hz ProMotion", "A20 Pro chip (2nm architecture)", "48MP Fusion camera with mechanical variable aperture", "48MP 5x Tetraprism Telephoto", "Next-gen titanium unibody enclosure", "Up to 35 hours video playback"],
+    colors: [
+      { name: "Burgundy", hex: "#5E2734", image: "/assets/products/apple/iphone-18-pro-burgundy.jpg" },
+      { name: "Glacier", hex: "#B6C4CE", image: "/assets/products/apple/iphone-18-pro-glacier.jpg" },
+      { name: "Silver", hex: "#E2E4E5", image: "/assets/products/apple/iphone-18-pro-silver.jpg" },
+      { name: "Black", hex: "#2B2B2D", image: "/assets/products/apple/iphone-18-pro-black.jpg" },
+    ],
   },
   {
-    id: "iphone-18-pro", name: "iPhone 18 Pro", brand: "Apple", category: "iPhone 18",
-    price: 1199, originalPrice: 1299, image: "/assets/products/apple-iphone18-pro.jpg", fallbackImages: [],
-    rating: 4.8, reviews: 356, badge: "NEW", inStock: true,
-    specs: ["6.3\" Super Retina XDR, 120Hz", "A20 Pro chip (2nm)", "48MP variable-aperture main camera", "Aluminum unibody, Ceramic Shield", "Siri AI on iOS 27", "Up to 1TB storage"],
+    id: "iphone-18-pro",
+    name: "iPhone 18 Pro",
+    brand: "Apple",
+    category: "iPhone 18",
+    department: "Technology",
+    price: 1199,
+    originalPrice: 1299,
+    image: "/assets/products/apple/iphone-18-pro-burgundy.jpg",
+    gallery: [
+      "/assets/products/apple/iphone-18-pro-burgundy.jpg",
+      "/assets/products/apple/iphone-18-pro-glacier.jpg",
+      "/assets/products/apple/iphone-18-pro-silver.jpg",
+      "/assets/products/apple/iphone-18-pro-black.jpg",
+      "/assets/products/apple/iphone-18-pro-hero.jpg",
+      "/assets/products/apple/iphone-18-pro-size.jpg",
+    ],
+    fallbackImages: ["/assets/products/apple-iphone18-pro.jpg"],
+    rating: 4.8,
+    reviews: 356,
+    badge: "NEW",
+    inStock: true,
+    specs: ["6.3\" Super Retina XDR OLED, 120Hz ProMotion", "A20 Pro chip (2nm architecture)", "48MP Fusion camera with variable aperture", "Compact Pro titanium chassis", "Apple Intelligence on iOS", "Up to 30 hours video playback"],
+    colors: [
+      { name: "Burgundy", hex: "#5E2734", image: "/assets/products/apple/iphone-18-pro-burgundy.jpg" },
+      { name: "Glacier", hex: "#B6C4CE", image: "/assets/products/apple/iphone-18-pro-glacier.jpg" },
+      { name: "Silver", hex: "#E2E4E5", image: "/assets/products/apple/iphone-18-pro-silver.jpg" },
+      { name: "Black", hex: "#2B2B2D", image: "/assets/products/apple/iphone-18-pro-black.jpg" },
+    ],
   },
   {
-    id: "iphone-duo", name: "iPhone Duo", brand: "Apple", category: "iPhone 18",
-    price: 2199, originalPrice: 2399, image: "/assets/products/apple-iphone-duo.jpg", fallbackImages: [],
-    rating: 4.7, reviews: 128, badge: "NEW", inStock: true,
-    specs: ["Apple's first foldable iPhone", "Inner foldable OLED display", "A20 Pro chip", "Titanium hinge", "48MP dual camera", "iOS 27"],
+    id: "iphone-duo",
+    name: "iPhone Duo",
+    brand: "Apple",
+    category: "iPhone 18",
+    department: "Technology",
+    price: 2199,
+    originalPrice: 2399,
+    image: "/assets/products/apple/iphone-duo-display.jpg",
+    gallery: [
+      "/assets/products/apple/iphone-duo-display.jpg",
+      "/assets/products/apple/iphone-duo-foldable.jpg",
+      "/assets/products/apple/iphone-duo-closed.jpg",
+      "/assets/products/apple/iphone-duo-landscape.jpg",
+      "/assets/products/apple/iphone-duo-laptop.jpg",
+    ],
+    fallbackImages: ["/assets/products/apple-iphone-duo.jpg"],
+    rating: 4.7,
+    reviews: 128,
+    badge: "NEW",
+    inStock: true,
+    specs: ["Apple's revolutionary folding dual-display architecture", "Inner foldable OLED display with zero-crease titanium hinge", "A20 Pro chip with Apple Intelligence", "Continuity laptop, tent, and landscape modes", "Dual 48MP Pro computational camera system"],
+    colors: [
+      { name: "Space Black", hex: "#1C1C1E", image: "/assets/products/apple/iphone-duo-display.jpg" },
+      { name: "Star White", hex: "#F2F1EC", image: "/assets/products/apple/iphone-duo-closed.jpg" },
+    ],
   },
   {
     id: "galaxy-s26-ultra", name: "Galaxy S26 Ultra", brand: "Samsung", category: "Galaxy S",
@@ -108,14 +178,19 @@ export const products: Product[] = [
     name: "iPhone 17",
     brand: "Apple",
     category: "iPhone 17",
+    department: "Technology",
     price: 899,
     originalPrice: 999,
-    image: "/assets/products/iphone-17-lavender.jpg",
-    fallbackImages: [],
+    image: "/assets/products/apple/iphone-17.jpg",
+    gallery: [
+      "/assets/products/apple/iphone-17.jpg",
+      "/assets/products/iphone-17-lavender.jpg",
+    ],
+    fallbackImages: ["/assets/products/iphone-17-lavender.jpg"],
     rating: 4.7,
     reviews: 3412,
     badge: "NEW",
-    specs: ["6.1\" OLED Display", "A19 chip", "Dynamic Island", "48MP Camera", "USB-C", "All-day battery"],
+    specs: ["6.1\" Super Retina XDR OLED Display", "A19 Bionic chip with Apple Intelligence", "Dynamic Island & Action Button", "48MP Dual Fusion Camera", "USB-C", "All-day battery life"],
     inStock: true,
     colors: [
       { name: "Lavender", hex: "#C9B8DA", image: "/assets/products/iphone-17-lavender.jpg" },
@@ -126,24 +201,49 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "iphone-17-air",
-    name: "iPhone 17 Air",
+    id: "iphone-17e",
+    name: "iPhone 17e",
     brand: "Apple",
     category: "iPhone 17",
+    department: "Technology",
+    price: 599,
+    originalPrice: 649,
+    image: "/assets/products/apple/iphone-17.jpg",
+    gallery: ["/assets/products/apple/iphone-17.jpg"],
+    fallbackImages: [],
+    rating: 4.6,
+    reviews: 620,
+    badge: "NEW",
+    specs: ["6.1\" OLED Display", "A18 chip with Apple Intelligence", "48MP Fusion Camera", "Action button & USB-C", "Lightweight aluminum unibody"],
+    inStock: true,
+    colors: [
+      { name: "Starlight", hex: "#F5F5F0", image: "/assets/products/apple/iphone-17.jpg" },
+      { name: "Midnight", hex: "#1C1C1E", image: "/assets/products/apple/iphone-17.jpg" },
+    ],
+  },
+  {
+    id: "iphone-air",
+    name: "iPhone Air",
+    brand: "Apple",
+    category: "iPhone Air",
+    department: "Technology",
     price: 1099,
     originalPrice: 1199,
-    image: "/assets/products/iphone-17-air-sky-blue.jpg",
-    fallbackImages: [],
+    image: "/assets/products/apple/iphone-air.jpg",
+    gallery: [
+      "/assets/products/apple/iphone-air.jpg",
+      "/assets/products/apple/iphone-17.jpg",
+    ],
+    fallbackImages: ["/assets/products/iphone-17-air-sky-blue.jpg"],
     rating: 4.8,
     reviews: 1567,
     badge: "NEW",
-    specs: ["6.6\" OLED Display", "Ultra-thin 5.5mm design", "A19 chip", "48MP Camera", "Aerospace-grade aluminum", "MagSafe"],
+    specs: ["Ultra-thin 5.6mm aerospace titanium enclosure", "6.6\" Super Retina XDR OLED", "A19 Pro chip with Apple Intelligence", "48MP Fusion Camera", "Action Button & USB-C", "All-day battery life"],
     inStock: true,
     colors: [
-      { name: "Sky Blue", hex: "#A9C3D6", image: "/assets/products/iphone-17-air-sky-blue.jpg" },
-      { name: "Cloud White", hex: "#F1F1EE", image: "/assets/products/iphone-17-air-cloud-white.jpg" },
-      { name: "Light Gold", hex: "#D8C9A8", image: "/assets/products/iphone-17-air-light-gold.jpg" },
-      { name: "Space Black", hex: "#1C1C1E", image: "/assets/products/iphone-17-air-space-black.jpg" },
+      { name: "Sky Blue", hex: "#A9C3D6", image: "/assets/products/apple/iphone-air.jpg" },
+      { name: "Cloud White", hex: "#F1F1EE", image: "/assets/products/apple/iphone-air.jpg" },
+      { name: "Space Black", hex: "#1C1C1E", image: "/assets/products/apple/iphone-air.jpg" },
     ],
   },
   // iPhone 16 Series — real Apple per-color images
@@ -952,5 +1052,24 @@ export const products: Product[] = [
   },
 ];
 
-export const brands = ["All", "Apple", "Samsung", "Google", "Xiaomi", "OnePlus", "Sony", "Garmin", "Nothing"];
-export const categories = ["All", "iPhone 18", "iPhone 17", "iPhone 16", "iPhone 15", "Pixel", "Xiaomi", "OnePlus", "Galaxy S", "Galaxy A", "Galaxy Z", "Mac", "iPad", "Tablet", "Watch", "Audio", "Premium Tech"];
+export { luxuryProducts };
+
+export const products: Product[] = [
+  ...technologyProducts.map(p => ({ department: "Technology", ...p })),
+  ...luxuryProducts,
+];
+
+export const departments = [
+  "All",
+  "Technology",
+  "Designer Fashion & Accessories",
+  "Makeup & Skincare",
+  "Perfumes & Fragrance",
+  "Watches & Jewellery",
+];
+
+const uniqueBrands = Array.from(new Set(products.map(p => p.brand))).sort();
+export const brands = ["All", ...uniqueBrands];
+
+const uniqueCategories = Array.from(new Set(products.map(p => p.category))).sort();
+export const categories = ["All", ...uniqueCategories];

@@ -1,53 +1,59 @@
-import { useEffect, useRef, useState } from "react";
+import { Globe2, ShieldCheck, KeyRound, Radio } from "lucide-react";
 
-const stats = [
-  { value: 142380, suffix: "+", label: "Orders delivered to date" },
-  { value: 62, suffix: "", label: "Countries served" },
-  { value: 98.6, suffix: "%", label: "On-time delivery rate", decimals: 1 },
-  { value: 4.9, suffix: "/5", label: "Trustpilot rating (8.2k reviews)", decimals: 1 },
+const pillars = [
+  {
+    icon: Globe2,
+    metric: "60+",
+    label: "Destination Countries",
+    desc: "Direct express air routing from Prague central hub",
+  },
+  {
+    icon: ShieldCheck,
+    metric: "100%",
+    label: "Authentic Sourcing",
+    desc: "Factory sealed hardware & authorized luxury suppliers",
+  },
+  {
+    icon: KeyRound,
+    metric: "4-Digit",
+    label: "Doorstep PIN Protection",
+    desc: "Handover verified securely at delivery destination",
+  },
+  {
+    icon: Radio,
+    metric: "Live",
+    label: "Milestone Radar Tracking",
+    desc: "Real-time updates at customs, flight and dispatch hubs",
+  },
 ];
 
-const Counter = ({ to, suffix = "", decimals = 0 }: { to: number; suffix?: string; decimals?: number }) => {
-  const [v, setV] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true;
-        const start = performance.now();
-        const dur = 1800;
-        const tick = (t: number) => {
-          const p = Math.min((t - start) / dur, 1);
-          const eased = 1 - Math.pow(1 - p, 3);
-          setV(to * eased);
-          if (p < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      }
-    }, { threshold: 0.3 });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [to]);
-  const formatted = decimals ? v.toFixed(decimals) : Math.floor(v).toLocaleString();
-  return <span ref={ref}>{formatted}{suffix}</span>;
-};
-
 const LiveStats = () => (
-  <section className="border-t border-border bg-background py-16">
-    <div className="max-w-[980px] mx-auto px-4">
-      <div className="text-center mb-10">
-        <p className="text-[12px] text-primary font-medium uppercase tracking-wider">By the numbers</p>
-        <h2 className="text-2xl sm:text-3xl font-semibold text-foreground tracking-tight mt-2">A platform people trust</h2>
+  <section className="border-t border-border bg-[#fafafc] py-16 sm:py-20">
+    <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <p className="text-[12px] text-primary font-semibold uppercase tracking-widest">Platform Integrity</p>
+        <h2 className="text-2xl sm:text-3xl font-bold text-foreground tracking-tight mt-1.5">
+          Engineered for International Trust
+        </h2>
+        <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+          Every shipment is managed under strict European custody protocols from our Prague facility to your doorstep.
+        </p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {stats.map(s => (
-          <div key={s.label} className="text-center">
-            <p className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight tabular-nums">
-              <Counter to={s.value} suffix={s.suffix} decimals={s.decimals} />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {pillars.map((item) => (
+          <div
+            key={item.label}
+            className="bg-card border border-border/80 rounded-2xl p-6 text-center space-y-2 hover:border-foreground/20 transition-all duration-300 shadow-xs"
+          >
+            <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center mx-auto mb-3">
+              <item.icon className="w-5 h-5" />
+            </div>
+            <p className="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight tabular-nums">
+              {item.metric}
             </p>
-            <p className="text-[12px] text-muted-foreground mt-2 uppercase tracking-wider">{s.label}</p>
+            <p className="text-xs font-bold text-foreground uppercase tracking-wider">{item.label}</p>
+            <p className="text-xs text-muted-foreground leading-relaxed pt-1">{item.desc}</p>
           </div>
         ))}
       </div>
