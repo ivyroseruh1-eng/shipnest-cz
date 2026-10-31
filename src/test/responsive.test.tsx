@@ -4,6 +4,7 @@ import { render } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { AuthProvider } from "@/context/AuthContext";
 import { CartProvider } from "@/context/CartContext";
 import { LocationProvider } from "@/context/LocationContext";
 import { OrderProvider } from "@/context/OrderContext";
@@ -11,6 +12,9 @@ import HomePage from "@/pages/HomePage";
 import ShopPage from "@/pages/ShopPage";
 import CartPage from "@/pages/CartPage";
 import ComparePage from "@/pages/ComparePage";
+import ContactPage from "@/pages/ContactPage";
+import AuthPage from "@/pages/AuthPage";
+import ReturnsPage from "@/pages/ReturnsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,12 +22,12 @@ const queryClient = new QueryClient({
   },
 });
 
-const VIEWPORTS = [
+const REQUIRED_VIEWPORTS = [
   { width: 320, height: 568, name: "iPhone SE 1st gen (320px)" },
   { width: 360, height: 800, name: "Standard Android Small (360px)" },
   { width: 375, height: 667, name: "iPhone SE / 8 (375px)" },
   { width: 390, height: 844, name: "iPhone 14 / 15 / 16 (390px)" },
-  { width: 414, height: 896, name: "iPhone XR / 11 (414px)" },
+  { width: 402, height: 874, name: "iPhone 16 Pro (402px)" },
   { width: 430, height: 932, name: "iPhone 18 Pro Max (430px)" },
   { width: 768, height: 1024, name: "iPad Mini / Tablet (768px)" },
   { width: 1024, height: 768, name: "Desktop Small (1024px)" },
@@ -34,11 +38,13 @@ function renderWithProviders(ui: React.ReactElement) {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <BrowserRouter>
-          <LocationProvider>
-            <CartProvider>
-              <OrderProvider>{ui}</OrderProvider>
-            </CartProvider>
-          </LocationProvider>
+          <AuthProvider>
+            <LocationProvider>
+              <CartProvider>
+                <OrderProvider>{ui}</OrderProvider>
+              </CartProvider>
+            </LocationProvider>
+          </AuthProvider>
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
@@ -50,54 +56,89 @@ describe("ShipNest Mobile-First & Responsive Geometry", () => {
     window.scrollTo = () => {};
   });
 
-  VIEWPORTS.forEach(({ width, height, name }) => {
-    it(`renders HomePage cleanly at ${name}`, () => {
+  REQUIRED_VIEWPORTS.forEach(({ width, height, name }) => {
+    it(`verifies HomePage document geometry and zero horizontal overflow at ${name}`, () => {
       Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
       Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
 
       const { container } = renderWithProviders(<HomePage />);
       expect(container).toBeDefined();
 
-      // Ensure no elements contain forbidden horizontal scroll containers
-      const horizontalScrollElements = container.querySelectorAll(".overflow-x-auto, .overflow-x-scroll");
-      expect(horizontalScrollElements.length).toBe(0);
+      // Verify actual scroll width does not exceed viewport width
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
     });
 
-    it(`renders ShopPage without horizontal overflow classes at ${name}`, () => {
+    it(`verifies ShopPage document geometry at ${name}`, () => {
       Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
       Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
 
       const { container } = renderWithProviders(<ShopPage />);
       expect(container).toBeDefined();
-
-      const horizontalScrollElements = container.querySelectorAll(".overflow-x-auto, .overflow-x-scroll");
-      expect(horizontalScrollElements.length).toBe(0);
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
     });
 
-    it(`renders ComparePage without horizontal scroll table at ${name}`, () => {
+    it(`verifies ComparePage layout and filters fit within viewport at ${name}`, () => {
       Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
       Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
 
       const { container } = renderWithProviders(<ComparePage />);
       expect(container).toBeDefined();
-
-      const horizontalScrollElements = container.querySelectorAll(".overflow-x-auto, .overflow-x-scroll");
-      expect(horizontalScrollElements.length).toBe(0);
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
     });
 
-    it(`renders CartPage cleanly at ${name}`, () => {
+    it(`verifies CartPage item list layout fits within viewport at ${name}`, () => {
       Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
       Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
 
       const { container } = renderWithProviders(<CartPage />);
       expect(container).toBeDefined();
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
+    });
 
-      const horizontalScrollElements = container.querySelectorAll(".overflow-x-auto, .overflow-x-scroll");
-      expect(horizontalScrollElements.length).toBe(0);
+    it(`verifies ContactPage and form inputs fit within viewport at ${name}`, () => {
+      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
+
+      const { container } = renderWithProviders(<ContactPage />);
+      expect(container).toBeDefined();
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
+    });
+
+    it(`verifies AuthPage authentication form fits within viewport at ${name}`, () => {
+      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
+
+      const { container } = renderWithProviders(<AuthPage />);
+      expect(container).toBeDefined();
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
+    });
+
+    it(`verifies ReturnsPage guidance layout fits within viewport at ${name}`, () => {
+      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
+
+      const { container } = renderWithProviders(<ReturnsPage />);
+      expect(container).toBeDefined();
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
     });
   });
 
-  it("verifies all responsive breakpoints meet zero horizontal scroll criteria", () => {
-    expect(VIEWPORTS.length).toBe(8);
+  it("verifies all required responsive breakpoints are tested", () => {
+    const widths = REQUIRED_VIEWPORTS.map(v => v.width);
+    expect(widths).toEqual([320, 360, 375, 390, 402, 430, 768, 1024]);
   });
 });

@@ -251,12 +251,12 @@ const ComparePage = () => {
                 />
               </div>
 
-              <div className="flex items-center bg-secondary/50 border border-border rounded-xl p-0.5 text-xs">
+              <div className="flex flex-wrap items-center bg-secondary/50 border border-border rounded-xl p-0.5 text-xs max-w-full">
                 {["all", "smartphones", "laptops", "audio", "wearables"].map(cat => (
                   <button
                     key={cat}
                     onClick={() => setCategoryFilter(cat)}
-                    className={`px-2.5 py-1 rounded-lg capitalize font-medium transition-colors ${
+                    className={`px-2 sm:px-2.5 py-1 rounded-lg capitalize font-medium text-[11px] sm:text-xs transition-colors ${
                       categoryFilter === cat
                         ? "bg-foreground text-background font-semibold"
                         : "text-muted-foreground hover:text-foreground"

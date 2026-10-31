@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Loader2 } from "lucide-react";
+import { processProductImage, StageTheme } from "@/lib/productPresentation";
 
 interface ProductImageProps {
   src: string;
@@ -7,6 +8,7 @@ interface ProductImageProps {
   alt: string;
   className?: string;
   containerClassName?: string;
+  stageTheme?: StageTheme;
   loading?: "lazy" | "eager";
   priority?: boolean;
   width?: number | string;
@@ -32,6 +34,7 @@ export const ProductImage = ({
   alt,
   className = "w-full h-full object-contain",
   containerClassName = "",
+  stageTheme,
   loading = "lazy",
   priority = false,
   width = 600,
@@ -50,12 +53,15 @@ export const ProductImage = ({
   const [candidateIndex, setCandidateIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [failedAll, setFailedAll] = useState(false);
+  const [displaySrc, setDisplaySrc] = useState<string>(candidates[0] || src);
+  const imgRef = useRef<HTMLImageElement | null>(null);
 
   // Reset when primary src changes (e.g. variant selection)
   useEffect(() => {
     setCandidateIndex(0);
     setIsLoaded(false);
     setFailedAll(false);
+    setDisplaySrc(src);
   }, [src]);
 
   const currentSrc = candidates[candidateIndex];
@@ -65,6 +71,7 @@ export const ProductImage = ({
       const nextIndex = candidateIndex + 1;
       setCandidateIndex(nextIndex);
       setIsLoaded(false);
+      setDisplaySrc(candidates[nextIndex]);
       if (onImageChange) {
         onImageChange(candidates[nextIndex]);
       }
@@ -74,7 +81,17 @@ export const ProductImage = ({
     }
   };
 
-  const handleLoad = () => {
+  const handleLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.currentTarget;
+    try {
+      // Process if image has dark studio background that needs alpha isolation and centering
+      const optimizedSrc = await processProductImage(target);
+      if (optimizedSrc && optimizedSrc !== displaySrc) {
+        setDisplaySrc(optimizedSrc);
+      }
+    } catch {
+      // Graceful fallback to original
+    }
     setIsLoaded(true);
     if (onImageChange && currentSrc) {
       onImageChange(currentSrc);
@@ -85,19 +102,24 @@ export const ProductImage = ({
 
   return (
     <div
-      className={`relative w-full h-full flex items-center justify-center bg-[#fbfbfd] overflow-hidden ${containerClassName}`}
+      className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-colors duration-300 ${containerClassName}`}
+      style={stageTheme ? { background: stageTheme.background } : undefined}
     >
       {/* Subtle loader skeleton during initial network decode */}
       {!isLoaded && !failedAll && (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#fbfbfd] z-10">
-          <Loader2 className="w-5 h-5 text-muted-foreground/20 animate-spin" />
+        <div
+          className="absolute inset-0 flex items-center justify-center z-10"
+          style={stageTheme ? { background: stageTheme.background } : undefined}
+        >
+          <Loader2 className="w-5 h-5 text-muted-foreground/30 animate-spin" />
         </div>
       )}
 
       {!failedAll && currentSrc ? (
         <img
-          key={currentSrc}
-          src={currentSrc}
+          ref={imgRef}
+          key={displaySrc}
+          src={displaySrc}
           alt={alt}
           loading={isEager ? "eager" : "lazy"}
           decoding="async"

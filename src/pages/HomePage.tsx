@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ChevronRight, Search, Truck, RotateCcw, ShieldCheck, Sparkles, Plane, ArrowRight, Star, Globe, Box, CheckCircle2 } from "lucide-react";
 import { homepageProducts } from "@/data/homepageData";
 import ProductCard from "@/components/ProductCard";
+import ProductImage from "@/components/ProductImage";
 import { useWishlist } from "@/hooks/useWishlist";
 import { useOrders } from "@/context/OrderContext";
+import { getProductStageTheme } from "@/lib/productPresentation";
 import { toast } from "sonner";
 import Reveal from "@/components/Reveal";
 import CategoryTiles from "@/components/CategoryTiles";
@@ -32,6 +34,7 @@ const HomePage = () => {
 
   // Flagship Hero Products
   const heroProduct = homepageProducts.find(p => p.id === "iphone-18-pro-max") || homepageProducts[0];
+  const heroStageTheme = useMemo(() => getProductStageTheme(heroProduct), [heroProduct]);
   const secondaryHero = homepageProducts.find(p => p.id === "iphone-duo") || homepageProducts.find(p => p.id === "galaxy-s26-ultra") || homepageProducts[3];
 
   // Curated Collections — 6 products initially per section as requested
@@ -118,7 +121,7 @@ const HomePage = () => {
                     </button>
                   </div>
                   <div className="flex items-center gap-2 mt-2 pt-2 border-t border-border/60 text-[11px] text-muted-foreground px-1">
-                    <span>Try demo:</span>
+                    <span>Recent shipments:</span>
                     {sampleTrackingIds.map(sample => (
                       <button
                         key={sample}
@@ -173,11 +176,11 @@ const HomePage = () => {
                   </div>
 
                   {/* High Res Product Visual Stage */}
-                  <div className="aspect-[4/3] sm:aspect-square flex items-center justify-center my-6 overflow-hidden bg-background rounded-2xl p-4">
+                  <div className="aspect-[4/3] sm:aspect-square flex items-center justify-center my-6 overflow-hidden rounded-2xl p-4 border border-border/40 transition-all duration-300" style={{ background: heroStageTheme.background }}>
                     <img
                       src={heroProduct.image}
                       alt={heroProduct.name}
-                      className="max-h-[300px] sm:max-h-[340px] w-auto object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                      className="max-h-[300px] sm:max-h-[340px] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
 

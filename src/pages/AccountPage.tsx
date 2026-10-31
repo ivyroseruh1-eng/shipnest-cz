@@ -125,7 +125,7 @@ const AccountPage = () => {
                 <ShieldCheck className="w-3 h-3 text-emerald-600" /> Verified Member
               </span>
             </div>
-            <p className="text-xs text-muted-foreground font-mono">{user.email}</p>
+            <p className="text-xs text-muted-foreground font-mono break-all">{user.email}</p>
           </div>
         </div>
 
