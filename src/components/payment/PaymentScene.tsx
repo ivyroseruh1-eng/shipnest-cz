@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CreditCard, Lock, Shield, CheckCircle2, Building2 } from "lucide-react";
 import Logo from "@/components/brand/Logo";
 import { Visa, Mastercard, Amex } from "@/components/PaymentIcons";
-import moonlightLogo from "@/assets/moonlight-logo.png";
+const moonlightLogo = "/assets/brand/moonlight-logo.png";
 
 type Brand = "visa" | "mc" | "amex" | "unknown";
 type Method = "card" | "moonlight";

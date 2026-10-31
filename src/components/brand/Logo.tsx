@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import shipnestLogo from "@/assets/shipnest-logo.png";
-import shipnestMark from "@/assets/shipnest-mark.png";
+const shipnestLogo = "/assets/brand/shipnest-logo.png";
+const shipnestMark = "/assets/brand/shipnest-mark.png";
 
 interface LogoProps {
   variant?: "full" | "mark";
