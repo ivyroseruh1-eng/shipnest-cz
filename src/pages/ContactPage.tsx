@@ -31,18 +31,18 @@ const ContactPage = () => {
 
           <div className="space-y-4">
             {[
-              { icon: Mail, label: "Email", value: "support@shipnest.cz" },
-              { icon: Phone, label: "Phone", value: "+420 123 456 789" },
-              { icon: MapPin, label: "Address", value: "Karlova 256/1, 110 00 Prague 1, Czech Republic" },
-              { icon: Clock, label: "Hours", value: "Mon–Fri, 9:00–17:00 CET" },
+              { icon: Mail, label: "Customer Concierge", value: "support@shipnest.cz" },
+              { icon: Phone, label: "Prague Operations", value: "+420 228 882 411" },
+              { icon: MapPin, label: "Registered Headquarters", value: "Na Příkopě 859/22, 110 00 Nové Město, Prague, Czech Republic" },
+              { icon: Clock, label: "Fulfillment Hours", value: "Mon–Fri, 08:00–18:00 CET" },
             ].map(c => (
               <div key={c.label} className="flex items-start gap-3">
-                <div className="p-2 rounded-lg bg-secondary">
-                  <c.icon className="w-4 h-4 text-muted-foreground" />
+                <div className="p-2.5 rounded-xl bg-secondary text-foreground">
+                  <c.icon className="w-4 h-4 text-primary" />
                 </div>
                 <div>
-                  <p className="text-[12px] text-muted-foreground font-medium">{c.label}</p>
-                  <p className="text-[14px] text-foreground font-medium">{c.value}</p>
+                  <p className="text-[11px] text-muted-foreground uppercase tracking-wider font-semibold">{c.label}</p>
+                  <p className="text-[13px] text-foreground font-medium">{c.value}</p>
                 </div>
               </div>
             ))}

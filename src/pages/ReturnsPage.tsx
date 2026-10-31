@@ -67,7 +67,7 @@ const ReturnsPage = () => (
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-foreground">Contact</h2>
-        <p>For returns, email returns@shipnest.cz or call +420 123 456 789 (Mon–Fri, 9:00–17:00 CET).</p>
+        <p>For returns, email returns@shipnest.cz or call +420 228 882 411 (Mon–Fri, 08:00–18:00 CET).</p>
       </section>
     </div>
   </div>

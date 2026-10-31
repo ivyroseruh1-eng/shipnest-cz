@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Product } from "@/types";
-import { Heart } from "lucide-react";
+import { Heart, Star, ShoppingBag, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useCart } from "@/context/CartContext";
 
 interface Props {
   product: Product;
@@ -11,77 +12,144 @@ interface Props {
 
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const [imgError, setImgError] = useState(false);
+  const [added, setAdded] = useState(false);
+  const { addToCart } = useCart();
   const monthly = (product.price / 12).toFixed(2);
 
-  return (
-    <div className="group relative flex flex-col bg-card border border-border rounded-2xl p-2.5 sm:p-4 transition-all duration-300 hover:shadow-lg hover:border-foreground/20 hover:-translate-y-1 overflow-hidden animate-fade-in">
-      {/* Wishlist */}
-      {onToggleWishlist && (
-        <button onClick={() => onToggleWishlist(product.id)}
-          className="absolute top-3 right-3 z-10 p-2 rounded-full bg-background/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-105 shadow-sm border border-border"
-          aria-label="Save">
-          <Heart className={`w-4 h-4 ${isWishlisted ? "fill-destructive text-destructive" : "text-muted-foreground"}`} />
-        </button>
-      )}
+  const handleQuickAdd = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product, 1);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1600);
+  };
 
-      {/* Image */}
-      <Link to={`/product/${product.id}`} className="block">
-        <div className="aspect-square rounded-xl flex items-center justify-center overflow-hidden mb-4 bg-background">
+  return (
+    <div className="group relative flex flex-col bg-card border border-border/70 rounded-2xl p-4 transition-all duration-300 hover:shadow-xl hover:border-foreground/20 hover:-translate-y-1 overflow-hidden">
+      {/* Top badges: Stock / Variant Badge */}
+      <div className="flex items-center justify-between mb-2">
+        {product.badge ? (
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary">
+            {product.badge}
+          </span>
+        ) : (
+          <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+            {product.brand}
+          </span>
+        )}
+
+        {/* Wishlist Button */}
+        {onToggleWishlist && (
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onToggleWishlist(product.id);
+            }}
+            className="p-1.5 rounded-full bg-secondary/80 hover:bg-secondary text-muted-foreground hover:text-foreground transition-all duration-200"
+            aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
+          >
+            <Heart className={`w-3.5 h-3.5 ${isWishlisted ? "fill-destructive text-destructive" : ""}`} />
+          </button>
+        )}
+      </div>
+
+      {/* Product Image Stage */}
+      <Link to={`/product/${product.id}`} className="block my-2">
+        <div className="aspect-[4/3] sm:aspect-square rounded-xl flex items-center justify-center overflow-hidden bg-[#fbfbfd] p-3 transition-colors group-hover:bg-[#f6f6f9]">
           {!imgError ? (
             <img
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
               loading="lazy"
               onError={() => setImgError(true)}
             />
           ) : (
-            <div className="text-center text-muted-foreground">
-              <div className="text-4xl mb-2">📱</div>
-              <p className="text-xs">{product.name}</p>
+            <div className="text-center text-muted-foreground p-4">
+              <span className="text-2xl font-mono text-muted-foreground/50">SN</span>
+              <p className="text-[11px] mt-1 font-medium">{product.name}</p>
             </div>
           )}
         </div>
       </Link>
 
-      {/* Info — Apple/Samsung minimal */}
-      <div className="space-y-1 flex-1 flex flex-col text-center px-1">
-        {product.badge && (
-          <p className="text-[11px] text-primary font-medium uppercase tracking-wider">
-            {product.badge === "NEW" ? "New" : product.badge === "HOT" ? "Best Seller" : product.badge === "PRO" ? "Pro" : product.badge === "ELITE" ? "Featured" : product.badge === "BEST" ? "Editor's Choice" : product.badge}
-          </p>
-        )}
-        <Link to={`/product/${product.id}`}>
-          <h3 className="text-[17px] font-semibold text-foreground hover:opacity-75 transition-opacity leading-tight tracking-tight">{product.name}</h3>
+      {/* Color Variants Dots Preview */}
+      {product.colors && product.colors.length > 0 && (
+        <div className="flex items-center justify-center gap-1.5 my-1.5">
+          {product.colors.slice(0, 5).map((c, idx) => (
+            <span
+              key={idx}
+              title={c.name}
+              className="w-2.5 h-2.5 rounded-full border border-black/10 shadow-xs"
+              style={{ backgroundColor: c.hex }}
+            />
+          ))}
+          {product.colors.length > 5 && (
+            <span className="text-[10px] text-muted-foreground font-mono">+{product.colors.length - 5}</span>
+          )}
+        </div>
+      )}
+
+      {/* Info & Title */}
+      <div className="flex-1 flex flex-col pt-1">
+        <Link to={`/product/${product.id}`} className="block">
+          <h3 className="text-[15px] font-semibold text-foreground group-hover:text-primary transition-colors leading-snug line-clamp-1">
+            {product.name}
+          </h3>
         </Link>
-        <p className="text-[13px] text-muted-foreground pt-0.5">
-          {product.specs[0]?.split(',')[0] || product.brand}
+        <p className="text-[12px] text-muted-foreground mt-0.5 line-clamp-1">
+          {product.specs[0] || product.brand}
         </p>
 
-        {/* Price block */}
-        <div className="pt-3 space-y-0.5">
-          <p className="text-[14px] text-foreground">
-            From <span className="font-medium">${product.price}</span>
-            {product.originalPrice > product.price && (
-              <span className="text-muted-foreground line-through ml-2">${product.originalPrice}</span>
+        {/* Rating strip */}
+        <div className="flex items-center gap-1.5 mt-2 text-[11px] text-muted-foreground">
+          <div className="flex items-center text-amber-500">
+            <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
+            <span className="ml-1 font-semibold text-foreground">{product.rating}</span>
+          </div>
+          <span>·</span>
+          <span>{product.reviews.toLocaleString()} reviews</span>
+        </div>
+
+        {/* Pricing Block */}
+        <div className="mt-3 pt-3 border-t border-border/60 flex items-end justify-between">
+          <div>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[17px] font-semibold text-foreground tabular-nums">${product.price}</span>
+              {product.originalPrice > product.price && (
+                <span className="text-[12px] text-muted-foreground line-through tabular-nums">
+                  ${product.originalPrice}
+                </span>
+              )}
+            </div>
+            <p className="text-[11px] text-muted-foreground">
+              or ${monthly}/mo.
+            </p>
+          </div>
+
+          {/* Quick Add Button */}
+          <button
+            onClick={handleQuickAdd}
+            disabled={!product.inStock}
+            className={`px-3 py-1.5 rounded-full text-[12px] font-medium transition-all flex items-center gap-1.5 ${
+              added
+                ? "bg-emerald-600 text-white"
+                : "bg-foreground text-background hover:bg-foreground/85 active:scale-95"
+            } disabled:opacity-40 disabled:cursor-not-allowed`}
+            aria-label="Add to cart"
+          >
+            {added ? (
+              <>
+                <Check className="w-3 h-3" /> Added
+              </>
+            ) : (
+              <>
+                <ShoppingBag className="w-3 h-3" /> Add
+              </>
             )}
-          </p>
-          <p className="text-[12px] text-muted-foreground">
-            or ${monthly}/mo. for 12 mo.<sup>*</sup>
-          </p>
+          </button>
         </div>
-
-        {/* CTA — Apple blue pill */}
-        <div className="pt-5">
-          <Link to={`/product/${product.id}`}
-            className="inline-block bg-primary text-primary-foreground px-5 py-2 rounded-full font-medium text-[13px] hover:bg-primary/90 transition-colors">
-            Buy
-          </Link>
-        </div>
-
-        {!product.inStock && (
-          <p className="text-[11px] text-destructive font-medium pt-2">Currently unavailable</p>
-        )}
       </div>
     </div>
   );

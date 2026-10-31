@@ -1,26 +1,72 @@
 import { useState } from "react";
-import { useOrders, generateTrackingId, generateOrderId, generateDeliveryPin, createDefaultTrackingSteps, createCancelledReturnSteps, STEP_DAY_OFFSETS } from "@/context/OrderContext";
+import { Link } from "react-router-dom";
+import {
+  useOrders,
+  generateTrackingId,
+  generateOrderId,
+  generateDeliveryPin,
+  createDefaultTrackingSteps,
+  STEP_DAY_OFFSETS,
+} from "@/context/OrderContext";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { toast } from "sonner";
-import { LogOut, Edit, Package, DollarSign, Truck, CheckCircle, Plus, Trash2, Save, Search, Eye, RefreshCw, BarChart3, Users, Clock, Settings, ChevronDown, ChevronUp, ClipboardCopy, Shuffle, AlertTriangle, XCircle } from "lucide-react";
+import {
+  LogOut,
+  Edit,
+  Package,
+  DollarSign,
+  Truck,
+  CheckCircle,
+  Plus,
+  Trash2,
+  Save,
+  Search,
+  Eye,
+  RefreshCw,
+  BarChart3,
+  Clock,
+  Settings,
+  ChevronDown,
+  ChevronUp,
+  ClipboardCopy,
+  Shuffle,
+  XCircle,
+  ExternalLink,
+  ShieldCheck,
+  Building2,
+  Lock,
+  ArrowUpRight,
+  Filter,
+} from "lucide-react";
 
-const ADMIN_PASSWORD = "shipnest2024";
+const ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || "shipnest2024";
 const ICONS = ["📦", "🏭", "🚚", "✈️", "🛬", "🔍", "🛵", "✅", "🔄", "🌍", "📍", "🚢", "🏪", "📋", "⏳"];
 
-const FAKE_NAMES = ["James Wilson", "Emma Thompson", "Liam Carter", "Sophia Martinez", "Noah Brown", "Olivia Davis", "Ethan Garcia", "Ava Johnson", "Mason Lee", "Isabella Clark"];
-const FAKE_EMAILS = ["james.w@gmail.com", "emma.t@outlook.com", "liam.c@yahoo.com", "sophia.m@gmail.com", "noah.b@hotmail.com", "olivia.d@gmail.com", "ethan.g@yahoo.com", "ava.j@outlook.com", "mason.l@gmail.com", "isabella.c@hotmail.com"];
-const FAKE_CITIES = [
-  { city: "Mumbai", state: "Maharashtra", country: "India", zip: "400001" },
-  { city: "Kolkata", state: "West Bengal", country: "India", zip: "700001" },
-  { city: "Bangalore", state: "Karnataka", country: "India", zip: "560001" },
-  { city: "Chennai", state: "Tamil Nadu", country: "India", zip: "600001" },
-  { city: "Hyderabad", state: "Telangana", country: "India", zip: "500001" },
-  { city: "Pune", state: "Maharashtra", country: "India", zip: "411001" },
-  { city: "Dibrugarh", state: "Assam", country: "India", zip: "786001" },
-  { city: "Jorhat", state: "Assam", country: "India", zip: "785001" },
-  { city: "Silchar", state: "Assam", country: "India", zip: "788001" },
-  { city: "Tezpur", state: "Assam", country: "India", zip: "784001" },
+const INTERNATIONAL_DESTINATIONS = [
+  { city: "Prague", state: "Bohemia", country: "Czech Republic", zip: "110 00" },
+  { city: "Zurich", state: "ZH", country: "Switzerland", zip: "8001" },
+  { city: "Berlin", state: "Berlin", country: "Germany", zip: "10115" },
+  { city: "London", state: "Greater London", country: "United Kingdom", zip: "EC1A 1BB" },
+  { city: "Tokyo", state: "Tokyo", country: "Japan", zip: "100-0001" },
+  { city: "Singapore", state: "Central", country: "Singapore", zip: "018989" },
+  { city: "New York", state: "NY", country: "United States", zip: "10001" },
+  { city: "Toronto", state: "ON", country: "Canada", zip: "M5V 2T6" },
+  { city: "Sydney", state: "NSW", country: "Australia", zip: "2000" },
+  { city: "Stockholm", state: "Stockholm", country: "Sweden", zip: "111 20" },
+  { city: "Vienna", state: "Vienna", country: "Austria", zip: "1010" },
+  { city: "Amsterdam", state: "North Holland", country: "Netherlands", zip: "1012 JS" },
+];
+
+const FAKE_CUSTOMERS = [
+  { name: "Alexander Wright", email: "a.wright@techventures.io" },
+  { name: "Elena Rostova", email: "elena.r@nordicdesign.co" },
+  { name: "Kenji Sato", email: "kenji.sato@kyoto-craft.jp" },
+  { name: "Sophie Van Der Bilt", email: "sophie.vdb@amsterdam.nl" },
+  { name: "Marcus Sterling", email: "marcus.sterling@meridian.ch" },
+  { name: "Claire Laurent", email: "claire.laurent@parisien.fr" },
+  { name: "David O'Connor", email: "doconnor@dublinlabs.ie" },
+  { name: "Ingrid Lindqvist", email: "ingrid.l@scanditech.se" },
 ];
 
 const AdminPage = () => {
@@ -30,10 +76,12 @@ const AdminPage = () => {
   const { orders, updateOrder, addOrder, deleteOrder, cancelOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<string>("all");
   const [selectedOrders, setSelectedOrders] = useState<Set<string>>(new Set());
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    customer: true, order: true, timeline: true,
+    customer: true,
+    order: true,
+    timeline: true,
   });
 
   const toggleSection = (key: string) => setExpandedSections(prev => ({ ...prev, [key]: !prev[key] }));
@@ -41,19 +89,39 @@ const AdminPage = () => {
   const toggleSelectOrder = (orderId: string) => {
     setSelectedOrders(prev => {
       const next = new Set(prev);
-      if (next.has(orderId)) next.delete(orderId); else next.add(orderId);
+      if (next.has(orderId)) next.delete(orderId);
+      else next.add(orderId);
       return next;
     });
   };
 
+  const filteredOrders = orders.filter(o => {
+    const matchesQuery =
+      searchQuery === "" ||
+      o.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      o.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      o.customer.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      o.trackingId.toLowerCase().includes(searchQuery.toLowerCase());
+
+    const matchesStatus =
+      statusFilter === "all" ||
+      (statusFilter === "active" && o.status !== "Delivered" && o.status !== "Cancelled") ||
+      (statusFilter === "delivered" && o.status === "Delivered") ||
+      (statusFilter === "cancelled" && o.status === "Cancelled");
+
+    return matchesQuery && matchesStatus;
+  });
+
   const toggleSelectAll = () => {
-    if (selectedOrders.size === filteredOrders.length) setSelectedOrders(new Set());
-    else setSelectedOrders(new Set(filteredOrders.map(o => o.orderId)));
+    if (selectedOrders.size === filteredOrders.length && filteredOrders.length > 0) {
+      setSelectedOrders(new Set());
+    } else {
+      setSelectedOrders(new Set(filteredOrders.map(o => o.orderId)));
+    }
   };
 
   const handleDeleteOrder = async (orderId: string) => {
     await deleteOrder(orderId);
-    setDeleteConfirm(null);
     setEditingOrder(null);
     toast.success("Order deleted");
   };
@@ -68,29 +136,32 @@ const AdminPage = () => {
   };
 
   const generateFakeOrder = () => {
-    const nameIdx = Math.floor(Math.random() * FAKE_NAMES.length);
-    const loc = FAKE_CITIES[Math.floor(Math.random() * FAKE_CITIES.length)];
-    const numItems = Math.floor(Math.random() * 3) + 1;
+    const cust = FAKE_CUSTOMERS[Math.floor(Math.random() * FAKE_CUSTOMERS.length)];
+    const loc = INTERNATIONAL_DESTINATIONS[Math.floor(Math.random() * INTERNATIONAL_DESTINATIONS.length)];
+    const numItems = Math.floor(Math.random() * 2) + 1;
     const shuffled = [...products].sort(() => 0.5 - Math.random());
     const selectedProducts = shuffled.slice(0, numItems);
-    
+
     const items = selectedProducts.map(p => ({
-      productId: p.id, name: p.name, brand: p.brand, image: p.image,
-      price: p.price, qty: Math.floor(Math.random() * 2) + 1,
+      productId: p.id,
+      name: p.name,
+      brand: p.brand,
+      image: p.image,
+      price: p.price,
+      qty: 1,
     }));
-    
+
     const subtotal = items.reduce((s, i) => s + i.price * i.qty, 0);
-    const tax = subtotal * 0.2;
+    const tax = Math.round(subtotal * 0.2);
     const total = subtotal + tax;
-    
-    // Random date in the past 1-30 days
-    const daysAgo = Math.floor(Math.random() * 30) + 1;
+
+    const daysAgo = Math.floor(Math.random() * 12) + 1;
     const placedDate = new Date();
     placedDate.setDate(placedDate.getDate() - daysAgo);
-    
+
     const deliveryDate = new Date(placedDate);
-    deliveryDate.setDate(deliveryDate.getDate() + 25);
-    
+    deliveryDate.setDate(deliveryDate.getDate() + 7);
+
     const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
     steps.forEach((step, i) => {
       const stepDay = STEP_DAY_OFFSETS[i] ?? i * 2;
@@ -109,56 +180,31 @@ const AdminPage = () => {
       orderId: generateOrderId(),
       trackingId: generateTrackingId(),
       customer: {
-        name: FAKE_NAMES[nameIdx], email: FAKE_EMAILS[nameIdx],
-        phone: `+91 ${Math.floor(70000 + Math.random() * 29999)}${Math.floor(10000 + Math.random() * 89999)}`,
-        address: `${Math.floor(1 + Math.random() * 999)} ${["Oak St", "Main Ave", "Elm Rd", "Park Blvd", "King St"][Math.floor(Math.random() * 5)]}`,
-        city: loc.city, state: loc.state, country: loc.country, zip: loc.zip,
+        name: cust.name,
+        email: cust.email,
+        phone: `+${Math.floor(100 + Math.random() * 899)} ${Math.floor(100000000 + Math.random() * 899999999)}`,
+        address: `${Math.floor(1 + Math.random() * 150)} Central Boulevard`,
+        city: loc.city,
+        state: loc.state,
+        country: loc.country,
+        zip: loc.zip,
       },
-      items, subtotal, tax, total,
+      items,
+      subtotal,
+      tax,
+      total,
       status: latestCompleted?.status || "Order Placed",
       estimatedDelivery: deliveryDate.toISOString(),
       placedAt: placedDate.toISOString(),
-      notes: "",
-      paymentMethod: ["Credit Card", "PayPal", "Apple Pay", "Google Pay"][Math.floor(Math.random() * 4)],
+      notes: "Express Priority Air Cargo via Prague Hub",
+      paymentMethod: ["Apple Pay", "Credit Card", "Bank Transfer (SEPA)", "Google Pay"][Math.floor(Math.random() * 4)],
       deliveryPin: generateDeliveryPin(),
       trackingSteps: steps,
     };
-    
+
     addOrder(order);
-    toast.success(`Generated order ${order.orderId}`);
+    toast.success(`Generated international dispatch ${order.orderId} → ${loc.city}, ${loc.country}`);
   };
-
-  if (!authenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="max-w-sm w-full space-y-6">
-          <div className="text-center space-y-2">
-            <div className="w-16 h-16 rounded-2xl bg-foreground mx-auto flex items-center justify-center mb-4">
-              <Settings className="w-8 h-8 text-background" />
-            </div>
-            <h1 className="text-xl font-bold text-foreground">Admin Portal</h1>
-            <p className="text-xs text-muted-foreground">Enter credentials to access the control panel</p>
-          </div>
-          <div className="bg-card border border-border rounded-xl p-6 space-y-4">
-            <input type="password" placeholder="Admin Password" value={password}
-              onChange={e => setPassword(e.target.value)}
-              onKeyDown={e => { if (e.key === "Enter") { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Invalid credentials"); }}}
-              className="w-full bg-muted border border-border rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground text-sm" />
-            <button onClick={() => { if (password === ADMIN_PASSWORD) setAuthenticated(true); else toast.error("Invalid credentials"); }}
-              className="w-full bg-foreground text-background py-3 rounded-xl font-semibold hover:bg-foreground/90 text-sm transition-colors">Authenticate</button>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  const totalRevenue = orders.reduce((s, o) => s + o.total, 0);
-  const processing = orders.filter(o => o.status !== "Delivered").length;
-  const delivered = orders.filter(o => o.status === "Delivered").length;
-
-  const filteredOrders = searchQuery
-    ? orders.filter(o => o.orderId.toLowerCase().includes(searchQuery.toLowerCase()) || o.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) || o.trackingId.toLowerCase().includes(searchQuery.toLowerCase()))
-    : orders;
 
   const saveOrder = () => {
     if (!editingOrder) return;
@@ -166,97 +212,49 @@ const AdminPage = () => {
     const updatedOrder = { ...editingOrder, status: latestCompleted?.status || editingOrder.status };
     updateOrder(updatedOrder.orderId, updatedOrder);
     setEditingOrder(null);
-    toast.success("Order updated successfully!");
+    toast.success("Order and tracking timeline updated");
   };
 
   const copyOrderDetails = (order: Order) => {
     const latestCompleted = [...order.trackingSteps].reverse().find(s => s.completed);
     const currentStatus = latestCompleted?.status || order.status;
-    const siteUrl = "https://shipnest-cz.lovable.app";
-    const items = order.items.map(i => `  • ${i.name} (${i.brand}) x${i.qty} — $${(i.price * i.qty).toFixed(2)}\n    📷 Image: ${siteUrl}${i.image}`).join("\n");
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://shipnest.com";
+    const items = order.items
+      .map(i => `  • ${i.name} (${i.brand}) × ${i.qty} — $${(i.price * i.qty).toLocaleString()}`)
+      .join("\n");
     const czechTime = new Date(order.placedAt).toLocaleString("en-GB", { timeZone: "Europe/Prague" });
 
-    // Build status-specific subject and message
-    let subject = "";
-    let statusMessage = "";
-    
-    switch (currentStatus.toLowerCase()) {
-      case "order placed":
-        subject = `Order Confirmed — ${order.orderId}`;
-        statusMessage = "Your order has been confirmed and is being prepared at our warehouse in Prague.";
-        break;
-      case "processing":
-        subject = `Order Processing — ${order.orderId}`;
-        statusMessage = "Your order is currently being processed and prepared for shipment.";
-        break;
-      case "shipped":
-        subject = `Order Shipped — ${order.orderId}`;
-        statusMessage = "Great news! Your order has been shipped and is on its way to you.";
-        break;
-      case "in transit":
-        subject = `Order In Transit — ${order.orderId}`;
-        statusMessage = "Your package is currently in transit and moving through our logistics network.";
-        break;
-      case "out for delivery":
-        subject = `Out for Delivery — ${order.orderId}`;
-        statusMessage = "Your package is out for delivery and will arrive soon!";
-        break;
-      case "delivered":
-        subject = `Order Delivered — ${order.orderId}`;
-        statusMessage = "Your order has been successfully delivered. We hope you enjoy your purchase!";
-        break;
-      default:
-        subject = `Order Update — ${order.orderId}`;
-        statusMessage = `Current status: ${currentStatus}`;
-    }
+    const text = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+SHIPNEST LOGISTICS DISPATCH MANIFEST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Order Number:     ${order.orderId}
+Tracking Number:  ${order.trackingId}
+Current Status:   ${currentStatus}
+Date (Prague):    ${czechTime} CET
+Doorstep PIN:     ${order.deliveryPin || "N/A"}
 
-    // Build completed tracking steps
-    const completedSteps = order.trackingSteps
-      .filter(s => s.completed)
-      .map(s => {
-        const time = s.timestamp ? new Date(s.timestamp).toLocaleString("en-GB", { timeZone: "Europe/Prague" }) : "";
-        return `  ${s.icon} ${s.status}${s.city ? ` — ${s.city}${s.country ? `, ${s.country}` : ""}` : ""}${time ? ` (${time})` : ""}`;
-      })
-      .join("\n");
+DESTINATION
+Recipient:        ${order.customer.name}
+Address:          ${order.customer.address}
+City/Country:     ${order.customer.city}, ${order.customer.country} ${order.customer.zip}
+Contact:          ${order.customer.email} | ${order.customer.phone}
 
-    const text = `Subject: ${subject}
-
-Dear ${order.customer.name},
-
-${statusMessage}
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ORDER SUMMARY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Order ID: ${order.orderId}
-Tracking ID: ${order.trackingId}
-Status: ${currentStatus}
-Placed: ${czechTime} (CET)
-${order.deliveryPin ? `Delivery PIN: ${order.deliveryPin} (share with delivery agent at the door)\n` : ""}
-ITEMS
+ITEMS IN SHIPMENT
 ${items}
 
-Subtotal: $${order.subtotal.toFixed(2)}
-Shipping: FREE
-VAT (20%): $${order.tax.toFixed(2)}
-Total: $${order.total.toFixed(2)}
+FINANCIAL BREAKDOWN
+Subtotal:         $${order.subtotal.toLocaleString()}
+Air Freight:      COMPLIMENTARY EXPRESS
+EU VAT (20%):     $${order.tax.toLocaleString()}
+Total Invoiced:   $${order.total.toLocaleString()} (${order.paymentMethod || "Verified"})
 
-SHIPPING TO
-${order.customer.name}
-${order.customer.address}, ${order.customer.city}${order.customer.state ? `, ${order.customer.state}` : ""}
-${order.customer.country} ${order.customer.zip}
-${order.customer.email} | ${order.customer.phone}
-
-${completedSteps ? `TRACKING UPDATES\n${completedSteps}\n` : ""}
-Est. Delivery: ${new Date(order.estimatedDelivery).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}
-Ships From: Prague, Czech Republic
-${order.notes ? `\nInternal Notes: ${order.notes}` : ""}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-ShipNest · Premium Tech · Shipped from Prague, CZ 🇨🇿
-Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
+LIVE TRACKING PORTAL:
+${origin}/track/${order.trackingId}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
 
     navigator.clipboard.writeText(text);
-    toast.success(`"${subject}" copied to clipboard!`);
+    toast.success(`Order ${order.orderId} manifest copied to clipboard`);
   };
 
   const updateStep = (stepId: string, updates: Partial<TrackingStep>) => {
@@ -264,7 +262,16 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
     setEditingOrder({
       ...editingOrder,
       trackingSteps: editingOrder.trackingSteps.map(s =>
-        s.id === stepId ? { ...s, ...updates, timestamp: updates.completed && !s.timestamp ? new Date().toISOString() : (updates.timestamp ?? s.timestamp) } : s
+        s.id === stepId
+          ? {
+              ...s,
+              ...updates,
+              timestamp:
+                updates.completed && !s.timestamp
+                  ? new Date().toISOString()
+                  : updates.timestamp ?? s.timestamp,
+            }
+          : s
       ),
     });
   };
@@ -272,100 +279,263 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
   const addStep = () => {
     if (!editingOrder) return;
     const newStep: TrackingStep = {
-      id: crypto.randomUUID(), status: "New Step", icon: "📍",
-      city: "", state: "", country: "", timestamp: "", completed: false,
+      id: crypto.randomUUID(),
+      status: "Checkpoint Inspection",
+      icon: "📍",
+      city: editingOrder.customer.city || "Transit Hub",
+      state: editingOrder.customer.state || "",
+      country: editingOrder.customer.country || "Transit",
+      timestamp: new Date().toISOString(),
+      completed: false,
     };
     setEditingOrder({ ...editingOrder, trackingSteps: [...editingOrder.trackingSteps, newStep] });
   };
 
   const removeStep = (stepId: string) => {
     if (!editingOrder) return;
-    setEditingOrder({ ...editingOrder, trackingSteps: editingOrder.trackingSteps.filter(s => s.id !== stepId) });
+    setEditingOrder({
+      ...editingOrder,
+      trackingSteps: editingOrder.trackingSteps.filter(s => s.id !== stepId),
+    });
   };
 
-  const inputClass = "w-full bg-muted border border-border rounded-lg px-3 py-2.5 text-foreground text-sm focus:outline-none focus:border-foreground placeholder:text-muted-foreground";
-  const labelClass = "text-[10px] text-muted-foreground font-medium tracking-widest uppercase mb-1 block";
+  if (!authenticated) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center px-4 py-16 bg-background">
+        <div className="max-w-md w-full space-y-6">
+          <div className="text-center space-y-3">
+            <div className="w-14 h-14 rounded-2xl bg-foreground text-background mx-auto flex items-center justify-center shadow-sm">
+              <Lock className="w-6 h-6" />
+            </div>
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">Executive Control Panel</h1>
+            <p className="text-[13px] text-muted-foreground">
+              ShipNest Global Logistics Hub · Prague Central Operations
+            </p>
+          </div>
+
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-8 space-y-5 shadow-sm">
+            <div className="space-y-2">
+              <label className="text-[11px] font-semibold tracking-wider uppercase text-muted-foreground">
+                Access Passcode
+              </label>
+              <input
+                type="password"
+                placeholder="Enter admin passcode"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                onKeyDown={e => {
+                  if (e.key === "Enter") {
+                    if (password === ADMIN_PASSWORD) setAuthenticated(true);
+                    else toast.error("Invalid administrator credentials");
+                  }
+                }}
+                className="w-full bg-secondary/50 border border-border rounded-xl px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground text-sm font-mono"
+              />
+              <p className="text-[11px] text-muted-foreground">
+                Default demonstration key: <code className="font-mono text-foreground font-semibold">shipnest2024</code>
+              </p>
+            </div>
+
+            <button
+              onClick={() => {
+                if (password === ADMIN_PASSWORD) setAuthenticated(true);
+                else toast.error("Invalid administrator credentials");
+              }}
+              className="w-full bg-foreground text-background py-3 rounded-xl font-semibold hover:bg-foreground/90 text-sm transition-colors"
+            >
+              Authenticate Session
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const totalRevenue = orders.reduce((s, o) => s + o.total, 0);
+  const processing = orders.filter(o => o.status !== "Delivered" && o.status !== "Cancelled").length;
+  const delivered = orders.filter(o => o.status === "Delivered").length;
+  const cancelled = orders.filter(o => o.status === "Cancelled").length;
 
   const tabs = [
-    { id: "dashboard" as const, icon: BarChart3, label: "Dashboard" },
-    { id: "orders" as const, icon: Package, label: "Orders" },
-    { id: "products" as const, icon: Eye, label: "Products" },
-    { id: "settings" as const, icon: Settings, label: "Settings" },
+    { id: "dashboard" as const, icon: BarChart3, label: "Logistics Overview" },
+    { id: "orders" as const, icon: Package, label: `Orders (${orders.length})` },
+    { id: "products" as const, icon: Eye, label: `Catalog (${products.length})` },
+    { id: "settings" as const, icon: Settings, label: "Hub Operations" },
   ];
 
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case "Delivered":
+        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 border border-emerald-500/20"><CheckCircle className="w-3 h-3" /> Delivered</span>;
+      case "Out for Delivery":
+        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-amber-500/10 text-amber-600 border border-amber-500/20"><Truck className="w-3 h-3" /> Courier Out</span>;
+      case "In Transit":
+        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-blue-500/10 text-blue-600 border border-blue-500/20"><Truck className="w-3 h-3" /> Air Transit</span>;
+      case "Cancelled":
+        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-rose-500/10 text-rose-600 border border-rose-500/20"><XCircle className="w-3 h-3" /> Cancelled</span>;
+      default:
+        return <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-secondary text-foreground border border-border"><Clock className="w-3 h-3" /> {status}</span>;
+    }
+  };
+
+  const inputClass = "w-full bg-secondary/50 border border-border rounded-xl px-3.5 py-2.5 text-foreground text-sm focus:outline-none focus:border-foreground placeholder:text-muted-foreground";
+  const labelClass = "text-[11px] text-muted-foreground font-semibold tracking-wider uppercase mb-1.5 block";
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-6 space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
+    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
+      {/* Top Banner */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
         <div>
-          <h1 className="text-xl font-bold text-foreground">Control Panel</h1>
-          <p className="text-xs text-muted-foreground mt-0.5">ShipNest Admin · {new Date().toLocaleString("en-GB", { timeZone: "Europe/Prague" })}</p>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-foreground tracking-tight">ShipNest Control Hub</h1>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-600 border border-emerald-500/20">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Prague Hub Live
+            </span>
+          </div>
+          <p className="text-[13px] text-muted-foreground mt-0.5">
+            Central European Logistics Gateway · All figures in USD · {new Date().toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" })}
+          </p>
         </div>
-        <button onClick={() => setAuthenticated(false)} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-destructive transition-colors bg-card border border-border rounded-lg px-3 py-2">
-          <LogOut className="w-3 h-3" /> Logout
-        </button>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={generateFakeOrder}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-xl text-foreground transition-colors"
+          >
+            <Shuffle className="w-3.5 h-3.5 text-primary" />
+            <span>Generate Mock Order</span>
+          </button>
+          <button
+            onClick={() => setAuthenticated(false)}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 text-[13px] font-medium text-muted-foreground hover:text-destructive hover:bg-destructive/10 border border-border rounded-xl transition-colors"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            <span>Lock</span>
+          </button>
+        </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-card border border-border rounded-xl p-1">
+      <div className="flex gap-1.5 bg-secondary/50 border border-border rounded-xl p-1.5">
         {tabs.map(t => (
-          <button key={t.id} onClick={() => setTab(t.id)}
-            className={`flex-1 flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg text-xs font-medium transition-all ${tab === t.id ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground hover:bg-muted"}`}>
-            <t.icon className="w-3.5 h-3.5" /> <span className="hidden sm:inline">{t.label}</span>
+          <button
+            key={t.id}
+            onClick={() => setTab(t.id)}
+            className={`flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg text-xs font-semibold tracking-wide transition-all ${
+              tab === t.id
+                ? "bg-foreground text-background shadow-xs"
+                : "text-muted-foreground hover:text-foreground hover:bg-background/60"
+            }`}
+          >
+            <t.icon className="w-4 h-4" />
+            <span className="hidden sm:inline">{t.label}</span>
           </button>
         ))}
       </div>
 
-      {/* Dashboard */}
+      {/* Tab: Dashboard */}
       {tab === "dashboard" && (
         <div className="space-y-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { icon: Package, label: "Total Orders", value: orders.length, color: "text-foreground" },
-              { icon: Clock, label: "Processing", value: processing, color: "text-foreground" },
-              { icon: CheckCircle, label: "Delivered", value: delivered, color: "text-emerald-600" },
-              { icon: DollarSign, label: "Revenue", value: `$${totalRevenue.toFixed(0)}`, color: "text-foreground" },
+              {
+                icon: DollarSign,
+                label: "Gross Sales",
+                value: `$${totalRevenue.toLocaleString()}`,
+                sub: "All verified orders",
+              },
+              {
+                icon: Package,
+                label: "Total Dispatches",
+                value: orders.length.toString(),
+                sub: "International shipments",
+              },
+              {
+                icon: Truck,
+                label: "In Active Route",
+                value: processing.toString(),
+                sub: "Air & road freight transit",
+              },
+              {
+                icon: CheckCircle,
+                label: "Delivered",
+                value: delivered.toString(),
+                sub: "Doorstep verified",
+              },
             ].map(s => (
-              <div key={s.label} className="bg-card border border-border rounded-xl p-4 space-y-2">
-                <div className="flex items-center justify-between">
-                  <s.icon className={`w-5 h-5 ${s.color}`} />
-                  <span className="text-[10px] text-muted-foreground font-medium tracking-wider">{s.label.toUpperCase()}</span>
+              <div key={s.label} className="bg-card border border-border rounded-2xl p-5 space-y-2">
+                <div className="flex items-center justify-between text-muted-foreground">
+                  <span className="text-[11px] font-semibold tracking-wider uppercase">{s.label}</span>
+                  <s.icon className="w-4 h-4 text-foreground" />
                 </div>
-                <p className="text-2xl font-bold text-foreground">{s.value}</p>
+                <p className="text-3xl font-bold text-foreground tracking-tight">{s.value}</p>
+                <p className="text-[12px] text-muted-foreground">{s.sub}</p>
               </div>
             ))}
           </div>
 
-          {orders.length > 0 && (
-            <div className="bg-card border border-border rounded-xl overflow-hidden">
-              <div className="p-4 border-b border-border flex items-center justify-between">
-                <h3 className="font-bold text-foreground text-sm">Recent Orders</h3>
-                <button onClick={() => setTab("orders")} className="text-xs text-muted-foreground hover:text-foreground">View all →</button>
+          {/* Quick Recent Activity */}
+          <div className="bg-card border border-border rounded-2xl overflow-hidden">
+            <div className="p-4 sm:p-5 border-b border-border flex items-center justify-between">
+              <div>
+                <h2 className="font-bold text-foreground text-base">Recent Shipments</h2>
+                <p className="text-[12px] text-muted-foreground">Latest dispatches logged at Prague Central</p>
               </div>
+              <button
+                onClick={() => setTab("orders")}
+                className="text-xs font-semibold text-primary hover:underline"
+              >
+                View all orders →
+              </button>
+            </div>
+
+            {orders.length === 0 ? (
+              <div className="text-center py-12 text-muted-foreground space-y-2">
+                <Package className="w-10 h-10 mx-auto opacity-30" />
+                <p className="text-sm font-medium">No orders recorded in this session</p>
+                <button onClick={generateFakeOrder} className="text-xs text-primary underline">
+                  Generate sample order
+                </button>
+              </div>
+            ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead><tr className="border-b border-border text-muted-foreground bg-muted/30">
-                    <th className="p-3 text-left font-medium">Order</th>
-                    <th className="p-3 text-left font-medium">Customer</th>
-                    <th className="p-3 text-left font-medium">Status</th>
-                    <th className="p-3 text-left font-medium">Total</th>
-                    <th className="p-3 text-left font-medium">Action</th>
-                  </tr></thead>
-                  <tbody>
-                    {orders.slice(0, 5).map(o => (
-                      <tr key={o.orderId} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
-                        <td className="p-3 font-medium text-foreground">{o.orderId}</td>
-                        <td className="p-3 text-foreground">{o.customer.name}</td>
-                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-foreground text-background">{o.status}</span></td>
-                        <td className="p-3 font-medium text-foreground">${o.total.toFixed(2)}</td>
-                        <td className="p-3">
-                          <div className="flex items-center gap-2">
-                            <button onClick={() => setEditingOrder({ ...o })} className="text-muted-foreground hover:text-foreground flex items-center gap-1">
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
+                      <th className="p-4 font-semibold">Order ID</th>
+                      <th className="p-4 font-semibold">Customer</th>
+                      <th className="p-4 font-semibold">Destination</th>
+                      <th className="p-4 font-semibold">Status</th>
+                      <th className="p-4 font-semibold">Total</th>
+                      <th className="p-4 font-semibold text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/60">
+                    {orders.slice(0, 6).map(o => (
+                      <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
+                        <td className="p-4 font-mono font-medium text-foreground">{o.orderId}</td>
+                        <td className="p-4 font-medium text-foreground">{o.customer.name}</td>
+                        <td className="p-4 text-muted-foreground">
+                          {o.customer.city}, {o.customer.country}
+                        </td>
+                        <td className="p-4">{getStatusBadge(o.status)}</td>
+                        <td className="p-4 font-semibold text-foreground">${o.total.toLocaleString()}</td>
+                        <td className="p-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <button
+                              onClick={() => setEditingOrder({ ...o })}
+                              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
+                            >
                               <Edit className="w-3 h-3" /> Edit
                             </button>
-                            <button onClick={() => copyOrderDetails(o)} className="text-muted-foreground hover:text-foreground flex items-center gap-1">
-                              <ClipboardCopy className="w-3 h-3" /> Copy
-                            </button>
+                            <Link
+                              to={`/track/${o.trackingId}`}
+                              target="_blank"
+                              className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
+                            >
+                              <ExternalLink className="w-3 h-3" /> Track
+                            </Link>
                           </div>
                         </td>
                       </tr>
@@ -373,108 +543,150 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                   </tbody>
                 </table>
               </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Orders */}
-      {tab === "orders" && (
-        <div className="space-y-4">
-          {/* Action bar */}
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="relative flex-1 min-w-[200px]">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input placeholder="Search by Order ID, Customer, or Tracking ID..."
-                value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
-                className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground" />
-            </div>
-            <button onClick={generateFakeOrder}
-              className="flex items-center gap-1.5 px-4 py-3 text-xs font-medium bg-card border border-border rounded-xl hover:border-foreground/30 transition-colors text-foreground">
-              <Shuffle className="w-3.5 h-3.5" /> Generate Order
-            </button>
-            {selectedOrders.size > 0 && (
-              <button onClick={handleBulkDelete}
-                className="flex items-center gap-1.5 px-4 py-3 text-xs font-medium bg-destructive/10 border border-destructive/30 rounded-xl hover:bg-destructive/20 transition-colors text-destructive">
-                <Trash2 className="w-3.5 h-3.5" /> Delete ({selectedOrders.size})
-              </button>
             )}
           </div>
+        </div>
+      )}
 
-          {filteredOrders.length === 0 ? (
-            <div className="text-center text-muted-foreground py-10 bg-card border border-border rounded-xl">
-              <Package className="w-10 h-10 mx-auto mb-3 opacity-30" />
-              <p className="text-sm">No orders found</p>
-              <button onClick={generateFakeOrder} className="mt-3 text-xs text-foreground underline">Generate a test order</button>
+      {/* Tab: Orders */}
+      {tab === "orders" && (
+        <div className="space-y-4">
+          {/* Filter Bar */}
+          <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+            <div className="relative flex-1">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Search by Order ID, Customer, Tracking, or Destination..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground"
+              />
             </div>
-          ) : (
-            <div className="bg-card border border-border rounded-xl overflow-hidden">
+
+            <div className="flex items-center gap-2">
+              <div className="flex items-center bg-secondary/50 border border-border rounded-xl p-1 text-xs">
+                {["all", "active", "delivered", "cancelled"].map(f => (
+                  <button
+                    key={f}
+                    onClick={() => setStatusFilter(f)}
+                    className={`px-3 py-1.5 rounded-lg capitalize font-medium transition-colors ${
+                      statusFilter === f
+                        ? "bg-foreground text-background font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+
+              {selectedOrders.size > 0 && (
+                <button
+                  onClick={handleBulkDelete}
+                  className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-semibold bg-destructive/10 text-destructive border border-destructive/20 rounded-xl hover:bg-destructive/20 transition-colors"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Delete ({selectedOrders.size})
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Orders Table */}
+          <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-xs">
+            {filteredOrders.length === 0 ? (
+              <div className="text-center py-16 text-muted-foreground space-y-3">
+                <Package className="w-12 h-12 mx-auto opacity-30" />
+                <p className="text-sm font-medium">No matching orders found</p>
+                <button onClick={generateFakeOrder} className="text-xs text-primary underline">
+                  Generate an international demo order
+                </button>
+              </div>
+            ) : (
               <div className="overflow-x-auto">
-                <table className="w-full text-xs">
-                  <thead><tr className="border-b border-border text-muted-foreground bg-muted/30">
-                    <th className="p-3 text-left font-medium">
-                      <input type="checkbox" checked={selectedOrders.size === filteredOrders.length && filteredOrders.length > 0}
-                        onChange={toggleSelectAll} className="rounded border-border w-3.5 h-3.5" />
-                    </th>
-                    <th className="p-3 text-left font-medium">Order ID</th>
-                    <th className="p-3 text-left font-medium">Customer</th>
-                    <th className="p-3 text-left font-medium">Tracking</th>
-                    <th className="p-3 text-left font-medium">Items</th>
-                    <th className="p-3 text-left font-medium">PIN</th>
-                    <th className="p-3 text-left font-medium">Total</th>
-                    <th className="p-3 text-left font-medium">Status</th>
-                    <th className="p-3 text-left font-medium">Actions</th>
-                  </tr></thead>
-                  <tbody>
+                <table className="w-full text-left text-xs">
+                  <thead>
+                    <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
+                      <th className="p-3.5 w-10">
+                        <input
+                          type="checkbox"
+                          checked={selectedOrders.size === filteredOrders.length && filteredOrders.length > 0}
+                          onChange={toggleSelectAll}
+                          className="rounded border-border w-3.5 h-3.5"
+                        />
+                      </th>
+                      <th className="p-3.5 font-semibold">Order</th>
+                      <th className="p-3.5 font-semibold">Tracking Number</th>
+                      <th className="p-3.5 font-semibold">Recipient</th>
+                      <th className="p-3.5 font-semibold">Items</th>
+                      <th className="p-3.5 font-semibold">Status</th>
+                      <th className="p-3.5 font-semibold">Total</th>
+                      <th className="p-3.5 font-semibold text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-border/60">
                     {filteredOrders.map(o => (
-                      <tr key={o.orderId} className={`border-b border-border/50 hover:bg-muted/20 transition-colors ${selectedOrders.has(o.orderId) ? "bg-muted/30" : ""}`}>
-                        <td className="p-3">
-                          <input type="checkbox" checked={selectedOrders.has(o.orderId)}
-                            onChange={() => toggleSelectOrder(o.orderId)} className="rounded border-border w-3.5 h-3.5" />
+                      <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
+                        <td className="p-3.5">
+                          <input
+                            type="checkbox"
+                            checked={selectedOrders.has(o.orderId)}
+                            onChange={() => toggleSelectOrder(o.orderId)}
+                            className="rounded border-border w-3.5 h-3.5"
+                          />
                         </td>
-                        <td className="p-3 font-medium text-foreground">{o.orderId}</td>
-                        <td className="p-3">
-                          <p className="text-foreground font-medium">{o.customer.name}</p>
-                          <p className="text-muted-foreground">{o.customer.email}</p>
+                        <td className="p-3.5">
+                          <span className="font-mono font-semibold text-foreground">{o.orderId}</span>
+                          <span className="block text-[10px] text-muted-foreground">
+                            {new Date(o.placedAt).toLocaleDateString("en-GB")}
+                          </span>
                         </td>
-                        <td className="p-3 text-foreground font-medium">{o.trackingId}</td>
-                        <td className="p-3 text-foreground">{o.items.length} item{o.items.length > 1 ? "s" : ""}</td>
-                        <td className="p-3">
-                          <span className="inline-block font-mono font-bold tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded text-[11px]">{o.deliveryPin || "—"}</span>
+                        <td className="p-3.5 font-mono text-muted-foreground">
+                          <Link
+                            to={`/track/${o.trackingId}`}
+                            className="hover:text-primary transition-colors hover:underline"
+                          >
+                            {o.trackingId}
+                          </Link>
                         </td>
-                        <td className="p-3 font-medium text-foreground">${o.total.toFixed(2)}</td>
-                        <td className="p-3"><span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-foreground text-background">{o.status}</span></td>
-                        <td className="p-3">
-                          <div className="flex items-center gap-2">
-                            <button onClick={() => setEditingOrder({ ...o })}
-                              className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
-                              <Edit className="w-3 h-3" /> Edit
+                        <td className="p-3.5">
+                          <p className="font-medium text-foreground">{o.customer.name}</p>
+                          <p className="text-[10px] text-muted-foreground">
+                            {o.customer.city}, {o.customer.country}
+                          </p>
+                        </td>
+                        <td className="p-3.5">
+                          <span className="text-foreground">{o.items.length} item(s)</span>
+                          <span className="block text-[10px] text-muted-foreground truncate max-w-[140px]">
+                            {o.items[0]?.name}
+                          </span>
+                        </td>
+                        <td className="p-3.5">{getStatusBadge(o.status)}</td>
+                        <td className="p-3.5 font-semibold text-foreground">${o.total.toLocaleString()}</td>
+                        <td className="p-3.5 text-right">
+                          <div className="flex items-center justify-end gap-1.5">
+                            <button
+                              onClick={() => setEditingOrder({ ...o })}
+                              className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
+                              title="Edit order & checkpoints"
+                            >
+                              <Edit className="w-3.5 h-3.5" />
                             </button>
-                            <button onClick={() => copyOrderDetails(o)}
-                              className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
-                              <ClipboardCopy className="w-3 h-3" /> Copy
+                            <button
+                              onClick={() => copyOrderDetails(o)}
+                              className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
+                              title="Copy dispatch manifest"
+                            >
+                              <ClipboardCopy className="w-3.5 h-3.5" />
                             </button>
-                            {o.status !== "Cancelled" && o.status !== "Delivered" && (
-                              <button onClick={() => { cancelOrder(o.orderId); toast.success("Order cancelled — return tracking generated"); }}
-                                className="flex items-center gap-1 text-muted-foreground hover:text-orange-500">
-                                <XCircle className="w-3 h-3" /> Cancel
-                              </button>
-                            )}
-                            {deleteConfirm === o.orderId ? (
-                              <div className="flex items-center gap-1">
-                                <button onClick={() => handleDeleteOrder(o.orderId)}
-                                  className="flex items-center gap-1 text-destructive font-semibold">
-                                  <AlertTriangle className="w-3 h-3" /> Confirm
-                                </button>
-                                <button onClick={() => setDeleteConfirm(null)}
-                                  className="text-muted-foreground text-[10px]">Cancel</button>
-                              </div>
-                            ) : (
-                              <button onClick={() => setDeleteConfirm(o.orderId)}
-                                className="flex items-center gap-1 text-muted-foreground hover:text-destructive">
-                                <Trash2 className="w-3 h-3" /> Delete
-                              </button>
-                            )}
+                            <button
+                              onClick={() => handleDeleteOrder(o.orderId)}
+                              className="p-1.5 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-lg transition-colors"
+                              title="Delete record"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                         </td>
                       </tr>
@@ -482,221 +694,442 @@ Track your order: shipnest-cz.lovable.app/track/${order.trackingId}`;
                   </tbody>
                 </table>
               </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Products */}
-      {tab === "products" && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-          {products.map(p => (
-            <div key={p.id} className="bg-card border border-border rounded-xl p-4 flex gap-4 items-center">
-              <img src={p.image} alt={p.name} className="w-14 h-14 object-contain rounded-lg bg-white" />
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-muted-foreground">{p.brand}</p>
-                <p className="text-sm font-semibold text-foreground truncate">{p.name}</p>
-                <div className="flex items-center gap-2 mt-1">
-                  <span className="text-sm font-bold text-foreground">${p.price}</span>
-                  {p.badge && <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-foreground text-background">{p.badge}</span>}
-                  <span className={`text-[9px] font-bold ${p.inStock ? "text-emerald-600" : "text-destructive"}`}>
-                    {p.inStock ? "● In Stock" : "● Out"}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Settings */}
-      {tab === "settings" && (
-        <div className="bg-card border border-border rounded-xl p-6 space-y-4 max-w-md">
-          <h3 className="font-bold text-foreground text-sm">System Info</h3>
-          <div className="space-y-2 text-sm">
-            <div className="flex justify-between text-muted-foreground"><span>Platform</span><span className="text-foreground">ShipNest v2.0</span></div>
-            <div className="flex justify-between text-muted-foreground"><span>Timezone</span><span className="text-foreground">Europe/Prague (CET)</span></div>
-            <div className="flex justify-between text-muted-foreground"><span>Orders</span><span className="text-foreground">{orders.length}</span></div>
-            <div className="flex justify-between text-muted-foreground"><span>Products</span><span className="text-foreground">{products.length}</span></div>
+            )}
           </div>
         </div>
       )}
 
-      {/* Edit Order Modal */}
-      {editingOrder && (
-        <div className="fixed inset-0 z-50 bg-background/90 backdrop-blur-md flex items-start justify-center overflow-y-auto py-4 px-4">
-          <div className="bg-card border border-border rounded-2xl max-w-2xl w-full p-5 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-lg font-bold text-foreground">Edit Order</h2>
-                <p className="text-xs text-muted-foreground">{editingOrder.orderId}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <button onClick={() => copyOrderDetails(editingOrder)}
-                  className="flex items-center gap-1.5 px-3 py-2 text-xs font-medium bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors text-foreground">
-                  <ClipboardCopy className="w-3.5 h-3.5" /> Copy for Email
-                </button>
-                <button onClick={() => setEditingOrder(null)} className="p-2 text-muted-foreground hover:text-foreground bg-muted rounded-lg">✕</button>
-              </div>
+      {/* Tab: Products Catalog */}
+      {tab === "products" && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-bold text-foreground">Catalog Inventory ({products.length})</h2>
+              <p className="text-[12px] text-muted-foreground">Live SKUs synced from Prague central inventory</p>
             </div>
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+            >
+              Browse live store <ArrowUpRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
 
-            {/* Customer Details Section */}
-            <div className="border border-border rounded-xl overflow-hidden">
-              <button onClick={() => toggleSection("customer")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-foreground" />
-                  <span className="font-semibold text-foreground text-sm">Customer Details</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {products.map(p => (
+              <div key={p.id} className="bg-card border border-border rounded-2xl p-4 space-y-3 flex flex-col justify-between">
+                <div className="aspect-square bg-secondary/40 rounded-xl overflow-hidden flex items-center justify-center p-3">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="w-full h-full object-contain hover:scale-105 transition-transform"
+                    onError={e => {
+                      (e.target as HTMLImageElement).src = "/placeholder.svg";
+                    }}
+                  />
                 </div>
-                {expandedSections.customer ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
-              </button>
-              {expandedSections.customer && (
-                <div className="p-4 space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div><label className={labelClass}>Name</label><input value={editingOrder.customer.name} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, name: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>Email</label><input value={editingOrder.customer.email} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, email: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>Phone</label><input value={editingOrder.customer.phone} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, phone: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>Address</label><input value={editingOrder.customer.address} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, address: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>City</label><input value={editingOrder.customer.city} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, city: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>State</label><input value={editingOrder.customer.state} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, state: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>Country</label><input value={editingOrder.customer.country} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, country: e.target.value } })} className={inputClass} /></div>
-                    <div><label className={labelClass}>ZIP</label><input value={editingOrder.customer.zip} onChange={e => setEditingOrder({ ...editingOrder, customer: { ...editingOrder.customer, zip: e.target.value } })} className={inputClass} /></div>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between text-[11px] text-muted-foreground">
+                    <span className="uppercase tracking-wider font-semibold">{p.brand}</span>
+                    <span className="capitalize">{p.category}</span>
+                  </div>
+                  <h3 className="font-semibold text-foreground text-sm line-clamp-1">{p.name}</h3>
+                  <div className="flex items-center justify-between pt-1">
+                    <span className="font-bold text-foreground text-base">${p.price.toLocaleString()}</span>
+                    <span className="text-[11px] font-medium text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded-full">
+                      In Stock
+                    </span>
                   </div>
                 </div>
-              )}
+                <Link
+                  to={`/product/${p.id}`}
+                  className="w-full text-center py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-xl text-xs font-semibold transition-colors block"
+                >
+                  View Product Page
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Tab: Settings */}
+      {tab === "settings" && (
+        <div className="max-w-3xl space-y-6">
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
+            <div className="flex items-center gap-3 pb-3 border-b border-border">
+              <Building2 className="w-5 h-5 text-primary" />
+              <div>
+                <h3 className="font-bold text-foreground text-base">Fulfillment Hub Infrastructure</h3>
+                <p className="text-[12px] text-muted-foreground">Central logistics facility credentials</p>
+              </div>
             </div>
 
-            {/* Order Details Section */}
-            <div className="border border-border rounded-xl overflow-hidden">
-              <button onClick={() => toggleSection("order")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-2">
-                  <Package className="w-4 h-4 text-foreground" />
-                  <span className="font-semibold text-foreground text-sm">Order Details</span>
-                </div>
-                {expandedSections.order ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+            <div className="grid sm:grid-cols-2 gap-4 text-xs">
+              <div className="space-y-1">
+                <span className="text-muted-foreground uppercase text-[10px] tracking-wider font-semibold">Headquarters</span>
+                <p className="font-semibold text-foreground">ShipNest s.r.o. (Czech Republic)</p>
+                <p className="text-muted-foreground">Na Příkopě 859/22, 110 00 Nové Město, Prague</p>
+              </div>
+              <div className="space-y-1">
+                <span className="text-muted-foreground uppercase text-[10px] tracking-wider font-semibold">Air Cargo Base</span>
+                <p className="font-semibold text-foreground">Václav Havel Airport Prague (PRG)</p>
+                <p className="text-muted-foreground">Logistics Freight Terminal 3</p>
+              </div>
+              <div className="space-y-1">
+                <span className="text-muted-foreground uppercase text-[10px] tracking-wider font-semibold">Cloudflare Deployment</span>
+                <p className="font-semibold text-foreground">Static Edge Pages (React + Vite 6)</p>
+                <p className="text-muted-foreground">Zero cold starts · Global CDN distribution</p>
+              </div>
+              <div className="space-y-1">
+                <span className="text-muted-foreground uppercase text-[10px] tracking-wider font-semibold">Security & Verification</span>
+                <p className="font-semibold text-foreground">Doorstep 4-Digit Delivery PIN active</p>
+                <p className="text-muted-foreground">AIG Insurance Underwriting Coverage</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
+            <h3 className="font-bold text-foreground text-base">Session Controls</h3>
+            <p className="text-xs text-muted-foreground">
+              To test the application under various states, you can generate fresh orders or reset local storage caches safely.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={generateFakeOrder}
+                className="px-4 py-2.5 bg-foreground text-background text-xs font-semibold rounded-xl hover:bg-foreground/90 transition-colors inline-flex items-center gap-2"
+              >
+                <Shuffle className="w-3.5 h-3.5" /> Generate Sample Order
               </button>
-              {expandedSections.order && (
-                <div className="p-4 space-y-3">
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className={labelClass}>Tracking ID</label>
-                      <div className="flex gap-2">
-                        <input value={editingOrder.trackingId} onChange={e => setEditingOrder({ ...editingOrder, trackingId: e.target.value })} className={inputClass} />
-                        <button onClick={() => setEditingOrder({ ...editingOrder, trackingId: generateTrackingId() })}
-                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors" title="Generate new">
-                          <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
-                        </button>
-                      </div>
-                    </div>
-                    <div>
-                      <label className={labelClass}>Estimated Delivery</label>
-                      <input type="date" value={editingOrder.estimatedDelivery.split("T")[0]}
-                        onChange={e => setEditingOrder({ ...editingOrder, estimatedDelivery: new Date(e.target.value).toISOString() })} className={inputClass} />
-                    </div>
-                    <div>
-                      <label className={labelClass}>Delivery PIN</label>
-                      <div className="flex gap-2">
-                        <input value={editingOrder.deliveryPin || ""} onChange={e => setEditingOrder({ ...editingOrder, deliveryPin: e.target.value.replace(/\D/g, "").slice(0, 4) })}
-                          placeholder="4-digit" className={inputClass} />
-                        <button onClick={() => setEditingOrder({ ...editingOrder, deliveryPin: generateDeliveryPin() })}
-                          className="shrink-0 p-2.5 bg-muted border border-border rounded-lg hover:border-foreground/30 transition-colors" title="Regenerate PIN">
-                          <RefreshCw className="w-3.5 h-3.5 text-muted-foreground" />
-                        </button>
-                      </div>
-                    </div>
+              <button
+                onClick={() => {
+                  if (confirm("Reset order cache? Demo seed orders will be reloaded on next refresh.")) {
+                    localStorage.removeItem("shipnest_orders_cache");
+                    toast.success("Order cache cleared");
+                  }
+                }}
+                className="px-4 py-2.5 bg-secondary text-foreground text-xs font-semibold rounded-xl hover:bg-secondary/80 border border-border transition-colors inline-flex items-center gap-2"
+              >
+                <RefreshCw className="w-3.5 h-3.5" /> Clear Local Cache
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Edit Order Modal / Drawer */}
+      {editingOrder && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-card border border-border rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-4 border-b border-border">
+              <div>
+                <div className="flex items-center gap-2">
+                  <h3 className="text-lg font-bold text-foreground">Edit Dispatch Record</h3>
+                  <span className="font-mono text-xs px-2 py-0.5 rounded-md bg-secondary text-foreground">
+                    {editingOrder.orderId}
+                  </span>
+                </div>
+                <p className="text-[12px] text-muted-foreground">
+                  Tracking: {editingOrder.trackingId} · Placed {new Date(editingOrder.placedAt).toLocaleDateString()}
+                </p>
+              </div>
+              <button
+                onClick={() => setEditingOrder(null)}
+                className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+              >
+                <XCircle className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Customer Section */}
+            <div className="border border-border rounded-xl overflow-hidden">
+              <button
+                onClick={() => toggleSection("customer")}
+                className="w-full flex items-center justify-between p-3.5 bg-secondary/30 hover:bg-secondary/50 transition-colors text-left"
+              >
+                <span className="font-semibold text-xs text-foreground uppercase tracking-wider">
+                  Customer & Destination Details
+                </span>
+                {expandedSections.customer ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              </button>
+
+              {expandedSections.customer && (
+                <div className="p-4 grid sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className={labelClass}>Customer Name</label>
+                    <input
+                      value={editingOrder.customer.name}
+                      onChange={e =>
+                        setEditingOrder({
+                          ...editingOrder,
+                          customer: { ...editingOrder.customer, name: e.target.value },
+                        })
+                      }
+                      className={inputClass}
+                    />
                   </div>
                   <div>
-                    <label className={labelClass}>Admin Notes</label>
-                    <textarea value={editingOrder.notes} onChange={e => setEditingOrder({ ...editingOrder, notes: e.target.value })}
-                      placeholder="Internal notes..." rows={2} className={inputClass} />
+                    <label className={labelClass}>Email Address</label>
+                    <input
+                      value={editingOrder.customer.email}
+                      onChange={e =>
+                        setEditingOrder({
+                          ...editingOrder,
+                          customer: { ...editingOrder.customer, email: e.target.value },
+                        })
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Phone</label>
+                    <input
+                      value={editingOrder.customer.phone}
+                      onChange={e =>
+                        setEditingOrder({
+                          ...editingOrder,
+                          customer: { ...editingOrder.customer, phone: e.target.value },
+                        })
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Street Address</label>
+                    <input
+                      value={editingOrder.customer.address}
+                      onChange={e =>
+                        setEditingOrder({
+                          ...editingOrder,
+                          customer: { ...editingOrder.customer, address: e.target.value },
+                        })
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>City</label>
+                    <input
+                      value={editingOrder.customer.city}
+                      onChange={e =>
+                        setEditingOrder({
+                          ...editingOrder,
+                          customer: { ...editingOrder.customer, city: e.target.value },
+                        })
+                      }
+                      className={inputClass}
+                    />
+                  </div>
+                  <div>
+                    <label className={labelClass}>Country & Postal</label>
+                    <div className="grid grid-cols-2 gap-2">
+                      <input
+                        value={editingOrder.customer.country}
+                        onChange={e =>
+                          setEditingOrder({
+                            ...editingOrder,
+                            customer: { ...editingOrder.customer, country: e.target.value },
+                          })
+                        }
+                        className={inputClass}
+                        placeholder="Country"
+                      />
+                      <input
+                        value={editingOrder.customer.zip}
+                        onChange={e =>
+                          setEditingOrder({
+                            ...editingOrder,
+                            customer: { ...editingOrder.customer, zip: e.target.value },
+                          })
+                        }
+                        className={inputClass}
+                        placeholder="Zip"
+                      />
+                    </div>
                   </div>
                 </div>
               )}
             </div>
 
-            {/* Tracking Timeline Section */}
-            <div className="border border-border rounded-xl overflow-hidden">
-              <button onClick={() => toggleSection("timeline")} className="w-full flex items-center justify-between p-4 bg-muted/30 hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-2">
-                  <Truck className="w-4 h-4 text-foreground" />
-                  <span className="font-semibold text-foreground text-sm">Tracking Timeline</span>
-                  <span className="text-[10px] text-muted-foreground">({editingOrder.trackingSteps.length} steps)</span>
+            {/* Status & PIN Section */}
+            <div className="border border-border rounded-xl p-4 space-y-3">
+              <div className="grid sm:grid-cols-2 gap-3">
+                <div>
+                  <label className={labelClass}>Global Status</label>
+                  <select
+                    value={editingOrder.status}
+                    onChange={e => setEditingOrder({ ...editingOrder, status: e.target.value })}
+                    className={inputClass}
+                  >
+                    <option value="Order Placed">Order Placed</option>
+                    <option value="In Processing">In Processing</option>
+                    <option value="Shipped">Shipped</option>
+                    <option value="In Transit">In Transit</option>
+                    <option value="Out for Delivery">Out for Delivery</option>
+                    <option value="Delivered">Delivered</option>
+                    <option value="Cancelled">Cancelled</option>
+                  </select>
                 </div>
-                {expandedSections.timeline ? <ChevronUp className="w-4 h-4 text-muted-foreground" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
+                <div>
+                  <label className={labelClass}>Doorstep Delivery PIN</label>
+                  <div className="flex gap-2">
+                    <input
+                      value={editingOrder.deliveryPin || ""}
+                      onChange={e => setEditingOrder({ ...editingOrder, deliveryPin: e.target.value })}
+                      className={`${inputClass} font-mono font-bold tracking-widest text-center`}
+                      maxLength={4}
+                    />
+                    <button
+                      onClick={() =>
+                        setEditingOrder({ ...editingOrder, deliveryPin: generateDeliveryPin() })
+                      }
+                      className="p-2.5 bg-secondary border border-border rounded-xl hover:bg-secondary/80 text-foreground transition-colors"
+                      title="Generate new PIN"
+                    >
+                      <RefreshCw className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label className={labelClass}>Internal Operations Notes</label>
+                <textarea
+                  value={editingOrder.notes || ""}
+                  onChange={e => setEditingOrder({ ...editingOrder, notes: e.target.value })}
+                  rows={2}
+                  className={inputClass}
+                  placeholder="Notes visible to logistics staff only..."
+                />
+              </div>
+            </div>
+
+            {/* Tracking Milestones */}
+            <div className="border border-border rounded-xl overflow-hidden">
+              <button
+                onClick={() => toggleSection("timeline")}
+                className="w-full flex items-center justify-between p-3.5 bg-secondary/30 hover:bg-secondary/50 transition-colors text-left"
+              >
+                <span className="font-semibold text-xs text-foreground uppercase tracking-wider">
+                  Tracking Milestones ({editingOrder.trackingSteps.length} steps)
+                </span>
+                {expandedSections.timeline ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
               </button>
+
               {expandedSections.timeline && (
                 <div className="p-4 space-y-3">
-                  <div className="space-y-2 max-h-80 overflow-y-auto pr-1">
-                    {editingOrder.trackingSteps.map((step, i) => (
-                      <div key={step.id} className={`border rounded-xl p-3 space-y-2 transition-all ${step.completed ? "border-foreground/30 bg-muted/30" : "border-border"}`}>
+                  <div className="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+                    {editingOrder.trackingSteps.map((step, idx) => (
+                      <div
+                        key={step.id}
+                        className={`p-3 rounded-xl border space-y-2 transition-all ${
+                          step.completed
+                            ? "border-primary/40 bg-primary/5"
+                            : "border-border bg-card"
+                        }`}
+                      >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
-                            <span className="text-lg">{step.icon}</span>
-                            <span className="text-[10px] text-muted-foreground font-medium tracking-wider">STEP {i + 1}</span>
+                            <span className="text-base">{step.icon}</span>
+                            <span className="text-[11px] font-bold text-foreground">
+                              Checkpoint {idx + 1}: {step.status}
+                            </span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <label className="flex items-center gap-1 text-[10px] text-foreground cursor-pointer bg-muted px-2 py-1 rounded-lg">
-                              <input type="checkbox" checked={step.completed}
+                            <label className="flex items-center gap-1.5 text-xs text-foreground font-medium cursor-pointer bg-secondary px-2.5 py-1 rounded-md">
+                              <input
+                                type="checkbox"
+                                checked={step.completed}
                                 onChange={e => updateStep(step.id, { completed: e.target.checked })}
-                                className="rounded border-border w-3 h-3" />
-                              Done
+                                className="rounded border-border w-3.5 h-3.5"
+                              />
+                              Completed
                             </label>
-                            <button onClick={() => removeStep(step.id)} className="p-1 text-muted-foreground hover:text-destructive">
-                              <Trash2 className="w-3 h-3" />
+                            <button
+                              onClick={() => removeStep(step.id)}
+                              className="p-1 text-muted-foreground hover:text-destructive transition-colors"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
                             </button>
                           </div>
                         </div>
-                        <div className="grid grid-cols-2 gap-2">
+
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
                           <div>
-                            <label className={labelClass}>Status</label>
-                            <input value={step.status} onChange={e => updateStep(step.id, { status: e.target.value })} className={inputClass} />
+                            <label className={labelClass}>Status Title</label>
+                            <input
+                              value={step.status}
+                              onChange={e => updateStep(step.id, { status: e.target.value })}
+                              className={inputClass}
+                            />
+                          </div>
+                          <div>
+                            <label className={labelClass}>Location</label>
+                            <input
+                              value={step.city}
+                              onChange={e => updateStep(step.id, { city: e.target.value })}
+                              placeholder="City"
+                              className={inputClass}
+                            />
                           </div>
                           <div>
                             <label className={labelClass}>Icon</label>
-                            <select value={step.icon} onChange={e => updateStep(step.id, { icon: e.target.value })} className={inputClass}>
-                              {ICONS.map(ic => <option key={ic} value={ic}>{ic}</option>)}
+                            <select
+                              value={step.icon}
+                              onChange={e => updateStep(step.id, { icon: e.target.value })}
+                              className={inputClass}
+                            >
+                              {ICONS.map(ic => (
+                                <option key={ic} value={ic}>
+                                  {ic}
+                                </option>
+                              ))}
                             </select>
-                          </div>
-                          <div>
-                            <label className={labelClass}>City</label>
-                            <input value={step.city} onChange={e => updateStep(step.id, { city: e.target.value })} className={inputClass} />
-                          </div>
-                          <div>
-                            <label className={labelClass}>State</label>
-                            <input value={step.state} onChange={e => updateStep(step.id, { state: e.target.value })} className={inputClass} />
-                          </div>
-                          <div>
-                            <label className={labelClass}>Country</label>
-                            <input value={step.country} onChange={e => updateStep(step.id, { country: e.target.value })} className={inputClass} />
-                          </div>
-                          <div>
-                            <label className={labelClass}>Timestamp</label>
-                            <input type="datetime-local" value={step.timestamp ? step.timestamp.slice(0, 16) : ""}
-                              onChange={e => updateStep(step.id, { timestamp: e.target.value ? new Date(e.target.value).toISOString() : "" })} className={inputClass} />
                           </div>
                         </div>
                       </div>
                     ))}
                   </div>
-                  <button onClick={addStep} className="w-full border border-dashed border-border rounded-xl p-3 text-xs text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors flex items-center justify-center gap-2">
-                    <Plus className="w-3.5 h-3.5" /> Add Tracking Step
+
+                  <button
+                    onClick={addStep}
+                    className="w-full py-2.5 border border-dashed border-border rounded-xl text-xs font-semibold text-muted-foreground hover:text-foreground hover:border-foreground transition-colors flex items-center justify-center gap-1.5"
+                  >
+                    <Plus className="w-3.5 h-3.5" /> Add Milestone Checkpoint
                   </button>
                 </div>
               )}
             </div>
 
-            <div className="flex gap-2">
-              <button onClick={saveOrder}
-                className="flex-1 bg-foreground text-background py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors">
-                <Save className="w-4 h-4" /> Save All Changes
+            {/* Actions */}
+            <div className="flex flex-col sm:flex-row gap-2 pt-2 border-t border-border">
+              <button
+                onClick={saveOrder}
+                className="flex-1 bg-foreground text-background py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 hover:bg-foreground/90 transition-colors"
+              >
+                <Save className="w-4 h-4" /> Save Dispatch Changes
               </button>
               {editingOrder.status !== "Cancelled" && editingOrder.status !== "Delivered" && (
-                <button onClick={() => { cancelOrder(editingOrder.orderId); setEditingOrder(null); toast.success("Order cancelled — return tracking generated"); }}
-                  className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-orange-500/10 border border-orange-500/30 text-orange-500 hover:bg-orange-500/20 transition-colors">
-                  <XCircle className="w-4 h-4" /> Cancel Order
+                <button
+                  onClick={() => {
+                    cancelOrder(editingOrder.orderId);
+                    setEditingOrder(null);
+                    toast.success("Order marked as cancelled with return logistics");
+                  }}
+                  className="px-4 py-3 bg-amber-500/10 border border-amber-500/30 text-amber-600 rounded-xl text-sm font-semibold hover:bg-amber-500/20 transition-colors flex items-center justify-center gap-1.5"
+                >
+                  <XCircle className="w-4 h-4" /> Cancel Shipment
                 </button>
               )}
-              <button onClick={() => { if (confirm("Delete this order permanently?")) handleDeleteOrder(editingOrder.orderId); }}
-                className="px-5 py-3.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 bg-destructive/10 border border-destructive/30 text-destructive hover:bg-destructive/20 transition-colors">
+              <button
+                onClick={() => {
+                  if (confirm("Delete this order record permanently?")) {
+                    handleDeleteOrder(editingOrder.orderId);
+                  }
+                }}
+                className="px-4 py-3 bg-destructive/10 border border-destructive/20 text-destructive rounded-xl text-sm font-semibold hover:bg-destructive/20 transition-colors flex items-center justify-center gap-1.5"
+              >
                 <Trash2 className="w-4 h-4" /> Delete
               </button>
             </div>

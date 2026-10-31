@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "sonner";
 import { Mail, Lock, User as UserIcon, ArrowLeft } from "lucide-react";
@@ -41,8 +40,16 @@ const AuthPage = () => {
 
   const google = async () => {
     setBusy(true);
-    const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/account" });
-    if (r.error) { toast.error("Google sign-in failed"); setBusy(false); }
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: { redirectTo: `${window.location.origin}/account` },
+      });
+      if (error) throw error;
+    } catch (err: any) {
+      toast.error(err.message || "Google sign-in failed");
+      setBusy(false);
+    }
   };
 
   const input = "w-full bg-background border border-border rounded-lg pl-10 pr-3 py-3 text-foreground text-[14px] focus:outline-none focus:ring-1 focus:ring-primary/40";

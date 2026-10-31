@@ -1,13 +1,20 @@
 import { useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { products } from "@/data/products";
-import { Check, X, Plus } from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import { Check, X, Plus, ArrowRight, ShoppingBag, Search, Sparkles } from "lucide-react";
 import Reveal from "@/components/Reveal";
+import { toast } from "sonner";
 
 const ComparePage = () => {
   const [params, setParams] = useSearchParams();
   const initial = (params.get("ids") || "").split(",").filter(Boolean);
-  const [picks, setPicks] = useState<string[]>(initial.length ? initial : []);
+  const [picks, setPicks] = useState<string[]>(
+    initial.length ? initial : [products[0]?.id, products[1]?.id].filter(Boolean)
+  );
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [searchFilter, setSearchFilter] = useState<string>("");
+  const { addToCart } = useCart();
 
   const addProduct = (id: string) => {
     if (picks.includes(id) || picks.length >= 3) return;
@@ -15,6 +22,7 @@ const ComparePage = () => {
     setPicks(next);
     setParams({ ids: next.join(",") });
   };
+
   const removeProduct = (id: string) => {
     const next = picks.filter(p => p !== id);
     setPicks(next);
@@ -25,96 +33,249 @@ const ComparePage = () => {
   const slots = [...selected, ...Array(Math.max(0, 3 - selected.length)).fill(null)];
 
   const rows = [
-    { label: "Price", get: (p: any) => `$${p.price}` },
-    { label: "Rating", get: (p: any) => `${p.rating} ★` },
-    { label: "Reviews", get: (p: any) => p.reviews.toLocaleString() },
+    { label: "Price", get: (p: any) => `$${p.price.toLocaleString()}` },
     { label: "Brand", get: (p: any) => p.brand },
-    { label: "Category", get: (p: any) => p.category },
-    { label: "Display", get: (p: any) => p.specs[0] || "—" },
-    { label: "Chip", get: (p: any) => p.specs.find((s: string) => /chip|snapdragon|tensor|exynos|dimensity/i.test(s)) || "—" },
-    { label: "Camera", get: (p: any) => p.specs.find((s: string) => /MP|camera/i.test(s)) || "—" },
-    { label: "In stock", get: (p: any) => p.inStock },
+    { label: "Category", get: (p: any) => p.category.toUpperCase() },
+    { label: "Rating", get: (p: any) => `${p.rating} / 5.0 (${p.reviews.toLocaleString()} reviews)` },
+    { label: "Display / Screen", get: (p: any) => p.specs[0] || "—" },
+    {
+      label: "Processor / Chip",
+      get: (p: any) =>
+        p.specs.find((s: string) => /chip|snapdragon|tensor|exynos|dimensity|apple m|intel|amd/i.test(s)) ||
+        p.specs[1] ||
+        "—",
+    },
+    {
+      label: "Camera / Sensors",
+      get: (p: any) =>
+        p.specs.find((s: string) => /MP|camera|lens|sensor/i.test(s)) || p.specs[2] || "—",
+    },
+    {
+      label: "Battery / Runtime",
+      get: (p: any) =>
+        p.specs.find((s: string) => /battery|hour|mah/i.test(s)) || p.specs[3] || "—",
+    },
+    { label: "Availability", get: (p: any) => (p.inStock ? "Immediate Dispatch" : "Backorder") },
+    { label: "Warranty", get: () => "2-Year Official EU Guarantee" },
+    { label: "Shipping", get: () => "Complimentary Global Express" },
   ];
+
+  const filteredPickerProducts = products.filter(p => {
+    const notSelected = !picks.includes(p.id);
+    const matchesCat = categoryFilter === "all" || p.category === categoryFilter;
+    const matchesQuery =
+      searchFilter === "" ||
+      p.name.toLowerCase().includes(searchFilter.toLowerCase()) ||
+      p.brand.toLowerCase().includes(searchFilter.toLowerCase());
+    return notSelected && matchesCat && matchesQuery;
+  });
 
   return (
     <div className="bg-background min-h-screen">
-      <section className="max-w-[1100px] mx-auto px-4 pt-12 pb-8 text-center">
-        <h1 className="display text-4xl sm:text-5xl text-foreground">Compare phones.</h1>
-        <p className="text-[15px] text-muted-foreground mt-2">Pick up to 3 devices to compare side by side.</p>
+      {/* Header */}
+      <section className="max-w-5xl mx-auto px-4 pt-12 pb-6 text-center space-y-3">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-secondary text-foreground">
+          <Sparkles className="w-3.5 h-3.5 text-primary" />
+          Technical Hardware Matrix
+        </div>
+        <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
+          Compare Side by Side
+        </h1>
+        <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto">
+          Evaluate flagship specifications, silicon architectures, and pricing across up to 3 models simultaneously.
+        </p>
       </section>
 
-      <div className="max-w-[1100px] mx-auto px-4 pb-20">
-        {/* Slots */}
+      <div className="max-w-5xl mx-auto px-4 pb-24 space-y-10">
+        {/* Comparison Slots */}
         <Reveal>
-          <div className="grid grid-cols-3 gap-3 sm:gap-5 mb-8">
-            {slots.map((p: any, i) => p ? (
-              <div key={p.id} className="bg-secondary/60 rounded-2xl p-3 sm:p-5 text-center relative">
-                <button onClick={() => removeProduct(p.id)} className="absolute top-2 right-2 p-1 rounded-full hover:bg-background transition-colors" aria-label="Remove">
-                  <X className="w-3.5 h-3.5 text-muted-foreground" />
-                </button>
-                <div className="aspect-square bg-background rounded-xl flex items-center justify-center overflow-hidden mb-3">
-                  <img src={p.image} alt={p.name} className="w-full h-full object-contain p-2" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {slots.map((p: any, i) =>
+              p ? (
+                <div
+                  key={p.id}
+                  className="bg-card border border-border rounded-2xl p-5 text-center relative flex flex-col justify-between shadow-xs hover:border-foreground/30 transition-all"
+                >
+                  <button
+                    onClick={() => removeProduct(p.id)}
+                    className="absolute top-3 right-3 p-1.5 rounded-full bg-secondary/80 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                    aria-label="Remove from comparison"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <div>
+                    <div className="aspect-square bg-secondary/30 rounded-xl flex items-center justify-center overflow-hidden mb-4 p-4">
+                      <img
+                        src={p.image}
+                        alt={p.name}
+                        className="w-full h-full object-contain"
+                        onError={e => {
+                          (e.target as HTMLImageElement).src = "/placeholder.svg";
+                        }}
+                      />
+                    </div>
+                    <span className="text-[10px] font-semibold tracking-wider uppercase text-muted-foreground">
+                      {p.brand}
+                    </span>
+                    <h3 className="text-sm font-bold text-foreground leading-snug line-clamp-2 mt-0.5">
+                      {p.name}
+                    </h3>
+                    <p className="text-lg font-bold text-foreground mt-1">${p.price.toLocaleString()}</p>
+                  </div>
+
+                  <div className="pt-4 mt-4 border-t border-border flex gap-2">
+                    <Link
+                      to={`/product/${p.id}`}
+                      className="flex-1 py-2 text-xs font-semibold bg-secondary hover:bg-secondary/80 text-foreground rounded-xl transition-colors text-center"
+                    >
+                      Details
+                    </Link>
+                    <button
+                      onClick={() => {
+                        addToCart(p);
+                        toast.success(`${p.name} added to bag`);
+                      }}
+                      className="p-2 bg-foreground text-background hover:bg-foreground/90 rounded-xl transition-colors"
+                      title="Add to Bag"
+                    >
+                      <ShoppingBag className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-                <p className="text-[12px] sm:text-[13px] font-semibold text-foreground leading-tight">{p.name}</p>
-                <p className="text-[11px] text-muted-foreground mt-0.5">${p.price}</p>
-              </div>
-            ) : (
-              <div key={i} className="bg-secondary/30 border-2 border-dashed border-border rounded-2xl p-3 sm:p-5 flex flex-col items-center justify-center min-h-[180px]">
-                <Plus className="w-6 h-6 text-muted-foreground mb-2" />
-                <p className="text-[11px] text-muted-foreground text-center">Add a device below</p>
-              </div>
-            ))}
+              ) : (
+                <div
+                  key={i}
+                  className="bg-secondary/20 border-2 border-dashed border-border rounded-2xl p-6 flex flex-col items-center justify-center min-h-[260px] text-center"
+                >
+                  <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center mb-3">
+                    <Plus className="w-5 h-5 text-muted-foreground" />
+                  </div>
+                  <p className="text-xs font-semibold text-foreground">Empty Slot {i + 1}</p>
+                  <p className="text-[11px] text-muted-foreground mt-1 max-w-[160px]">
+                    Choose an item from the catalog picker below to compare
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </Reveal>
 
-        {/* Comparison table */}
+        {/* Detailed Spec Comparison Table */}
         {selected.length > 0 && (
           <Reveal>
-            <div className="overflow-x-auto bg-secondary/40 rounded-2xl">
-              <table className="w-full text-[13px]">
-                <tbody>
-                  {rows.map((row, idx) => (
-                    <tr key={row.label} className={idx % 2 ? "bg-background/40" : ""}>
-                      <td className="px-4 py-3 font-semibold text-foreground w-[120px] sm:w-[180px] align-top">{row.label}</td>
-                      {selected.map(p => (
-                        <td key={p.id} className="px-4 py-3 text-muted-foreground align-top">
-                          {typeof row.get(p) === "boolean" ? (
-                            row.get(p) ? <Check className="w-4 h-4 text-success" /> : <X className="w-4 h-4 text-destructive" />
-                          ) : row.get(p)}
+            <div className="bg-card border border-border rounded-2xl overflow-hidden shadow-xs">
+              <div className="p-4 bg-secondary/30 border-b border-border">
+                <h2 className="text-sm font-bold text-foreground tracking-wide uppercase">
+                  Technical Specifications Comparison
+                </h2>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs">
+                  <tbody className="divide-y divide-border">
+                    {rows.map((row, idx) => (
+                      <tr key={row.label} className={idx % 2 === 0 ? "bg-background/40" : ""}>
+                        <td className="px-5 py-3.5 font-semibold text-foreground w-[160px] sm:w-[220px] bg-secondary/10 align-top">
+                          {row.label}
                         </td>
-                      ))}
-                    </tr>
-                  ))}
-                  <tr>
-                    <td className="px-4 py-4"></td>
-                    {selected.map(p => (
-                      <td key={p.id} className="px-4 py-4">
-                        <Link to={`/product/${p.id}`} className="inline-block bg-primary text-primary-foreground px-4 py-1.5 rounded-full text-[12px] font-medium hover:bg-primary/90 transition-colors">
-                          Buy
-                        </Link>
-                      </td>
+                        {selected.map(p => (
+                          <td key={p.id} className="px-5 py-3.5 text-muted-foreground align-top">
+                            {typeof row.get(p) === "boolean" ? (
+                              row.get(p) ? (
+                                <span className="inline-flex items-center gap-1 text-emerald-600 font-semibold">
+                                  <Check className="w-4 h-4" /> Included
+                                </span>
+                              ) : (
+                                <span className="inline-flex items-center gap-1 text-rose-500 font-semibold">
+                                  <X className="w-4 h-4" /> No
+                                </span>
+                              )
+                            ) : (
+                              <span className="text-foreground font-medium">{row.get(p)}</span>
+                            )}
+                          </td>
+                        ))}
+                      </tr>
                     ))}
-                  </tr>
-                </tbody>
-              </table>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </Reveal>
         )}
 
-        {/* Picker grid */}
-        <h2 className="text-xl font-semibold text-foreground mt-12 mb-4">Add a device</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-          {products.filter(p => !picks.includes(p.id)).slice(0, 16).map(p => (
-            <button key={p.id} onClick={() => addProduct(p.id)} disabled={picks.length >= 3}
-              className="bg-secondary/40 hover:bg-secondary rounded-xl p-3 text-left transition-all hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed group">
-              <div className="aspect-square bg-background rounded-lg flex items-center justify-center overflow-hidden mb-2">
-                <img src={p.image} alt={p.name} className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform" />
+        {/* Device Picker Section */}
+        <section className="space-y-4 pt-6 border-t border-border">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 className="text-lg font-bold text-foreground">Available Models to Add</h2>
+              <p className="text-xs text-muted-foreground">
+                Select up to 3 flagships ({3 - selected.length} slots available)
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Filter by name..."
+                  value={searchFilter}
+                  onChange={e => setSearchFilter(e.target.value)}
+                  className="bg-card border border-border rounded-xl pl-9 pr-3 py-1.5 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground"
+                />
               </div>
-              <p className="text-[12px] font-semibold text-foreground leading-tight truncate">{p.name}</p>
-              <p className="text-[11px] text-muted-foreground mt-0.5">${p.price}</p>
-            </button>
-          ))}
-        </div>
+
+              <div className="flex items-center bg-secondary/50 border border-border rounded-xl p-0.5 text-xs">
+                {["all", "smartphones", "laptops", "audio", "wearables"].map(cat => (
+                  <button
+                    key={cat}
+                    onClick={() => setCategoryFilter(cat)}
+                    className={`px-2.5 py-1 rounded-lg capitalize font-medium transition-colors ${
+                      categoryFilter === cat
+                        ? "bg-foreground text-background font-semibold"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            {filteredPickerProducts.slice(0, 12).map(p => (
+              <button
+                key={p.id}
+                onClick={() => addProduct(p.id)}
+                disabled={picks.length >= 3}
+                className="bg-card border border-border hover:border-foreground/40 rounded-2xl p-3.5 text-left transition-all hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed group shadow-xs"
+              >
+                <div className="aspect-square bg-secondary/30 rounded-xl flex items-center justify-center overflow-hidden mb-2.5 p-3">
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform"
+                    onError={e => {
+                      (e.target as HTMLImageElement).src = "/placeholder.svg";
+                    }}
+                  />
+                </div>
+                <span className="text-[9px] uppercase tracking-wider font-semibold text-muted-foreground">
+                  {p.brand}
+                </span>
+                <p className="text-xs font-semibold text-foreground leading-tight truncate">{p.name}</p>
+                <div className="flex items-center justify-between mt-2 pt-1 border-t border-border/40">
+                  <span className="text-xs font-bold text-foreground">${p.price.toLocaleString()}</span>
+                  <span className="text-[10px] text-primary font-semibold group-hover:underline inline-flex items-center gap-0.5">
+                    + Add
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
