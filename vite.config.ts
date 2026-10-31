@@ -16,11 +16,25 @@ export default defineConfig({
     react(),
     {
       name: "spa-fallback-200",
+      buildStart() {
+        const distRedirects = path.resolve(__dirname, "dist/_redirects");
+        const pubRedirects = path.resolve(__dirname, "public/_redirects");
+        if (fs.existsSync(distRedirects)) {
+          fs.unlinkSync(distRedirects);
+        }
+        if (fs.existsSync(pubRedirects)) {
+          fs.unlinkSync(pubRedirects);
+        }
+      },
       closeBundle() {
         const distIndex = path.resolve(__dirname, "dist/index.html");
         const dist200 = path.resolve(__dirname, "dist/200.html");
+        const distRedirects = path.resolve(__dirname, "dist/_redirects");
         if (fs.existsSync(distIndex)) {
           fs.copyFileSync(distIndex, dist200);
+        }
+        if (fs.existsSync(distRedirects)) {
+          fs.unlinkSync(distRedirects);
         }
       },
     },
@@ -33,6 +47,7 @@ export default defineConfig({
   },
   build: {
     outDir: "dist",
+    emptyOutDir: true,
     sourcemap: false,
     chunkSizeWarningLimit: 600,
     rollupOptions: {
