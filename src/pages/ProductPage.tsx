@@ -23,6 +23,7 @@ import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
+import ProductImage from "@/components/ProductImage";
 import { getProductReviews } from "@/data/reviews";
 import { toast } from "sonner";
 
@@ -247,25 +248,20 @@ const ProductPage = () => {
                   </button>
                 </div>
 
-                {/* Main Image */}
-                {!imgError ? (
-                  <img
-                    key={activeImage}
+                {/* Main Image with Cascading Fallback */}
+                <div
+                  className="max-h-[380px] sm:max-h-[440px] w-full h-full flex items-center justify-center cursor-zoom-in"
+                  onClick={() => setZoomOpen(true)}
+                >
+                  <ProductImage
                     src={activeImage}
+                    fallbackImages={product.fallbackImages}
                     alt={product.name}
-                    className="max-h-[380px] sm:max-h-[440px] w-auto object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105 cursor-zoom-in"
-                    onClick={() => setZoomOpen(true)}
-                    onError={() => setImgError(true)}
+                    department={product.department}
+                    category={product.category}
+                    className="max-h-[380px] sm:max-h-[440px] w-auto object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
                   />
-                ) : (
-                  <div className="text-center text-muted-foreground p-8 flex flex-col items-center justify-center">
-                    <Camera className="w-12 h-12 text-muted-foreground/30 mb-2" />
-                    <p className="text-sm font-semibold text-foreground">Photograph Verification Pending</p>
-                    <p className="text-xs text-muted-foreground mt-1 max-w-xs">
-                      Authentic product image is being sourced and verified directly against European distributor inventory.
-                    </p>
-                  </div>
-                )}
+                </div>
 
                 {/* Previous / Next Controls */}
                 {galleryList.length > 1 && (

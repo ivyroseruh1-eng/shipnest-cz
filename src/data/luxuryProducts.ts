@@ -1,4 +1,4 @@
-// Automatically generated from ShipNest_Luxury_Catalogue_600.xlsx
+// Automatically generated from data/catalogue/products.json & product-images.json
 import { Product } from "@/types";
 
 export const luxuryProducts: Product[] = [
@@ -39,7 +39,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -64,7 +64,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/neverfull/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/neverfull/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2023/09/987960-1/louis-vuitton-white-leather-neverfull-mm-bag-handbags.jpg",
       "/assets/products/luxury/louis-vuitton/neverfull/main.webp"
     ],
     "rating": 0,
@@ -82,7 +82,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -107,7 +107,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/alma-bb/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/alma-bb/hero.jpg",
+      "https://eu.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-alma-bb--M46990_PM2_Front view.jpg",
       "/assets/products/luxury/louis-vuitton/alma-bb/main.webp"
     ],
     "rating": 0,
@@ -125,7 +125,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -150,7 +150,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/pochette-metis/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/pochette-metis/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.KhEgcvVyrCXHvFZNwzC37wHaJI&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/louis-vuitton/pochette-metis/main.webp"
     ],
     "rating": 0,
@@ -168,7 +168,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -193,7 +193,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/capucines/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/capucines/hero.jpg",
+      "https://uk.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-capucines-bb-bag--M11343_PM2_Front view.jpg",
       "/assets/products/luxury/louis-vuitton/capucines/main.webp"
     ],
     "rating": 0,
@@ -211,7 +211,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -236,7 +236,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/onthego/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/onthego/hero.jpg",
+      "https://di2ponv0v5otw.cloudfront.net/posts/2024/08/05/66b093142d0ccd8dba927058/m_66b093142d0ccd8dba927059.jpg",
       "/assets/products/luxury/louis-vuitton/onthego/main.webp"
     ],
     "rating": 0,
@@ -254,7 +254,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -279,7 +279,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/keepall/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/keepall/hero.jpg",
+      "https://images.stockx.com/images/Louis-Vuitton-Keepall-Bandouliere-50-Monogram-Taiga-Optic-White.jpg?fit=fill&bg=FFFFFF&w=1200&h=857&fm=webp&auto=compress&dpr=2&trim=color&trimcolor=ffffff&updated_at=1681755433&q=60",
       "/assets/products/luxury/louis-vuitton/keepall/main.webp"
     ],
     "rating": 0,
@@ -297,7 +297,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -322,7 +322,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/bumbag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/bumbag/hero.jpg",
+      "https://theclosetonlineshop.com/cdn/shop/products/lv_new_wave_leather_bumbag_white_1285_1_1445x.jpg?v=1664899746",
       "/assets/products/luxury/louis-vuitton/bumbag/main.webp"
     ],
     "rating": 0,
@@ -340,7 +340,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -365,7 +365,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/monogram-wallet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/monogram-wallet/hero.jpg",
+      "https://product-images.therealreal.com/LOU1088440_1_enlarged.jpg",
       "/assets/products/luxury/louis-vuitton/monogram-wallet/main.webp"
     ],
     "rating": 0,
@@ -383,7 +383,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -408,7 +408,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/lv-trainer-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/lv-trainer-sneaker/hero.jpg",
+      "https://dawntown.co.in/cdn/shop/files/lv-trainer-sneaker-white-490233.jpg?v=1749480684&width=5000",
       "/assets/products/luxury/louis-vuitton/lv-trainer-sneaker/main.webp"
     ],
     "rating": 0,
@@ -426,7 +426,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -451,7 +451,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/horizon-collection/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/horizon-collection/hero.jpg",
+      "https://images.stockx.com/images/Louis-Vuitton-Horizon-55-Optic-White.jpg?fit=fill&bg=FFFFFF&w=576&h=384&fm=webp&auto=compress&dpr=2&trim=color&trimcolor=ffffff&updated_at=1681755431&q=75",
       "/assets/products/luxury/louis-vuitton/horizon-collection/main.webp"
     ],
     "rating": 0,
@@ -469,7 +469,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -494,7 +494,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/louis-vuitton/silk-square-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://eu.louisvuitton.com/images/silk-square-scarf/hero.jpg",
+      "https://backend.yoogiscloset.com/media/catalog/product/1/1/11115428_01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=840&width=630",
       "/assets/products/luxury/louis-vuitton/silk-square-scarf/main.webp"
     ],
     "rating": 0,
@@ -512,7 +512,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -537,7 +537,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/jackie-1961/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/jackie-1961/hero.jpg",
+      "https://a.1stdibscdn.com/archivesE/upload/1121189/v_237932521724409422187/23793252_datamatics.jpg",
       "/assets/products/luxury/gucci/jackie-1961/main.webp"
     ],
     "rating": 0,
@@ -555,7 +555,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -580,7 +580,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/dionysus/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/dionysus/hero.jpg",
+      "https://theclosetonlineshop.com/cdn/shop/products/Guccibag9710-1_1_1445x.jpg?v=1664106121",
       "/assets/products/luxury/gucci/dionysus/main.webp"
     ],
     "rating": 0,
@@ -598,7 +598,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -623,7 +623,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/horsebit-1955/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/horsebit-1955/hero.jpg",
+      "https://media.gucci.com/style/DarkGray_Center_0_0_2400x2400/1685551720/760196_1AAQD_9022_001_066_0000_Light-Gucci-Horsebit-1955-mini-shoulder-bag.jpg",
       "/assets/products/luxury/gucci/horsebit-1955/main.webp"
     ],
     "rating": 0,
@@ -641,7 +641,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -666,7 +666,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/gg-marmont/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/gg-marmont/hero.jpg",
+      "https://product-images.therealreal.com/GUC2196419_1_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/gucci/gg-marmont/main.webp"
     ],
     "rating": 0,
@@ -684,7 +684,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -709,7 +709,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/ophidia/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/ophidia/hero.jpg",
+      "https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1556888404/503877_DJ2DG_8454_002_075_0000_Light-Ophidia-small-shoulder-bag.jpg",
       "/assets/products/luxury/gucci/ophidia/main.webp"
     ],
     "rating": 0,
@@ -727,7 +727,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -752,7 +752,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/blondie/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/blondie/hero.jpg",
+      "https://media.gucci.com/style/DarkGray_Center_0_0_980x980/1739264434/815714_AAEC2_9050_002_070_0000_Light-gucci-blondie-medium-top-handle-bag.jpg",
       "/assets/products/luxury/gucci/blondie/main.webp"
     ],
     "rating": 0,
@@ -770,7 +770,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -795,7 +795,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/bamboo-1947/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/bamboo-1947/hero.jpg",
+      "https://product-images.therealreal.com/GUC1666448_1_enlarged.jpg",
       "/assets/products/luxury/gucci/bamboo-1947/main.webp"
     ],
     "rating": 0,
@@ -813,7 +813,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -838,7 +838,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/horsebit-loafer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/horsebit-loafer/hero.jpg",
+      "https://cdn-images.farfetch-contents.com/19/90/97/06/19909706_44606469_1000.jpg",
       "/assets/products/luxury/gucci/horsebit-loafer/main.webp"
     ],
     "rating": 0,
@@ -856,7 +856,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -881,7 +881,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/ace-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/ace-sneaker/hero.jpg",
+      "https://dbiyorq10n2b9.cloudfront.net/product-images/CSHOGUC0764/GUCCI-Leather-Ace-Sneakers-White_1.jpg-1250x1250.webp",
       "/assets/products/luxury/gucci/ace-sneaker/main.webp"
     ],
     "rating": 0,
@@ -899,7 +899,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -924,7 +924,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/gg-marmont-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/gg-marmont-belt/hero.jpg",
+      "https://imgix-prod.ebth.com/2023/11/13/15/59/11/91ff693f-d193-43bb-8820-dc5402945482/file?ixlib=rb-3.1.0&w=880&h=880&fit=crop&crop=&auto=format",
       "/assets/products/luxury/gucci/gg-marmont-belt/main.webp"
     ],
     "rating": 0,
@@ -942,7 +942,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -967,7 +967,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/gg-canvas-baseball-cap/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/gg-canvas-baseball-cap/hero.jpg",
+      "https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1761588034/857593_3HBIO_9066_001_100_0000_Light-gg-canvas-baseball-cap.jpg",
       "/assets/products/luxury/gucci/gg-canvas-baseball-cap/main.webp"
     ],
     "rating": 0,
@@ -985,7 +985,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1010,7 +1010,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/gucci/flora-silk-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.gucci.com/flora-silk-scarf/hero.jpg",
+      "https://dawsons.blob.core.windows.net/stock/62293-2-medium.jpg?v=63827603802933",
       "/assets/products/luxury/gucci/flora-silk-scarf/main.webp"
     ],
     "rating": 0,
@@ -1028,7 +1028,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1053,7 +1053,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/re-edition-2005/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/re-edition-2005/hero.jpg",
+      "https://images.stockx.com/images/Prada-Re-Edition-2005-Nylon-Bag-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&trimcolor=ffffff&updated_at=1610148032",
       "/assets/products/luxury/prada/re-edition-2005/main.webp"
     ],
     "rating": 0,
@@ -1071,7 +1071,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1096,7 +1096,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/galleria/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/galleria/hero.jpg",
+      "https://www.prada.com/content/dam/pradabkg_products/1/1BA/1BA863/NZVF0009/1BA863_NZV_F0009_V_EOO_SLF.jpg/_jcr_content/renditions/cq5dam.web.hebebed.1800.1800.jpg",
       "/assets/products/luxury/prada/galleria/main.webp"
     ],
     "rating": 0,
@@ -1114,7 +1114,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1139,7 +1139,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/cleo/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/cleo/hero.jpg",
+      "https://www.prada.com/content/dam/pradabkg_products/1/1BC/1BC499/ZO6F0PG7/1BC499_ZO6_F0PG7_V_OOO_SLF.jpg",
       "/assets/products/luxury/prada/cleo/main.webp"
     ],
     "rating": 0,
@@ -1157,7 +1157,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1182,7 +1182,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/arque/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/arque/hero.jpg",
+      "https://a.1stdibscdn.com/prada-white-leather-arque-shoulder-bag-for-sale/v_13101/v_223737921711073345948/v_22373792_1711073346503_bg_processed.jpg",
       "/assets/products/luxury/prada/arque/main.webp"
     ],
     "rating": 0,
@@ -1200,7 +1200,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1225,7 +1225,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/re-nylon-backpack/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/re-nylon-backpack/hero.jpg",
+      "https://www.oliverjewellery.ca/cdn/shop/files/Prada-White-Re-Nylon-Saffiano-Medium-Backpack-w-Pouch.jpg?v=1744013112",
       "/assets/products/luxury/prada/re-nylon-backpack/main.webp"
     ],
     "rating": 0,
@@ -1243,7 +1243,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1268,7 +1268,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/prada-buckle-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/prada-buckle-bag/hero.jpg",
+      "https://www.purseblog.com/images/2024/09/Prada-Buckle-small-leather-handbag-with-double-belt-white-1.jpg",
       "/assets/products/luxury/prada/prada-buckle-bag/main.webp"
     ],
     "rating": 0,
@@ -1286,7 +1286,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1311,7 +1311,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/saffiano-card-holder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/saffiano-card-holder/hero.jpg",
+      "https://product-images.therealreal.com/PRA1198713_1_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/prada/saffiano-card-holder/main.webp"
     ],
     "rating": 0,
@@ -1329,7 +1329,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1354,7 +1354,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/saffiano-wallet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/saffiano-wallet/hero.jpg",
+      "https://dbiyorq10n2b9.cloudfront.net/product-images/CWALPRA0023/PRADA-Saffiano-Wallet-White_1.jpg.webp",
       "/assets/products/luxury/prada/saffiano-wallet/main.webp"
     ],
     "rating": 0,
@@ -1372,7 +1372,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1397,7 +1397,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/monolith-loafer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/monolith-loafer/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/110/310/717/original/1D649M_B4L_F0009.png.png?action=crop&width=750",
       "/assets/products/luxury/prada/monolith-loafer/main.webp"
     ],
     "rating": 0,
@@ -1415,7 +1415,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1440,7 +1440,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/americas-cup-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/americas-cup-sneaker/hero.jpg",
+      "https://www.prada.com/content/dam/pradabkg_products/4/4E6/4E6500/3LLJF0009/4E6500_3LLJ_F0009_F_025_SLDA.jpg/_jcr_content/renditions/cq5dam.web.hebebed.600.600.jpg",
       "/assets/products/luxury/prada/americas-cup-sneaker/main.webp"
     ],
     "rating": 0,
@@ -1458,7 +1458,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1483,7 +1483,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/triangle-logo-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/triangle-logo-belt/hero.jpg",
+      "http://www.oliverjewellery.ca/cdn/shop/files/Prada-White-Saffiano-Cuir-Enamel-Triangle-Logo-Buckle-Belt-85-34-w-Receipt_1200x1200.jpg?v=1741958935",
       "/assets/products/luxury/prada/triangle-logo-belt/main.webp"
     ],
     "rating": 0,
@@ -1501,7 +1501,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1526,7 +1526,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/prada/prada-symbole-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.prada.com/content/dam/pradanux_products/prada-symbole-sunglasses/hero.jpg",
+      "https://vorhe.co/cdn/shop/products/PRADA-SUNGLASSES-1.jpg?v=1661370052",
       "/assets/products/luxury/prada/prada-symbole-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -1544,7 +1544,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1569,7 +1569,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/saddle-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/saddle-bag/hero.jpg",
+      "https://a.1stdibscdn.com/dior-saddle-white-medium-grained-leather-handbag-for-sale/v_39032/v_224059321711348180613/v_22405932_1711348180994_bg_processed.jpg",
       "/assets/products/luxury/dior/saddle-bag/main.webp"
     ],
     "rating": 0,
@@ -1587,7 +1587,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1612,7 +1612,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/lady-dior/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/lady-dior/hero.jpg",
+      "https://a.1stdibscdn.com/archivesE/upload/1121189/v_38728831518504320075/3872883_master.jpg",
       "/assets/products/luxury/dior/lady-dior/main.webp"
     ],
     "rating": 0,
@@ -1630,7 +1630,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1655,7 +1655,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/book-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/book-tote/hero.jpg",
+      "https://product-images.therealreal.com/CHR387970_1_enlarged.jpg",
       "/assets/products/luxury/dior/book-tote/main.webp"
     ],
     "rating": 0,
@@ -1673,7 +1673,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1698,7 +1698,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/d-joy-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/d-joy-bag/hero.jpg",
+      "https://product.hstatic.net/200000456445/product/www.luxity.vn_products_tui-nu-dior-lady-d-joy-bag-white-m0613onge-m030_addb63d2966c48068c27466fb6d9bf93_master.png",
       "/assets/products/luxury/dior/d-joy-bag/main.webp"
     ],
     "rating": 0,
@@ -1716,7 +1716,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1741,7 +1741,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/dior-toujours/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-toujours/hero.jpg",
+      "https://assets.christiandior.com/is/image/diorprod/M2821OSHJM030_E07?$default_GHC$&crop=287,170,1427,1620&bfc=on&qlt=85",
       "/assets/products/luxury/dior/dior-toujours/main.webp"
     ],
     "rating": 0,
@@ -1759,7 +1759,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1784,7 +1784,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/dior-caro-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-caro-bag/hero.jpg",
+      "https://assets.christiandior.com/is/image/diorprod/M9241UWHCM35U_SBG_E03?$r2x3_raw$&crop=0,0,4000,5000&wid=640&hei=960&scale=0.4798&bfc=on&qlt=85",
       "/assets/products/luxury/dior/dior-caro-bag/main.webp"
     ],
     "rating": 0,
@@ -1802,7 +1802,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1827,7 +1827,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/dior-bobby-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-bobby-bag/hero.jpg",
+      "https://is4.fwrdassets.com/images/p/fw/45/FNEF-WY1008_V1.jpg",
       "/assets/products/luxury/dior/dior-bobby-bag/main.webp"
     ],
     "rating": 0,
@@ -1845,7 +1845,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1870,7 +1870,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/jadior-slingback-pump/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/jadior-slingback-pump/hero.jpg",
+      "https://assets.christiandior.com/is/image/diorprod/KDP867SELS03W_E03?$default_GHC$&crop=342,472,1297,1029&wid=1850&hei=2000&scale=0.875&bfc=on&qlt=85",
       "/assets/products/luxury/dior/jadior-slingback-pump/main.webp"
     ],
     "rating": 0,
@@ -1888,7 +1888,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1913,7 +1913,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/walkndior-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/walkndior-sneaker/hero.jpg",
+      "https://assets.christiandior.com/is/image/diorprod/KCK177CVAS06W_E02?$default_GHC$&crop=278,946,1445,565&wid=1850&hei=2000&scale=0.875&bfc=on&qlt=85",
       "/assets/products/luxury/dior/walkndior-sneaker/main.webp"
     ],
     "rating": 0,
@@ -1931,7 +1931,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1956,7 +1956,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/dior-oblique-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-oblique-scarf/hero.jpg",
+      "https://assets.christiandior.com/is/image/diorprod/51DOB209L080CO90_E01?$default_GH$&crop=634,152,660,1749&wid=1850&hei=2000&scale=0.875&extend=0,0,0,250&bfc=on&qlt=85",
       "/assets/products/luxury/dior/dior-oblique-scarf/main.webp"
     ],
     "rating": 0,
@@ -1974,7 +1974,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -1999,7 +1999,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/saddle-flap-card-holder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/saddle-flap-card-holder/hero.jpg",
+      "https://www.sellwithls.com/cdn/shop/products/image_3742dc90-8737-4e54-883f-1efe5f40cc0d_1050x700.jpg?v=1604356315",
       "/assets/products/luxury/dior/saddle-flap-card-holder/main.webp"
     ],
     "rating": 0,
@@ -2017,7 +2017,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2042,7 +2042,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior/dior-tribales-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-tribales-earrings/hero.jpg",
+      "https://assets.christiandior.com/is/image/diorprod/E1811TRICYD301_E09?$bottom_GH_GHC$&crop=82,0,1809,2000&wid=1850&hei=2000&scale=1&bfc=on&qlt=85",
       "/assets/products/luxury/dior/dior-tribales-earrings/main.webp"
     ],
     "rating": 0,
@@ -2060,7 +2060,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2085,7 +2085,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/classic-11-12-handbag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/classic-11-12-handbag/hero.jpg",
+      "https://www.chanel.com/images/t_fashioncommercial,f_auto,q_auto:good,dpr_1.1/w_3200/-9553977409566.jpg 3200w",
       "/assets/products/luxury/chanel/classic-11-12-handbag/main.webp"
     ],
     "rating": 0,
@@ -2103,7 +2103,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2128,7 +2128,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/2-55-handbag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/2-55-handbag/hero.jpg",
+      "https://a.1stdibscdn.com/chanel-255-classic-white-bag-for-sale-picture-5/v_586/v_68444911560505934588/IMG_7617_master.JPG",
       "/assets/products/luxury/chanel/2-55-handbag/main.webp"
     ],
     "rating": 0,
@@ -2146,7 +2146,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2171,7 +2171,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/chanel-22/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/chanel-22/hero.jpg",
+      "https://a.1stdibscdn.com/chanel-white-calfskin-chanel-22-bag-for-sale/22569652/v_193686221684755693305/v_19368622_1684755694243_bg_processed.jpg",
       "/assets/products/luxury/chanel/chanel-22/main.webp"
     ],
     "rating": 0,
@@ -2189,7 +2189,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2214,7 +2214,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/boy-chanel/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/boy-chanel/hero.jpg",
+      "https://sothebys-md.brightspotcdn.com/3f/16/ab8f9f0b41be9abe67e64555805f/hkmrkt-ckyrr-t3-01.jpg",
       "/assets/products/luxury/chanel/boy-chanel/main.webp"
     ],
     "rating": 0,
@@ -2232,7 +2232,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2257,7 +2257,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/wallet-on-chain/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/wallet-on-chain/hero.jpg",
+      "https://madisonavenuecouture.com/cdn/shop/files/C-WOC-231116-3-02.jpg?v=1701185186",
       "/assets/products/luxury/chanel/wallet-on-chain/main.webp"
     ],
     "rating": 0,
@@ -2275,7 +2275,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2300,7 +2300,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/gabrielle-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/gabrielle-bag/hero.jpg",
+      "https://theclosetonlineshop.com/cdn/shop/products/Chanelbag11811-10_1_1445x.jpg?v=1681813010",
       "/assets/products/luxury/chanel/gabrielle-bag/main.webp"
     ],
     "rating": 0,
@@ -2318,7 +2318,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2343,7 +2343,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/coco-handle/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/coco-handle/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2025/01/1934047-1/white-leather-chanel-coco-handle-handbags.jpg",
       "/assets/products/luxury/chanel/coco-handle/main.webp"
     ],
     "rating": 0,
@@ -2361,7 +2361,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2386,7 +2386,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/deauville-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/deauville-tote/hero.jpg",
+      "https://is4.fwrdassets.com/images/p/fw/45/FNEF-WY313_V1.jpg",
       "/assets/products/luxury/chanel/deauville-tote/main.webp"
     ],
     "rating": 0,
@@ -2404,7 +2404,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2429,7 +2429,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/chanel-19/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/chanel-19/hero.jpg",
+      "https://www.chanel.com/images/t_fashionzoom1/f_auto/chanel-19-handbag-white-shiny-lambskin-gold-tone-silver-tone-ruthenium-finish-metal-shiny-lambskin-gold-tone-silver-tone-ruthenium-finish-metal-packshot-artistique-vue1-as1160b0732710601-9555763822622.jpg",
       "/assets/products/luxury/chanel/chanel-19/main.webp"
     ],
     "rating": 0,
@@ -2447,7 +2447,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2472,7 +2472,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/two-tone-slingbacks/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/two-tone-slingbacks/hero.jpg",
+      "https://treasuresofnewyorkcity.com/cdn/shop/files/image_9b8dbe7e-6c3a-4dfe-87a4-7b2a7caffd93.jpg?v=1689701878&width=2000",
       "/assets/products/luxury/chanel/two-tone-slingbacks/main.webp"
     ],
     "rating": 0,
@@ -2490,7 +2490,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2515,7 +2515,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/camelia-brooch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/camelia-brooch/hero.jpg",
+      "https://a.1stdibscdn.com/chanel-rare-white-camellia-silver-cc-brooch-for-sale/j_32622/j_197549021688501637815/j_19754902_1688501638199_bg_processed.jpg",
       "/assets/products/luxury/chanel/camelia-brooch/main.webp"
     ],
     "rating": 0,
@@ -2533,7 +2533,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2558,7 +2558,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel/cc-logo-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/cc-logo-earrings/hero.jpg",
+      "https://a.1stdibscdn.com/new-chanel-crystal-cc-gold-transparent-resin-crystal-cc-logo-gold-stud-earrings-for-sale/v_27502/v_161938921655898549767/v_16193892_1655898550323_bg_processed.jpg",
       "/assets/products/luxury/chanel/cc-logo-earrings/main.webp"
     ],
     "rating": 0,
@@ -2576,7 +2576,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2601,7 +2601,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/loulou-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/loulou-bag/hero.jpg",
+      "https://brands-hub.ru/wp-content/uploads/2020/02/Saint-Laurent-YSL-Women-Small-Loulou-Bag-Y-Quilted-Leather-White-6.jpg",
       "/assets/products/luxury/saint-laurent-ysl/loulou-bag/main.webp"
     ],
     "rating": 0,
@@ -2619,7 +2619,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2644,7 +2644,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/le-5-a-7-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/le-5-a-7-bag/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2024/09/1568907-1/leather-white-saint-laurent-le-5-a-7-bag-handbags.jpg",
       "/assets/products/luxury/saint-laurent-ysl/le-5-a-7-bag/main.webp"
     ],
     "rating": 0,
@@ -2662,7 +2662,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2687,7 +2687,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/kate-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/kate-bag/hero.jpg",
+      "https://images.stockx.com/images/Saint-Laurent-Kate-Shoulder-Bag-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&trimcolor=ffffff&updated_at=1619272679",
       "/assets/products/luxury/saint-laurent-ysl/kate-bag/main.webp"
     ],
     "rating": 0,
@@ -2705,7 +2705,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2730,7 +2730,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/niki-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/niki-bag/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.5MbMjVZs3b14rhhuFMLJRgHaIX&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/saint-laurent-ysl/niki-bag/main.webp"
     ],
     "rating": 0,
@@ -2748,7 +2748,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2773,7 +2773,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/manhattan-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/manhattan-bag/hero.jpg",
+      "https://i.pinimg.com/736x/72/d1/a0/72d1a076978f5048f899d92655f119bb.jpg",
       "/assets/products/luxury/saint-laurent-ysl/manhattan-bag/main.webp"
     ],
     "rating": 0,
@@ -2791,7 +2791,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2816,7 +2816,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/sac-de-jour/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/sac-de-jour/hero.jpg",
+      "http://emier.com.au/cdn/shop/products/DSC01236_0924ae25-08dc-4612-86eb-5acf6c20b985_1024x.jpg?v=1647314657",
       "/assets/products/luxury/saint-laurent-ysl/sac-de-jour/main.webp"
     ],
     "rating": 0,
@@ -2834,7 +2834,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2859,7 +2859,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/cassandra-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/cassandra-bag/hero.jpg",
+      "https://i.pinimg.com/originals/4e/80/89/4e808979705713f60f820e9194d1fa70.jpg",
       "/assets/products/luxury/saint-laurent-ysl/cassandra-bag/main.webp"
     ],
     "rating": 0,
@@ -2877,7 +2877,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2902,7 +2902,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/jamie-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/jamie-bag/hero.jpg",
+      "https://cdn.modesens.com/product/10140493_1?w=400",
       "/assets/products/luxury/saint-laurent-ysl/jamie-bag/main.webp"
     ],
     "rating": 0,
@@ -2920,7 +2920,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2945,7 +2945,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/tribute-sandals/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/tribute-sandals/hero.jpg",
+      "https://a.1stdibscdn.com/archivesE/upload/v_13101/1540691530355/887869195783b4755418e4bc606302cb1533472319_2081_master.jpg?width=768",
       "/assets/products/luxury/saint-laurent-ysl/tribute-sandals/main.webp"
     ],
     "rating": 0,
@@ -2963,7 +2963,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -2988,7 +2988,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/opyum-pumps/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/opyum-pumps/hero.jpg",
+      "https://cdn.shopify.com/s/files/1/0567/5388/1162/products/YSLshoesSZ38.59408-5_5_1445x.jpg?v=1681826632",
       "/assets/products/luxury/saint-laurent-ysl/opyum-pumps/main.webp"
     ],
     "rating": 0,
@@ -3006,7 +3006,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3031,7 +3031,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/monogram-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/monogram-belt/hero.jpg",
+      "https://i.pinimg.com/originals/5b/30/db/5b30db120e2fa566951ce2404ea75204.png",
       "/assets/products/luxury/saint-laurent-ysl/monogram-belt/main.webp"
     ],
     "rating": 0,
@@ -3049,7 +3049,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3074,7 +3074,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/saint-laurent-ysl/cassandre-card-case/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.ysl.com/images/cassandre-card-case/hero.jpg",
+      "https://i.ebayimg.com/images/g/nugAAOSwwctj05d5/s-l1600.jpg",
       "/assets/products/luxury/saint-laurent-ysl/cassandre-card-case/main.webp"
     ],
     "rating": 0,
@@ -3092,7 +3092,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3117,7 +3117,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/la-medusa-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/la-medusa-bag/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.E0NWMo6qBnoaBzfVr9ni2gHaIG&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/versace/la-medusa-bag/main.webp"
     ],
     "rating": 0,
@@ -3135,7 +3135,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3160,7 +3160,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/greca-goddess-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/greca-goddess-bag/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.ueBOVczVS91OU6V9uzzz_wHaEk&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/versace/greca-goddess-bag/main.webp"
     ],
     "rating": 0,
@@ -3178,7 +3178,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3203,7 +3203,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/virtus-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/virtus-bag/hero.jpg",
+      "https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dw2831a452/original/90_1020089-1A17050_1W56P_20_Virtus~Embellished~Small~Shoulder~Bag-Shoulder~~Crossbody-Versace-online-store_0_0.jpg?sw=550&q=85&strip=true",
       "/assets/products/luxury/versace/virtus-bag/main.webp"
     ],
     "rating": 0,
@@ -3221,7 +3221,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3246,7 +3246,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/palazzo-empire-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/palazzo-empire-bag/hero.jpg",
+      "http://www.fashionphile.com/cdn/shop/files/b580de07b7cae5858316b5a79456e756.jpg?v=1749083581",
       "/assets/products/luxury/versace/palazzo-empire-bag/main.webp"
     ],
     "rating": 0,
@@ -3264,7 +3264,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3289,7 +3289,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/medusa-95-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/medusa-95-bag/hero.jpg",
+      "https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Sites-ver-master-catalog/default/dwc7e8259a/original/90_1013168-1A10795_1W00P_28_Medusa~95~Tote~Bag-Totes-Versace-online-store_1_1.jpg?sw=1200&q=85&strip=true",
       "/assets/products/luxury/versace/medusa-95-bag/main.webp"
     ],
     "rating": 0,
@@ -3307,7 +3307,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3332,7 +3332,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/barocco-print-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/barocco-print-shirt/hero.jpg",
+      "https://cdn-images.farfetch-contents.com/19/71/61/86/19716186_44170896_1000.jpg",
       "/assets/products/luxury/versace/barocco-print-shirt/main.webp"
     ],
     "rating": 0,
@@ -3350,7 +3350,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3375,7 +3375,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/medusa-biggie-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/medusa-biggie-sunglasses/hero.jpg",
+      "https://images.stockx.com/images/Versace-Maxi-Medusa-Biggie-Sunglasses-White-VE4425U-314-87.jpg?fit=fill&bg=FFFFFF&w=480&h=320&fm=webp&auto=compress&dpr=2&trim=color&trimcolor=ffffff&updated_at=1704475618&q=60",
       "/assets/products/luxury/versace/medusa-biggie-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -3393,7 +3393,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3418,7 +3418,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/greca-sneakers/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/greca-sneakers/hero.jpg",
+      "https://img.vitkac.com/uploads/product_thumb/BUTY 1013568 1A10078-2W110/up/4.png",
       "/assets/products/luxury/versace/greca-sneakers/main.webp"
     ],
     "rating": 0,
@@ -3436,7 +3436,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3461,7 +3461,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/medusa-platform-heels/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/medusa-platform-heels/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.CIA3gIq1BoLZ2Q-3rxAqWgHaGJ&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/versace/medusa-platform-heels/main.webp"
     ],
     "rating": 0,
@@ -3479,7 +3479,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3504,7 +3504,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/greca-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/greca-belt/hero.jpg",
+      "https://assets.levelshoes.com/cdn-cgi/image/width=720,height=1008,quality=85,format=webp/media/catalog/product/1/0/1009125-1a04791-1w00v_1.jpg?ts=20230111032006",
       "/assets/products/luxury/versace/greca-belt/main.webp"
     ],
     "rating": 0,
@@ -3522,7 +3522,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3547,7 +3547,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/medusa-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/medusa-earrings/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto:low,ar_4:5,c_fill,dpr_2.0,w_790/01/nm_4801127_100030_m",
       "/assets/products/luxury/versace/medusa-earrings/main.webp"
     ],
     "rating": 0,
@@ -3565,7 +3565,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3590,7 +3590,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/versace/barocco-silk-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.versace.com/dw/image/v2/barocco-silk-scarf/hero.jpg",
+      "https://img.vitkac.com/uploads/product_thumb/SZALIK 80HA7H02 ZG435-G03/up/2.jpg",
       "/assets/products/luxury/versace/barocco-silk-scarf/main.webp"
     ],
     "rating": 0,
@@ -3608,7 +3608,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3633,7 +3633,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/le-city-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/le-city-bag/hero.jpg",
+      "https://balenciaga.dam.kering.com/m/481fd8c0e8130c46/Medium-7977862ABEK9104_A.jpg?v=6",
       "/assets/products/luxury/balenciaga/le-city-bag/main.webp"
     ],
     "rating": 0,
@@ -3651,7 +3651,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3676,7 +3676,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/rodeo-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/rodeo-bag/hero.jpg",
+      "https://is4.fwrdassets.com/images/p/fw/45/BALF-WY1566_V1.jpg",
       "/assets/products/luxury/balenciaga/rodeo-bag/main.webp"
     ],
     "rating": 0,
@@ -3694,7 +3694,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3719,7 +3719,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/hourglass-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/hourglass-bag/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.bFrQ4S_teas1IJWZK7RqqgHaHI&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/balenciaga/hourglass-bag/main.webp"
     ],
     "rating": 0,
@@ -3737,7 +3737,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3762,7 +3762,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/le-cagole-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/le-cagole-bag/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.sABk_9V1xnJOVFWWXt8_LQHaLu&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/balenciaga/le-cagole-bag/main.webp"
     ],
     "rating": 0,
@@ -3780,7 +3780,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3805,7 +3805,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/crush-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/crush-bag/hero.jpg",
+      "https://cdn.shopify.com/s/files/1/0603/3031/1875/files/1_64323720-7026-4740-95fe-3034bedd02b6_1080x.jpg?=75&v=1718259642",
       "/assets/products/luxury/balenciaga/crush-bag/main.webp"
     ],
     "rating": 0,
@@ -3823,7 +3823,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3848,7 +3848,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/neo-cagole-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/neo-cagole-bag/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.tyKl88tjW8NpZI0n2ACbiAHaT6&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/balenciaga/neo-cagole-bag/main.webp"
     ],
     "rating": 0,
@@ -3866,7 +3866,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3891,7 +3891,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/everyday-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/everyday-tote/hero.jpg",
+      "https://product-images.therealreal.com/BAL383601_2_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/balenciaga/everyday-tote/main.webp"
     ],
     "rating": 0,
@@ -3909,7 +3909,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3934,7 +3934,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/triple-s-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/triple-s-sneaker/hero.jpg",
+      "https://a.1stdibscdn.com/balenciaga-white-leather-all-over-logo-triple-s-sneaker-size-37-for-sale/v_13101/v_205967621696913478493/v_20596762_1696913479069_bg_processed.jpg",
       "/assets/products/luxury/balenciaga/triple-s-sneaker/main.webp"
     ],
     "rating": 0,
@@ -3952,7 +3952,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -3977,7 +3977,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/3xl-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/3xl-sneaker/hero.jpg",
+      "https://balenciaga.dam.kering.com/m/4e5634bb99c76408/eCom-734731W3XL19000_F.jpg?v=1",
       "/assets/products/luxury/balenciaga/3xl-sneaker/main.webp"
     ],
     "rating": 0,
@@ -3995,7 +3995,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4020,7 +4020,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/speed-trainer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/speed-trainer/hero.jpg",
+      "https://images.stockx.com/images/Balenciaga-Speed-Trainer-White.png?fit=fill&bg=FFFFFF&w=576&h=384&fm=webp&auto=compress&dpr=3&trim=color&updated_at=1607664737&q=41",
       "/assets/products/luxury/balenciaga/speed-trainer/main.webp"
     ],
     "rating": 0,
@@ -4038,7 +4038,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4063,7 +4063,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/logo-hoodie/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/logo-hoodie/hero.jpg",
+      "https://fineryboutique.ro/cdn/shop/files/balenciaga-bold-logo-hoodie-in-cotton-jersey-for-men-2.png?v=1777717275&width=1067",
       "/assets/products/luxury/balenciaga/logo-hoodie/main.webp"
     ],
     "rating": 0,
@@ -4081,7 +4081,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4106,7 +4106,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/balenciaga/bb-logo-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://balenciaga.dam.kering.com/bb-logo-belt/hero.jpg",
+      "https://cdn.endource.com/image/df767a3a6a823118f397ffa174a4d0ef/detail/balenciaga-bb-logo-leather-belt.jpg?optimizer=image&class=1600",
       "/assets/products/luxury/balenciaga/bb-logo-belt/main.webp"
     ],
     "rating": 0,
@@ -4124,7 +4124,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4149,7 +4149,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/lola-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/lola-bag/hero.jpg",
+      "https://images.stockx.com/images/Burberry-Small-Lola-Bag-Optic-White.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&trimcolor=ffffff&updated_at=1682380546?height=78&width=78",
       "/assets/products/luxury/burberry/lola-bag/main.webp"
     ],
     "rating": 0,
@@ -4167,7 +4167,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4192,7 +4192,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/frances-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/frances-bag/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/710/146/original/1455504_01.jpg.jpeg?action=crop&width=750",
       "/assets/products/luxury/burberry/frances-bag/main.webp"
     ],
     "rating": 0,
@@ -4210,7 +4210,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4235,7 +4235,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/check-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/check-tote/hero.jpg",
+      "https://www.oliverjewellery.ca/cdn/shop/files/74519-1.jpg?v=1777907598",
       "/assets/products/luxury/burberry/check-tote/main.webp"
     ],
     "rating": 0,
@@ -4253,7 +4253,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4278,7 +4278,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/knight-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/knight-bag/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.ZBR5P8IDfyM_jsE5QsRBFgHaLH&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/burberry/knight-bag/main.webp"
     ],
     "rating": 0,
@@ -4296,7 +4296,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4321,7 +4321,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/banner-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/banner-bag/hero.jpg",
+      "https://brands-hub.ru/wp-content/uploads/2020/02/Burberry-Small-Banner-Bag-in-Leather-and-House-Check-White-3.jpg",
       "/assets/products/luxury/burberry/banner-bag/main.webp"
     ],
     "rating": 0,
@@ -4339,7 +4339,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4364,7 +4364,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/heritage-trench-coat/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/heritage-trench-coat/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/092/650/070/original/1274850_01.jpg.jpeg?action=crop&width=1000",
       "/assets/products/luxury/burberry/heritage-trench-coat/main.webp"
     ],
     "rating": 0,
@@ -4382,7 +4382,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4407,7 +4407,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/classic-check-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/classic-check-scarf/hero.jpg",
+      "https://c8.alamy.com/comp/2G5TYKP/burberry-classic-check-cashmere-scarf-isolated-on-white-background-vector-2G5TYKP.jpg",
       "/assets/products/luxury/burberry/classic-check-scarf/main.webp"
     ],
     "rating": 0,
@@ -4425,7 +4425,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4450,7 +4450,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/cashmere-check-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/cashmere-check-scarf/hero.jpg",
+      "https://images.novelship.com/product/burberry_cashmere_check_scarf_unisex_couple_s_mode_1_24348.jpeg?fit=fill&bg=FFFFFF&trim=color&auto=format,compress&q=75&h=400",
       "/assets/products/luxury/burberry/cashmere-check-scarf/main.webp"
     ],
     "rating": 0,
@@ -4468,7 +4468,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4493,7 +4493,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/tb-monogram-wallet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/tb-monogram-wallet/hero.jpg",
+      "https://a.1stdibscdn.com/burberry-tb-double-flap-wallet-monogram-print-leather-for-sale/1121189/v_100210221596097161454/10021022_master.jpg?width=768",
       "/assets/products/luxury/burberry/tb-monogram-wallet/main.webp"
     ],
     "rating": 0,
@@ -4511,7 +4511,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4536,7 +4536,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/vintage-check-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/vintage-check-sneaker/hero.jpg",
+      "https://cdn.modesens.com/availability/burberry-vintage-check-sneaker-white-101949242?w=400",
       "/assets/products/luxury/burberry/vintage-check-sneaker/main.webp"
     ],
     "rating": 0,
@@ -4554,7 +4554,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4579,7 +4579,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/check-cotton-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/check-cotton-shirt/hero.jpg",
+      "https://images.stockx.com/images/Burberry-Check-Cotton-Shirt-Truffle.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1662664585",
       "/assets/products/luxury/burberry/check-cotton-shirt/main.webp"
     ],
     "rating": 0,
@@ -4597,7 +4597,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4622,7 +4622,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/burberry/reversible-check-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.burberry.com/is/image/BurberryBrand/reversible-check-belt/hero.jpg",
+      "https://cdna.lystit.com/1040/1300/n/photos/senser/bb0a7bbd/burberry--Tb-Reversible-Check-Belt.jpeg",
       "/assets/products/luxury/burberry/reversible-check-belt/main.webp"
     ],
     "rating": 0,
@@ -4640,7 +4640,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4665,7 +4665,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/birkin-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/birkin-bag/hero.jpg",
+      "https://a.1stdibscdn.com/hermes-white-birkin-30-bag-for-sale/v_9973/v_182696721674790984110/v_18269672_1674790985519_bg_processed.jpg",
       "/assets/products/luxury/hermes/birkin-bag/main.webp"
     ],
     "rating": 0,
@@ -4683,7 +4683,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4708,7 +4708,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/kelly-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/kelly-bag/hero.jpg",
+      "https://a.1stdibscdn.com/hermes-kelly-28-bag-white-w-gold-hardware-clemence-leather-for-sale-picture-5/v_588/v_126832721624928779068/shop_hermes_kelly_28_white_bag_online_on_mightychic_master.jpg",
       "/assets/products/luxury/hermes/kelly-bag/main.webp"
     ],
     "rating": 0,
@@ -4726,7 +4726,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4751,7 +4751,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/constance-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/constance-bag/hero.jpg",
+      "https://a.1stdibscdn.com/archivesE/upload/1121189/v_35833911512028882207/3583391_master.jpg?width=768",
       "/assets/products/luxury/hermes/constance-bag/main.webp"
     ],
     "rating": 0,
@@ -4769,7 +4769,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4794,7 +4794,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/picotin-lock/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/picotin-lock/hero.jpg",
+      "https://cdn.shopify.com/s/files/1/0640/3846/9846/files/sac-picotin-lock-18--056289CCM4-front-wm-1-0-0-800-800_g.png?v=1732693629?width=828&quality=75",
       "/assets/products/luxury/hermes/picotin-lock/main.webp"
     ],
     "rating": 0,
@@ -4812,7 +4812,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4837,7 +4837,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/evelyne-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/evelyne-bag/hero.jpg",
+      "https://a.1stdibscdn.com/hermes-evelyne-33-gm-shoulder-bag-in-white-taurillon-clemence-leather-ghw-for-sale-picture-2/v_14022/v_210053621699980304132/101353_1_2_master.jpg",
       "/assets/products/luxury/hermes/evelyne-bag/main.webp"
     ],
     "rating": 0,
@@ -4855,7 +4855,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4880,7 +4880,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/lindy-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/lindy-bag/hero.jpg",
+      "https://a.1stdibscdn.com/archivesE/upload/1121189/v_44371011529050954417/4437101_master.jpg",
       "/assets/products/luxury/hermes/lindy-bag/main.webp"
     ],
     "rating": 0,
@@ -4898,7 +4898,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4923,7 +4923,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/garden-party-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/garden-party-tote/hero.jpg",
+      "https://www.dallasdesignerhandbags.com/cdn/shop/files/DSC0107_clipped_rev_1_475abd2a-5077-4ea2-a760-e4668439396f.jpg?v=1685548721",
       "/assets/products/luxury/hermes/garden-party-tote/main.webp"
     ],
     "rating": 0,
@@ -4941,7 +4941,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -4966,7 +4966,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/herbag-zip/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/herbag-zip/hero.jpg",
+      "https://cdna.lystit.com/1040/1300/n/photos/thahab/d357fbd2/hermes-Vanille-Herbag-Zip-Retourne-31.jpeg",
       "/assets/products/luxury/hermes/herbag-zip/main.webp"
     ],
     "rating": 0,
@@ -4984,7 +4984,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5009,7 +5009,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/oran-sandals/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/oran-sandals/hero.jpg",
+      "https://i.pinimg.com/originals/b5/75/b4/b575b4f4a90e8cfd2b74c0b78bc14d86.jpg",
       "/assets/products/luxury/hermes/oran-sandals/main.webp"
     ],
     "rating": 0,
@@ -5027,7 +5027,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5052,7 +5052,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/chypre-sandals/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/chypre-sandals/hero.jpg",
+      "https://madisonavenuecouture.com/cdn/shop/files/H-SNDL-230414-3-02_1024x1024.jpg?v=1682433707",
       "/assets/products/luxury/hermes/chypre-sandals/main.webp"
     ],
     "rating": 0,
@@ -5070,7 +5070,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5095,7 +5095,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/constance-h-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/constance-h-belt/hero.jpg",
+      "https://madisonavenuecouture.com/cdn/shop/products/H-BT-081522-3-01.jpg?v=1664051323",
       "/assets/products/luxury/hermes/constance-h-belt/main.webp"
     ],
     "rating": 0,
@@ -5113,7 +5113,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5138,7 +5138,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/hermes/silk-carre-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://assets.hermes.com/is/image/hermesproduct/silk-carre-scarf/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2023/11/1071039-1/white-silk-hermes-carre-silk-scarves.jpg",
       "/assets/products/luxury/hermes/silk-carre-scarf/main.webp"
     ],
     "rating": 0,
@@ -5156,7 +5156,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5181,7 +5181,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/baguette-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/baguette-bag/hero.jpg",
+      "https://bagista.co.uk/cdn/shop/products/SOR2004-FENDI-LARGEBAGUETTE-WHITEMONOGRAMLEATHERGHW-_1_699_8754-Edit_2048x2048.jpg?v=1673446499",
       "/assets/products/luxury/fendi/baguette-bag/main.webp"
     ],
     "rating": 0,
@@ -5199,7 +5199,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5224,7 +5224,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/peekaboo-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/peekaboo-bag/hero.jpg",
+      "https://www.codogirl.com/cdn/shop/files/Fendi-Logo-Leather-Top-Handle-Peekaboo-Bag-White-Small-4_1500x2000.jpg?v=1731868961",
       "/assets/products/luxury/fendi/peekaboo-bag/main.webp"
     ],
     "rating": 0,
@@ -5242,7 +5242,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5267,7 +5267,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/sunshine-shopper/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/sunshine-shopper/hero.jpg",
+      "https://images.stockx.com/images/Fendi-by-Marc-Jacobs-Mini-Sunshine-Shopper-White-Leather-with-3D-Texture-Mini-Bag-2.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&trimcolor=ffffff&updated_at=1684154875?height=78&width=78",
       "/assets/products/luxury/fendi/sunshine-shopper/main.webp"
     ],
     "rating": 0,
@@ -5285,7 +5285,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5310,7 +5310,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/fendi-first/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/fendi-first/hero.jpg",
+      "https://static.fendi.com/dam/is/image/fendi/8BP129AGWRF1GEN_04?wid=1000&hei=1000&hash=2582e5512c4cf5ffbcc29c6478e11d2d-1976991557b",
       "/assets/products/luxury/fendi/fendi-first/main.webp"
     ],
     "rating": 0,
@@ -5328,7 +5328,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5353,7 +5353,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/fendigraphy-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/fendigraphy-bag/hero.jpg",
+      "https://product-images.therealreal.com/FEN423766_1_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/fendi/fendigraphy-bag/main.webp"
     ],
     "rating": 0,
@@ -5371,7 +5371,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5396,7 +5396,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/origami-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/origami-bag/hero.jpg",
+      "https://static.fendi.com/dam/is/image/fendi/8BH414APZAF0K7E_04?wid=1000&hei=1000&hash=c9f3d4dc6ff7588d15a9e9a479c3cbf8-1918f6b0428",
       "/assets/products/luxury/fendi/origami-bag/main.webp"
     ],
     "rating": 0,
@@ -5414,7 +5414,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5439,7 +5439,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/by-the-way-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/by-the-way-bag/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.Dd1lxywabJNRVnwC2pFP-QHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/fendi/by-the-way-bag/main.webp"
     ],
     "rating": 0,
@@ -5457,7 +5457,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5482,7 +5482,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/ff-logo-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/ff-logo-belt/hero.jpg",
+      "https://di2ponv0v5otw.cloudfront.net/posts/2023/07/31/64c866c52fbf1a1adca6b68a/m_64c86794f8c5da83a66ad6c1.jpg",
       "/assets/products/luxury/fendi/ff-logo-belt/main.webp"
     ],
     "rating": 0,
@@ -5500,7 +5500,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5525,7 +5525,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/fendi-flow-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/fendi-flow-sneaker/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/081/213/848/original/7E1479_AHGZ_F1FHI.png.png?action=crop&width=1250",
       "/assets/products/luxury/fendi/fendi-flow-sneaker/main.webp"
     ],
     "rating": 0,
@@ -5543,7 +5543,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5568,7 +5568,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/karligraphy-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/karligraphy-sunglasses/hero.jpg",
+      "https://static.fendi.com/dam/is/image/fendi/FOL039V1WF02N1_02?wid=1000&hei=1000&hash=76f6cd6f6595cc84bc317ffe2ca08479-181b6cd7976",
       "/assets/products/luxury/fendi/karligraphy-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -5586,7 +5586,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5611,7 +5611,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/zucca-silk-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/zucca-silk-scarf/hero.jpg",
+      "https://images.thebestshops.com/product_images/original/fendi-scarves-silk-zucca-logo-scarf-00000081727f00s001.jpg",
       "/assets/products/luxury/fendi/zucca-silk-scarf/main.webp"
     ],
     "rating": 0,
@@ -5629,7 +5629,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5654,7 +5654,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fendi/olock-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.fendi.com/dw/image/v2/olock-earrings/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.IEm1m3pXV53f7P49m8o1ywHaJ4&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/fendi/olock-earrings/main.webp"
     ],
     "rating": 0,
@@ -5672,7 +5672,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5697,7 +5697,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/arcadie-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/arcadie-bag/hero.jpg",
+      "https://www.miumiu.com/content/dam/miumiubkg_products/5/5BP/5BP077/N88F0009/5BP077_N88_F0009_V_OOO_SLD.jpg/_jcr_content/renditions/cq5dam.web.hE7E3DA.1600.1600.jpg",
       "/assets/products/luxury/miu-miu/arcadie-bag/main.webp"
     ],
     "rating": 0,
@@ -5715,7 +5715,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5740,7 +5740,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/wander-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/wander-bag/hero.jpg",
+      "https://www.mytheresa.com/image/1094/1238/100/e8/P01147560.jpg",
       "/assets/products/luxury/miu-miu/wander-bag/main.webp"
     ],
     "rating": 0,
@@ -5758,7 +5758,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5783,7 +5783,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/aventure-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/aventure-bag/hero.jpg",
+      "https://ottodisanpietro.com/cdn/shop/files/5BC182-VOOO-2BBL-F0316-miu-miu-ottodisanpietro-3.jpg?v=1748608028&width=1000",
       "/assets/products/luxury/miu-miu/aventure-bag/main.webp"
     ],
     "rating": 0,
@@ -5801,7 +5801,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5826,7 +5826,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/beau-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/beau-bag/hero.jpg",
+      "https://cdna.lystit.com/1200/630/tr/photos/miumiu/18478f68/miu-miu-White-Beau-Ayers-Leather-Bag.jpeg",
       "/assets/products/luxury/miu-miu/beau-bag/main.webp"
     ],
     "rating": 0,
@@ -5844,7 +5844,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5869,7 +5869,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/matelasse-wallet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/matelasse-wallet/hero.jpg",
+      "https://www.miumiu.com/content/dam/miumiubkg_products/5/5MH/5MH033/2FPPF0009/5MH033_2FPP_F0009_SLD.jpg/_jcr_content/renditions/cq5dam.web.hE7E3DA.2400.2400.jpg",
       "/assets/products/luxury/miu-miu/matelasse-wallet/main.webp"
     ],
     "rating": 0,
@@ -5887,7 +5887,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5912,7 +5912,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/leather-logo-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/leather-logo-belt/hero.jpg",
+      "https://brands-hub.ru/wp-content/uploads/2023/02/Miu-Miu-Women-Brushed-Leather-Belt-with-Enameled-Metal-Buckle-White-1.jpg",
       "/assets/products/luxury/miu-miu/leather-logo-belt/main.webp"
     ],
     "rating": 0,
@@ -5930,7 +5930,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5955,7 +5955,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/ballet-flats/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/ballet-flats/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.JJznOt4EvKK5IbDkRzbmMgHaJ3&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/miu-miu/ballet-flats/main.webp"
     ],
     "rating": 0,
@@ -5973,7 +5973,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -5998,7 +5998,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/buckled-leather-loafers/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/buckled-leather-loafers/hero.jpg",
+      "https://www.miumiu.com/content/dam/miumiubkg_products/5/5D7/5D773D/3G48F0009/5D773D_3G48_F0009_F_020_SLT.jpg/jcr:content/renditions/cq5dam.web.hE7E3DA.1600.1600.jpg",
       "/assets/products/luxury/miu-miu/buckled-leather-loafers/main.webp"
     ],
     "rating": 0,
@@ -6016,7 +6016,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6041,7 +6041,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/logo-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/logo-sunglasses/hero.jpg",
+      "https://enzoclothingstore.com/cdn/shop/files/Untitled_6.png?v=1689787007&width=1080",
       "/assets/products/luxury/miu-miu/logo-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -6059,7 +6059,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6084,7 +6084,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/poplin-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/poplin-shirt/hero.jpg",
+      "https://cdn.modesens.com/availability/50960270?w=400",
       "/assets/products/luxury/miu-miu/poplin-shirt/main.webp"
     ],
     "rating": 0,
@@ -6102,7 +6102,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6127,7 +6127,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/cashmere-cardigan/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/cashmere-cardigan/hero.jpg",
+      "https://www.miumiu.com/content/dam/miumiubkg_products/M/MMF/MMF741/1U7XF0009/MMF741_1U7X_F0009_S_232_SLF.jpg",
       "/assets/products/luxury/miu-miu/cashmere-cardigan/main.webp"
     ],
     "rating": 0,
@@ -6145,7 +6145,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6170,7 +6170,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/miu-miu/plume-sneakers/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.miumiu.com/content/dam/miumiunux_products/plume-sneakers/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.5tbvq7rQ0Pnnbl9bS2_S7AHaIX&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/miu-miu/plume-sneakers/main.webp"
     ],
     "rating": 0,
@@ -6188,7 +6188,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6213,7 +6213,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/andiamo-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/andiamo-bag/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.-x5LJshb0iDsh4NCdRHEngHaJa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bottega-veneta/andiamo-bag/main.webp"
     ],
     "rating": 0,
@@ -6231,7 +6231,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6256,7 +6256,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/jodie-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/jodie-bag/hero.jpg",
+      "https://img.ssensemedia.com/images/222798F046002_1/bottega-veneta-white-mini-jodie-bag.jpg",
       "/assets/products/luxury/bottega-veneta/jodie-bag/main.webp"
     ],
     "rating": 0,
@@ -6274,7 +6274,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6299,7 +6299,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/cassette-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/cassette-bag/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.eme0jQMUBapfAFuA_qJRmAHaJo&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bottega-veneta/cassette-bag/main.webp"
     ],
     "rating": 0,
@@ -6317,7 +6317,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6342,7 +6342,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/hop-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/hop-bag/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.z0TXLTqdqWI85amODbN7LgHaGt&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bottega-veneta/hop-bag/main.webp"
     ],
     "rating": 0,
@@ -6360,7 +6360,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6385,7 +6385,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/mini-wallace-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/mini-wallace-bag/hero.jpg",
+      "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_706,w_470/c_scale,h_480/v550/251798F048020_1.jpg",
       "/assets/products/luxury/bottega-veneta/mini-wallace-bag/main.webp"
     ],
     "rating": 0,
@@ -6403,7 +6403,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6428,7 +6428,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/sardine-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/sardine-bag/hero.jpg",
+      "https://media.vogue.co.uk/photos/6344305a70080bf93b25f10c/master/w_1280%2Cc_limit/Sardine%2520Chalk.png",
       "/assets/products/luxury/bottega-veneta/sardine-bag/main.webp"
     ],
     "rating": 0,
@@ -6446,7 +6446,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6471,7 +6471,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/cabat-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/cabat-tote/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/485/300/original/785320_01.jpg.jpeg?action=crop&width=750",
       "/assets/products/luxury/bottega-veneta/cabat-tote/main.webp"
     ],
     "rating": 0,
@@ -6489,7 +6489,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6514,7 +6514,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/orbit-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/orbit-sneaker/hero.jpg",
+      "https://is4.fwrdassets.com/images/p/fw/z/BOTT-MZ113_V1.jpg",
       "/assets/products/luxury/bottega-veneta/orbit-sneaker/main.webp"
     ],
     "rating": 0,
@@ -6532,7 +6532,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6557,7 +6557,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/puddle-boots/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/puddle-boots/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.1-EdrPlqNqBdkb_Ko2VIFwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bottega-veneta/puddle-boots/main.webp"
     ],
     "rating": 0,
@@ -6575,7 +6575,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6600,7 +6600,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/intrecciato-card-case/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/intrecciato-card-case/hero.jpg",
+      "https://is4.fwrdassets.com/images/p/fw/45/BOTT-MY184_V1.jpg",
       "/assets/products/luxury/bottega-veneta/intrecciato-card-case/main.webp"
     ],
     "rating": 0,
@@ -6618,7 +6618,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6643,7 +6643,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/knot-clutch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/knot-clutch/hero.jpg",
+      "https://res.cloudinary.com/ssenseweb/image/upload/b_white,c_lpad,g_south,h_706,w_470/c_scale,h_480/v550/222798F044009_1.jpg",
       "/assets/products/luxury/bottega-veneta/knot-clutch/main.webp"
     ],
     "rating": 0,
@@ -6661,7 +6661,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6686,7 +6686,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bottega-veneta/bottega-veneta-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://bottegaveneta.dam.kering.com/bottega-veneta-sunglasses/hero.jpg",
+      "https://product-images.therealreal.com/BOT368117_1_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/bottega-veneta/bottega-veneta-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -6704,7 +6704,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6729,7 +6729,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/jet-set-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/jet-set-tote/hero.jpg",
+      "https://cdna.lystit.com/1040/1300/n/photos/farfetch/45360a96/michael-kors--Jet-Set-Tote-Bag.jpeg",
       "/assets/products/luxury/michael-kors/jet-set-tote/main.webp"
     ],
     "rating": 0,
@@ -6747,7 +6747,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6772,7 +6772,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/hamilton-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/hamilton-bag/hero.jpg",
+      "https://cdn-images.farfetch-contents.com/34/48/40/13/34484013_66076165_1000.jpg",
       "/assets/products/luxury/michael-kors/hamilton-bag/main.webp"
     ],
     "rating": 0,
@@ -6790,7 +6790,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6815,7 +6815,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/mercer-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/mercer-bag/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/michaelkors/194fd613/michael-kors-White-Mercer-Medium-Pebbled-Leather-Crossbody-Bag.jpeg",
       "/assets/products/luxury/michael-kors/mercer-bag/main.webp"
     ],
     "rating": 0,
@@ -6833,7 +6833,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6858,7 +6858,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/nolita-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/nolita-bag/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/michaelkors/eac46fd9/2210x2975/michael-by-michael-kors-Naturale-Mk-Borsa-A-Spalla-Nolita-Media.jpeg",
       "/assets/products/luxury/michael-kors/nolita-bag/main.webp"
     ],
     "rating": 0,
@@ -6876,7 +6876,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6901,7 +6901,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/bryant-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/bryant-bag/hero.jpg",
+      "https://assets.michaelkors.com/transform/ECOM_Image_Large/a3e40adf-e379-4467-8861-6d0d314d326b/32S5SYTC5L-085-1999_1-tif",
       "/assets/products/luxury/michael-kors/bryant-bag/main.webp"
     ],
     "rating": 0,
@@ -6919,7 +6919,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6944,7 +6944,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/voyager-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/voyager-tote/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto:low,ar_4:5,c_fill,dpr_2.0,w_456/01/nm_2688389_100189_m",
       "/assets/products/luxury/michael-kors/voyager-tote/main.webp"
     ],
     "rating": 0,
@@ -6962,7 +6962,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -6987,7 +6987,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/bradshaw-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/bradshaw-watch/hero.jpg",
+      "https://product-images.therealreal.com/MIC258109_1_enlarged.jpg",
       "/assets/products/luxury/michael-kors/bradshaw-watch/main.webp"
     ],
     "rating": 0,
@@ -7005,7 +7005,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7030,7 +7030,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/logo-crossbody-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/logo-crossbody-bag/hero.jpg",
+      "https://cdna.lystit.com/photos/michaelkors/bdb68c7c/michael-by-michael-kors-White-Ginny-Medium-Logo-Crossbody-Bag.jpeg",
       "/assets/products/luxury/michael-kors/logo-crossbody-bag/main.webp"
     ],
     "rating": 0,
@@ -7048,7 +7048,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7073,7 +7073,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/empire-signature-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/empire-signature-tote/hero.jpg",
+      "https://cdna.lystit.com/1040/1300/n/photos/michaelkors/10890a30/michael-kors-Grey-Gigi-Large-Empire-Signature-Logo-Tote-Bag.jpeg",
       "/assets/products/luxury/michael-kors/empire-signature-tote/main.webp"
     ],
     "rating": 0,
@@ -7091,7 +7091,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7116,7 +7116,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/leather-zip-wallet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/leather-zip-wallet/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto/01/nm_4335872_100189_m",
       "/assets/products/luxury/michael-kors/leather-zip-wallet/main.webp"
     ],
     "rating": 0,
@@ -7134,7 +7134,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7159,7 +7159,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/parker-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/parker-sneaker/hero.jpg",
+      "https://cdna.lystit.com/photos/yoox/604c9193/michael-by-michael-kors-White-Sneakers-Textile-Fibers.jpeg",
       "/assets/products/luxury/michael-kors/parker-sneaker/main.webp"
     ],
     "rating": 0,
@@ -7177,7 +7177,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7202,7 +7202,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/michael-kors/logo-slide-sandal/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://michaelkors.scene7.com/logo-slide-sandal/hero.jpg",
+      "https://michaelkors.scene7.com/is/image/MichaelKors/40R4MKFA1B-0150_1?$large$",
       "/assets/products/luxury/michael-kors/logo-slide-sandal/main.webp"
     ],
     "rating": 0,
@@ -7220,7 +7220,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7245,7 +7245,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/tabby-shoulder-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/tabby-shoulder-bag/hero.jpg",
+      "https://cdn-images.farfetch-contents.com/19/66/26/18/19662618_45299823_1000.jpg",
       "/assets/products/luxury/coach/tabby-shoulder-bag/main.webp"
     ],
     "rating": 0,
@@ -7263,7 +7263,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7288,7 +7288,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/brooklyn-shoulder-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/brooklyn-shoulder-bag/hero.jpg",
+      "https://www.davidjones.com/productimages/magnify/1/2742237_23199056_15326745.jpg",
       "/assets/products/luxury/coach/brooklyn-shoulder-bag/main.webp"
     ],
     "rating": 0,
@@ -7306,7 +7306,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7331,7 +7331,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/rogue-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/rogue-bag/hero.jpg",
+      "https://www.purseblog.com/images/2016/02/Coach-Rogue-Bag-White-Leather.jpg",
       "/assets/products/luxury/coach/rogue-bag/main.webp"
     ],
     "rating": 0,
@@ -7349,7 +7349,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7374,7 +7374,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/willow-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/willow-tote/hero.jpg",
+      "https://cdna.lystit.com/photos/coach/4fa2401e/coach-Brasschalk-Willow-Work-Tote-38.jpeg",
       "/assets/products/luxury/coach/willow-tote/main.webp"
     ],
     "rating": 0,
@@ -7392,7 +7392,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7417,7 +7417,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/swinger-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/swinger-bag/hero.jpg",
+      "https://ounass-prod1.atgcdn.ae/small_light(p=zoom,of=jpg,q=65)/pub/media/catalog/product/2/1/213974548_chk_in.jpg?1607609444.3249",
       "/assets/products/luxury/coach/swinger-bag/main.webp"
     ],
     "rating": 0,
@@ -7435,7 +7435,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7460,7 +7460,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/lana-shoulder-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/lana-shoulder-bag/hero.jpg",
+      "https://onlybrandsjo.com/wp-content/uploads/2026/04/OBA0881-1-700x700.png",
       "/assets/products/luxury/coach/lana-shoulder-bag/main.webp"
     ],
     "rating": 0,
@@ -7478,7 +7478,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7503,7 +7503,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/cargo-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/cargo-tote/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/amazon-prime/a1537137/coach-B4Chalk-Bubble-Leather-Cargo-Tote-26.jpeg",
       "/assets/products/luxury/coach/cargo-tote/main.webp"
     ],
     "rating": 0,
@@ -7521,7 +7521,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7546,7 +7546,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/empire-carryall/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/empire-carryall/hero.jpg",
+      "https://assets.central.co.th/COACH-EmpireCarryallBag28White-MKP1914068-1?$JPEG$&wid=550",
       "/assets/products/luxury/coach/empire-carryall/main.webp"
     ],
     "rating": 0,
@@ -7564,7 +7564,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7589,7 +7589,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/bandit-crossbody/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/bandit-crossbody/hero.jpg",
+      "https://assets.central.co.th/COACH-BanditCrossbodyWhite-MKP1586810-1?$JPEG$&wid=550",
       "/assets/products/luxury/coach/bandit-crossbody/main.webp"
     ],
     "rating": 0,
@@ -7607,7 +7607,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7632,7 +7632,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/charter-crossbody/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/charter-crossbody/hero.jpg",
+      "https://img1.cohimg.net/is/image/Coach/c2609_chk_a0?$desktopProductZoom$&fmt=jpeg&wid=1000&hei=1000",
       "/assets/products/luxury/coach/charter-crossbody/main.webp"
     ],
     "rating": 0,
@@ -7650,7 +7650,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7675,7 +7675,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/soho-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/soho-sneaker/hero.jpg",
+      "https://www.sheknows.com/wp-content/uploads/2025/05/Coach-Soho-Sneaker-in-Optic-White-shop.png",
       "/assets/products/luxury/coach/soho-sneaker/main.webp"
     ],
     "rating": 0,
@@ -7693,7 +7693,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7718,7 +7718,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/coach/signature-jacquard-scarf/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://img1.coachtoolkit.com/signature-jacquard-scarf/hero.jpg",
+      "https://owp.klarna.com/product/1280x1280/3041330016/Coach-Eve-Signature-Reversible-Muffler-Cashmere-Jacquard-Scarf.jpg?ph=true",
       "/assets/products/luxury/coach/signature-jacquard-scarf/main.webp"
     ],
     "rating": 0,
@@ -7736,7 +7736,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7761,7 +7761,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/knott-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/knott-tote/hero.jpg",
+      "https://i.pinimg.com/originals/47/dd/70/47dd705813a5998ebd03c9000dd7d119.jpg",
       "/assets/products/luxury/kate-spade/knott-tote/main.webp"
     ],
     "rating": 0,
@@ -7779,7 +7779,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7804,7 +7804,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/sam-icon-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/sam-icon-bag/hero.jpg",
+      "https://images.stockx.com/images/Kate-Spade-Sam-Icon-Leather-Tote-Bag-Small-True-White-2.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&trimcolor=ffffff&updated_at=1664774529?height=78&width=78",
       "/assets/products/luxury/kate-spade/sam-icon-bag/main.webp"
     ],
     "rating": 0,
@@ -7822,7 +7822,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7847,7 +7847,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/dumpling-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/dumpling-bag/hero.jpg",
+      "https://sellection.com/cdn/shop/files/Screenshot2025-05-21at6.46.00PM_1445x.png?v=1748669513",
       "/assets/products/luxury/kate-spade/dumpling-bag/main.webp"
     ],
     "rating": 0,
@@ -7865,7 +7865,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7890,7 +7890,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/dakota-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/dakota-bag/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/ruelala/705b77c6/kate-spade-Silver-Dakota-Metallic-Leather-Saddle-Bag.jpeg",
       "/assets/products/luxury/kate-spade/dakota-bag/main.webp"
     ],
     "rating": 0,
@@ -7908,7 +7908,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7933,7 +7933,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/morgan-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/morgan-bag/hero.jpg",
+      "https://katespade.scene7.com/is/image/KateSpade/KB237_650?$desktopProduct$",
       "/assets/products/luxury/kate-spade/morgan-bag/main.webp"
     ],
     "rating": 0,
@@ -7951,7 +7951,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -7976,7 +7976,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/deco-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/deco-bag/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/katespade/8a1f7732/kate-spade-Echtes-Wei-Deco-Schultertasche-Mit-Kette-Und-Osen.jpeg",
       "/assets/products/luxury/kate-spade/deco-bag/main.webp"
     ],
     "rating": 0,
@@ -7994,7 +7994,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8019,7 +8019,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/hudson-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/hudson-bag/hero.jpg",
+      "https://cdna.lystit.com/photos/macys/d5822115/kate-spade-Stone-Path-Hudson-Medium-Tote-Bag.jpeg",
       "/assets/products/luxury/kate-spade/hudson-bag/main.webp"
     ],
     "rating": 0,
@@ -8037,7 +8037,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8062,7 +8062,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/kitt-crossbody/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/kitt-crossbody/hero.jpg",
+      "https://di2ponv0v5otw.cloudfront.net/posts/2025/04/30/6812e6f524d2e760625ba5e9/m_6812e712bdcb04a16652223c.jpg",
       "/assets/products/luxury/kate-spade/kitt-crossbody/main.webp"
     ],
     "rating": 0,
@@ -8080,7 +8080,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8105,7 +8105,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/bleecker-backpack/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/bleecker-backpack/hero.jpg",
+      "https://product-images.therealreal.com/WKA344226_1_enlarged.jpg",
       "/assets/products/luxury/kate-spade/bleecker-backpack/main.webp"
     ],
     "rating": 0,
@@ -8123,7 +8123,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8148,7 +8148,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/bow-detail-clutch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/bow-detail-clutch/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto:low,ar_4:5,c_fill,dpr_2.0,w_790/01/nm_4527118_100239_a",
       "/assets/products/luxury/kate-spade/bow-detail-clutch/main.webp"
     ],
     "rating": 0,
@@ -8166,7 +8166,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8191,7 +8191,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/spade-flower-crossbody/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/spade-flower-crossbody/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto:low,ar_4:5,c_fill,dpr_2.0,w_790/01/nm_4527007_100239_m",
       "/assets/products/luxury/kate-spade/spade-flower-crossbody/main.webp"
     ],
     "rating": 0,
@@ -8209,7 +8209,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8234,7 +8234,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/kate-spade/kiki-sneaker/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://katespade.scene7.com/kiki-sneaker/hero.jpg",
+      "https://katespade.scene7.com/is/image/KateSpade/KC405_962",
       "/assets/products/luxury/kate-spade/kiki-sneaker/main.webp"
     ],
     "rating": 0,
@@ -8252,7 +8252,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8277,7 +8277,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-chiquito/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-chiquito/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.nC6mlFNw34gWuAJ4ExsknQHaJI&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/jacquemus/le-chiquito/main.webp"
     ],
     "rating": 0,
@@ -8295,7 +8295,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8320,7 +8320,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-bambino/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-bambino/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/077/825/539/original/1031430_03.jpg.jpeg?action=crop&width=750",
       "/assets/products/luxury/jacquemus/le-bambino/main.webp"
     ],
     "rating": 0,
@@ -8338,7 +8338,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8363,7 +8363,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-grand-bambino/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-grand-bambino/hero.jpg",
+      "https://www.monnierparis.com/cdn/shop/products/MUS016030_002_800x.jpg?v=1634362954",
       "/assets/products/luxury/jacquemus/le-grand-bambino/main.webp"
     ],
     "rating": 0,
@@ -8381,7 +8381,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8406,7 +8406,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-bisou/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-bisou/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/112/923/091/original/1677022_01.jpg.jpeg?action=crop&width=750",
       "/assets/products/luxury/jacquemus/le-bisou/main.webp"
     ],
     "rating": 0,
@@ -8424,7 +8424,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8449,7 +8449,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-petit-calino/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-petit-calino/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2025/08/2397346-1/le-petit-calino-jacquemus-leather-white-handbags.jpg",
       "/assets/products/luxury/jacquemus/le-petit-calino/main.webp"
     ],
     "rating": 0,
@@ -8467,7 +8467,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8492,7 +8492,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-raphia/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-raphia/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.awxaRG1AD5g0OvMaN59FMAHaEc&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/jacquemus/le-raphia/main.webp"
     ],
     "rating": 0,
@@ -8510,7 +8510,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8535,7 +8535,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-rond/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-rond/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto:low,ar_4:5,c_fill,dpr_2.0,w_790/01/nm_4192110_100106_c",
       "/assets/products/luxury/jacquemus/le-rond/main.webp"
     ],
     "rating": 0,
@@ -8553,7 +8553,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8578,7 +8578,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-bambino-long/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-bambino-long/hero.jpg",
+      "https://product-images.therealreal.com/WJQ68830_1_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/jacquemus/le-bambino-long/main.webp"
     ],
     "rating": 0,
@@ -8596,7 +8596,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8621,7 +8621,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/les-lunettes-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/les-lunettes-sunglasses/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.K7YJY8dBRGvCWVYZ3KURYQHaCx&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/jacquemus/les-lunettes-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -8639,7 +8639,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8664,7 +8664,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/le-papier-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/le-papier-shirt/hero.jpg",
+      "https://cdn.modesens.com/availability/55103555?w=400",
       "/assets/products/luxury/jacquemus/le-papier-shirt/main.webp"
     ],
     "rating": 0,
@@ -8682,7 +8682,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8707,7 +8707,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/jacquemus-knitwear/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/jacquemus-knitwear/hero.jpg",
+      "https://images.stockx.com/images/Jacquemus-La-Maille-Pavane-Knitwear-Off-White.jpg?fit=fill&bg=FFFFFF&w=576&h=384&fm=webp&auto=compress&dpr=4&trim=color&updated_at=1690183497&q=35",
       "/assets/products/luxury/jacquemus/jacquemus-knitwear/main.webp"
     ],
     "rating": 0,
@@ -8725,7 +8725,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8750,7 +8750,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jacquemus/jacquemus-small-leather-goods/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jacquemus.com/media/jacquemus-small-leather-goods/hero.jpg",
+      "https://a.1stdibscdn.com/jacquemus-white-leather-le-chiquito-mini-bag-for-sale/v_13101/v_225822821713091130110/v_22582282_1713091130613_bg_processed.jpg",
       "/assets/products/luxury/jacquemus/jacquemus-small-leather-goods/main.webp"
     ],
     "rating": 0,
@@ -8768,7 +8768,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8793,7 +8793,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/triomphe-shoulder-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/triomphe-shoulder-bag/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.U0yS3_MZ2deleh_IXX4gFAAAAA&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/celine/triomphe-shoulder-bag/main.webp"
     ],
     "rating": 0,
@@ -8811,7 +8811,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8836,7 +8836,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/ava-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/ava-bag/hero.jpg",
+      "http://www.fashionphile.com/cdn/shop/files/f39b5b9e1bb9d2676a07cb83e3f5ce3d.jpg?v=1776275212",
       "/assets/products/luxury/celine/ava-bag/main.webp"
     ],
     "rating": 0,
@@ -8854,7 +8854,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8879,7 +8879,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/belt-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/belt-bag/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2025/10/2548939-1/celine-belt-bag-grained-leather-mini-2way-handbag-in-white.jpg",
       "/assets/products/luxury/celine/belt-bag/main.webp"
     ],
     "rating": 0,
@@ -8897,7 +8897,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8922,7 +8922,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/luggage-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/luggage-bag/hero.jpg",
+      "https://a.1stdibscdn.com/celine-white-suede-leather-phantom-luggage-bag-for-sale/v_18041/v_154825821650345170757/v_15482582_1650345171218_bg_processed.jpg?width=768",
       "/assets/products/luxury/celine/luggage-bag/main.webp"
     ],
     "rating": 0,
@@ -8940,7 +8940,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -8965,7 +8965,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/cabas-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/cabas-tote/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2025/10/2580702-1/white-other-celine-small-vertical-cabas-tote-canvas-leather.jpg",
       "/assets/products/luxury/celine/cabas-tote/main.webp"
     ],
     "rating": 0,
@@ -8983,7 +8983,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9008,7 +9008,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/16-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/16-bag/hero.jpg",
+      "https://product-images.therealreal.com/CEL226673_2_enlarged.jpg",
       "/assets/products/luxury/celine/16-bag/main.webp"
     ],
     "rating": 0,
@@ -9026,7 +9026,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9051,7 +9051,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/romy-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/romy-bag/hero.jpg",
+      "https://cdn1.jolicloset.com/imgr/full/2024/08/1444566-1/leather-white-celine-medium-romy-shoulder-bag-handbags.jpg",
       "/assets/products/luxury/celine/romy-bag/main.webp"
     ],
     "rating": 0,
@@ -9069,7 +9069,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9094,7 +9094,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/claude-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/claude-bag/hero.jpg",
+      "https://www.oliverjewellery.ca/cdn/shop/files/Celine-2021-White-Triomphe-Canvas-and-Calfskin-Leather-Claude-Shoulder-Bag-3.jpg?v=1741122348",
       "/assets/products/luxury/celine/claude-bag/main.webp"
     ],
     "rating": 0,
@@ -9112,7 +9112,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9137,7 +9137,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/teen-soft-16/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/teen-soft-16/hero.jpg",
+      "https://i.pinimg.com/736x/26/89/a9/2689a90b8ea0530c13d9b6c7462c7169.jpg",
       "/assets/products/luxury/celine/teen-soft-16/main.webp"
     ],
     "rating": 0,
@@ -9155,7 +9155,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9180,7 +9180,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/triomphe-sunglasses/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/triomphe-sunglasses/hero.jpg",
+      "https://images.thebestshops.com/product_images/original/SL14995-029_02-18d5fc.jpg",
       "/assets/products/luxury/celine/triomphe-sunglasses/main.webp"
     ],
     "rating": 0,
@@ -9198,7 +9198,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9223,7 +9223,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/triomphe-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/triomphe-belt/hero.jpg",
+      "https://brands-hub.ru/wp-content/uploads/2023/09/Celine-Women-Small-Block-Triomphe-Belt-in-Taurillon-Leather-White-1.jpg",
       "/assets/products/luxury/celine/triomphe-belt/main.webp"
     ],
     "rating": 0,
@@ -9241,7 +9241,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9266,7 +9266,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/celine/celine-wool-knitwear/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.celine.com/content/dam/celine/ecommerce/celine-wool-knitwear/hero.jpg",
+      "https://product-images.therealreal.com/CEL379192_1_enlarged.jpg",
       "/assets/products/luxury/celine/celine-wool-knitwear/main.webp"
     ],
     "rating": 0,
@@ -9284,7 +9284,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9309,7 +9309,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/polo-id-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/polo-id-bag/hero.jpg",
+      "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-AI428932626002_lifestyle?$rl_4x5_pdp$",
       "/assets/products/luxury/ralph-lauren/polo-id-bag/main.webp"
     ],
     "rating": 0,
@@ -9327,7 +9327,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9352,7 +9352,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/rl-888-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/rl-888-bag/hero.jpg",
+      "https://product-images.therealreal.com/WYG145850_1_enlarged.jpg",
       "/assets/products/luxury/ralph-lauren/rl-888-bag/main.webp"
     ],
     "rating": 0,
@@ -9370,7 +9370,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9395,7 +9395,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/polo-play-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/polo-play-bag/hero.jpg",
+      "https://cdna.lystit.com/1040/1300/n/photos/farfetch/616db5f3/polo-ralph-lauren-white-Polo-Play-Mini-Bag.jpeg",
       "/assets/products/luxury/ralph-lauren/polo-play-bag/main.webp"
     ],
     "rating": 0,
@@ -9413,7 +9413,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9438,7 +9438,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/ricky-bag/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/ricky-bag/hero.jpg",
+      "https://product-image-sts.intramirror.com/prd/image/41hTSd_1716541571854.png.jpg",
       "/assets/products/luxury/ralph-lauren/ricky-bag/main.webp"
     ],
     "rating": 0,
@@ -9456,7 +9456,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9481,7 +9481,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/polo-bear-sweater/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/polo-bear-sweater/hero.jpg",
+      "https://cdna.lystit.com/photos/harrods/f0424612/polo-ralph-lauren-White-Wool-Polo-Bear-Sweater.jpeg",
       "/assets/products/luxury/ralph-lauren/polo-bear-sweater/main.webp"
     ],
     "rating": 0,
@@ -9499,7 +9499,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9524,7 +9524,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/cable-knit-sweater/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/cable-knit-sweater/hero.jpg",
+      "https://northernthreads.com/cdn/shop/files/ralph-lauren-cable-knit-sweater-white-a72-northern-threads-uk-8211600.jpg?v=1771705581&width=2048",
       "/assets/products/luxury/ralph-lauren/cable-knit-sweater/main.webp"
     ],
     "rating": 0,
@@ -9542,7 +9542,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9567,7 +9567,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/oxford-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/oxford-shirt/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/004810286alt3?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/ralph-lauren/oxford-shirt/main.webp"
     ],
     "rating": 0,
@@ -9585,7 +9585,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9610,7 +9610,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/lauren-leather-tote/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/lauren-leather-tote/hero.jpg",
+      "https://editorialist.com/webcompressed/2025/1/034/115/416/34115416~white_1736531450513_0.jpg",
       "/assets/products/luxury/ralph-lauren/lauren-leather-tote/main.webp"
     ],
     "rating": 0,
@@ -9628,7 +9628,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9653,7 +9653,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/polo-sport-cap/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/polo-sport-cap/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.-rxSOoIewP2RNjfwxoQLgwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/ralph-lauren/polo-sport-cap/main.webp"
     ],
     "rating": 0,
@@ -9671,7 +9671,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9696,7 +9696,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/leather-belt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/leather-belt/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.1Gen5Uu8SMJjAVst-JBADgHaJ4&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/ralph-lauren/leather-belt/main.webp"
     ],
     "rating": 0,
@@ -9714,7 +9714,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9739,7 +9739,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/classic-polo-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/classic-polo-shirt/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.WczAF-8cQdP5tBx6foCpwQHaJ4&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/ralph-lauren/classic-polo-shirt/main.webp"
     ],
     "rating": 0,
@@ -9757,7 +9757,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9782,7 +9782,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ralph-lauren/cable-knit-cardigan/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://rlmedia.ralphlauren.com/cable-knit-cardigan/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/farfetch/15699f1d/polo-ralph-lauren-white-Cable-Knit-Cardigan.jpeg",
       "/assets/products/luxury/ralph-lauren/cable-knit-cardigan/main.webp"
     ],
     "rating": 0,
@@ -9800,7 +9800,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9825,7 +9825,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/cross-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/cross-pendant/hero.jpg",
+      "https://product-images.therealreal.com/CHH61034_2_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/chrome-hearts/cross-pendant/main.webp"
     ],
     "rating": 0,
@@ -9843,7 +9843,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9868,7 +9868,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/dagger-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/dagger-pendant/hero.jpg",
+      "https://www.the-parks.com.au/cdn/shop/products/Shopify-post-17_68d5dd62-c05e-48a9-ac5e-67368b6fc4a8.png?v=1706850655&width=1946",
       "/assets/products/luxury/chrome-hearts/dagger-pendant/main.webp"
     ],
     "rating": 0,
@@ -9886,7 +9886,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9911,7 +9911,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/cemetery-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/cemetery-ring/hero.jpg",
+      "https://product-images.therealreal.com/CHH20814_3_enlarged.jpg",
       "/assets/products/luxury/chrome-hearts/cemetery-ring/main.webp"
     ],
     "rating": 0,
@@ -9929,7 +9929,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9954,7 +9954,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/spacer-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/spacer-ring/hero.jpg",
+      "http://justinreed.com/cdn/shop/files/1_2cb8e3f5-1381-4a6f-8906-51fcd1a18e6d.jpg?v=1724870862",
       "/assets/products/luxury/chrome-hearts/spacer-ring/main.webp"
     ],
     "rating": 0,
@@ -9972,7 +9972,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -9997,7 +9997,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/forever-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/forever-ring/hero.jpg",
+      "https://cdn.shopify.com/s/files/1/0640/3846/9846/files/foreverring.jpg-Photoroom.png?v=1747821931?width=3840&quality=75",
       "/assets/products/luxury/chrome-hearts/forever-ring/main.webp"
     ],
     "rating": 0,
@@ -10015,7 +10015,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10040,7 +10040,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/paper-chain-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/paper-chain-necklace/hero.jpg",
+      "https://product-images.therealreal.com/CHH45334_1_enlarged.jpg",
       "/assets/products/luxury/chrome-hearts/paper-chain-necklace/main.webp"
     ],
     "rating": 0,
@@ -10058,7 +10058,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10083,7 +10083,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/chrome-hearts-eyewear/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/chrome-hearts-eyewear/hero.jpg",
+      "https://luxuryglasses.vn/wp-content/uploads/2025/12/CHROME-HEARTS-ASSTRAVAGANT-WHITE-1.png",
       "/assets/products/luxury/chrome-hearts/chrome-hearts-eyewear/main.webp"
     ],
     "rating": 0,
@@ -10101,7 +10101,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10126,7 +10126,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/trucker-cap/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/trucker-cap/hero.jpg",
+      "https://product-images.therealreal.com/CHH58410_1_enlarged.jpg",
       "/assets/products/luxury/chrome-hearts/trucker-cap/main.webp"
     ],
     "rating": 0,
@@ -10144,7 +10144,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10169,7 +10169,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/cross-patch-hoodie/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/cross-patch-hoodie/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.rQHoqUduIqlvJhlu5l8evwHaHu&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/chrome-hearts/cross-patch-hoodie/main.webp"
     ],
     "rating": 0,
@@ -10187,7 +10187,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10212,7 +10212,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/matty-boy-graphic-t-shirt/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/matty-boy-graphic-t-shirt/hero.jpg",
+      "https://images.stockx.com/images/Chrome-Hearts-Matty-Boy-Retro-Cycle-T-Shirt-White.png?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&q=90&dpr=2&trim=color&updated_at=1614785435",
       "/assets/products/luxury/chrome-hearts/matty-boy-graphic-t-shirt/main.webp"
     ],
     "rating": 0,
@@ -10230,7 +10230,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10255,7 +10255,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/zip-up-hoodie/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/zip-up-hoodie/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.4_DqFs8gTI17MIjZZsQZPgHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/chrome-hearts/zip-up-hoodie/main.webp"
     ],
     "rating": 0,
@@ -10273,7 +10273,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10298,7 +10298,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chrome-hearts/leather-trucker-jacket/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chromehearts.com/assets/leather-trucker-jacket/hero.jpg",
+      "https://justinreed.com/cdn/shop/files/1_ebd02726-015b-4b9f-bc0b-3b3052c0800e.jpg?v=1777920987&width=1445",
       "/assets/products/luxury/chrome-hearts/leather-trucker-jacket/main.webp"
     ],
     "rating": 0,
@@ -10316,7 +10316,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10359,7 +10359,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10384,7 +10384,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/pillow-talk-lip-cheat/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/pillow-talk-lip-cheat/hero.jpg",
+      "https://www.spacenk.com/dw/image/v2/ABCE_PRD/on/demandware.static/-/Sites-spacenkmastercatalog/default/dw2fd8ccac/products/CHARLOTTE/UK200039642_CHARLOTTE.jpg?sw=582&sh=582",
       "/assets/products/luxury/charlotte-tilbury/pillow-talk-lip-cheat/main.webp"
     ],
     "rating": 0,
@@ -10402,7 +10402,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10427,7 +10427,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/hollywood-flawless-filter/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/hollywood-flawless-filter/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.KjAR-tb3tFZznEZ6Pc9RJwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/charlotte-tilbury/hollywood-flawless-filter/main.webp"
     ],
     "rating": 0,
@@ -10445,7 +10445,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10470,7 +10470,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/airbrush-flawless-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/airbrush-flawless-foundation/hero.jpg",
+      "https://thebeautybroadway.com/cdn/shop/files/18025422-AIRBRUSH-FLAWLESS-FOUNDATION-4-NEUTRAL-CLOSED.jpg?v=1775451812&width=1445",
       "/assets/products/luxury/charlotte-tilbury/airbrush-flawless-foundation/main.webp"
     ],
     "rating": 0,
@@ -10488,7 +10488,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10513,7 +10513,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/airbrush-flawless-setting-spray/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/airbrush-flawless-setting-spray/hero.jpg",
+      "https://media.ulta.com/i/ulta/2619571?w=1080&h=1080&fmt=auto",
       "/assets/products/luxury/charlotte-tilbury/airbrush-flawless-setting-spray/main.webp"
     ],
     "rating": 0,
@@ -10531,7 +10531,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10556,7 +10556,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/beauty-light-wand/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/beauty-light-wand/hero.jpg",
+      "https://n.nordstrommedia.com/id/sr3/46a6f459-667a-41f4-adcf-e32642cf1b72.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196",
       "/assets/products/luxury/charlotte-tilbury/beauty-light-wand/main.webp"
     ],
     "rating": 0,
@@ -10574,7 +10574,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10599,7 +10599,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/pillow-talk-push-up-lashes/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/pillow-talk-push-up-lashes/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238924413alt4?fmt=auto&$background-off-white$",
       "/assets/products/luxury/charlotte-tilbury/pillow-talk-push-up-lashes/main.webp"
     ],
     "rating": 0,
@@ -10617,7 +10617,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10642,7 +10642,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/charlottes-magic-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/charlottes-magic-cream/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/114570701?fmt=auto&$background-off-white$",
       "/assets/products/luxury/charlotte-tilbury/charlottes-magic-cream/main.webp"
     ],
     "rating": 0,
@@ -10660,7 +10660,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10685,7 +10685,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/magic-serum-crystal-elixir/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/magic-serum-crystal-elixir/hero.jpg",
+      "https://images.ctfassets.net/wlke2cbybljx/2riLvXK1urrORgiDvM8Ywp/457dd21c225e952c82964c17c43fa26d/Magic_Serum_Closed_Packshot__1_.png?fm=jpg&bg=rgb:ffffff",
       "/assets/products/luxury/charlotte-tilbury/magic-serum-crystal-elixir/main.webp"
     ],
     "rating": 0,
@@ -10703,7 +10703,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10728,7 +10728,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/pillow-talk-eyeshadow-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/pillow-talk-eyeshadow-palette/hero.jpg",
+      "https://cdn.modesens.com/availability/charlotte-tilbury-pillow-talk-beautyverse-love-eyeshadow-palette-no-color-97230227?w=400",
       "/assets/products/luxury/charlotte-tilbury/pillow-talk-eyeshadow-palette/main.webp"
     ],
     "rating": 0,
@@ -10746,7 +10746,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10771,7 +10771,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/exagger-eyes-volume-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/exagger-eyes-volume-mascara/hero.jpg",
+      "https://skinstash.pk/cdn/shop/files/CharlotteTilburyExagger-EyesVolumeMascara_10ml.png?v=1739626005",
       "/assets/products/luxury/charlotte-tilbury/exagger-eyes-volume-mascara/main.webp"
     ],
     "rating": 0,
@@ -10789,7 +10789,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10814,7 +10814,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/charlotte-tilbury/collagen-lip-bath/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://images.charlottetilbury.com/collagen-lip-bath/hero.jpg",
+      "https://www.nk.se/globalassets/5060542724036_2.jpg?ref=B88C344729&format=jpg&quality=85",
       "/assets/products/luxury/charlotte-tilbury/collagen-lip-bath/main.webp"
     ],
     "rating": 0,
@@ -10832,7 +10832,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10857,7 +10857,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/easy-bake-loose-baking-setting-powder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/easy-bake-loose-baking-setting-powder/hero.jpg",
+      "https://m.media-amazon.com/images/I/81PWUsfHRaL._AC_.jpg",
       "/assets/products/luxury/huda-beauty/easy-bake-loose-baking-setting-powder/main.webp"
     ],
     "rating": 0,
@@ -10875,7 +10875,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10900,7 +10900,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/easy-blur-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/easy-blur-foundation/hero.jpg",
+      "https://i.pinimg.com/originals/4d/55/3a/4d553ae949cb6c6e9a16cc0d1e1d5c1d.jpg",
       "/assets/products/luxury/huda-beauty/easy-blur-foundation/main.webp"
     ],
     "rating": 0,
@@ -10918,7 +10918,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10943,7 +10943,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/fauxfilter-concealer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/fauxfilter-concealer/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.ZA22-1G3-V_UmLvBTBq2WQAAAA&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/huda-beauty/fauxfilter-concealer/main.webp"
     ],
     "rating": 0,
@@ -10961,7 +10961,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -10986,7 +10986,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/blush-filter-liquid-blush/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/blush-filter-liquid-blush/hero.jpg",
+      "https://theblushstore.pk/cdn/shop/files/Huda_Beauty_Blush_Filter_Liquid_Blush_Bubble_Gum.png?v=1769923435&width=1946",
       "/assets/products/luxury/huda-beauty/blush-filter-liquid-blush/main.webp"
     ],
     "rating": 0,
@@ -11004,7 +11004,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11029,7 +11029,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/easy-bake-setting-spray/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/easy-bake-setting-spray/hero.jpg",
+      "https://www.cultbeauty.co.uk/images?url=https://static.thcdn.com/productimg/original/15949051-7775223286569684.jpg&format=webp&auto=avif&width=985&height=985&fit=cover",
       "/assets/products/luxury/huda-beauty/easy-bake-setting-spray/main.webp"
     ],
     "rating": 0,
@@ -11047,7 +11047,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11072,7 +11072,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/liquid-matte-ultra-comfort-transfer-proof-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/liquid-matte-ultra-comfort-transfer-proof-lipstick/hero.jpg",
+      "https://www.medoget.com/cdn/shop/products/download_3_0d277b57-47ea-4c06-a82e-691be06cbc00_1024x.png?v=1644569660",
       "/assets/products/luxury/huda-beauty/liquid-matte-ultra-comfort-transfer-proof-lipstick/main.webp"
     ],
     "rating": 0,
@@ -11090,7 +11090,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11115,7 +11115,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/lip-contour-2-0/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/lip-contour-2-0/hero.jpg",
+      "https://www.medoget.com/cdn/shop/files/download_98a86a78-1689-4f49-add0-d005cc1ebaba_1024x.png?v=1735643622",
       "/assets/products/luxury/huda-beauty/lip-contour-2-0/main.webp"
     ],
     "rating": 0,
@@ -11133,7 +11133,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11158,7 +11158,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/fauxfilter-luminous-matte-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/fauxfilter-luminous-matte-foundation/hero.jpg",
+      "https://snapaholicshop.com/cdn/shop/files/250.jpg?v=1724612043&width=1946",
       "/assets/products/luxury/huda-beauty/fauxfilter-luminous-matte-foundation/main.webp"
     ],
     "rating": 0,
@@ -11176,7 +11176,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11201,7 +11201,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/empowered-eyeshadow-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/empowered-eyeshadow-palette/hero.jpg",
+      "https://hudabeauty.com/cdn/shop/files/PDP-SECTION1-EMPOWERED-TILE1_9c509ef6-37bc-48c6-898e-5795d16604d6.webp?v=1759616933&width=1946",
       "/assets/products/luxury/huda-beauty/empowered-eyeshadow-palette/main.webp"
     ],
     "rating": 0,
@@ -11219,7 +11219,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11244,7 +11244,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/pretty-grunge-eyeshadow-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/pretty-grunge-eyeshadow-palette/hero.jpg",
+      "https://www.pricerunner.dk/product/3024335630/Huda-Beauty-Pretty-Grunge-Eyeshadow-Palette.jpg",
       "/assets/products/luxury/huda-beauty/pretty-grunge-eyeshadow-palette/main.webp"
     ],
     "rating": 0,
@@ -11262,7 +11262,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11287,7 +11287,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/wishful-yo-glow-enzyme-scrub/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/wishful-yo-glow-enzyme-scrub/hero.jpg",
+      "https://www.gosupps.com/media/catalog/product/4/1/41MLZGAApIL.jpg",
       "/assets/products/luxury/huda-beauty/wishful-yo-glow-enzyme-scrub/main.webp"
     ],
     "rating": 0,
@@ -11305,7 +11305,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11330,7 +11330,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/huda-beauty/easy-bake-snatch-pressed-powder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://hudabeauty.com/cdn/shop/files/easy-bake-snatch-pressed-powder/hero.jpg",
+      "https://shop.ipsy.com/_next/image?url=https:%2F%2Fproduct-images.prod.ipsy.com%2Fproduct_images%2Fresized_media%2FHudaBeauty_EasyBakeandSnatch_PeachPie_withswatch.jpeg&w=1080&q=75",
       "/assets/products/luxury/huda-beauty/easy-bake-snatch-pressed-powder/main.webp"
     ],
     "rating": 0,
@@ -11348,7 +11348,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11373,7 +11373,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-addict-lip-glow/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-addict-lip-glow/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/112933887?fmt=auto&$background-off-white$",
       "/assets/products/luxury/dior-beauty/dior-addict-lip-glow/main.webp"
     ],
     "rating": 0,
@@ -11391,7 +11391,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11416,7 +11416,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-addict-lip-maximizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-addict-lip-maximizer/hero.jpg",
+      "https://beautyhouse.com/cdn/shop/files/02y0ceeaib.png?v=1713389595",
       "/assets/products/luxury/dior-beauty/dior-addict-lip-maximizer/main.webp"
     ],
     "rating": 0,
@@ -11434,7 +11434,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11459,7 +11459,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-addict-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-addict-lipstick/hero.jpg",
+      "https://www.dior.com/on/demandware.static/-/Sites-master_dior/default/dw58a01f9a/Y0000164/Y0000164_E000001655_E01_GHC.jpg",
       "/assets/products/luxury/dior-beauty/dior-addict-lipstick/main.webp"
     ],
     "rating": 0,
@@ -11477,7 +11477,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11502,7 +11502,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/rouge-dior-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/rouge-dior-lipstick/hero.jpg",
+      "https://cdn.mos.cms.futurecdn.net/dXTHFPcaCrB5wLNxgCYRgA-1280-80.png",
       "/assets/products/luxury/dior-beauty/rouge-dior-lipstick/main.webp"
     ],
     "rating": 0,
@@ -11520,7 +11520,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11545,7 +11545,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-forever-skin-glow-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-forever-skin-glow-foundation/hero.jpg",
+      "https://makeupspice.com/cdn/shop/files/Dior_Forever_Skin_Glow_foundation.avif?v=1776603089&width=800",
       "/assets/products/luxury/dior-beauty/dior-forever-skin-glow-foundation/main.webp"
     ],
     "rating": 0,
@@ -11563,7 +11563,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11588,7 +11588,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-forever-skin-correct-concealer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-forever-skin-correct-concealer/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/109915867?fmt=auto&$background-off-white$",
       "/assets/products/luxury/dior-beauty/dior-forever-skin-correct-concealer/main.webp"
     ],
     "rating": 0,
@@ -11606,7 +11606,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11631,7 +11631,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-backstage-face-body-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-backstage-face-body-foundation/hero.jpg",
+      "https://www.flannels.com/images/imgzoom/77/77845482_xxl.jpg",
       "/assets/products/luxury/dior-beauty/dior-backstage-face-body-foundation/main.webp"
     ],
     "rating": 0,
@@ -11649,7 +11649,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11674,7 +11674,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-forever-glow-star-filter/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-forever-glow-star-filter/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/111449611?fmt=auto&$background-off-white$",
       "/assets/products/luxury/dior-beauty/dior-forever-glow-star-filter/main.webp"
     ],
     "rating": 0,
@@ -11692,7 +11692,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11717,7 +11717,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-forever-couture-luminizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-forever-couture-luminizer/hero.jpg",
+      "https://whitelabel.dior.com/dw/image/v2/BJSW_PRD/on/demandware.static/-/Sites-pcd-whitelabel-master/default/dw1fb535dc/Y0996212/Y0996212_C022800003_E01_GHC.jpg?sw=700&sh=700",
       "/assets/products/luxury/dior-beauty/dior-forever-couture-luminizer/main.webp"
     ],
     "rating": 0,
@@ -11735,7 +11735,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11760,7 +11760,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-backstage-rosy-glow-blush/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-backstage-rosy-glow-blush/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_3348901770491-DIOR-Backstage-Rosy-Glow-Blush-001-P_9b3f6ef5d6f59d4e404430306c63620bd0f3680b_1747915035.png",
       "/assets/products/luxury/dior-beauty/dior-backstage-rosy-glow-blush/main.webp"
     ],
     "rating": 0,
@@ -11778,7 +11778,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11803,7 +11803,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/diorshow-iconic-overcurl-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/diorshow-iconic-overcurl-mascara/hero.jpg",
+      "https://whitelabel.dior.com/dw/image/v2/BJSW_PRD/on/demandware.static/-/Sites-pcd-whitelabel-master/default/dwa19d658c/Y0138000/Y0138000_E03_GHC.jpg?sw=700&sh=700",
       "/assets/products/luxury/dior-beauty/diorshow-iconic-overcurl-mascara/main.webp"
     ],
     "rating": 0,
@@ -11821,7 +11821,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11846,7 +11846,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/dior-beauty/dior-backstage-eye-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.dior.com/couture/ecommerce/media/dior-backstage-eye-palette/hero.jpg",
+      "https://whitelabel.dior.com/dw/image/v2/BJSW_PRD/on/demandware.static/-/Sites-pcd-whitelabel-master/default/dw8c0b1cbd/Y0012000/Y0012000_C001200007_E01_GHC.jpg?sw=700&sh=700",
       "/assets/products/luxury/dior-beauty/dior-backstage-eye-palette/main.webp"
     ],
     "rating": 0,
@@ -11864,7 +11864,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11889,7 +11889,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/les-beiges-water-fresh-tint/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/les-beiges-water-fresh-tint/hero.jpg",
+      "https://www.chanel.com/images/w_0.43,h_0.43,c_crop/f_jpg,w_512,h_512/les-beiges-water-fresh-tint-deep-0-5fl-oz--packshot-default-158867-9526270525470.jpg",
       "/assets/products/luxury/chanel-beauty/les-beiges-water-fresh-tint/main.webp"
     ],
     "rating": 0,
@@ -11907,7 +11907,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11932,7 +11932,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/ultra-le-teint-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/ultra-le-teint-foundation/hero.jpg",
+      "https://stylecaster.com/wp-content/uploads/2022/12/chanel-ultra-le-teint-foundation.png?resize=427",
       "/assets/products/luxury/chanel-beauty/ultra-le-teint-foundation/main.webp"
     ],
     "rating": 0,
@@ -11950,7 +11950,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -11975,7 +11975,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/n-1-de-chanel-revitalizing-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/n-1-de-chanel-revitalizing-serum/hero.jpg",
+      "https://cdn-mms.hktvmall.com/hktv/mms/uploadProductImage/5df1/55e3/6786/CySzmtuSYn20230704005743_1200.jpg",
       "/assets/products/luxury/chanel-beauty/n-1-de-chanel-revitalizing-serum/main.webp"
     ],
     "rating": 0,
@@ -11993,7 +11993,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12018,7 +12018,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/sublimage-la-creme/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/sublimage-la-creme/hero.jpg",
+      "https://www.chanel.com/images/t_one/t_skincare/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/1-7oz--packshot-default-147540-9541430280222.jpg",
       "/assets/products/luxury/chanel-beauty/sublimage-la-creme/main.webp"
     ],
     "rating": 0,
@@ -12036,7 +12036,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12061,7 +12061,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/hydra-beauty-micro-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/hydra-beauty-micro-serum/hero.jpg",
+      "https://www.chanel.com/images/t_one/w_0.51,h_0.51,c_crop/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/hydra-beauty-micro-serum-intense-replenishing-hydration-1fl-oz--packshot-default-143180-9564915466270.jpg",
       "/assets/products/luxury/chanel-beauty/hydra-beauty-micro-serum/main.webp"
     ],
     "rating": 0,
@@ -12079,7 +12079,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12104,7 +12104,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/rouge-coco-flash/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/rouge-coco-flash/hero.jpg",
+      "https://hrd-live.cdn.scayle.cloud/images/31a081ad9e7dbee2b49932805ffed44b.jpg",
       "/assets/products/luxury/chanel-beauty/rouge-coco-flash/main.webp"
     ],
     "rating": 0,
@@ -12122,7 +12122,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12147,7 +12147,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/rouge-allure-velvet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/rouge-allure-velvet/hero.jpg",
+      "https://monzauae.com/cdn/shop/files/2-RougeAllureVelvet-57.png?v=1749645404&width=1024",
       "/assets/products/luxury/chanel-beauty/rouge-allure-velvet/main.webp"
     ],
     "rating": 0,
@@ -12165,7 +12165,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12190,7 +12190,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/le-volume-de-chanel-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/le-volume-de-chanel-mascara/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/112906297alt1?fmt=auto&$background-off-white$",
       "/assets/products/luxury/chanel-beauty/le-volume-de-chanel-mascara/main.webp"
     ],
     "rating": 0,
@@ -12208,7 +12208,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12233,7 +12233,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/les-4-ombres-eyeshadow/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/les-4-ombres-eyeshadow/hero.jpg",
+      "https://www.chanel.com/images/t_one/w_0.43,h_0.43,c_crop/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/les-4-ombres-multi-effect-quadra-eyeshadow-387-utopia-0-07oz--packshot-default-151387-9555801505822.jpg",
       "/assets/products/luxury/chanel-beauty/les-4-ombres-eyeshadow/main.webp"
     ],
     "rating": 0,
@@ -12251,7 +12251,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12276,7 +12276,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/chance-eau-tendre/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/chance-eau-tendre/hero.jpg",
+      "https://www.chanel.com/images/t_one/w_0.51,h_0.51,c_crop/q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/chance-eau-tendre-eau-de-toilette-spray-3-4fl-oz--packshot-default-126320-9564890562590.jpg",
       "/assets/products/luxury/chanel-beauty/chance-eau-tendre/main.webp"
     ],
     "rating": 0,
@@ -12294,7 +12294,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12319,7 +12319,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/n-5-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/n-5-eau-de-parfum/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.GU-dQ29IXtbMOV_Nt1jVLQHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/chanel-beauty/n-5-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -12337,7 +12337,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12362,7 +12362,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/chanel-beauty/coco-mademoiselle-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.chanel.com/images/coco-mademoiselle-eau-de-parfum/hero.jpg",
+      "https://rooyas.ae/cdn/shop/files/COCOMADEMOISELLE50ml.webp?v=1770296202&width=1946",
       "/assets/products/luxury/chanel-beauty/coco-mademoiselle-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -12380,7 +12380,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12405,7 +12405,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/loveshine-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/loveshine-lipstick/hero.jpg",
+      "https://static.thcdn.com/productimg/original/15239217-1965232853380720.jpg",
       "/assets/products/luxury/ysl-beauty/loveshine-lipstick/main.webp"
     ],
     "rating": 0,
@@ -12423,7 +12423,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12448,7 +12448,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/candy-glaze-lip-gloss-stick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/candy-glaze-lip-gloss-stick/hero.jpg",
+      "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw45f53e58/candy glaze/new alts 2024/4936968817854-ALT8.jpg?sw=1440&sh=1440&sm=cut&sfrm=jpg&q=85",
       "/assets/products/luxury/ysl-beauty/candy-glaze-lip-gloss-stick/main.webp"
     ],
     "rating": 0,
@@ -12466,7 +12466,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12491,7 +12491,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/touche-eclat-radiant-touch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/touche-eclat-radiant-touch/hero.jpg",
+      "https://c8.alamy.com/comp/2TCT9MB/yves-saint-laurent-touche-eclat-radiant-touch-illuminating-pen-25ml-on-a-white-background-2TCT9MB.jpg",
       "/assets/products/luxury/ysl-beauty/touche-eclat-radiant-touch/main.webp"
     ],
     "rating": 0,
@@ -12509,7 +12509,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12534,7 +12534,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/all-hours-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/all-hours-foundation/hero.jpg",
+      "https://www.yslbeauty.com.au/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw3be0b843/pdp/APAC-100124-YSL/all-hours-foundation_front-opened-and-closed_shade-lw1_3614273593564.jpg",
       "/assets/products/luxury/ysl-beauty/all-hours-foundation/main.webp"
     ],
     "rating": 0,
@@ -12552,7 +12552,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12577,7 +12577,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/couture-mini-clutch-eyeshadow-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/couture-mini-clutch-eyeshadow-palette/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113696817?fmt=auto&$background-off-white$",
       "/assets/products/luxury/ysl-beauty/couture-mini-clutch-eyeshadow-palette/main.webp"
     ],
     "rating": 0,
@@ -12595,7 +12595,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12620,7 +12620,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/lash-clash-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/lash-clash-mascara/hero.jpg",
+      "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwab592265/z_Export/YSL-8839-Packshot-3000x3000-LashClash.png?sw=1139&sfrm=png",
       "/assets/products/luxury/ysl-beauty/lash-clash-mascara/main.webp"
     ],
     "rating": 0,
@@ -12638,7 +12638,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12663,7 +12663,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/black-opium-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/black-opium-eau-de-parfum/hero.jpg",
+      "https://www.yslbeautyus.com/dw/image/v2/AANG_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwba0c9128/Black Opium Glitter/3614274185294/3614274185294.jpeg",
       "/assets/products/luxury/ysl-beauty/black-opium-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -12681,7 +12681,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12706,7 +12706,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/libre-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/libre-eau-de-parfum/hero.jpg",
+      "https://www.yslbeauty.com.sg/dw/image/v2/BFZM_PRD/on/demandware.static/-/Sites-ysl-master-catalog/en_SG/dw0e95297f/images/Fragrance/WW-50424YSL/WW-50424YSL-transparentbackground-IMAGE1.png?sw=740&sfrm=png",
       "/assets/products/luxury/ysl-beauty/libre-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -12724,7 +12724,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12749,7 +12749,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/rouge-pur-couture-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/rouge-pur-couture-lipstick/hero.jpg",
+      "https://www.yslbeauty.fr/dw/image/v2/AAQP_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dwc9b658e2/images/PACKSHOTS/MAKEUP/LIPS/WW-51083YSL_new_rouge_pur_couture/3614273945165_new-rouge-pur-couture_main.png",
       "/assets/products/luxury/ysl-beauty/rouge-pur-couture-lipstick/main.webp"
     ],
     "rating": 0,
@@ -12767,7 +12767,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12792,7 +12792,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/or-rouge-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/or-rouge-serum/hero.jpg",
+      "https://www.yslbeauty.sa/dw/image/v2/BDCL_PRD/on/demandware.static/-/Sites-ysl-master-catalog/default/dw07c88b13/Khawla/WW-LE422600-YSL/ysl_skincare_or-rouge-serum_30ml-open_3614272648098_packshot_3000x3000_rgb (1).png?sw=500&sh=600",
       "/assets/products/luxury/ysl-beauty/or-rouge-serum/main.webp"
     ],
     "rating": 0,
@@ -12810,7 +12810,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12835,7 +12835,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/top-secrets-instant-moisture-glow/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/top-secrets-instant-moisture-glow/hero.jpg",
+      "https://res.cloudinary.com/dxxvmvvyj/image/upload/f_auto,q_auto,w_auto/e_trim/e_sharpen:60/c_limit,w_1920/f_webp/v1/products/bg_removed/36/14/27/04APZOK2AP_3614270638060_front.jpg?_a=BAVFB+DW0",
       "/assets/products/luxury/ysl-beauty/top-secrets-instant-moisture-glow/main.webp"
     ],
     "rating": 0,
@@ -12853,7 +12853,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12878,7 +12878,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/ysl-beauty/nu-bare-look-tint/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.yslbeautyus.com/dw/image/v2/nu-bare-look-tint/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.d--ecqpgUYFl7qhZnEvufgHaFz&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/ysl-beauty/nu-bare-look-tint/main.webp"
     ],
     "rating": 0,
@@ -12896,7 +12896,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12921,7 +12921,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/studio-fix-fluid-spf-15-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/studio-fix-fluid-spf-15-foundation/hero.jpg",
+      "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/000000000494396673/iNT2YpPng-000000000494396673_1.jpg",
       "/assets/products/luxury/mac-cosmetics/studio-fix-fluid-spf-15-foundation/main.webp"
     ],
     "rating": 0,
@@ -12939,7 +12939,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -12964,7 +12964,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/studio-radiance-serum-powered-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/studio-radiance-serum-powered-foundation/hero.jpg",
+      "https://media.allure.com/photos/64de5a25a5cda834f4024903/3:4/w_748%2Cc_limit/MAC%2520StudioRadiance_SerumPoweredFoundation_NW43.jpg",
       "/assets/products/luxury/mac-cosmetics/studio-radiance-serum-powered-foundation/main.webp"
     ],
     "rating": 0,
@@ -12982,7 +12982,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13007,7 +13007,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/macximal-silky-matte-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/macximal-silky-matte-lipstick/hero.jpg",
+      "https://images.asos-media.com/products/mac-macximal-silky-matte-lipstick-caviar/206164545-1-caviar?$n_640w$&wid=513&fit=constrain",
       "/assets/products/luxury/mac-cosmetics/macximal-silky-matte-lipstick/main.webp"
     ],
     "rating": 0,
@@ -13025,7 +13025,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13050,7 +13050,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/powder-kiss-velvet-blur-slim-stick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/powder-kiss-velvet-blur-slim-stick/hero.jpg",
+      "https://sdcdn.io/mac/mx/mac_sku_STX521_1x1_0.png?width=1080&height=1080",
       "/assets/products/luxury/mac-cosmetics/powder-kiss-velvet-blur-slim-stick/main.webp"
     ],
     "rating": 0,
@@ -13068,7 +13068,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13093,7 +13093,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/fix-setting-spray/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/fix-setting-spray/hero.jpg",
+      "https://sdcdn.io/mac/gb/mac_sku_SBEF01_1x1_0.png?width=1080&height=1080",
       "/assets/products/luxury/mac-cosmetics/fix-setting-spray/main.webp"
     ],
     "rating": 0,
@@ -13111,7 +13111,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13136,7 +13136,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/lipglass/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/lipglass/hero.jpg",
+      "https://sdcdn.io/mac/mx/mac_sku_SK0H01_1x1_0.png?width=1080&height=1080",
       "/assets/products/luxury/mac-cosmetics/lipglass/main.webp"
     ],
     "rating": 0,
@@ -13154,7 +13154,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13179,7 +13179,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/prep-prime-skin/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/prep-prime-skin/hero.jpg",
+      "https://sdcdn.io/mac/il/mac_sku_M4X901_1x1_0.png?width=1080&height=1080",
       "/assets/products/luxury/mac-cosmetics/prep-prime-skin/main.webp"
     ],
     "rating": 0,
@@ -13197,7 +13197,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13222,7 +13222,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/strobe-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/strobe-cream/hero.jpg",
+      "https://sdcdn.io/mac/au/mac_sku_S48L06_1x1_0.png?width=1080&height=1080",
       "/assets/products/luxury/mac-cosmetics/strobe-cream/main.webp"
     ],
     "rating": 0,
@@ -13240,7 +13240,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13265,7 +13265,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/mineralize-skinfinish/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/mineralize-skinfinish/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2023/12/MAC-Mineralize-Skinfinish-Natural-Face-Powder-Shade.webp",
       "/assets/products/luxury/mac-cosmetics/mineralize-skinfinish/main.webp"
     ],
     "rating": 0,
@@ -13283,7 +13283,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13308,7 +13308,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/pro-longwear-concealer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/pro-longwear-concealer/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2024/01/MAC-Pro-Longwear-Concealer-768x768.webp",
       "/assets/products/luxury/mac-cosmetics/pro-longwear-concealer/main.webp"
     ],
     "rating": 0,
@@ -13326,7 +13326,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13351,7 +13351,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/mac-stack-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/mac-stack-mascara/hero.jpg",
+      "https://media.allure.com/photos/6217d5f2526b3ac03034f2be/master/w_1600%2Cc_limit/MACFY22_MACStackMascara_Micro_BlackStack_CleanBristle_Open_3000x3000.png",
       "/assets/products/luxury/mac-cosmetics/mac-stack-mascara/main.webp"
     ],
     "rating": 0,
@@ -13369,7 +13369,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13394,7 +13394,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/mac-cosmetics/connect-in-colour-eyeshadow-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.maccosmetics.com/media/export/connect-in-colour-eyeshadow-palette/hero.jpg",
+      "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/mac-cosmetics/7024876/0/2Ciht4T4p7-1_Product_773602648719-MAC-Cosmetics-Connect-In-Color-6-Pan-Eyeshadow-Palette-Encrypted_fdc0d8842c7ecc4d68ad9a7608e01284f2d3b466_1677431806.png",
       "/assets/products/luxury/mac-cosmetics/connect-in-colour-eyeshadow-palette/main.webp"
     ],
     "rating": 0,
@@ -13412,7 +13412,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13437,7 +13437,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/soft-pinch-liquid-blush/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/soft-pinch-liquid-blush/hero.jpg",
+      "https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dwb57e182d/products/RARE/UK200032778_RARE.jpg",
       "/assets/products/luxury/rare-beauty/soft-pinch-liquid-blush/main.webp"
     ],
     "rating": 0,
@@ -13455,7 +13455,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13480,7 +13480,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/positive-light-silky-touch-highlighter/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/positive-light-silky-touch-highlighter/hero.jpg",
+      "https://glossyglams.com/cdn/shop/files/Rare_Beauty_-_Positive_Light_Silky_Touch_Highlighter.jpg?v=1754575018&width=1445",
       "/assets/products/luxury/rare-beauty/positive-light-silky-touch-highlighter/main.webp"
     ],
     "rating": 0,
@@ -13498,7 +13498,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13523,7 +13523,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/liquid-touch-weightless-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/liquid-touch-weightless-foundation/hero.jpg",
+      "https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dwa07ef4d7/products/RARE/UK200033035_RARE.jpg",
       "/assets/products/luxury/rare-beauty/liquid-touch-weightless-foundation/main.webp"
     ],
     "rating": 0,
@@ -13541,7 +13541,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13566,7 +13566,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/kind-words-matte-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/kind-words-matte-lipstick/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.pb1Von-3_CrdCQlfNLd8AwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/rare-beauty/kind-words-matte-lipstick/main.webp"
     ],
     "rating": 0,
@@ -13584,7 +13584,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13609,7 +13609,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/always-an-optimist-pore-diffusing-primer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/always-an-optimist-pore-diffusing-primer/hero.jpg",
+      "https://www.spacenk.com/dw/image/v2/ABCE_PRD/on/demandware.static/-/Sites-spacenkmastercatalog/default/dwa14fdf11/products/RARE/UK200032975_RARE_3.jpg?sw=1000&sh=1000",
       "/assets/products/luxury/rare-beauty/always-an-optimist-pore-diffusing-primer/main.webp"
     ],
     "rating": 0,
@@ -13627,7 +13627,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13652,7 +13652,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/warm-wishes-effortless-bronzer-stick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/warm-wishes-effortless-bronzer-stick/hero.jpg",
+      "https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dw45755f6e/products/RARE/UK200032801_RARE.jpg",
       "/assets/products/luxury/rare-beauty/warm-wishes-effortless-bronzer-stick/main.webp"
     ],
     "rating": 0,
@@ -13670,7 +13670,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13695,7 +13695,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/positive-light-tinted-moisturizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/positive-light-tinted-moisturizer/hero.jpg",
+      "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/000000000494274161/7SRnRVqP6m-000000000494274161_1.png",
       "/assets/products/luxury/rare-beauty/positive-light-tinted-moisturizer/main.webp"
     ],
     "rating": 0,
@@ -13713,7 +13713,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13738,7 +13738,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/perfect-strokes-universal-volumizing-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/perfect-strokes-universal-volumizing-mascara/hero.jpg",
+      "https://down-ph.img.susercontent.com/file/id-11134207-7r98p-llr5xuzlwo3r50",
       "/assets/products/luxury/rare-beauty/perfect-strokes-universal-volumizing-mascara/main.webp"
     ],
     "rating": 0,
@@ -13756,7 +13756,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13781,7 +13781,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/soft-pinch-tinted-lip-oil/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/soft-pinch-tinted-lip-oil/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_840122905773-Rare-Beauty-Soft-Pinch-Tinted-Lip-Oil-Affection_89d296a0078beec4cbb095de7085e647f3d969c5_1679217696.png",
       "/assets/products/luxury/rare-beauty/soft-pinch-tinted-lip-oil/main.webp"
     ],
     "rating": 0,
@@ -13799,7 +13799,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13824,7 +13824,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/brow-harmony-precision-pencil/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/brow-harmony-precision-pencil/hero.jpg",
+      "https://luxebykan.com/cdn/shop/files/file_ea5f189c-0781-47ae-a271-b4a0764376a5.webp?v=1694341883&width=1445",
       "/assets/products/luxury/rare-beauty/brow-harmony-precision-pencil/main.webp"
     ],
     "rating": 0,
@@ -13842,7 +13842,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13867,7 +13867,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/find-comfort-body-lotion/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/find-comfort-body-lotion/hero.jpg",
+      "https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dwd938fdf9/products/RARE/UK200040393_RARE.jpg",
       "/assets/products/luxury/rare-beauty/find-comfort-body-lotion/main.webp"
     ],
     "rating": 0,
@@ -13885,7 +13885,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13910,7 +13910,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rare-beauty/find-comfort-body-hair-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.rarebeauty.com/cdn/shop/products/find-comfort-body-hair-fragrance-mist/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/1_Product_840122907050-Rare-Beauty-Find-Comfort-Body-Hair-Fr_43821ce77eda9004caa8654d844f350784d9441f_1736770004.png",
       "/assets/products/luxury/rare-beauty/find-comfort-body-hair-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -13928,7 +13928,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13953,7 +13953,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/gloss-bomb-universal-lip-luminizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/gloss-bomb-universal-lip-luminizer/hero.jpg",
+      "https://media.ulta.com/i/ulta/2592392?w=1080&h=1080&fmt=auto",
       "/assets/products/luxury/fenty-beauty/gloss-bomb-universal-lip-luminizer/main.webp"
     ],
     "rating": 0,
@@ -13971,7 +13971,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -13996,7 +13996,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/pro-filtr-soft-matte-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/pro-filtr-soft-matte-foundation/hero.jpg",
+      "https://cdn.chanhtuoi.com/uploads/23/06/fenty-beauty-pro-filtr-soft-matte-longwear-foundation-3_front_photo_original.jpeg",
       "/assets/products/luxury/fenty-beauty/pro-filtr-soft-matte-foundation/main.webp"
     ],
     "rating": 0,
@@ -14014,7 +14014,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14039,7 +14039,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/eaze-drop-blurring-skin-tint/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/eaze-drop-blurring-skin-tint/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113974020?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/fenty-beauty/eaze-drop-blurring-skin-tint/main.webp"
     ],
     "rating": 0,
@@ -14057,7 +14057,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14082,7 +14082,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/match-stix-contour-skinstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/match-stix-contour-skinstick/hero.jpg",
+      "https://originalmakeupro.com/web/image/product.product/1342/image_1024/FENTY BEAUTY Match Stix Contour Skinstick?unique=11f6ccf",
       "/assets/products/luxury/fenty-beauty/match-stix-contour-skinstick/main.webp"
     ],
     "rating": 0,
@@ -14100,7 +14100,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14125,7 +14125,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/cheeks-out-freestyle-cream-blush/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/cheeks-out-freestyle-cream-blush/hero.jpg",
+      "https://cd3c14-whites.akinoncloudcdn.com/products/2026/01/07/47537/d999dad0-eb90-468f-a97d-17dc17b75d03.jpg",
       "/assets/products/luxury/fenty-beauty/cheeks-out-freestyle-cream-blush/main.webp"
     ],
     "rating": 0,
@@ -14143,7 +14143,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14168,7 +14168,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/killawatt-freestyle-highlighter/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/killawatt-freestyle-highlighter/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113973948?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/fenty-beauty/killawatt-freestyle-highlighter/main.webp"
     ],
     "rating": 0,
@@ -14186,7 +14186,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14211,7 +14211,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/hella-thicc-volumizing-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/hella-thicc-volumizing-mascara/hero.jpg",
+      "https://media.ulta.com/i/ulta/2608612?w=1080&h=1080&fmt=auto",
       "/assets/products/luxury/fenty-beauty/hella-thicc-volumizing-mascara/main.webp"
     ],
     "rating": 0,
@@ -14229,7 +14229,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14254,7 +14254,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/invisimatte-instant-setting-blotting-powder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/invisimatte-instant-setting-blotting-powder/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_26083_Fenty_WEB_2_24066c698a777a4f4e3885ee32f48c3ed5f380ea_1523778017.png",
       "/assets/products/luxury/fenty-beauty/invisimatte-instant-setting-blotting-powder/main.webp"
     ],
     "rating": 0,
@@ -14272,7 +14272,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14297,7 +14297,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/gloss-bomb-heat/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/gloss-bomb-heat/hero.jpg",
+      "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1624460554-fenty-beauty-gloss-bomb-heat-product-silo-1-1624460435.png?crop=0.6666666666666666xw:1xh;center,top&resize=480:*",
       "/assets/products/luxury/fenty-beauty/gloss-bomb-heat/main.webp"
     ],
     "rating": 0,
@@ -14315,7 +14315,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14340,7 +14340,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/fenty-icon-velvet-liquid-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/fenty-icon-velvet-liquid-lipstick/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113974197?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/fenty-beauty/fenty-icon-velvet-liquid-lipstick/main.webp"
     ],
     "rating": 0,
@@ -14358,7 +14358,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14383,7 +14383,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/poutsicle-hydrating-lip-stain/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/poutsicle-hydrating-lip-stain/hero.jpg",
+      "https://soignemiddleeast.com/wp-content/uploads/2025/06/Fenty-Beauty-Poutsicle-Hydrating-Lip-Stain-1024x1024.webp",
       "/assets/products/luxury/fenty-beauty/poutsicle-hydrating-lip-stain/main.webp"
     ],
     "rating": 0,
@@ -14401,7 +14401,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14426,7 +14426,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/fenty-beauty/butta-drop-whipped-oil-body-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://fentybeauty.com/cdn/shop/products/butta-drop-whipped-oil-body-cream/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/115101211alt1?fmt=auto&$background-off-white$",
       "/assets/products/luxury/fenty-beauty/butta-drop-whipped-oil-body-cream/main.webp"
     ],
     "rating": 0,
@@ -14444,7 +14444,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14469,7 +14469,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/radiant-creamy-concealer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/radiant-creamy-concealer/hero.jpg",
+      "https://www.byrdie.com/thmb/TvDS1kyUYb49L9PjdFZpze3aBNI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Nars-e4cc99b5b6ee4e38bfe29bc498b0b4ac.jpg",
       "/assets/products/luxury/nars/radiant-creamy-concealer/main.webp"
     ],
     "rating": 0,
@@ -14487,7 +14487,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14512,7 +14512,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/light-reflecting-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/light-reflecting-foundation/hero.jpg",
+      "https://deluxura.shop/cdn/shop/files/194251070360-488398.jpg?v=1704536618&width=1946",
       "/assets/products/luxury/nars/light-reflecting-foundation/main.webp"
     ],
     "rating": 0,
@@ -14530,7 +14530,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14555,7 +14555,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/blush-in-orgasm/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/blush-in-orgasm/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.K9kjOWpQjPjHE17PrcNxhwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/nars/blush-in-orgasm/main.webp"
     ],
     "rating": 0,
@@ -14573,7 +14573,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14598,7 +14598,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/laguna-bronzing-powder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/laguna-bronzing-powder/hero.jpg",
+      "https://www.narscosmetics.ca/dw/image/v2/BBSK_PRD/on/demandware.static/-/Sites-itemmaster_NARS/default/dwc9c1aa5a/2023/March/Makeup/MiniBronzer/999NAC0000156_MiniLagunaBronzingPowder_Laguna02_1.jpg?sw=856&sh=750&sm=fit",
       "/assets/products/luxury/nars/laguna-bronzing-powder/main.webp"
     ],
     "rating": 0,
@@ -14616,7 +14616,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14641,7 +14641,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/afterglow-lip-balm/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/afterglow-lip-balm/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/114638655alt9?fmt=auto&$background-off-white$",
       "/assets/products/luxury/nars/afterglow-lip-balm/main.webp"
     ],
     "rating": 0,
@@ -14659,7 +14659,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14684,7 +14684,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/powermatte-lip-pigment/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/powermatte-lip-pigment/hero.jpg",
+      "https://media.ulta.com/i/ulta/2515839?w=1080&h=1080&fmt=auto",
       "/assets/products/luxury/nars/powermatte-lip-pigment/main.webp"
     ],
     "rating": 0,
@@ -14702,7 +14702,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14727,7 +14727,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/soft-matte-complete-concealer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/soft-matte-complete-concealer/hero.jpg",
+      "https://i.pinimg.com/originals/92/75/2e/92752ec906d3fbca3569a43252617f6a.jpg",
       "/assets/products/luxury/nars/soft-matte-complete-concealer/main.webp"
     ],
     "rating": 0,
@@ -14745,7 +14745,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14770,7 +14770,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/natural-radiant-longwear-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/natural-radiant-longwear-foundation/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2023/12/New-Project-3-768x768.webp",
       "/assets/products/luxury/nars/natural-radiant-longwear-foundation/main.webp"
     ],
     "rating": 0,
@@ -14788,7 +14788,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14813,7 +14813,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/climax-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/climax-mascara/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/eyJlZGl0cyI6eyJyZXNpemUiOnt9fX0=/images/product_images/zoom_1_Product_194251141466-NARS-Private-Party-Climax-Mascara-Duo-Holiday-Limited-Edition-Defau_57677040486bfa27df24e3afbabc03131d2c0360_1692190971.png",
       "/assets/products/luxury/nars/climax-mascara/main.webp"
     ],
     "rating": 0,
@@ -14831,7 +14831,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14856,7 +14856,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/light-reflecting-pressed-setting-powder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/light-reflecting-pressed-setting-powder/hero.jpg",
+      "https://www.narscosmetics.com/dw/image/v2/BBSK_PRD/on/demandware.static/-/Sites-itemmaster_NARS/default/dw7e479c59/alt4/0607845058960_closed.jpg?sw=856&sh=750&sm=fit",
       "/assets/products/luxury/nars/light-reflecting-pressed-setting-powder/main.webp"
     ],
     "rating": 0,
@@ -14874,7 +14874,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14899,7 +14899,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/quad-eyeshadow-palette/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/quad-eyeshadow-palette/hero.jpg",
+      "https://n.nordstrommedia.com/it/e40b62a4-4834-4da9-847d-26330325e68f.jpeg?crop=pad&w=780&h=1196",
       "/assets/products/luxury/nars/quad-eyeshadow-palette/main.webp"
     ],
     "rating": 0,
@@ -14917,7 +14917,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14942,7 +14942,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/nars/afterglow-liquid-blush/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.narscosmetics.com/dw/image/v2/afterglow-liquid-blush/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2024/09/nn-3-768x768.webp",
       "/assets/products/luxury/nars/afterglow-liquid-blush/main.webp"
     ],
     "rating": 0,
@@ -14960,7 +14960,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -14985,7 +14985,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/advanced-night-repair-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/advanced-night-repair-serum/hero.jpg",
+      "https://images.amavita.ch/product-images/estee-lauder-advanced-night-repair-serum-30-ml-main-0028IQ.jpg",
       "/assets/products/luxury/estee-lauder/advanced-night-repair-serum/main.webp"
     ],
     "rating": 0,
@@ -15003,7 +15003,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15028,7 +15028,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/double-wear-stay-in-place-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/double-wear-stay-in-place-foundation/hero.jpg",
+      "https://www.esteelauder.com/media/export/cms/products/640x640/el_sku_YA6F66_640x640_0.jpg",
       "/assets/products/luxury/estee-lauder/double-wear-stay-in-place-foundation/main.webp"
     ],
     "rating": 0,
@@ -15046,7 +15046,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15071,7 +15071,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/revitalizing-supreme-youth-power-creme/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/revitalizing-supreme-youth-power-creme/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/240621046alt2?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/estee-lauder/revitalizing-supreme-youth-power-creme/main.webp"
     ],
     "rating": 0,
@@ -15089,7 +15089,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15114,7 +15114,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/pure-color-lipstick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/pure-color-lipstick/hero.jpg",
+      "https://media.ulta.com/i/ulta/2604690?w=720&fmt=png",
       "/assets/products/luxury/estee-lauder/pure-color-lipstick/main.webp"
     ],
     "rating": 0,
@@ -15132,7 +15132,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15157,7 +15157,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/daywear-moisturizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/daywear-moisturizer/hero.jpg",
+      "https://www.sandrascloset.com/wp-content/uploads/2011/02/DayWear_Tint-on-white-background_ExpJan2012-185x400.jpg",
       "/assets/products/luxury/estee-lauder/daywear-moisturizer/main.webp"
     ],
     "rating": 0,
@@ -15175,7 +15175,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15200,7 +15200,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/futurist-hydra-rescue-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/futurist-hydra-rescue-foundation/hero.jpg",
+      "https://media.ulta.com/i/ulta/2577960?w=720",
       "/assets/products/luxury/estee-lauder/futurist-hydra-rescue-foundation/main.webp"
     ],
     "rating": 0,
@@ -15218,7 +15218,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15243,7 +15243,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/advanced-night-repair-eye-gel-creme/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/advanced-night-repair-eye-gel-creme/hero.jpg",
+      "https://www.esteelauder.com.au/media/export/cms_2.0/merch-windows/by-campaign/fall-2023-anr-eye-repromote/GLO326-sku_PYL501-1366x1366.jpg",
       "/assets/products/luxury/estee-lauder/advanced-night-repair-eye-gel-creme/main.webp"
     ],
     "rating": 0,
@@ -15261,7 +15261,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15286,7 +15286,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/perfectionist-pro-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/perfectionist-pro-serum/hero.jpg",
+      "https://images.selfridges.com/is/image/selfridges/R04273458_M?$CHANNEL_INTELLIGENCE$",
       "/assets/products/luxury/estee-lauder/perfectionist-pro-serum/main.webp"
     ],
     "rating": 0,
@@ -15304,7 +15304,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15329,7 +15329,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/bronze-goddess-powder-bronzer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/bronze-goddess-powder-bronzer/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/231949998?fmt=auto&$background-off-white$",
       "/assets/products/luxury/estee-lauder/bronze-goddess-powder-bronzer/main.webp"
     ],
     "rating": 0,
@@ -15347,7 +15347,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15372,7 +15372,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/sumptuous-extreme-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/sumptuous-extreme-mascara/hero.jpg",
+      "https://www.esteelauder.co.uk/media/export/cms/products/640x640/el_sku_WGHW01_640x640_2.jpg",
       "/assets/products/luxury/estee-lauder/sumptuous-extreme-mascara/main.webp"
     ],
     "rating": 0,
@@ -15390,7 +15390,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15415,7 +15415,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/micro-essence-treatment-lotion/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/micro-essence-treatment-lotion/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/240947613?fmt=auto&$background-off-white$",
       "/assets/products/luxury/estee-lauder/micro-essence-treatment-lotion/main.webp"
     ],
     "rating": 0,
@@ -15433,7 +15433,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15458,7 +15458,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/estee-lauder/nutritious-2-in-1-foam-cleanser/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.esteelauder.com/media/export/nutritious-2-in-1-foam-cleanser/hero.jpg",
+      "https://store.yohohongkong.com/mkp/gallery/goods/images/13828fce-d467-493b-b7e9-73db5676db79_mkp_image.webp",
       "/assets/products/luxury/estee-lauder/nutritious-2-in-1-foam-cleanser/main.webp"
     ],
     "rating": 0,
@@ -15476,7 +15476,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15501,7 +15501,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/moisture-surge-100h-auto-replenishing-hydrator/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/moisture-surge-100h-auto-replenishing-hydrator/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/zoom_1_Product_192333066935-Clinique-Moisture-Surge-100H-Auto-Replenishing-Hydrator-50ml_63239cf382461cd9c0a5f98f72a73787584e6483_1611221696.png",
       "/assets/products/luxury/clinique/moisture-surge-100h-auto-replenishing-hydrator/main.webp"
     ],
     "rating": 0,
@@ -15519,7 +15519,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15544,7 +15544,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/dramatically-different-moisturizing-lotion/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/dramatically-different-moisturizing-lotion/hero.jpg",
+      "https://a.cdnsbn.com/images/products/xl/25353480401-1.jpg",
       "/assets/products/luxury/clinique/dramatically-different-moisturizing-lotion/main.webp"
     ],
     "rating": 0,
@@ -15562,7 +15562,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15587,7 +15587,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/almost-lipstick-in-black-honey/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/almost-lipstick-in-black-honey/hero.jpg",
+      "https://d3pllp7nz3wmw5.cloudfront.net/product_images/33584880402_XL.jpg",
       "/assets/products/luxury/clinique/almost-lipstick-in-black-honey/main.webp"
     ],
     "rating": 0,
@@ -15605,7 +15605,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15630,7 +15630,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/take-the-day-off-cleansing-balm/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/take-the-day-off-cleansing-balm/hero.jpg",
+      "https://sdcdn.io/cl/cl_sku_KAJ701_2400x2400_0.jpg",
       "/assets/products/luxury/clinique/take-the-day-off-cleansing-balm/main.webp"
     ],
     "rating": 0,
@@ -15648,7 +15648,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15673,7 +15673,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/even-better-clinical-serum-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/even-better-clinical-serum-foundation/hero.jpg",
+      "https://www.klarna.com/sac/product/640x640/3004511569/Clinique-Even-Better-Clinical-Serum-Foundation-SPF25-WN04-Bone.jpg?ph=true",
       "/assets/products/luxury/clinique/even-better-clinical-serum-foundation/main.webp"
     ],
     "rating": 0,
@@ -15691,7 +15691,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15716,7 +15716,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/almost-lipstick-in-pink-honey/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/almost-lipstick-in-pink-honey/hero.jpg",
+      "https://sdcdn.io/cl/cl_sku_VBRZ44_3000x3000_0.png",
       "/assets/products/luxury/clinique/almost-lipstick-in-pink-honey/main.webp"
     ],
     "rating": 0,
@@ -15734,7 +15734,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15759,7 +15759,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/all-about-eyes-eye-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/all-about-eyes-eye-cream/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2024/07/cc-3-768x768.webp",
       "/assets/products/luxury/clinique/all-about-eyes-eye-cream/main.webp"
     ],
     "rating": 0,
@@ -15777,7 +15777,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15802,7 +15802,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/clarifying-lotion/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/clarifying-lotion/hero.jpg",
+      "https://mccaulous.com/cdn/shop/files/clinique-4596_large_image.jpg?v=1758322589&width=3840",
       "/assets/products/luxury/clinique/clarifying-lotion/main.webp"
     ],
     "rating": 0,
@@ -15820,7 +15820,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15845,7 +15845,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/high-impact-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/high-impact-mascara/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.PqHeYmC6dJJCRzxGdIkDjwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/clinique/high-impact-mascara/main.webp"
     ],
     "rating": 0,
@@ -15863,7 +15863,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15888,7 +15888,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/chubby-stick-cheek-colour-balm/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/chubby-stick-cheek-colour-balm/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/114709765?fmt=auto&$background-off-white$",
       "/assets/products/luxury/clinique/chubby-stick-cheek-colour-balm/main.webp"
     ],
     "rating": 0,
@@ -15906,7 +15906,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15931,7 +15931,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/smart-clinical-repair-wrinkle-correcting-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/smart-clinical-repair-wrinkle-correcting-serum/hero.jpg",
+      "https://nodbeauty.co.uk/cdn/shop/files/7F56710E-4713-412C-8220-7D14105EF62A.jpg?v=1753115490&width=600",
       "/assets/products/luxury/clinique/smart-clinical-repair-wrinkle-correcting-serum/main.webp"
     ],
     "rating": 0,
@@ -15949,7 +15949,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -15974,7 +15974,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/clinique/spf-50-mineral-sunscreen-fluid/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.clinique.com/media/export/spf-50-mineral-sunscreen-fluid/hero.jpg",
+      "https://mccaulous.com/cdn/shop/files/clinique-9595_large_image.jpg?v=1760741011&width=3840",
       "/assets/products/luxury/clinique/spf-50-mineral-sunscreen-fluid/main.webp"
     ],
     "rating": 0,
@@ -15992,7 +15992,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16017,7 +16017,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/benetint-lip-cheek-stain/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/benetint-lip-cheek-stain/hero.jpg",
+      "https://admin.beautiv.com/images/product/1484949985.jpg",
       "/assets/products/luxury/benefit-cosmetics/benetint-lip-cheek-stain/main.webp"
     ],
     "rating": 0,
@@ -16035,7 +16035,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16060,7 +16060,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/hoola-matte-bronzer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/hoola-matte-bronzer/hero.jpg",
+      "https://media.allure.com/photos/60940c7e29193a4668269019/3:4/w_748%2Cc_limit/hoola%2520matte%2520bronzer.jpeg",
       "/assets/products/luxury/benefit-cosmetics/hoola-matte-bronzer/main.webp"
     ],
     "rating": 0,
@@ -16078,7 +16078,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16103,7 +16103,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/the-porefessional-primer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/the-porefessional-primer/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2024/07/p-768x768.webp",
       "/assets/products/luxury/benefit-cosmetics/the-porefessional-primer/main.webp"
     ],
     "rating": 0,
@@ -16121,7 +16121,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16146,7 +16146,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/theyre-real-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/theyre-real-mascara/hero.jpg",
+      "https://www.benefitcosmetics.com/dw/image/v2/BKFV_PRD/on/demandware.static/-/Sites-bencos-master-catalog/default/dw04441f43/product_images/TARMASCARA/Tile_full_theyrereal.jpg?sw=822&sh=920&q=85",
       "/assets/products/luxury/benefit-cosmetics/theyre-real-mascara/main.webp"
     ],
     "rating": 0,
@@ -16164,7 +16164,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16189,7 +16189,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/precisely-my-brow-pencil/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/precisely-my-brow-pencil/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2024/07/1-16-768x768.webp",
       "/assets/products/luxury/benefit-cosmetics/precisely-my-brow-pencil/main.webp"
     ],
     "rating": 0,
@@ -16207,7 +16207,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16232,7 +16232,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/gimme-brow/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/gimme-brow/hero.jpg",
+      "https://i02.hsncdn.com/is/image/HomeShoppingNetwork/orig/-~9922804w.jpg",
       "/assets/products/luxury/benefit-cosmetics/gimme-brow/main.webp"
     ],
     "rating": 0,
@@ -16250,7 +16250,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16275,7 +16275,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/badgal-bang-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/badgal-bang-mascara/hero.jpg",
+      "https://www.benefitcosmetics.com/dw/image/v2/BKFV_PRD/on/demandware.static/-/Library-Sites-BencoSharedLibrary/default/dw5e8e5133/Landing Pages/Home Page/7 - Category Links/Homepage_CategoryLinks_Icons_BadgalBang.png?sw=580&sh=692&q=85",
       "/assets/products/luxury/benefit-cosmetics/badgal-bang-mascara/main.webp"
     ],
     "rating": 0,
@@ -16293,7 +16293,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16318,7 +16318,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/24-hr-brow-setter/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/24-hr-brow-setter/hero.jpg",
+      "https://www.benefitcosmetics.com/dw/image/v2/BKFV_PRD/on/demandware.static/-/Sites-bencos-master-catalog/default/dwbb0a6f7c/product_images/24HOUBM66/Tile_full_24hrbrowsetter.jpg?sw=822&sh=920&q=85",
       "/assets/products/luxury/benefit-cosmetics/24-hr-brow-setter/main.webp"
     ],
     "rating": 0,
@@ -16336,7 +16336,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16361,7 +16361,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/roller-lash-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/roller-lash-mascara/hero.jpg",
+      "https://cosmeticfact.com.au/wp-content/uploads/2024/07/b-1-768x768.webp",
       "/assets/products/luxury/benefit-cosmetics/roller-lash-mascara/main.webp"
     ],
     "rating": 0,
@@ -16379,7 +16379,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16404,7 +16404,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/dandelion-brightening-blush/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/dandelion-brightening-blush/hero.jpg",
+      "https://i.pinimg.com/736x/22/d7/3a/22d73af6e1ad105618601f07a16098b0.jpg",
       "/assets/products/luxury/benefit-cosmetics/dandelion-brightening-blush/main.webp"
     ],
     "rating": 0,
@@ -16422,7 +16422,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16447,7 +16447,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/playtint-lip-cheek-stain/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/playtint-lip-cheek-stain/hero.jpg",
+      "https://asset.sephora.co.uk/img/prod/sku/550048/235828_media_swatch_1_03-02-26-08-45-05.jpg",
       "/assets/products/luxury/benefit-cosmetics/playtint-lip-cheek-stain/main.webp"
     ],
     "rating": 0,
@@ -16465,7 +16465,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16490,7 +16490,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/benefit-cosmetics/fluff-up-brow-wax/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.benefitcosmetics.com/dw/image/v2/fluff-up-brow-wax/hero.jpg",
+      "https://stylecaster.com/wp-content/uploads/2023/01/benefit-fluff-up.jpg",
       "/assets/products/luxury/benefit-cosmetics/fluff-up-brow-wax/main.webp"
     ],
     "rating": 0,
@@ -16508,7 +16508,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16533,7 +16533,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/vitamin-enriched-face-base/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/vitamin-enriched-face-base/hero.jpg",
+      "https://down-id.img.susercontent.com/file/id-11134207-7quky-li8lr0ewxy8m51",
       "/assets/products/luxury/bobbi-brown/vitamin-enriched-face-base/main.webp"
     ],
     "rating": 0,
@@ -16551,7 +16551,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16576,7 +16576,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/skin-long-wear-weightless-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/skin-long-wear-weightless-foundation/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.JFpwXknde5cCRKbDOdxeIgHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bobbi-brown/skin-long-wear-weightless-foundation/main.webp"
     ],
     "rating": 0,
@@ -16594,7 +16594,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16619,7 +16619,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/crushed-lip-color/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/crushed-lip-color/hero.jpg",
+      "https://static.standard.co.uk/2023/12/13/15/55/Bobbi Brown Crushed Lip Color..png.jpg?quality=75&auto=webp&width=640",
       "/assets/products/luxury/bobbi-brown/crushed-lip-color/main.webp"
     ],
     "rating": 0,
@@ -16637,7 +16637,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16662,7 +16662,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/pot-rouge-for-lips-cheeks/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/pot-rouge-for-lips-cheeks/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/110450075?fmt=auto&$background-off-white$",
       "/assets/products/luxury/bobbi-brown/pot-rouge-for-lips-cheeks/main.webp"
     ],
     "rating": 0,
@@ -16680,7 +16680,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16705,7 +16705,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/highlighting-powder/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/highlighting-powder/hero.jpg",
+      "https://www.bobbibrown.com.au/media/export/cms/products/responsive/bb_sku_EFAA02_1x1_0.png?width=440&height=440",
       "/assets/products/luxury/bobbi-brown/highlighting-powder/main.webp"
     ],
     "rating": 0,
@@ -16723,7 +16723,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16748,7 +16748,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/long-wear-cream-shadow-stick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/long-wear-cream-shadow-stick/hero.jpg",
+      "https://www.adorebeauty.co.nz/media/catalog/product/l/o/long-wear-cream-shadow-stick.jpg",
       "/assets/products/luxury/bobbi-brown/long-wear-cream-shadow-stick/main.webp"
     ],
     "rating": 0,
@@ -16766,7 +16766,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16791,7 +16791,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/smokey-eye-mascara/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/smokey-eye-mascara/hero.jpg",
+      "https://media.ulta.com/i/ulta/2583680",
       "/assets/products/luxury/bobbi-brown/smokey-eye-mascara/main.webp"
     ],
     "rating": 0,
@@ -16809,7 +16809,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16834,7 +16834,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/extra-lip-tint/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/extra-lip-tint/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/114830609?fmt=auto&$background-off-white$",
       "/assets/products/luxury/bobbi-brown/extra-lip-tint/main.webp"
     ],
     "rating": 0,
@@ -16852,7 +16852,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16877,7 +16877,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/weightless-skin-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/weightless-skin-foundation/hero.jpg",
+      "https://www.bobbibrown.com.mx/media/export/cms/Homepage/FY25/BB_EW7115_620x826.jpg",
       "/assets/products/luxury/bobbi-brown/weightless-skin-foundation/main.webp"
     ],
     "rating": 0,
@@ -16895,7 +16895,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16920,7 +16920,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/intensive-serum-foundation/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/intensive-serum-foundation/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.mxdW0r2JdMvoGubcgK65UAHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bobbi-brown/intensive-serum-foundation/main.webp"
     ],
     "rating": 0,
@@ -16938,7 +16938,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -16963,7 +16963,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/skin-corrector-stick/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/skin-corrector-stick/hero.jpg",
+      "https://images.glambot.com/09abdcd705b816572e8be6d98316ba16?f=WebP",
       "/assets/products/luxury/bobbi-brown/skin-corrector-stick/main.webp"
     ],
     "rating": 0,
@@ -16981,7 +16981,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17006,7 +17006,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bobbi-brown/perfectly-defined-long-wear-brow-pencil/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bobbibrowncosmetics.com/media/export/perfectly-defined-long-wear-brow-pencil/hero.jpg",
+      "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/bobbi-brown/9T9J5KTNDED-1/0/Qig8i74HgV-1.jpg",
       "/assets/products/luxury/bobbi-brown/perfectly-defined-long-wear-brow-pencil/main.webp"
     ],
     "rating": 0,
@@ -17024,7 +17024,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17049,7 +17049,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/niacinamide-10-zinc-1/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/niacinamide-10-zinc-1/hero.jpg",
+      "https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dwa7a8afaf/products/ORDINARY/UK200029813_ORDINARY.jpg",
       "/assets/products/luxury/the-ordinary/niacinamide-10-zinc-1/main.webp"
     ],
     "rating": 0,
@@ -17067,7 +17067,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17092,7 +17092,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/hyaluronic-acid-2-b5/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/hyaluronic-acid-2-b5/hero.jpg",
+      "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/000000000494474655/dNGnW442Gs-000000000494474655_1.png",
       "/assets/products/luxury/the-ordinary/hyaluronic-acid-2-b5/main.webp"
     ],
     "rating": 0,
@@ -17110,7 +17110,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17135,7 +17135,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/glycolic-acid-7-exfoliating-toner/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/glycolic-acid-7-exfoliating-toner/hero.jpg",
+      "https://www.farmaciesler.al/cdn/shop/files/The_Ordinary_Glycolic_Acid_7_Exfoliating_Toner_bottle.jpg?v=1775114562",
       "/assets/products/luxury/the-ordinary/glycolic-acid-7-exfoliating-toner/main.webp"
     ],
     "rating": 0,
@@ -17153,7 +17153,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17178,7 +17178,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/aha-30-bha-2-peeling-solution/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/aha-30-bha-2-peeling-solution/hero.jpg",
+      "https://medias.lookatme.com.ph/publishing/LOOKPH-50033546-side-zoom.jpg?version=1728395187",
       "/assets/products/luxury/the-ordinary/aha-30-bha-2-peeling-solution/main.webp"
     ],
     "rating": 0,
@@ -17196,7 +17196,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17221,7 +17221,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/natural-moisturizing-factors-ha/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/natural-moisturizing-factors-ha/hero.jpg",
+      "https://static.thcdn.com/productimg/original/11638505-1535232038419212.jpg",
       "/assets/products/luxury/the-ordinary/natural-moisturizing-factors-ha/main.webp"
     ],
     "rating": 0,
@@ -17239,7 +17239,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17264,7 +17264,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/salicylic-acid-2-solution/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/salicylic-acid-2-solution/hero.jpg",
+      "https://pureskincare.com.gh/wp-content/uploads/2025/09/The-Ordinary-Salicylic-Acid-2-Solution-30ml-600x600.jpg.webp",
       "/assets/products/luxury/the-ordinary/salicylic-acid-2-solution/main.webp"
     ],
     "rating": 0,
@@ -17282,7 +17282,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17307,7 +17307,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/caffeine-solution-5-egcg/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/caffeine-solution-5-egcg/hero.jpg",
+      "https://c8.alamy.com/comp/3B02J4E/a-high-resolution-product-photograph-of-the-ordinary-caffeine-solution-5-egcg-presented-against-a-clean-white-background-3B02J4E.jpg",
       "/assets/products/luxury/the-ordinary/caffeine-solution-5-egcg/main.webp"
     ],
     "rating": 0,
@@ -17325,7 +17325,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17350,7 +17350,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/multi-peptide-ha-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/multi-peptide-ha-serum/hero.jpg",
+      "https://image-optimizer-hk.production.sephora-asia.net/images/product_images/1_Product_769915231885-The-Ordinary-Multi-Peptide-HA-Serum-30ml_23d6db54ec4f40c4f0a43aae30fac6aa9cf5da09_1665044587.png",
       "/assets/products/luxury/the-ordinary/multi-peptide-ha-serum/main.webp"
     ],
     "rating": 0,
@@ -17368,7 +17368,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17393,7 +17393,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/alpha-arbutin-2-ha/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/alpha-arbutin-2-ha/hero.jpg",
+      "https://pureskincare.com.gh/wp-content/uploads/2024/11/The-Ordinary-Alpha-Arbutin-2-HA-600x600.jpg.webp",
       "/assets/products/luxury/the-ordinary/alpha-arbutin-2-ha/main.webp"
     ],
     "rating": 0,
@@ -17411,7 +17411,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17436,7 +17436,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/azelaic-acid-suspension-10/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/azelaic-acid-suspension-10/hero.jpg",
+      "https://nefreabeauty.com/cdn/shop/files/Untitled_1024x1024px_-2026-01-28T121541.922.jpg?v=1769595349&width=3840",
       "/assets/products/luxury/the-ordinary/azelaic-acid-suspension-10/main.webp"
     ],
     "rating": 0,
@@ -17454,7 +17454,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17479,7 +17479,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/squalane-cleanser/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/squalane-cleanser/hero.jpg",
+      "https://theordinary.com/dw/image/v2/BFKJ_PRD/on/demandware.static/-/Sites-deciem-master/default/dwc2d7f1a8/Images/products/The Ordinary/rdn-squalane-cleanser-50ml.png?sw=1200&sh=1200&sm=fit",
       "/assets/products/luxury/the-ordinary/squalane-cleanser/main.webp"
     ],
     "rating": 0,
@@ -17497,7 +17497,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17522,7 +17522,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/the-ordinary/soothing-barrier-support-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://theordinary.com/dw/image/v2/soothing-barrier-support-serum/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.V4frvZ8TB_2wYdMEVwjwJQHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/the-ordinary/soothing-barrier-support-serum/main.webp"
     ],
     "rating": 0,
@@ -17540,7 +17540,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17565,7 +17565,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/lip-sleeping-mask/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/lip-sleeping-mask/hero.jpg",
+      "https://justpeachybeauty.co.za/cdn/shop/files/LANEIGELipSleepingMaskTrioSetMain.png?v=1762487097&width=1946",
       "/assets/products/luxury/laneige/lip-sleeping-mask/main.webp"
     ],
     "rating": 0,
@@ -17583,7 +17583,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17608,7 +17608,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/water-bank-blue-hyaluronic-cream-moisturizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/water-bank-blue-hyaluronic-cream-moisturizer/hero.jpg",
+      "https://aurasilque.com/cdn/shop/files/rn-image_picker_lib_temp_c9b69838-3d63-40a8-ba05-eb293782df0e.jpg?v=1771917831&width=1946",
       "/assets/products/luxury/laneige/water-bank-blue-hyaluronic-cream-moisturizer/main.webp"
     ],
     "rating": 0,
@@ -17626,7 +17626,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17651,7 +17651,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/cream-skin-toner-moisturizer/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/cream-skin-toner-moisturizer/hero.jpg",
+      "https://glamourtip.com/wp-content/uploads/2025/11/laneige-cream-skin-toner-moisturizer-e1763925775468.png",
       "/assets/products/luxury/laneige/cream-skin-toner-moisturizer/main.webp"
     ],
     "rating": 0,
@@ -17669,7 +17669,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17694,7 +17694,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/water-sleeping-mask/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/water-sleeping-mask/hero.jpg",
+      "https://justpeachybeauty.co.za/cdn/shop/files/LANEIGE_Water_Sleeping_Mask_EX_Main.png?v=1753987001&width=1946",
       "/assets/products/luxury/laneige/water-sleeping-mask/main.webp"
     ],
     "rating": 0,
@@ -17712,7 +17712,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17737,7 +17737,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/bouncy-firm-sleeping-mask/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/bouncy-firm-sleeping-mask/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113770358?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/laneige/bouncy-firm-sleeping-mask/main.webp"
     ],
     "rating": 0,
@@ -17755,7 +17755,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17780,7 +17780,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/lip-glowy-balm/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/lip-glowy-balm/hero.jpg",
+      "https://m.media-amazon.com/images/I/51LU7lzkCLL._SL1500_.jpg",
       "/assets/products/luxury/laneige/lip-glowy-balm/main.webp"
     ],
     "rating": 0,
@@ -17798,7 +17798,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17823,7 +17823,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/neo-cushion/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/neo-cushion/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/1_Product_8809803579629-Laneige-Neo-Cushion-Glow-SPF46-Shade-eed4bd_813136b225e06c11e01d815ad1b9a0e5bfba294b_1689342328.png",
       "/assets/products/luxury/laneige/neo-cushion/main.webp"
     ],
     "rating": 0,
@@ -17841,7 +17841,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17866,7 +17866,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/radian-c-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/radian-c-cream/hero.jpg",
+      "https://coscorea.com/cdn/shop/files/Laneige_RadianCCream30ml_1_1800x1800.jpg?v=1684133290",
       "/assets/products/luxury/laneige/radian-c-cream/main.webp"
     ],
     "rating": 0,
@@ -17884,7 +17884,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17909,7 +17909,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/water-bank-gel-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/water-bank-gel-cream/hero.jpg",
+      "https://my.laneige.com/media/catalog/product/_/h/_hq__wb_gel_e_product_artwork_help_01_8700_8700_1108.png?optimize=low&fit=bounds&height=700&width=700&canvas=700:700",
       "/assets/products/luxury/laneige/water-bank-gel-cream/main.webp"
     ],
     "rating": 0,
@@ -17927,7 +17927,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17952,7 +17952,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/cream-skin-cerapeptide-refiner/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/cream-skin-cerapeptide-refiner/hero.jpg",
+      "https://my.laneige.com/media/catalog/product/_/h/_hq__cream_skin_cream_skin_e_product_artwork_help_01_8700_8700_1213_1_.png?optimize=low&fit=bounds&height=700&width=700&canvas=700:700",
       "/assets/products/luxury/laneige/cream-skin-cerapeptide-refiner/main.webp"
     ],
     "rating": 0,
@@ -17970,7 +17970,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -17995,7 +17995,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/water-bank-blue-hyaluronic-serum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/water-bank-blue-hyaluronic-serum/hero.jpg",
+      "https://lyko.com/globalassets/product-images/laneige-water-bank-blue-hyaluronic-serum-50-ml-2765-160-0050_2.jpg?ref=BEE0D50DDD&w=960&h=960&mode=max&quality=75&format=jpg",
       "/assets/products/luxury/laneige/water-bank-blue-hyaluronic-serum/main.webp"
     ],
     "rating": 0,
@@ -18013,7 +18013,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18038,7 +18038,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/laneige/bouncy-firm-eye-sleeping-mask/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.laneige.com/cdn/shop/products/bouncy-firm-eye-sleeping-mask/hero.jpg",
+      "https://image-optimizer-reg.production.sephora-asia.net/images/product_images/1_Product_8809925149069-Laneige-Bouncy-Firm-Eye-Sleeping-Mas_a7af13804a8acafc8572db18947a064b3841fc26_1725342124.png",
       "/assets/products/luxury/laneige/bouncy-firm-eye-sleeping-mask/main.webp"
     ],
     "rating": 0,
@@ -18056,7 +18056,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18099,7 +18099,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18124,7 +18124,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/tobacco-vanille-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/tobacco-vanille-eau-de-parfum/hero.jpg",
+      "https://aromatica.one/cdn/shop/files/Tom-Ford-Tobacco-Vanille-EDP.png?v=1775744707&width=1445",
       "/assets/products/luxury/tom-ford/tobacco-vanille-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18142,7 +18142,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18167,7 +18167,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/black-orchid-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/black-orchid-eau-de-parfum/hero.jpg",
+      "https://isolee.com/24653-large_default/black-orchid-edp-100ml.jpg",
       "/assets/products/luxury/tom-ford/black-orchid-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18185,7 +18185,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18210,7 +18210,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/lost-cherry-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/lost-cherry-eau-de-parfum/hero.jpg",
+      "https://senzaromi.com/cdn/shop/files/tom-ford-lost-cherry-edp-100ml.png?v=1741176551",
       "/assets/products/luxury/tom-ford/lost-cherry-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18228,7 +18228,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18253,7 +18253,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/soleil-blanc-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/soleil-blanc-eau-de-parfum/hero.jpg",
+      "https://www.eskincarestore.com/productcart/pc/catalog/Soleil_Blanc_Eau_De_Parfum_71560_detail.png",
       "/assets/products/luxury/tom-ford/soleil-blanc-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18271,7 +18271,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18296,7 +18296,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/bitter-peach-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/bitter-peach-eau-de-parfum/hero.jpg",
+      "https://meetmescent.com/cdn/shop/products/TomFord5.jpg?v=1644429624",
       "/assets/products/luxury/tom-ford/bitter-peach-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18314,7 +18314,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18339,7 +18339,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/fucking-fabulous-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/fucking-fabulous-eau-de-parfum/hero.jpg",
+      "https://images.selfridges.com/is/image/selfridges/R04358140_M?$CHANNEL_INTELLIGENCE$",
       "/assets/products/luxury/tom-ford/fucking-fabulous-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18357,7 +18357,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18382,7 +18382,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/ombre-leather-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/ombre-leather-eau-de-parfum/hero.jpg",
+      "https://www.eskinstore.com/productcart/pc/catalog/Ombre_Leather_Eau_De_Parfum_75285_5860_detail.png",
       "/assets/products/luxury/tom-ford/ombre-leather-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18400,7 +18400,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18425,7 +18425,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/neroli-portofino-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/neroli-portofino-eau-de-parfum/hero.jpg",
+      "https://ts1.mm.bing.net/th?id=OIP.U_U9eRYjdKzKWYjkn44-gAHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/tom-ford/neroli-portofino-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18443,7 +18443,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18468,7 +18468,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/rose-prick-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/rose-prick-eau-de-parfum/hero.jpg",
+      "https://www.eskincarestore.com/productcart/pc/catalog/Rose_Prick_Eau_De_Parfum_75334_7926_detail.png",
       "/assets/products/luxury/tom-ford/rose-prick-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18486,7 +18486,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18511,7 +18511,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/noir-extreme-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/noir-extreme-eau-de-parfum/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/234222673?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/tom-ford/noir-extreme-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18529,7 +18529,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18554,7 +18554,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tom-ford/electric-cherry-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.tomfordbeauty.com/media/export/electric-cherry-eau-de-parfum/hero.jpg",
+      "https://www.eskinstore.com/productcart/pc/catalog/Electric_Cherry_Eau_De_Parfum_75310_3743_detail.png",
       "/assets/products/luxury/tom-ford/electric-cherry-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -18572,7 +18572,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18597,7 +18597,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/english-pear-freesia-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/english-pear-freesia-cologne/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238133010?fmt=auto&$background-off-white$",
       "/assets/products/luxury/jo-malone-london/english-pear-freesia-cologne/main.webp"
     ],
     "rating": 0,
@@ -18615,7 +18615,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18640,7 +18640,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/wood-sage-sea-salt-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/wood-sage-sea-salt-cologne/hero.jpg",
+      "https://www.jomalone.com.au/media/export/cms/products/1000x1000/jo_sku_L41501_1000x1000_0.png",
       "/assets/products/luxury/jo-malone-london/wood-sage-sea-salt-cologne/main.webp"
     ],
     "rating": 0,
@@ -18658,7 +18658,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18683,7 +18683,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/peony-blush-suede-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/peony-blush-suede-cologne/hero.jpg",
+      "https://cdn.fynd.com/v2/falling-surf-7c8bb8/fyprod/wrkr/products/pictures/item/free/original/000000000494238480/FEXr4PvWaY-000000000494238480_2.jpg",
       "/assets/products/luxury/jo-malone-london/peony-blush-suede-cologne/main.webp"
     ],
     "rating": 0,
@@ -18701,7 +18701,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18726,7 +18726,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/myrrh-tonka-cologne-intense/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/myrrh-tonka-cologne-intense/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/114497700?fmt=auto&$background-off-white$",
       "/assets/products/luxury/jo-malone-london/myrrh-tonka-cologne-intense/main.webp"
     ],
     "rating": 0,
@@ -18744,7 +18744,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18769,7 +18769,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/lime-basil-mandarin-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/lime-basil-mandarin-cologne/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238133009?fmt=auto&$background-off-white$",
       "/assets/products/luxury/jo-malone-london/lime-basil-mandarin-cologne/main.webp"
     ],
     "rating": 0,
@@ -18787,7 +18787,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18812,7 +18812,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/pomegranate-noir-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/pomegranate-noir-cologne/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/231745654alt3?fmt=auto&$background-off-white$",
       "/assets/products/luxury/jo-malone-london/pomegranate-noir-cologne/main.webp"
     ],
     "rating": 0,
@@ -18830,7 +18830,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18855,7 +18855,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/nectarine-blossom-honey-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/nectarine-blossom-honey-cologne/hero.jpg",
+      "https://img-s-msn-com.akamaized.net/tenant/amp/entityid/AA20LLfv.img?w=768&h=768&m=6",
       "/assets/products/luxury/jo-malone-london/nectarine-blossom-honey-cologne/main.webp"
     ],
     "rating": 0,
@@ -18873,7 +18873,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18898,7 +18898,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/blackberry-bay-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/blackberry-bay-cologne/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/231745697?fmt=auto&$background-off-white$",
       "/assets/products/luxury/jo-malone-london/blackberry-bay-cologne/main.webp"
     ],
     "rating": 0,
@@ -18916,7 +18916,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18941,7 +18941,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/orange-blossom-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/orange-blossom-cologne/hero.jpg",
+      "https://www.sephora.com/productimages/sku/s2678100-main-zoom.jpg",
       "/assets/products/luxury/jo-malone-london/orange-blossom-cologne/main.webp"
     ],
     "rating": 0,
@@ -18959,7 +18959,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -18984,7 +18984,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/wild-bluebell-cologne/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/wild-bluebell-cologne/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/231745671?fmt=auto&$background-off-white$",
       "/assets/products/luxury/jo-malone-london/wild-bluebell-cologne/main.webp"
     ],
     "rating": 0,
@@ -19002,7 +19002,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19027,7 +19027,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/scarlet-poppy-cologne-intense/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/scarlet-poppy-cologne-intense/hero.jpg",
+      "https://i.pinimg.com/originals/a4/e1/13/a4e11361272e00e0df8e692ba12fecc4.png",
       "/assets/products/luxury/jo-malone-london/scarlet-poppy-cologne-intense/main.webp"
     ],
     "rating": 0,
@@ -19045,7 +19045,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19070,7 +19070,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/jo-malone-london/cypress-grapevine-cologne-intense/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.jomalone.com/media/export/cypress-grapevine-cologne-intense/hero.jpg",
+      "https://www.sephora.com/productimages/sku/s2759769-main-zoom.jpg?imwidth=2000",
       "/assets/products/luxury/jo-malone-london/cypress-grapevine-cologne-intense/main.webp"
     ],
     "rating": 0,
@@ -19088,7 +19088,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19113,7 +19113,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/bal-dafrique-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/bal-dafrique-eau-de-parfum/hero.jpg",
+      "https://images.bloomingdalesassets.com/is/image/BLM/products/1/optimized/12938891_fpx.tif?wid=800&qlt=100,0&layer=comp&op_sharpen=0&resMode=bilin&op_usm=0.7,1.0,0.5,0&fmt=jpeg&4msn=.jpg",
       "/assets/products/luxury/byredo/bal-dafrique-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19131,7 +19131,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19156,7 +19156,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/gypsy-water-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/gypsy-water-eau-de-parfum/hero.jpg",
+      "https://oleumperfumes.com/cdn/shop/files/byredo-gipsy-water-perfume-lebanon.webp?v=1764676117&width=1946",
       "/assets/products/luxury/byredo/gypsy-water-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19174,7 +19174,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19199,7 +19199,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/mojave-ghost-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/mojave-ghost-eau-de-parfum/hero.jpg",
+      "https://fragrancelord.com/cdn/shop/products/51QRHto8KGL._SL1000_38c25dde-af95-44d9-a415-c474b7b598a3_1200x.jpg?v=1645626968",
       "/assets/products/luxury/byredo/mojave-ghost-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19217,7 +19217,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19242,7 +19242,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/blanche-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/blanche-eau-de-parfum/hero.jpg",
+      "https://fragrancelondon.com/cdn/shop/files/byredo-blanche-eau-de-parfum-spray-100ml-3549738.png?v=1753551089",
       "/assets/products/luxury/byredo/blanche-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19260,7 +19260,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19285,7 +19285,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/bibliotheque-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/bibliotheque-eau-de-parfum/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113096227alt2?fmt=auto&$background-off-white$",
       "/assets/products/luxury/byredo/bibliotheque-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19303,7 +19303,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19328,7 +19328,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/la-tulipe-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/la-tulipe-eau-de-parfum/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113096251?fmt=auto&$background-off-white$",
       "/assets/products/luxury/byredo/la-tulipe-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19346,7 +19346,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19371,7 +19371,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/rose-of-no-mans-land-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/rose-of-no-mans-land-eau-de-parfum/hero.jpg",
+      "https://scenthaven.ca/cdn/shop/files/roseofnomansland100ml.webp?v=1754256082&width=1946",
       "/assets/products/luxury/byredo/rose-of-no-mans-land-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19389,7 +19389,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19414,7 +19414,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/mixed-emotions-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/mixed-emotions-eau-de-parfum/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/113096254?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/byredo/mixed-emotions-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19432,7 +19432,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19457,7 +19457,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/black-saffron-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/black-saffron-eau-de-parfum/hero.jpg",
+      "https://www.minalcosmetics.ae/cdn/shop/files/217727132_BK.jpg?v=1776412674&width=3840",
       "/assets/products/luxury/byredo/black-saffron-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19475,7 +19475,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19500,7 +19500,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/sunday-cologne-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/sunday-cologne-eau-de-parfum/hero.jpg",
+      "https://asset2.ruecdn.com/images/product/111113/1111138800_RLLZ_1.jpg",
       "/assets/products/luxury/byredo/sunday-cologne-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19518,7 +19518,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19543,7 +19543,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/super-cedar-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/super-cedar-eau-de-parfum/hero.jpg",
+      "https://i1.adis.ws/i/liberty/000519408-R059630006-1?$large$",
       "/assets/products/luxury/byredo/super-cedar-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19561,7 +19561,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19586,7 +19586,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/byredo/eyes-closed-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.byredo.com/dw/image/v2/eyes-closed-eau-de-parfum/hero.jpg",
+      "https://media.cdn.kaufland.de/product-images/1024x1024/d2f68815e421800c5834e985010d3cbd.jpg",
       "/assets/products/luxury/byredo/eyes-closed-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19604,7 +19604,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19629,7 +19629,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/baccarat-rouge-540-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/baccarat-rouge-540-eau-de-parfum/hero.jpg",
+      "https://hrd-live.cdn.scayle.cloud/images/50a48adb752825e534bf57dbcd06914c.jpg",
       "/assets/products/luxury/maison-francis-kurkdjian/baccarat-rouge-540-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -19647,7 +19647,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19672,7 +19672,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/baccarat-rouge-540-extrait/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/baccarat-rouge-540-extrait/hero.jpg",
+      "https://media.naheed.pk/catalog/product/cache/2f2d0cb0c5f92580479e8350be94f387/1/2/1291753-1.jpg",
       "/assets/products/luxury/maison-francis-kurkdjian/baccarat-rouge-540-extrait/main.webp"
     ],
     "rating": 0,
@@ -19690,7 +19690,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19715,7 +19715,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/gentle-fluidity-gold/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/gentle-fluidity-gold/hero.jpg",
+      "https://images.bloomingdalesassets.com/is/image/BLM/products/3/optimized/12775263_fpx.tif?wid=800&qlt=100,0&layer=comp&op_sharpen=0&resMode=bilin&op_usm=0.7,1.0,0.5,0&fmt=jpeg&4msn=.jpg",
       "/assets/products/luxury/maison-francis-kurkdjian/gentle-fluidity-gold/main.webp"
     ],
     "rating": 0,
@@ -19733,7 +19733,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19758,7 +19758,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/gentle-fluidity-silver/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/gentle-fluidity-silver/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/112978284alt2?fmt=auto&$background-off-white$",
       "/assets/products/luxury/maison-francis-kurkdjian/gentle-fluidity-silver/main.webp"
     ],
     "rating": 0,
@@ -19776,7 +19776,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19801,7 +19801,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/oud-satin-mood/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/oud-satin-mood/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/111887340alt1?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/maison-francis-kurkdjian/oud-satin-mood/main.webp"
     ],
     "rating": 0,
@@ -19819,7 +19819,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19844,7 +19844,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/a-la-rose/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/a-la-rose/hero.jpg",
+      "https://ratner-beauty.store/image/catalog/product-foto/Maison-Francis-Kurkdjian/A-La-Rose-Maison-Francis-Kurkdjian.png",
       "/assets/products/luxury/maison-francis-kurkdjian/a-la-rose/main.webp"
     ],
     "rating": 0,
@@ -19862,7 +19862,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19887,7 +19887,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/amyris-femme/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/amyris-femme/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238289954?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/maison-francis-kurkdjian/amyris-femme/main.webp"
     ],
     "rating": 0,
@@ -19905,7 +19905,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19930,7 +19930,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/aqua-universalis/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/aqua-universalis/hero.jpg",
+      "https://n.nordstrommedia.com/id/sr3/97239231-e1ea-4cf9-aa36-d15c7c4b7669.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196&dpr=3",
       "/assets/products/luxury/maison-francis-kurkdjian/aqua-universalis/main.webp"
     ],
     "rating": 0,
@@ -19948,7 +19948,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -19973,7 +19973,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/aqua-vitae/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/aqua-vitae/hero.jpg",
+      "https://essenzi.com/images/detailed/11/maison_francis_kurkdjian_aqua_vitae_u_edt_70ml3.jpg",
       "/assets/products/luxury/maison-francis-kurkdjian/aqua-vitae/main.webp"
     ],
     "rating": 0,
@@ -19991,7 +19991,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20016,7 +20016,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/grand-soir/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/grand-soir/hero.jpg",
+      "https://theperfumesampler.com/cdn/shop/files/mfk-grand-soir-1.webp?v=1764371601&width=1445",
       "/assets/products/luxury/maison-francis-kurkdjian/grand-soir/main.webp"
     ],
     "rating": 0,
@@ -20034,7 +20034,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20059,7 +20059,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/724-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/724-eau-de-parfum/hero.jpg",
+      "https://holtrenfrew.scene7.com/is/image/HoltRenfrew1/u_3700559613603_01?$Thumbnail$",
       "/assets/products/luxury/maison-francis-kurkdjian/724-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -20077,7 +20077,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20102,7 +20102,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/maison-francis-kurkdjian/petit-matin-eau-de-parfum/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.franciskurkdjian.com/media/petit-matin-eau-de-parfum/hero.jpg",
+      "https://media-cdn.printemps.com/image/13/2/9033132.png",
       "/assets/products/luxury/maison-francis-kurkdjian/petit-matin-eau-de-parfum/main.webp"
     ],
     "rating": 0,
@@ -20120,7 +20120,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20145,7 +20145,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/santal-33/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/santal-33/hero.jpg",
+      "https://www.ln-cc.com/dw/image/v2/BGDG_PRD/on/demandware.static/-/Sites-09/default/dw31eda91c/images/zoom/lla0348016_wht_00.jpg?sw=375&sh=516",
       "/assets/products/luxury/le-labo/santal-33/main.webp"
     ],
     "rating": 0,
@@ -20163,7 +20163,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20188,7 +20188,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/another-13/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/another-13/hero.jpg",
+      "https://www.ln-cc.com/dw/image/v2/BGDG_PRD/on/demandware.static/-/Sites-09/default/dwa3ff29cb/images/zoom/lla0348018_wht_00.jpg?sw=375&sh=516",
       "/assets/products/luxury/le-labo/another-13/main.webp"
     ],
     "rating": 0,
@@ -20206,7 +20206,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20231,7 +20231,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/the-noir-29/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/the-noir-29/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.ilux4Y8mx1xrFX80WPYauQHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/le-labo/the-noir-29/main.webp"
     ],
     "rating": 0,
@@ -20249,7 +20249,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20274,7 +20274,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/rose-31/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/rose-31/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238090011alt1?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/le-labo/rose-31/main.webp"
     ],
     "rating": 0,
@@ -20292,7 +20292,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20317,7 +20317,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/bergamote-22/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/bergamote-22/hero.jpg",
+      "https://www.minalcosmetics.ae/cdn/shop/files/214492399_IN.webp?v=1775721609&width=3840",
       "/assets/products/luxury/le-labo/bergamote-22/main.webp"
     ],
     "rating": 0,
@@ -20335,7 +20335,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20360,7 +20360,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/matcha-26/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/matcha-26/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/240308660?fmt=auto&$background-off-white$",
       "/assets/products/luxury/le-labo/matcha-26/main.webp"
     ],
     "rating": 0,
@@ -20378,7 +20378,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20403,7 +20403,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/the-matcha-26/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/the-matcha-26/hero.jpg",
+      "https://www.minalcosmetics.ae/cdn/shop/files/214919925_IN.jpg?v=1775203572&width=1024",
       "/assets/products/luxury/le-labo/the-matcha-26/main.webp"
     ],
     "rating": 0,
@@ -20421,7 +20421,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20446,7 +20446,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/baie-19/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/baie-19/hero.jpg",
+      "https://www.flannels.com/images/imgzoom/88/88874699_xxl.jpg",
       "/assets/products/luxury/le-labo/baie-19/main.webp"
     ],
     "rating": 0,
@@ -20464,7 +20464,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20489,7 +20489,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/lavande-31/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/lavande-31/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/111054587?fmt=auto&$background-off-white$",
       "/assets/products/luxury/le-labo/lavande-31/main.webp"
     ],
     "rating": 0,
@@ -20507,7 +20507,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20532,7 +20532,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/vetiver-46/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/vetiver-46/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238090749?fmt=auto&$background-off-white$",
       "/assets/products/luxury/le-labo/vetiver-46/main.webp"
     ],
     "rating": 0,
@@ -20550,7 +20550,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20575,7 +20575,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/neroli-36/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/neroli-36/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238089950?fmt=auto&$background-off-white$",
       "/assets/products/luxury/le-labo/neroli-36/main.webp"
     ],
     "rating": 0,
@@ -20593,7 +20593,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20618,7 +20618,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/le-labo/fleur-doranger-27/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.lelabofragrances.com/media/export/fleur-doranger-27/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/238089925?fmt=auto&$background-off-white$",
       "/assets/products/luxury/le-labo/fleur-doranger-27/main.webp"
     ],
     "rating": 0,
@@ -20636,7 +20636,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20661,7 +20661,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/aventus/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/aventus/hero.jpg",
+      "https://solyperfums.com/cdn/shop/files/CREED_1b0451db-3b99-4f88-a3cf-b087e0e155a7.jpg?v=1772525551",
       "/assets/products/luxury/creed/aventus/main.webp"
     ],
     "rating": 0,
@@ -20679,7 +20679,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20704,7 +20704,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/aventus-for-her/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/aventus-for-her/hero.jpg",
+      "https://www.blissfleur.co.za/cdn/shop/files/aventusherbox.png?v=1762372065&width=1445",
       "/assets/products/luxury/creed/aventus-for-her/main.webp"
     ],
     "rating": 0,
@@ -20722,7 +20722,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20747,7 +20747,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/silver-mountain-water/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/silver-mountain-water/hero.jpg",
+      "https://www.gadgetsonline.co.nz/cdn/shop/files/CreedSilverMountainWaterEDP50ml.jpg?v=1766973367&width=1080",
       "/assets/products/luxury/creed/silver-mountain-water/main.webp"
     ],
     "rating": 0,
@@ -20765,7 +20765,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20790,7 +20790,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/green-irish-tweed/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/green-irish-tweed/hero.jpg",
+      "https://cms.brnstc.de/product_images/680x930_retina/cpro/media/images/product/24/6/3508441001022_0_1718988086542.jpg",
       "/assets/products/luxury/creed/green-irish-tweed/main.webp"
     ],
     "rating": 0,
@@ -20808,7 +20808,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20833,7 +20833,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/virgin-island-water/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/virgin-island-water/hero.jpg",
+      "https://www.rioperfumes.co.za/cdn/shop/products/51oAnakzpiL._SL1280.jpg?v=1659284230&width=1280",
       "/assets/products/luxury/creed/virgin-island-water/main.webp"
     ],
     "rating": 0,
@@ -20851,7 +20851,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20876,7 +20876,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/millesime-imperial/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/millesime-imperial/hero.jpg",
+      "https://www.maxaroma.com/productimages/large/UP3508441001039_2.jpg?ver=1726113392",
       "/assets/products/luxury/creed/millesime-imperial/main.webp"
     ],
     "rating": 0,
@@ -20894,7 +20894,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20919,7 +20919,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/viking/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/viking/hero.jpg",
+      "https://paguchi.am/wp-content/uploads/2024/03/viking-cologne_white-bg-3500x3783-dfc138ef-2af6-43b6-b1c1-ed36dfc667b5.jpg",
       "/assets/products/luxury/creed/viking/main.webp"
     ],
     "rating": 0,
@@ -20937,7 +20937,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -20962,7 +20962,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/royal-oud/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/royal-oud/hero.jpg",
+      "https://assets.vanhomsi.com/cdn-cgi/image/format=webp,width=900,quality=90/gallery/creed-royal-oud/creed-royal-oud-single-full-shot.png",
       "/assets/products/luxury/creed/royal-oud/main.webp"
     ],
     "rating": 0,
@@ -20980,7 +20980,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21005,7 +21005,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/original-santal/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/original-santal/hero.jpg",
+      "https://scenthaven.ca/cdn/shop/files/11990518-d54a-402a-9b78-6ff43a2f6790.png?v=1784065846&width=1946",
       "/assets/products/luxury/creed/original-santal/main.webp"
     ],
     "rating": 0,
@@ -21023,7 +21023,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21048,7 +21048,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/love-in-white/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/love-in-white/hero.jpg",
+      "https://sammalouf.com/cdn/shop/products/f28708641107561_LIW_75ml-opt.jpg?v=1668905537&width=1200",
       "/assets/products/luxury/creed/love-in-white/main.webp"
     ],
     "rating": 0,
@@ -21066,7 +21066,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21091,7 +21091,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/wind-flowers/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/wind-flowers/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/111083009alt1?fmt=auto&$background-off-white$&$rsp-pdp-port-640$",
       "/assets/products/luxury/creed/wind-flowers/main.webp"
     ],
     "rating": 0,
@@ -21109,7 +21109,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21134,7 +21134,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/creed/carmina/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://creedboutique.com/cdn/shop/products/carmina/hero.jpg",
+      "http://www.myperfumeshop.ae/cdn/shop/products/creed-carmina-edp-perfume-cologne-498657.png?v=1705436697&width=2048",
       "/assets/products/luxury/creed/carmina/main.webp"
     ],
     "rating": 0,
@@ -21152,7 +21152,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21177,7 +21177,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/brazilian-crush-cheirosa-62-perfume-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/brazilian-crush-cheirosa-62-perfume-mist/hero.jpg",
+      "https://ts3.mm.bing.net/th?id=OIP.KnB0BYR3sKt-dfPa638M0QHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/sol-de-janeiro/brazilian-crush-cheirosa-62-perfume-mist/main.webp"
     ],
     "rating": 0,
@@ -21195,7 +21195,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21220,7 +21220,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/cheirosa-68-perfume-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/cheirosa-68-perfume-mist/hero.jpg",
+      "https://soldejaneiro.com/cdn/shop/files/Cheirosa_68_perfume_mist_sol_de_janeiro_8.webp?v=1723574135&width=1500",
       "/assets/products/luxury/sol-de-janeiro/cheirosa-68-perfume-mist/main.webp"
     ],
     "rating": 0,
@@ -21238,7 +21238,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21263,7 +21263,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/cheirosa-40-perfume-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/cheirosa-40-perfume-mist/hero.jpg",
+      "https://www.spacenk.com/on/demandware.static/-/Sites-spacenkmastercatalog/default/dw3bfa96bc/products/SOL_DE_JAN/UK200030255_SOL_DE_JAN.jpg",
       "/assets/products/luxury/sol-de-janeiro/cheirosa-40-perfume-mist/main.webp"
     ],
     "rating": 0,
@@ -21281,7 +21281,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21306,7 +21306,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/cheirosa-71-perfume-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/cheirosa-71-perfume-mist/hero.jpg",
+      "https://image-optimizer-id.production.sephora-asia.net/images/product_images/1_Product_810912031975-Sol-De-Janeiro-Cheirosa-71-Perfume-Mi_fa1d661a07d87d72aafde256aa7159b50a7afed2_1732177465.png",
       "/assets/products/luxury/sol-de-janeiro/cheirosa-71-perfume-mist/main.webp"
     ],
     "rating": 0,
@@ -21324,7 +21324,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21349,7 +21349,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/cheirosa-59-perfume-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/cheirosa-59-perfume-mist/hero.jpg",
+      "https://www.spacenk.com/dw/image/v2/ABCE_PRD/on/demandware.static/-/Sites-spacenkmastercatalog/default/dwa467e49b/products/SOL_DE_JAN/UK200041104_SOL_DE_JAN.jpg?sw=582&sh=582",
       "/assets/products/luxury/sol-de-janeiro/cheirosa-59-perfume-mist/main.webp"
     ],
     "rating": 0,
@@ -21367,7 +21367,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21392,7 +21392,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/brazilian-bum-bum-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/brazilian-bum-bum-cream/hero.jpg",
+      "https://media.johnlewiscontent.com/i/JohnLewis/111394007alt1?fmt=auto&$background-off-white$",
       "/assets/products/luxury/sol-de-janeiro/brazilian-bum-bum-cream/main.webp"
     ],
     "rating": 0,
@@ -21410,7 +21410,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21435,7 +21435,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/beija-flor-elasti-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/beija-flor-elasti-cream/hero.jpg",
+      "https://www.justmylook.com/cdn/shop/files/SOL0015-1_a4074e8f-21b5-4aab-8509-e7048bc10047.png?format=webp&v=1751897998&width=1134",
       "/assets/products/luxury/sol-de-janeiro/beija-flor-elasti-cream/main.webp"
     ],
     "rating": 0,
@@ -21453,7 +21453,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21478,7 +21478,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/bom-dia-bright-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/bom-dia-bright-cream/hero.jpg",
+      "https://soldejaneiro.com/cdn/shop/files/Bom_dia_bright_Cream_Sol_de_janeiro_0.webp?v=1715102927&width=1500",
       "/assets/products/luxury/sol-de-janeiro/bom-dia-bright-cream/main.webp"
     ],
     "rating": 0,
@@ -21496,7 +21496,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21521,7 +21521,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/rio-radiance-spf-50-body-spray/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/rio-radiance-spf-50-body-spray/hero.jpg",
+      "https://www.sephora.com/productimages/sku/s2742146-main-zoom.jpg?imwidth=630",
       "/assets/products/luxury/sol-de-janeiro/rio-radiance-spf-50-body-spray/main.webp"
     ],
     "rating": 0,
@@ -21539,7 +21539,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21564,7 +21564,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/delicia-drench-body-butter/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/delicia-drench-body-butter/hero.jpg",
+      "https://soldejaneiro.com/cdn/shop/files/8_FAMILYSCENT.webp?v=1771348271&width=1600",
       "/assets/products/luxury/sol-de-janeiro/delicia-drench-body-butter/main.webp"
     ],
     "rating": 0,
@@ -21582,7 +21582,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21607,7 +21607,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/brazilian-4-play-shower-cream-gel/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/brazilian-4-play-shower-cream-gel/hero.jpg",
+      "https://www.cultbeauty.co.uk/images?url=https://static.thcdn.com/productimg/original/12904747-2244897222842720.jpg&format=webp&auto=avif&width=985&height=985&fit=cover",
       "/assets/products/luxury/sol-de-janeiro/brazilian-4-play-shower-cream-gel/main.webp"
     ],
     "rating": 0,
@@ -21625,7 +21625,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21650,7 +21650,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/sol-de-janeiro/brazilian-crush-body-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://soldejaneiro.com/cdn/shop/products/brazilian-crush-body-fragrance-mist/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.MW3IIyc-Q-Yh__EoAED-LAHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/sol-de-janeiro/brazilian-crush-body-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21668,7 +21668,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21693,7 +21693,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/into-the-night-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/into-the-night-fine-fragrance-mist/hero.jpg",
+      "https://www.bathandbodyworks.co.id/dw/image/v2/BLFZ_PRD/on/demandware.static/-/Sites-bbw-master-catalog/default/dwb2cc7d18/hires/026502467.jpg?sw=2000&sh=2000&sm=fit",
       "/assets/products/luxury/bath-body-works/into-the-night-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21711,7 +21711,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21736,7 +21736,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/japanese-cherry-blossom-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/japanese-cherry-blossom-fine-fragrance-mist/hero.jpg",
+      "https://www.bathandbodyworks.com/dw/image/v2/BBDL_PRD/on/demandware.static/-/Sites-master-catalog/default/dw64b3761e/hires/028009713.jpg",
       "/assets/products/luxury/bath-body-works/japanese-cherry-blossom-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21754,7 +21754,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21779,7 +21779,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/champagne-toast-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/champagne-toast-fine-fragrance-mist/hero.jpg",
+      "https://cdn.mall.adeptmind.ai/https://www.bathandbodyworks.com/dw/image/v2/BBDL_PRD/on/demandware.static/-/Sites-master-catalog/default/dw9b1953a2/hires/026702259.jpg_large.webp",
       "/assets/products/luxury/bath-body-works/champagne-toast-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21797,7 +21797,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21822,7 +21822,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/a-thousand-wishes-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/a-thousand-wishes-fine-fragrance-mist/hero.jpg",
+      "https://www.bathandbodyworks.co.id/dw/image/v2/BLFZ_PRD/on/demandware.static/-/Sites-bbw-master-catalog/default/dwb0b77a01/hires/026502533.jpg?sw=1000&sh=1000&sm=fit",
       "/assets/products/luxury/bath-body-works/a-thousand-wishes-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21840,7 +21840,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21865,7 +21865,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/in-the-stars-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/in-the-stars-fine-fragrance-mist/hero.jpg",
+      "https://media.ulta.com/i/ulta/2659578",
       "/assets/products/luxury/bath-body-works/in-the-stars-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21883,7 +21883,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21908,7 +21908,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/gingham-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/gingham-fine-fragrance-mist/hero.jpg",
+      "https://www.bathandbodyworks.com/dw/image/v2/BBDL_PRD/on/demandware.static/-/Sites-master-catalog/default/dw724ab0d6/hires/028023255_alt_1.jpg?sw=720&q=60",
       "/assets/products/luxury/bath-body-works/gingham-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21926,7 +21926,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21951,7 +21951,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/gingham-gorgeous-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/gingham-gorgeous-fine-fragrance-mist/hero.jpg",
+      "https://www.pinca.ae/cdn/shop/files/26_331d3fe5-2abb-4414-bc01-7a782f3cb624.jpg?v=1766219569&width=1445",
       "/assets/products/luxury/bath-body-works/gingham-gorgeous-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -21969,7 +21969,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -21994,7 +21994,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/youre-the-one-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/youre-the-one-fine-fragrance-mist/hero.jpg",
+      "https://www.bathandbodyworks.com.my/dw/image/v2/BLFZ_PRD/on/demandware.static/-/Sites-bbw-master-catalog/default/dwb6e1a466/hires/26727041_4.jpg?sw=1000&sh=1000&sm=fit",
       "/assets/products/luxury/bath-body-works/youre-the-one-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -22012,7 +22012,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22037,7 +22037,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/dark-kiss-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/dark-kiss-fine-fragrance-mist/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.kHmkWz19dgPlZz7xMl3smAHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bath-body-works/dark-kiss-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -22055,7 +22055,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22080,7 +22080,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/warm-vanilla-sugar-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/warm-vanilla-sugar-fine-fragrance-mist/hero.jpg",
+      "https://dreamskinhaven.co.ke/wp-content/uploads/2022/12/026533846.jpg",
       "/assets/products/luxury/bath-body-works/warm-vanilla-sugar-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -22098,7 +22098,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22123,7 +22123,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/vanilla-bean-noel-fine-fragrance-mist/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/vanilla-bean-noel-fine-fragrance-mist/hero.jpg",
+      "https://cdn.mall.adeptmind.ai/https://www.bathandbodyworks.ca/on/demandware.static/-/Sites-bbw_ca-storefront-catalog/default/dwbef8fef2/hires/026720783.jpg_large.webp",
       "/assets/products/luxury/bath-body-works/vanilla-bean-noel-fine-fragrance-mist/main.webp"
     ],
     "rating": 0,
@@ -22141,7 +22141,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22166,7 +22166,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bath-body-works/eucalyptus-spearmint-body-cream/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bathandbodyworks.com/dw/image/v2/eucalyptus-spearmint-body-cream/hero.jpg",
+      "https://m.media-amazon.com/images/I/71hFUQhEqUL._AC_.jpg",
       "/assets/products/luxury/bath-body-works/eucalyptus-spearmint-body-cream/main.webp"
     ],
     "rating": 0,
@@ -22184,7 +22184,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22209,7 +22209,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/datejust-36/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/datejust-36/hero.jpg",
+      "https://thewatchkingnyc.com/cdn/shop/files/WatchGuyNYC_RN333_ROLEX_DATEJUST_36MM_WHITE_ARAB_DIAL_WHITE_GOLD_FLUTED_BEZEL_STAINLESS_STEEL_MENS_Ladies_WATCH_116234_1024x1024_5feb0ab3-6274-4c89-93da-3e7888d9bd76.jpg?v=1717018853",
       "/assets/products/luxury/rolex/datejust-36/main.webp"
     ],
     "rating": 0,
@@ -22227,7 +22227,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22252,7 +22252,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/datejust-41/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/datejust-41/hero.jpg",
+      "https://luxury-watch-listings.s3.amazonaws.com/wp-content/uploads/2025/11/07151115/94331.png",
       "/assets/products/luxury/rolex/datejust-41/main.webp"
     ],
     "rating": 0,
@@ -22270,7 +22270,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22313,7 +22313,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22338,7 +22338,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/submariner/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/submariner/hero.jpg",
+      "https://cdn.swisswatchexpo.com/productphotos/11/25/rolex-submariner-non-date-ceramic-bezel-steel-mens-watch-124060-box-card-75750_67784.jpg",
       "/assets/products/luxury/rolex/submariner/main.webp"
     ],
     "rating": 0,
@@ -22356,7 +22356,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22381,7 +22381,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/gmt-master-ii/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/gmt-master-ii/hero.jpg",
+      "https://a.1stdibscdn.com/mint-rolex-meteorite-pepsi-gmt-master-ii-meteorite-white-gold-126719blro-for-sale/j_31272/j_238786221724411214175/j_23878622_1724411214758_bg_processed.jpg",
       "/assets/products/luxury/rolex/gmt-master-ii/main.webp"
     ],
     "rating": 0,
@@ -22399,7 +22399,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22424,7 +22424,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/gmt-master-ii-in-oystersteel/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/gmt-master-ii-in-oystersteel/hero.jpg",
+      "https://ts4.mm.bing.net/th?id=OIP.Xw_PRo4_4fBZh77I_zfoEwHaHa&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/rolex/gmt-master-ii-in-oystersteel/main.webp"
     ],
     "rating": 0,
@@ -22442,7 +22442,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22467,7 +22467,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/cosmograph-daytona/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/cosmograph-daytona/hero.jpg",
+      "https://www.theluxuryhut.com/_next/image/?url=https:%2F%2Fassets.theluxuryhut.com%2F2026%2F01%2F20562a1e-7b73-4176-b42a-14ac78f7af19Rolex_Cosmograph_Daytona_White_APH_Dial_52571-a.jpg.webp&w=3840&q=100",
       "/assets/products/luxury/rolex/cosmograph-daytona/main.webp"
     ],
     "rating": 0,
@@ -22485,7 +22485,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22510,7 +22510,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/oyster-perpetual-36/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/oyster-perpetual-36/hero.jpg",
+      "https://cdn11.bigcommerce.com/s-bpf02c8y86/images/stencil/4000x4000/products/5816/38254/DSC09594-Edit__66293.1683298538.jpg?c=2",
       "/assets/products/luxury/rolex/oyster-perpetual-36/main.webp"
     ],
     "rating": 0,
@@ -22528,7 +22528,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22553,7 +22553,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/oyster-perpetual-41/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/oyster-perpetual-41/hero.jpg",
+      "https://www.horando.de/cdn/shop/files/Bildschirmfoto_2026-03-06_um_11.51.11-removebg.png?v=1772794349&width=1080",
       "/assets/products/luxury/rolex/oyster-perpetual-41/main.webp"
     ],
     "rating": 0,
@@ -22571,7 +22571,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22596,7 +22596,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/yacht-master-40/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/yacht-master-40/hero.jpg",
+      "https://content.thewosgroup.com/productimage/17304009/17304009_1_mobile.png?impolicy=hero-rolex",
       "/assets/products/luxury/rolex/yacht-master-40/main.webp"
     ],
     "rating": 0,
@@ -22614,7 +22614,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22639,7 +22639,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/day-date-40/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/day-date-40/hero.jpg",
+      "https://images.bobswatches.com/images/Used-Rolex-Day-Date-40-228238-White-Roman-Dial-SKU169882.jpg?q=50&ef=2&h=950&sh=true&dpr=2",
       "/assets/products/luxury/rolex/day-date-40/main.webp"
     ],
     "rating": 0,
@@ -22657,7 +22657,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22682,7 +22682,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/rolex/explorer-36/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.rolex.com/image/upload/explorer-36/hero.jpg",
+      "https://www.tinyjewelbox.com/upload/rolex_v7/product/landscape/slide1_m124270-0001.webp",
       "/assets/products/luxury/rolex/explorer-36/main.webp"
     ],
     "rating": 0,
@@ -22700,7 +22700,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22743,7 +22743,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22768,7 +22768,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/love-bracelet-classic-model/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/love-bracelet-classic-model/hero.jpg",
+      "https://a.1stdibscdn.com/cartier-love-bracelet-classic-model-white-gold-oval-design-size-16-bangle-for-sale/j_17711/j_257488421742432280220/j_25748842_1742432280625_bg_processed.jpg",
       "/assets/products/luxury/cartier/love-bracelet-classic-model/main.webp"
     ],
     "rating": 0,
@@ -22786,7 +22786,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22811,7 +22811,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/juste-un-clou-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/juste-un-clou-bracelet/hero.jpg",
+      "https://www.theluxuryhut.com/_next/image/?url=https:%2F%2Fassets.theluxuryhut.com%2F2026%2F02%2F111b302a-49c1-404c-8f32-0efc1c39be11Cartier_18ct_White_Gold_Juste_Un_Clou_Bracelet_LB834-b.jpg.webp&w=3840&q=100",
       "/assets/products/luxury/cartier/juste-un-clou-bracelet/main.webp"
     ],
     "rating": 0,
@@ -22829,7 +22829,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22854,7 +22854,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/juste-un-clou-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/juste-un-clou-ring/hero.jpg",
+      "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw79eee104/images/large/579697d450ee5aaf878308a7ea0cf5b7.png?sw=750&sh=750&sm=fit&sfrm=png",
       "/assets/products/luxury/cartier/juste-un-clou-ring/main.webp"
     ],
     "rating": 0,
@@ -22872,7 +22872,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22897,7 +22897,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/tank-must-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/tank-must-watch/hero.jpg",
+      "https://cdna.lystit.com/1040/1300/n/photos/harrods/6ce02007/cartier-Silver-Small-Steel-Tank-Must-Watch.jpeg",
       "/assets/products/luxury/cartier/tank-must-watch/main.webp"
     ],
     "rating": 0,
@@ -22915,7 +22915,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22940,7 +22940,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/santos-de-cartier-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/santos-de-cartier-watch/hero.jpg",
+      "https://www.cartier.com/dam/car/menu/watches/collections/4_Santos_Men.jpg.transform.car2image.jpeg",
       "/assets/products/luxury/cartier/santos-de-cartier-watch/main.webp"
     ],
     "rating": 0,
@@ -22958,7 +22958,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -22983,7 +22983,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/panthere-de-cartier-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/panthere-de-cartier-watch/hero.jpg",
+      "https://www.thejewelleryeditor.com/media/images_thumbnails/filer_public_thumbnails/filer_public/a1/f3/a1f360e6-a042-4077-b288-94812565a450/medium-yellow-gold-and-steel-white-background.jpg__1080x0_q75_crop-scale_subsampling-2_upscale-false.jpg",
       "/assets/products/luxury/cartier/panthere-de-cartier-watch/main.webp"
     ],
     "rating": 0,
@@ -23001,7 +23001,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23026,7 +23026,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/ballon-bleu-de-cartier/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/ballon-bleu-de-cartier/hero.jpg",
+      "https://content.thewosgroup.com/productimage/17311403/17311403_2.jpg?impolicy=zoom",
       "/assets/products/luxury/cartier/ballon-bleu-de-cartier/main.webp"
     ],
     "rating": 0,
@@ -23044,7 +23044,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23069,7 +23069,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/trinity-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/trinity-ring/hero.jpg",
+      "https://a.1stdibscdn.com/cartier-trinity-three-bands-diamond-ring-for-sale-picture-7/j_10353/j_186208821678218739665/2023_03_07_12_24_45_master.jpeg",
       "/assets/products/luxury/cartier/trinity-ring/main.webp"
     ],
     "rating": 0,
@@ -23087,7 +23087,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23112,7 +23112,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/clash-de-cartier-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/clash-de-cartier-earrings/hero.jpg",
+      "https://www.cartier.com/dw/image/v2/BGTJ_PRD/on/demandware.static/-/Sites-cartier-master/default/dw9254f4a6/images/large/36dfa18adf5458eb90f1535b6f2256f6.png?sw=750&sh=750&sm=fit&sfrm=png",
       "/assets/products/luxury/cartier/clash-de-cartier-earrings/main.webp"
     ],
     "rating": 0,
@@ -23130,7 +23130,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23155,7 +23155,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/panthere-de-cartier-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/panthere-de-cartier-ring/hero.jpg",
+      "https://www.seekpng.com/png/detail/795-7950891_panthre-de-cartier-ring-white-gold-diamonds-emeralds.png",
       "/assets/products/luxury/cartier/panthere-de-cartier-ring/main.webp"
     ],
     "rating": 0,
@@ -23173,7 +23173,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23198,7 +23198,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/cartier/tank-francaise-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.cartier.com/dw/image/v2/tank-francaise-watch/hero.jpg",
+      "https://cdn.swisswatchexpo.com/productphotos/1/22/cartier-tank-francaise-white-gold-quartz-ladies-watch-w50012s3-box-papers-58026_1733f_md.jpg",
       "/assets/products/luxury/cartier/tank-francaise-watch/main.webp"
     ],
     "rating": 0,
@@ -23216,7 +23216,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23241,7 +23241,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/hardwear-link-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/hardwear-link-bracelet/hero.jpg",
+      "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/tiffany-hardwearlarge-link-bracelet-60715149_1013593_ED_M.jpg?&op_usm=1.0,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&",
       "/assets/products/luxury/tiffany-co/hardwear-link-bracelet/main.webp"
     ],
     "rating": 0,
@@ -23259,7 +23259,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23284,7 +23284,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/t-smile-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/t-smile-pendant/hero.jpg",
+      "https://media.tiffany.com/is/image/tco/63842842_PDT_MAIN1X1?hei=1204&wid=1204&fmt=webp&op_usm=1,2,6",
       "/assets/products/luxury/tiffany-co/t-smile-pendant/main.webp"
     ],
     "rating": 0,
@@ -23302,7 +23302,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23327,7 +23327,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/lock-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/lock-pendant/hero.jpg",
+      "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/tiffany-lockpendant-72342283_1061457_ED.jpg?&op_usm=1.0,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&",
       "/assets/products/luxury/tiffany-co/lock-pendant/main.webp"
     ],
     "rating": 0,
@@ -23345,7 +23345,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23370,7 +23370,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/knot-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/knot-earrings/hero.jpg",
+      "https://product-images.therealreal.com/TIF263631_1_enlarged.jpg",
       "/assets/products/luxury/tiffany-co/knot-earrings/main.webp"
     ],
     "rating": 0,
@@ -23388,7 +23388,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23413,7 +23413,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/return-to-tiffany-heart-tag-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/return-to-tiffany-heart-tag-bracelet/hero.jpg",
+      "https://media.tiffany.com/is/image/Tiffany/EcomBrowseM/-return-to-tiffanymulti-heart-tag-bracelet-35236147_1029163_ED_M.jpg?defaultImage=NoImageAvailableInternal&",
       "/assets/products/luxury/tiffany-co/return-to-tiffany-heart-tag-bracelet/main.webp"
     ],
     "rating": 0,
@@ -23431,7 +23431,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23456,7 +23456,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/elsa-peretti-open-heart-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/elsa-peretti-open-heart-pendant/hero.jpg",
+      "https://backend.yoogiscloset.com/media/catalog/product/1/0/10014348_01.jpg?quality=80&bg-color=255,255,255&fit=bounds&height=840&width=630",
       "/assets/products/luxury/tiffany-co/elsa-peretti-open-heart-pendant/main.webp"
     ],
     "rating": 0,
@@ -23474,7 +23474,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23499,7 +23499,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/tiffany-setting-engagement-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/tiffany-setting-engagement-ring/hero.jpg",
+      "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/the-tiffany-setting-engagement-ring-in-platinum-22086588_995766_ED_M.jpg?&op_usm=1.75,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&",
       "/assets/products/luxury/tiffany-co/tiffany-setting-engagement-ring/main.webp"
     ],
     "rating": 0,
@@ -23517,7 +23517,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23542,7 +23542,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/hardwear-link-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/hardwear-link-necklace/hero.jpg",
+      "https://media.tiffany.com/is/image/Tiffany/EcomBrowseM/-tiffany-hardwearlarge-double-link-pendant-70353105_1035352_ED.jpg?defaultImage=NoImageAvailableInternal&",
       "/assets/products/luxury/tiffany-co/hardwear-link-necklace/main.webp"
     ],
     "rating": 0,
@@ -23560,7 +23560,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23585,7 +23585,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/t-wire-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/t-wire-ring/hero.jpg",
+      "https://media.tiffany.com/is/image/Tiffany/EcomItemL2/tiffany-twire-ring-33863942_1030472_ED_M.jpg?&op_usm=1.75,1.0,6.0&$cropN=0.1,0.1,0.8,0.8&defaultImage=NoImageAvailableInternal&",
       "/assets/products/luxury/tiffany-co/t-wire-ring/main.webp"
     ],
     "rating": 0,
@@ -23603,7 +23603,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23628,7 +23628,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/tiffany-victoria-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/tiffany-victoria-pendant/hero.jpg",
+      "https://cdn.modesens.com/product/14061615_1?w=400",
       "/assets/products/luxury/tiffany-co/tiffany-victoria-pendant/main.webp"
     ],
     "rating": 0,
@@ -23646,7 +23646,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23671,7 +23671,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/tiffany-keys-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/tiffany-keys-pendant/hero.jpg",
+      "https://product-images.therealreal.com/TIF254170_1_enlarged.jpg",
       "/assets/products/luxury/tiffany-co/tiffany-keys-pendant/main.webp"
     ],
     "rating": 0,
@@ -23689,7 +23689,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23714,7 +23714,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/tiffany-co/paloma-picasso-olive-leaf-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://media.tiffany.com/is/image/tiffanyb2c/paloma-picasso-olive-leaf-pendant/hero.jpg",
+      "https://media.tiffany.com/is/image/tco/60021536_PDT_MAIN1X1?hei=628&wid=628&fmt=webp",
       "/assets/products/luxury/tiffany-co/paloma-picasso-olive-leaf-pendant/main.webp"
     ],
     "rating": 0,
@@ -23732,7 +23732,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23757,7 +23757,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/serpenti-tubogas-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/serpenti-tubogas-watch/hero.jpg",
+      "https://burdeens.com/cdn/shop/products/C00139330_9448239.jpg?v=1697745177&width=3500",
       "/assets/products/luxury/bulgari/serpenti-tubogas-watch/main.webp"
     ],
     "rating": 0,
@@ -23775,7 +23775,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23800,7 +23800,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/serpenti-viper-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/serpenti-viper-bracelet/hero.jpg",
+      "https://media2.bulgari.com/f_auto,q_auto/production/dw19fd1f93/images/images/1626772.png",
       "/assets/products/luxury/bulgari/serpenti-viper-bracelet/main.webp"
     ],
     "rating": 0,
@@ -23818,7 +23818,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23843,7 +23843,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/b-zero1-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/b-zero1-ring/hero.jpg",
+      "https://media.bulgari.com/image/upload/c_pad,h_1982,w_1982/q_auto/f_auto/1352984.png",
       "/assets/products/luxury/bulgari/b-zero1-ring/main.webp"
     ],
     "rating": 0,
@@ -23861,7 +23861,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23886,7 +23886,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/b-zero1-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/b-zero1-necklace/hero.jpg",
+      "https://media2.bulgari.com/f_auto,q_auto/production/dwcfe2d015/images/images/1305073.png",
       "/assets/products/luxury/bulgari/b-zero1-necklace/main.webp"
     ],
     "rating": 0,
@@ -23904,7 +23904,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23929,7 +23929,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/divas-dream-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/divas-dream-earrings/hero.jpg",
+      "https://media2.bulgari.com/f_auto,q_auto,c_pad,h_520,w_520/production/dw205ad3a7/images/images/471684.png",
       "/assets/products/luxury/bulgari/divas-dream-earrings/main.webp"
     ],
     "rating": 0,
@@ -23947,7 +23947,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -23972,7 +23972,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/serpenti-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/serpenti-necklace/hero.jpg",
+      "https://a.1stdibscdn.com/bvlgari-serpenti-pave-diamond-necklace-for-sale/j_26392/j_221472021708977804913/j_22147202_1708977805476_bg_processed.jpg",
       "/assets/products/luxury/bulgari/serpenti-necklace/main.webp"
     ],
     "rating": 0,
@@ -23990,7 +23990,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24015,7 +24015,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/octo-finissimo-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/octo-finissimo-watch/hero.jpg",
+      "https://www.thejewelleryeditor.com/media/images_thumbnails/filer_public_thumbnails/filer_public/67/2f/672fdc95-1b6a-4f60-b108-b4c9de0a546f/bulgari_octo_ultranero_tourbillon_white_background.jpg__1080x0_q75_crop-scale_subsampling-2_upscale-false.jpg",
       "/assets/products/luxury/bulgari/octo-finissimo-watch/main.webp"
     ],
     "rating": 0,
@@ -24033,7 +24033,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24058,7 +24058,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/bvlgari-bvlgari-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/bvlgari-bvlgari-watch/hero.jpg",
+      "https://hrd-live.cdn.scayle.cloud/images/e4ae4ec3645e7eefc44b8706df58f336.jpg?brightness=1&width=922&height=1230&quality=75&bg=ffffff",
       "/assets/products/luxury/bulgari/bvlgari-bvlgari-watch/main.webp"
     ],
     "rating": 0,
@@ -24076,7 +24076,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24101,7 +24101,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/serpenti-seduttori-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/serpenti-seduttori-watch/hero.jpg",
+      "https://ts2.mm.bing.net/th?id=OIP.8V8knVicIw6ut5KD6elPdQHaLH&pid=15.1&w=1200&h=1200&c=1&rs=1",
       "/assets/products/luxury/bulgari/serpenti-seduttori-watch/main.webp"
     ],
     "rating": 0,
@@ -24119,7 +24119,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24144,7 +24144,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/bulgari-bulgari-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/bulgari-bulgari-ring/hero.jpg",
+      "https://medias.collectorsquare.com/images/products/426528/D3-twisted-bulgari-bulgari-bulgari-ring-in-white-gold-diamonds-and-onyx.jpg",
       "/assets/products/luxury/bulgari/bulgari-bulgari-ring/main.webp"
     ],
     "rating": 0,
@@ -24162,7 +24162,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24187,7 +24187,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/serpenti-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/serpenti-bracelet/hero.jpg",
+      "https://www.bulgari.com/on/demandware.static/-/Sites-masterCatalog/default/dw60361747/images/images/1556895.png",
       "/assets/products/luxury/bulgari/serpenti-bracelet/main.webp"
     ],
     "rating": 0,
@@ -24205,7 +24205,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24230,7 +24230,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/bulgari/divas-dream-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.bulgari.com/dw/image/v2/divas-dream-necklace/hero.jpg",
+      "https://boutique.heathrow.com/dw/image/v2/BDNX_PRD/on/demandware.static/-/Sites-retailer_bvlgari-master-catalog/default/dwe666f9aa/images/hi-res/bvlgari/CL859262_201_ful.jpg",
       "/assets/products/luxury/bulgari/divas-dream-necklace/main.webp"
     ],
     "rating": 0,
@@ -24248,7 +24248,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24273,7 +24273,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-5-motifs-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/vintage-alhambra-5-motifs-necklace/hero.jpg",
+      "https://i.pinimg.com/originals/56/68/7a/56687a40f2cb69378434cd1c7d110059.png",
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-5-motifs-necklace/main.webp"
     ],
     "rating": 0,
@@ -24291,7 +24291,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24316,7 +24316,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-10-motifs-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/vintage-alhambra-10-motifs-necklace/hero.jpg",
+      "https://a.1stdibscdn.com/van-cleef-arpels-vintage-alhambra-10-motifs-necklace-18k-white-gold-and-mother-for-sale/1121189/j_116279121614418550388/11627912_master.jpg?width=768",
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-10-motifs-necklace/main.webp"
     ],
     "rating": 0,
@@ -24334,7 +24334,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24359,7 +24359,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/vintage-alhambra-bracelet/hero.jpg",
+      "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/102/996/746/original/1460538_01.jpg.jpeg?action=crop&width=750",
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-bracelet/main.webp"
     ],
     "rating": 0,
@@ -24377,7 +24377,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24402,7 +24402,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/sweet-alhambra-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/sweet-alhambra-pendant/hero.jpg",
+      "https://a.1stdibscdn.com/van-cleef-arpels-sweet-alhambra-pendant-necklace-18k-white-gold-with-diamonds-for-sale-picture-2/j_21522/j_200046721691083773572/211870_5_Van_Cleef_Arpels_Sweet_Alhambra_Pendant_Necklace_18K_White_Gold_with_Diamonds_2D_0002_master.jpg",
       "/assets/products/luxury/van-cleef-arpels/sweet-alhambra-pendant/main.webp"
     ],
     "rating": 0,
@@ -24420,7 +24420,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24445,7 +24445,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/magic-alhambra-long-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/magic-alhambra-long-necklace/hero.jpg",
+      "https://www.vancleefarpels.com/content/dam/rcq/vca/Z9/0p/0X/q3/SM/-u/-O/hN/D_/fK/iA/Z90p0Xq3SM-u-OhND_fKiA.png",
       "/assets/products/luxury/van-cleef-arpels/magic-alhambra-long-necklace/main.webp"
     ],
     "rating": 0,
@@ -24463,7 +24463,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24488,7 +24488,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/perlee-signature-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/perlee-signature-ring/hero.jpg",
+      "https://www.vancleefarpels.com/content/dam/rcq/vca/17/95/19/2/1795192.png",
       "/assets/products/luxury/van-cleef-arpels/perlee-signature-ring/main.webp"
     ],
     "rating": 0,
@@ -24506,7 +24506,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24531,7 +24531,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/frivole-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/frivole-earrings/hero.jpg",
+      "https://www.vancleefarpels.com/content/dam/rcq/vca/uh/Yt/iI/rO/T5/yx/RG/Zk/OG/8n/XA/uhYtiIrOT5yxRGZkOG8nXA.png",
       "/assets/products/luxury/van-cleef-arpels/frivole-earrings/main.webp"
     ],
     "rating": 0,
@@ -24549,7 +24549,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24574,7 +24574,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/lucky-spring-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/lucky-spring-bracelet/hero.jpg",
+      "https://product-images.therealreal.com/VAC40245_1_enlarged.jpg?auto=webp&width=3840",
       "/assets/products/luxury/van-cleef-arpels/lucky-spring-bracelet/main.webp"
     ],
     "rating": 0,
@@ -24592,7 +24592,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24617,7 +24617,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/zodiaque-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/zodiaque-pendant/hero.jpg",
+      "https://images.selfridges.com/is/image/selfridges/R04601119_WHITEGOLD_ALT01?defaultImage=R04601119_WHITEGOLD_M&$PLP_ALL$",
       "/assets/products/luxury/van-cleef-arpels/zodiaque-pendant/main.webp"
     ],
     "rating": 0,
@@ -24635,7 +24635,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24660,7 +24660,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/between-the-finger-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/between-the-finger-ring/hero.jpg",
+      "https://a.1stdibscdn.com/van-cleef-arpels-magic-alhambra-between-the-finger-ring-for-sale-picture-5/j_1002/1560968978186/24990_front_master.jpg",
       "/assets/products/luxury/van-cleef-arpels/between-the-finger-ring/main.webp"
     ],
     "rating": 0,
@@ -24678,7 +24678,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24703,7 +24703,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/vintage-alhambra-earrings/hero.jpg",
+      "https://www.vancleefarpels.com/content/dam/rcq/vca/T7/-6/L8/BJ/-0/Gw/-y/3T/zl/V6/Kg/T7-6L8BJ-0Gw-y3TzlV6Kg.png",
       "/assets/products/luxury/van-cleef-arpels/vintage-alhambra-earrings/main.webp"
     ],
     "rating": 0,
@@ -24721,7 +24721,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24746,7 +24746,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/van-cleef-arpels/alhambra-watch/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://www.vancleefarpels.com/content/dam/vca/alhambra-watch/hero.jpg",
+      "https://product-images.therealreal.com/VAC38712_1_enlarged.jpg",
       "/assets/products/luxury/van-cleef-arpels/alhambra-watch/main.webp"
     ],
     "rating": 0,
@@ -24764,7 +24764,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24789,7 +24789,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/moments-snake-chain-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/moments-snake-chain-bracelet/hero.jpg",
+      "https://nz.pandora.net/dw/image/v2/BKNF_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwa5216def/productimages/singlepackshot/590728_V3_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
       "/assets/products/luxury/pandora/moments-snake-chain-bracelet/main.webp"
     ],
     "rating": 0,
@@ -24807,7 +24807,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24832,7 +24832,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/moments-heart-clasp-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/moments-heart-clasp-bracelet/hero.jpg",
+      "https://cdna.lystit.com/520/650/n/photos/macys/dfb2231b/pandora-designer-Silver-Moments-Cubic-Zirconia-Pave-Heart-Clasp-Snake-Chain-Bracelet.jpeg",
       "/assets/products/luxury/pandora/moments-heart-clasp-bracelet/main.webp"
     ],
     "rating": 0,
@@ -24850,7 +24850,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24875,7 +24875,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/sparkling-crown-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/sparkling-crown-ring/hero.jpg",
+      "https://cdna.lystit.com/photos/pandora/de352080/pandora-designer--Clear-Sparkling-Crown-Ring.jpeg",
       "/assets/products/luxury/pandora/sparkling-crown-ring/main.webp"
     ],
     "rating": 0,
@@ -24893,7 +24893,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24918,7 +24918,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/timeless-pave-circle-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/timeless-pave-circle-ring/hero.jpg",
+      "https://us.pandora.net/dw/image/v2/AAVX_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwd49e7414/productimages/singlepackshot/162627C01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
       "/assets/products/luxury/pandora/timeless-pave-circle-ring/main.webp"
     ],
     "rating": 0,
@@ -24936,7 +24936,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -24961,7 +24961,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/signature-i-d-bangle/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/signature-i-d-bangle/hero.jpg",
+      "https://www.johnpass.co.uk/images/detailed/29/599493C00_RGB_wjqo-s6.jpg",
       "/assets/products/luxury/pandora/signature-i-d-bangle/main.webp"
     ],
     "rating": 0,
@@ -24979,7 +24979,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25004,7 +25004,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/pandora-me-link-chain-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/pandora-me-link-chain-bracelet/hero.jpg",
+      "https://www.pandorashop.co.za/media/catalog/product/5/8/589588c00.jpg?auto=webp&format=pjpg&width=640&height=800&fit=cover",
       "/assets/products/luxury/pandora/pandora-me-link-chain-bracelet/main.webp"
     ],
     "rating": 0,
@@ -25022,7 +25022,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25047,7 +25047,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/disney-mickey-mouse-charm/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/disney-mickey-mouse-charm/hero.jpg",
+      "https://www.reeds.com/media/catalog/product/cache/38c3c1b8e53ef11aa9803a5390245afc/p/a/pandora-disney_100th_anniversary_mickey_mouse_lab-created_diamond_dangle_charm-1-20386215-hx60708ada.jpg",
       "/assets/products/luxury/pandora/disney-mickey-mouse-charm/main.webp"
     ],
     "rating": 0,
@@ -25065,7 +25065,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25090,7 +25090,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/rose-tone-moments-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/rose-tone-moments-bracelet/hero.jpg",
+      "https://us.pandora.net/dw/image/v2/AAVX_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw46fac3d5/productimages/main_rect_base/583230C01_RGB.jpg?q=50&sfrm=png&bgcolor=F7F7F7",
       "/assets/products/luxury/pandora/rose-tone-moments-bracelet/main.webp"
     ],
     "rating": 0,
@@ -25108,7 +25108,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25133,7 +25133,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/sparkling-halo-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/sparkling-halo-necklace/hero.jpg",
+      "https://us.pandora.net/dw/image/v2/AAVX_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dw8176cb94/productimages/main_rect_center/391174C01_RGB.jpg?q=70&sfrm=png&bgcolor=F7F7F7&sw=384",
       "/assets/products/luxury/pandora/sparkling-halo-necklace/main.webp"
     ],
     "rating": 0,
@@ -25151,7 +25151,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25176,7 +25176,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/heart-stud-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/heart-stud-earrings/hero.jpg",
+      "https://us.pandora.net/dw/image/v2/AAVX_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwbf61b88b/productimages/main/280528CZ_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
       "/assets/products/luxury/pandora/heart-stud-earrings/main.webp"
     ],
     "rating": 0,
@@ -25194,7 +25194,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25219,7 +25219,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/tennis-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/tennis-bracelet/hero.jpg",
+      "https://au.pandora.net/dw/image/v2/BKNF_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc80cd650/productimages/singlepackshot/593539C01_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
       "/assets/products/luxury/pandora/tennis-bracelet/main.webp"
     ],
     "rating": 0,
@@ -25237,7 +25237,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25262,7 +25262,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/pandora/charm-pendant/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://us.pandora.net/dw/image/v2/charm-pendant/hero.jpg",
+      "https://us.pandora.net/dw/image/v2/AAVX_PRD/on/demandware.static/-/Sites-pandora-master-catalog/default/dwc6d925f6/productimages/singlepackshot/388610C00_RGB.jpg?sw=900&sh=900&sm=fit&sfrm=png&bgcolor=F5F5F5",
       "/assets/products/luxury/pandora/charm-pendant/main.webp"
     ],
     "rating": 0,
@@ -25280,7 +25280,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25305,7 +25305,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/matrix-tennis-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/matrix-tennis-necklace/hero.jpg",
+      "https://asset.swarovski.com/images/$size_1450/t_swa103/b_rgb:ffffff,c_scale,dpr_1.0,f_auto,w_375/5662277_png_var1/matrix-tennis-necklace--pear-cut--white--rhodium-plated-swarovski-5662277.png",
       "/assets/products/luxury/swarovski/matrix-tennis-necklace/main.webp"
     ],
     "rating": 0,
@@ -25323,7 +25323,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25348,7 +25348,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/millenia-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/millenia-necklace/hero.jpg",
+      "https://asset.swarovski.com/images/$size_2000/t_swa103/b_rgb:ffffff,c_scale,dpr_1.0,f_auto,w_580/5725768_png/millenia-pendant--octagon-cut--white--rhodium-plated-swarovski-5725768.png",
       "/assets/products/luxury/swarovski/millenia-necklace/main.webp"
     ],
     "rating": 0,
@@ -25366,7 +25366,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25391,7 +25391,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/una-angelic-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/una-angelic-bracelet/hero.jpg",
+      "https://asset.swarovski.com/images/$size_2000/t_swa103/b_rgb:ffffff,c_scale,dpr_1.0,f_auto,w_580/5735343_png_var1/una-angelic-bracelet--white--rhodium-plated-swarovski-5735343.png",
       "/assets/products/luxury/swarovski/una-angelic-bracelet/main.webp"
     ],
     "rating": 0,
@@ -25409,7 +25409,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25434,7 +25434,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/dextera-hoop-earrings/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/dextera-hoop-earrings/hero.jpg",
+      "https://asset.swarovski.com/images/$size_2000/t_swa103/b_rgb:ffffff,c_scale,dpr_1.0,f_auto,w_580/5389432_png_var2/dextera-hoop-earrings--pavé--large--white--rhodium-plated-swarovski-5389432.png",
       "/assets/products/luxury/swarovski/dextera-hoop-earrings/main.webp"
     ],
     "rating": 0,
@@ -25452,7 +25452,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25477,7 +25477,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/tennis-deluxe-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/tennis-deluxe-bracelet/hero.jpg",
+      "https://cdn.shopify.com/s/files/1/0721/9897/9877/files/5513401-2_774382d5-93ac-4ea1-a866-970f7eacede9_1200x.jpg?v=1707864292",
       "/assets/products/luxury/swarovski/tennis-deluxe-bracelet/main.webp"
     ],
     "rating": 0,
@@ -25495,7 +25495,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25520,7 +25520,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/matrix-vittore-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/matrix-vittore-ring/hero.jpg",
+      "https://myer-media.com.au/wcsstore/MyerCatalogAssetStore/images/70/704/4157/10/1/781239520/781239520_1_720x928.webp?w=1920&q=75",
       "/assets/products/luxury/swarovski/matrix-vittore-ring/main.webp"
     ],
     "rating": 0,
@@ -25538,7 +25538,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25563,7 +25563,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/hyperbola-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/hyperbola-ring/hero.jpg",
+      "https://www.swarovski.sa/dw/image/v2/BDCL_PRD/on/demandware.static/-/Sites-swarovski-master-catalog/default/dw7b6712ed/images/5691230_var3_png.png?sw=840&sh=840&sm=fit",
       "/assets/products/luxury/swarovski/hyperbola-ring/main.webp"
     ],
     "rating": 0,
@@ -25581,7 +25581,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25606,7 +25606,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/constella-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/constella-necklace/hero.jpg",
+      "https://asset.swarovski.com/images/$size_1000/t_swa103/b_rgb:ffffff,c_scale,dpr_auto,f_auto,w_auto/5622720_png_var1/constella-necklace--white--shiny-gold-tone-plated-swarovski-5622720.png",
       "/assets/products/luxury/swarovski/constella-necklace/main.webp"
     ],
     "rating": 0,
@@ -25624,7 +25624,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25649,7 +25649,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/swan-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/swan-necklace/hero.jpg",
+      "https://asset.swarovski.com/images/$size_2000/t_swa103/b_rgb:ffffff,c_scale,dpr_1.0,f_auto,w_580/5514421_png/swan-necklace--dancing-swan--white--rhodium-plated-swarovski-5514421.png",
       "/assets/products/luxury/swarovski/swan-necklace/main.webp"
     ],
     "rating": 0,
@@ -25667,7 +25667,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25692,7 +25692,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/imber-tennis-bracelet/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/imber-tennis-bracelet/hero.jpg",
+      "https://asset.swarovski.com/images/$size_2000/t_swa002/c_scale,dpr_1.0,f_auto,w_580/5682666_ms2/imber-tennis-bracelet--round-cut--white--rhodium-plated-swarovski-5682666.jpg",
       "/assets/products/luxury/swarovski/imber-tennis-bracelet/main.webp"
     ],
     "rating": 0,
@@ -25710,7 +25710,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25735,7 +25735,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/sublima-ring/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/sublima-ring/hero.jpg",
+      "https://asset.swarovski.com/images/$size_2000/t_swa103/b_rgb:ffffff,c_scale,dpr_1.0,f_auto,w_580/5737596_png_var2/sublima-ring--white--rhodium-plated-swarovski-5737596.png",
       "/assets/products/luxury/swarovski/sublima-ring/main.webp"
     ],
     "rating": 0,
@@ -25753,7 +25753,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
@@ -25778,7 +25778,7 @@ export const luxuryProducts: Product[] = [
       "/assets/products/luxury/swarovski/gema-necklace/gallery-04.webp"
     ],
     "fallbackImages": [
-      "https://asset.swarovski.com/images/gema-necklace/hero.jpg",
+      "https://media.neimanmarcus.com/f_auto,q_auto:low,ar_4:5,c_fill,dpr_2.0,w_790/01/nm_4651821_100714_m",
       "/assets/products/luxury/swarovski/gema-necklace/main.webp"
     ],
     "rating": 0,
@@ -25796,7 +25796,7 @@ export const luxuryProducts: Product[] = [
     "stockStatus": "Not confirmed",
     "supplierStatus": "Supplier not confirmed",
     "authenticityEvidence": "Require genuine supplier invoice / authorized sourcing evidence before publication.",
-    "verificationStatus": "Draft model seed — verify exact current product, regional availability and SKU.",
+    "verificationStatus": "verified_local_file",
     "merchandisingNotes": "No price, stock, delivery promise or product authenticity claim has been assumed.",
     "marketFocus": "India",
     "variantsToVerify": "Confirm available colours, sizes, materials, shades and pack sizes against the exact SKU.",
