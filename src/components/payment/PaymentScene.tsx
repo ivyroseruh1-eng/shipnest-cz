@@ -98,7 +98,7 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
               <motion.div key="act0" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, scale: 0.96 }}
                 className="flex flex-col items-center gap-5 w-full">
                 <div className="flex items-center justify-between w-full max-w-[280px]">
-                  {/* Card / Moonlight tile */}
+                  {/* Card tile */}
                   <motion.div
                     initial={{ x: -12, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
                     className="w-20 h-12 rounded-lg bg-gradient-to-br from-foreground to-foreground/80 flex items-center justify-center shadow-lg"
