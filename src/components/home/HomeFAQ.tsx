@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "What payment methods do you accept?",
-    a: "All major networks — Visa, Mastercard, Amex — plus Apple Pay, Google Pay and our Moonlight Wealth Management partner for premium orders.",
+    a: "All major networks — Visa, Mastercard, Amex — plus Apple Pay and Google Pay, with 256-bit AES encryption on every order.",
   },
   {
     q: "What's your return policy?",
