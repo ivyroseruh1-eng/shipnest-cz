@@ -1,4 +1,4 @@
-import { Product, ProductColor } from "@/types";
+import { Product, ColorVariant } from "@/types";
 
 export interface StageTheme {
   background: string;     // Exact matching solid hex: "#000000" | "#ffffff" | etc. (NO GRADIENTS)
@@ -102,7 +102,7 @@ export function isColorDark(hex: string): boolean {
  */
 export function getProductStageTheme(
   product?: Partial<Product> | null,
-  variant?: ProductColor | null,
+  variant?: ColorVariant | null,
   imageSrc?: string
 ): StageTheme {
   const activeSrc = imageSrc || variant?.image || product?.image || "";

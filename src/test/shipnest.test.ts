@@ -108,6 +108,7 @@ describe("ShipNest Logistics & Tracking Engine", () => {
         email: "test@example.com",
         phone: "+420 123 456 789",
         address: "Na Příkopě 22",
+        state: "Prague",
         city: "Prague",
         country: "Czech Republic",
         zip: "110 00",
