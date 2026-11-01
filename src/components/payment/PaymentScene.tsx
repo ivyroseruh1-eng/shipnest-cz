@@ -3,17 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CreditCard, Lock, Shield, CheckCircle2, Building2 } from "lucide-react";
 import Logo from "@/components/brand/Logo";
 import { Visa, Mastercard, Amex } from "@/components/PaymentIcons";
-const moonlightLogo = "/assets/brand/moonlight-logo.png";
 
 type Brand = "visa" | "mc" | "amex" | "unknown";
-type Method = "card" | "moonlight";
+type Method = "card";
 
 interface Props {
   total: number;
   method: Method;
   brand: Brand;
   cardLast4?: string;
-  issuer: string; // detected/random bank or "Moonlight Treasury"
+  issuer: string; // detected card-issuing bank
   network: string;
   authCode: string;
   refCode: string;
@@ -47,17 +46,14 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
   }, []);
 
   const captions = [
-    method === "moonlight" ? "Establishing private treasury session" : `Establishing secure session with ${network}`,
-    method === "moonlight" ? "Verifying mandate with Moonlight Treasury" : `Verifying with ${issuer}`,
-    method === "moonlight" ? "Authorized by Moonlight Wealth Management" : "Approved · Funds reserved",
+    `Establishing secure session with ${network}`,
+    `Verifying with ${issuer}`,
+    "Approved · Funds reserved",
   ];
 
-  const chipLabels = method === "moonlight"
-    ? ["Mandate", "Beneficiary", "Escrow"]
-    : ["3-D Secure", "Risk score", "Authorization"];
+  const chipLabels = ["3-D Secure", "Risk score", "Authorization"];
 
   const BrandIcon = () => {
-    if (method === "moonlight") return <img src={moonlightLogo} alt="" className="w-6 h-6 object-contain" />;
     if (brand === "visa") return <Visa />;
     if (brand === "mc") return <Mastercard />;
     if (brand === "amex") return <Amex />;
@@ -89,7 +85,7 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
             <Logo variant="mark" size={26} linkTo={false} />
             <div>
               <p className="text-[13px] font-semibold text-foreground leading-tight">Secure authorization</p>
-              <p className="text-[10px] text-muted-foreground font-mono tracking-wider uppercase">{method === "moonlight" ? "Moonlight Treasury" : network}</p>
+              <p className="text-[10px] text-muted-foreground font-mono tracking-wider uppercase">{network}</p>
             </div>
           </div>
           <p className="text-[15px] font-semibold text-foreground tabular-nums">${total.toFixed(2)}</p>
@@ -152,7 +148,7 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
                   </svg>
                   <div className="absolute inset-0 flex flex-col items-center justify-center">
                     <div className="w-9 h-9 rounded-lg bg-background border border-border flex items-center justify-center mb-1">
-                      {method === "moonlight" ? <img src={moonlightLogo} alt="" className="w-5 h-5" /> : <Building2 className="w-5 h-5 text-primary" />}
+                      <Building2 className="w-5 h-5 text-primary" />
                     </div>
                     <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Issuer</p>
                   </div>
@@ -198,11 +194,6 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
                 </div>
                 <p className="text-[15px] font-semibold text-foreground">{captions[2]}</p>
                 <p className="text-[11px] font-mono text-muted-foreground tracking-wider">AUTH {authCode} · REF {refCode}</p>
-                {method === "moonlight" && (
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-foreground text-background text-[10px] font-semibold uppercase tracking-wider">
-                    <img src={moonlightLogo} alt="" className="w-3 h-3" /> Moonlight Authorized
-                  </div>
-                )}
               </motion.div>
             )}
           </AnimatePresence>
@@ -215,7 +206,7 @@ const PaymentScene = ({ total, method, brand, cardLast4 = "4242", issuer, networ
             PCI-DSS · TLS 1.3 · 256-bit AES
           </div>
           <div className="flex items-center gap-1">
-            {method === "card" ? (<><Visa /><Mastercard /><Amex /></>) : <img src={moonlightLogo} alt="Moonlight" className="w-5 h-5 object-contain" />}
+            <Visa /><Mastercard /><Amex />
           </div>
         </div>
       </motion.div>
