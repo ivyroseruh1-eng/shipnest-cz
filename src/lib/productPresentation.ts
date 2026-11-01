@@ -102,7 +102,7 @@ export function isColorDark(hex: string): boolean {
  */
 export function getProductStageTheme(
   product?: Partial<Product> | null,
-  variant?: ProductColor | null,
+  variant?: ColorVariant | null,
   imageSrc?: string
 ): StageTheme {
   const activeSrc = imageSrc || variant?.image || product?.image || "";
