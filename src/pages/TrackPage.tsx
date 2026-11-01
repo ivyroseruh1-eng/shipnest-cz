@@ -264,7 +264,7 @@ const TrackPage = () => {
 
           {/* Support FAQ */}
           <div className="pt-4">
-            <TrackingSupportFAQ />
+            <TrackingSupportFAQ orderId={order.orderId} />
           </div>
         </div>
       </div>

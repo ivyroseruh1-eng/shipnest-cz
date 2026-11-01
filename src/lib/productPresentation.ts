@@ -1,4 +1,4 @@
-import { Product, ProductColor } from "@/types";
+import { Product, ColorVariant } from "@/types";
 
 export interface StageTheme {
   background: string;     // Exact matching solid hex: "#000000" | "#ffffff" | etc. (NO GRADIENTS)
