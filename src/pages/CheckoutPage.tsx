@@ -44,6 +44,7 @@ import {
 } from "@/context/OrderContext";
 import { lookupPincode } from "@/lib/pincode";
 import { useLocation } from "@/context/LocationContext";
+import PaymentScene from "@/components/payment/PaymentScene";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import PaymentScene from "@/components/payment/PaymentScene";
@@ -1050,7 +1051,7 @@ const CheckoutPage = () => {
           {showProcessingAnimation && (
             <PaymentScene
               total={total}
-              method="Credit Card"
+              method="card"
               brand={detectedBrand}
               cardLast4={cardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242"}
               issuer={issuer}

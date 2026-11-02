@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getProductImageBackground } from "@/lib/productPresentation";
+import { getProductImageBackground, getProductStageTheme } from "@/lib/productPresentation";
 import ProductImage from "@/components/ProductImage";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Truck, RotateCcw } from "lucide-react";
 import { useCart } from "@/context/CartContext";

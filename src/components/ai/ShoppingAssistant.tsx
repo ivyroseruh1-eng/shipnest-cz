@@ -73,7 +73,7 @@ const ShoppingAssistant = ({ initialOpen = false, onClose }: ShoppingAssistantPr
       return "We provide a 30-day return policy for brand-new, factory-sealed items in original packaging. You can initiate a return through your account or by contacting support@shipnest.cz.";
     }
     if (q.includes("payment") || q.includes("card") || q.includes("apple pay")) {
-      return "We accept Visa, MasterCard, American Express, Apple Pay, Google Pay, and Moonlight Private Client transfers with 256-bit AES encryption.";
+      return "We accept Visa, MasterCard, American Express, Apple Pay, and Google Pay — every transaction is protected with 256-bit AES encryption.";
     }
 
     return "ShipNest curates 665 flagship technology devices and authenticated luxury goods with global express dispatch from Prague to 60+ countries. Feel free to ask about any brand (such as Apple, Rolex, Louis Vuitton, Cartier, or Creed) or visit /shop to browse.";
