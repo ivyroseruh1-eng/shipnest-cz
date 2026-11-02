@@ -36,9 +36,14 @@ const ASSET_BACKGROUND_MAP: Record<string, string> = {
   "/assets/products/apple/iphone-duo-foldable.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-landscape.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-laptop.jpg": "#ffffff",
-  "/assets/products/apple-iphone-duo.jpg": "#ffffff",
-  "/assets/products/apple-iphone18-pro-max.jpg": "#ffffff",
-  "/assets/products/apple-iphone18-pro.jpg": "#ffffff",
+  "/assets/products/apple-iphone-duo.jpg": "#f5f5f7",
+  "/assets/products/apple-iphone18-pro-max.jpg": "#f5f5f7",
+  "/assets/products/apple-iphone18-pro.jpg": "#f5f5f7",
+  "/assets/products/apple/iphone-18-pro-burgundy-square.jpg": "#f5f5f7",
+  "/assets/products/apple/iphone-18-pro-glacier-square.jpg": "#f5f5f7",
+  "/assets/products/apple/iphone-18-pro-silver-square.jpg": "#f5f5f7",
+  "/assets/products/apple/iphone-18-pro-black-square.jpg": "#f5f5f7",
+  "/assets/products/apple/iphone-duo-nightsky.jpg": "#f5f5f7",
 };
 
 /**
