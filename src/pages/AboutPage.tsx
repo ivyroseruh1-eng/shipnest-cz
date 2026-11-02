@@ -6,7 +6,7 @@ const values = [
   { icon: Shield, title: "100% Authentic", desc: "Every product is sourced directly from authorized distributors. No refurbished, no fakes — ever." },
   { icon: Truck, title: "Global Logistics", desc: "Shipping to 60+ countries from our central European hub, with real-time tracking at every milestone." },
   { icon: Heart, title: "Customer First", desc: "30-day returns, 2-year warranty, and a dedicated support team that actually responds within hours." },
-  { icon: Globe, title: "Based in Prague", desc: "Our warehouse and operations sit in the heart of Europe — minimising customs friction worldwide." },
+  { icon: Globe, title: "European Hub", desc: "Our warehouse and operations sit in the heart of Europe — minimising customs friction worldwide." },
 ];
 
 const team = [
@@ -37,7 +37,7 @@ const AboutPage = () => (
       <p className="text-[12px] text-primary font-semibold uppercase tracking-[0.2em]">Our company</p>
       <h1 className="display text-4xl sm:text-5xl text-foreground">Premium tech, delivered honestly.</h1>
       <p className="text-muted-foreground text-[15px] max-w-2xl mx-auto leading-relaxed">
-        ShipNest is a registered Czech electronics retailer based in Prague. Since 2021 we've shipped 142,000+ verified orders to customers in 60+ countries, with a 98.6% on-time delivery rate and a 4.9/5 Trustpilot score.
+        ShipNest is a premier international electronics and luxury goods retailer. Since 2021 we've shipped 142,000+ verified orders to customers in 60+ countries, with a 98.6% on-time delivery rate and a 4.9/5 Trustpilot score.
       </p>
     </div>
 

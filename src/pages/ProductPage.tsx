@@ -57,20 +57,36 @@ const ProductPage = () => {
   const [inquirySent, setInquirySent] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
 
-  // Synchronize color selection with primary gallery image
+  // Preload all product and variant photography immediately into browser cache
+  useEffect(() => {
+    if (!product) return;
+    const urls = [
+      product.image,
+      ...(product.gallery || []),
+      ...(product.colors?.map((c) => c.image) || []),
+      ...(product.fallbackImages || []),
+    ].filter(Boolean) as string[];
+    urls.forEach((u) => preloadProductImage(u));
+  }, [product]);
+
+  // Stable Apple-style gallery strip: consistent thumbnail order without jumping
   const selectedVariant = product?.colors?.[selectedColor];
   const galleryList = useMemo(() => {
     if (!product) return [];
     const list: string[] = [];
-    if (selectedVariant?.image) list.push(selectedVariant.image);
-    if (product.image && !list.includes(product.image)) list.push(product.image);
+    if (product.image) list.push(product.image);
     if (product.gallery) {
       product.gallery.forEach((g) => {
         if (!list.includes(g)) list.push(g);
       });
     }
+    if (product.colors) {
+      product.colors.forEach((c) => {
+        if (c.image && !list.includes(c.image)) list.push(c.image);
+      });
+    }
     return list.length > 0 ? list : [product.image];
-  }, [product, selectedVariant]);
+  }, [product]);
 
   const activeImage = galleryList[activeImageIndex] || galleryList[0] || product?.image || "";
   const stageTheme = useMemo(
@@ -233,13 +249,12 @@ const ProductPage = () => {
                         }`}
                         aria-label={`View angle ${idx + 1}`}
                       >
-                        <ProductImage
+                        <img
                           src={imgUrl}
                           alt=""
-                          width={80}
-                          height={80}
-                          stageTheme={{ background: "#ffffff", borderColor: "#e5e7eb", textColor: "#09090b", isLight: true }}
-                          className="w-full h-full object-contain"
+                          loading="eager"
+                          decoding="async"
+                          className="w-full h-full object-contain select-none"
                         />
                       </button>
                     );
@@ -276,35 +291,27 @@ const ProductPage = () => {
                   </button>
                 </div>
 
-                {/* Animated Spring Image Switcher */}
+                {/* Main Apple Stage (Zero layout stacking, zero loader spinners, smooth crossfade) */}
                 <div
-                  className="w-full h-full flex items-center justify-center cursor-zoom-in relative"
+                  className="w-full h-full flex items-center justify-center cursor-zoom-in relative select-none"
                   onClick={() => setZoomOpen(true)}
                 >
-                  <AnimatePresence mode="wait">
-                    <motion.div
+                  <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-5">
+                    <ProductImage
                       key={activeImage}
-                      initial={{ opacity: 0, scale: 0.96 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.96 }}
-                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                      className="w-full h-full flex items-center justify-center"
-                    >
-                      <ProductImage
-                        src={activeImage}
-                        fallbackImages={product.fallbackImages}
-                        alt={product.name}
-                        department={product.department}
-                        category={product.category}
-                        stageTheme={{ background: "#ffffff", borderColor: "#e5e7eb", textColor: "#09090b", isLight: true }}
-                        priority={true}
-                        loading="eager"
-                        width={1000}
-                        height={1000}
-                        className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
+                      src={activeImage}
+                      fallbackImages={product.fallbackImages}
+                      alt={product.name}
+                      department={product.department}
+                      category={product.category}
+                      stageTheme={{ background: "#ffffff", borderColor: "#e5e7eb", textColor: "#09090b", isLight: true }}
+                      priority={true}
+                      loading="eager"
+                      width={1000}
+                      height={1000}
+                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
                 </div>
 
                 {/* Left/Right Arrow Controls */}
@@ -478,7 +485,13 @@ const ProductPage = () => {
                       key={color.name}
                       onClick={() => {
                         setSelectedColor(index);
-                        setActiveImageIndex(0);
+                        const vImg = product.colors?.[index]?.image;
+                        if (vImg) {
+                          const vIdx = galleryList.indexOf(vImg);
+                          if (vIdx !== -1) {
+                            setActiveImageIndex(vIdx);
+                          }
+                        }
                       }}
                       className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl border text-[13px] font-medium transition-all ${
                         selectedColor === index
