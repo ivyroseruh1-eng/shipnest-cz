@@ -72,7 +72,7 @@ const HomePage = () => {
             <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[12px] font-medium">
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Prague Central Hub · Worldwide Express Dispatch</span>
+                <span>Worldwide Express Dispatch · Insured Air Delivery</span>
               </div>
 
               <h1 className="text-4xl sm:text-6xl lg:text-[68px] font-bold text-foreground tracking-tight leading-[1.04]">
@@ -251,7 +251,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* 3. SIGNATURE LOGISTICS & PRAGUE HUB SHOWCASE */}
+      {/* 3. SIGNATURE LOGISTICS & GLOBAL AIR EXPRESS SHOWCASE */}
       <section className="py-16 sm:py-20 border-b border-border bg-background">
         <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-12 gap-10 items-center">
@@ -262,7 +262,7 @@ const HomePage = () => {
                   <div className="flex items-center gap-2.5">
                     <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-[12px] font-mono tracking-wider uppercase text-white/80">
-                      Prague Global Air Dispatch · Active
+                      Global Air Express Dispatch · Active
                     </span>
                   </div>
                   <span className="text-[11px] font-mono text-white/60">SN-HUB-01</span>
@@ -276,7 +276,7 @@ const HomePage = () => {
                     <div>
                       <p className="text-[13px] font-semibold text-white">Central European Fulfillment</p>
                       <p className="text-[12px] text-white/60 mt-0.5 leading-relaxed">
-                        Orders packaged in tamper-evident security cartons at Prague Airport Logistics Park (PRG).
+                        Orders packaged in tamper-evident security cartons at our certified international fulfillment hub.
                       </p>
                     </div>
                   </div>
@@ -322,7 +322,7 @@ const HomePage = () => {
                 Why international tech shopping with ShipNest feels effortless.
               </h2>
               <p className="text-[15px] sm:text-[16px] text-muted-foreground leading-relaxed">
-                Most international electronics shopping suffers from uncertain transit times, damaged parcels, and grey-market inventory. ShipNest operates as a certified Czech electronics house with direct air-freight logistics.
+                Most international electronics shopping suffers from uncertain transit times, damaged parcels, and grey-market inventory. ShipNest operates as an authorized premier electronics house with direct air-freight logistics.
               </p>
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <Link
@@ -335,7 +335,7 @@ const HomePage = () => {
                   to="/about"
                   className="inline-flex items-center justify-center gap-2 bg-secondary text-foreground px-6 py-3 rounded-full text-[13px] font-medium hover:bg-secondary/70 transition-colors"
                 >
-                  Our Prague Facility →
+                  Our Fulfillment Hub →
                 </Link>
               </div>
             </div>
@@ -384,7 +384,7 @@ const HomePage = () => {
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
             {displayedProducts.map((product, idx) => (
-              <Reveal key={product.id} delay={idx * 60}>
+              <Reveal key={product.id} delay={idx * 60} className="h-full">
                 <ProductCard
                   product={product}
                   isWishlisted={isWishlisted(product.id)}
@@ -408,7 +408,7 @@ const HomePage = () => {
               to="/shop"
               className="inline-flex items-center gap-2 bg-foreground text-background hover:bg-foreground/85 px-7 py-3 rounded-full font-semibold text-[13px] transition-colors"
             >
-              <span>Explore Complete 665-Item Store</span>
+              <span>Explore Full Collection</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>

@@ -1,7 +1,7 @@
 // One-line plain-English explainers shown under the current tracking step.
 export const statusExplanations: Record<string, string> = {
-  "Order Placed": "We've received your order and our Prague team is preparing it for dispatch.",
-  "Processing at Warehouse": "Your package is being picked, inspected, and securely sealed at our Prague warehouse.",
+  "Order Placed": "We've received your order and our logistics team is preparing it for dispatch.",
+  "Processing at Warehouse": "Your package is being picked, inspected, and securely sealed at our warehouse.",
   "Departed from Prague": "Your package has left Václav Havel Airport and is on its first international flight.",
   "In Transit to Istanbul": "Your shipment is mid-air on the Prague → Istanbul leg.",
   "Arrived at Istanbul Hub": "Cleared the Istanbul transit hub and is awaiting the next outbound flight.",
@@ -21,6 +21,6 @@ export const explainStatus = (status: string): string | undefined => {
   if (statusExplanations[status]) return statusExplanations[status];
   if (status.startsWith("Dispatched to")) return "Loaded onto the final outbound truck heading to your city.";
   if (status.includes("Cancelled")) return "This order was cancelled. Refund will appear on your statement within 5–7 business days.";
-  if (status.startsWith("Return:")) return "Your return is in transit back to our Prague warehouse.";
+  if (status.startsWith("Return:")) return "Your return is in transit back to our central warehouse.";
   return undefined;
 };

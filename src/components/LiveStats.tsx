@@ -5,7 +5,7 @@ const pillars = [
     icon: Globe2,
     metric: "60+",
     label: "Destination Countries",
-    desc: "Direct express air routing from Prague central hub",
+    desc: "Direct express air routing to 60+ countries",
   },
   {
     icon: ShieldCheck,
@@ -36,7 +36,7 @@ const LiveStats = () => (
           Engineered for International Trust
         </h2>
         <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
-          Every shipment is managed under strict European custody protocols from our Prague facility to your doorstep.
+          Every shipment is managed under strict European custody protocols directly to your doorstep.
         </p>
       </div>
 
