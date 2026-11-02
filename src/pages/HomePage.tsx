@@ -176,7 +176,7 @@ const HomePage = () => {
                   </div>
 
                   {/* High Res Product Visual Stage */}
-                  <div className="aspect-[4/3] sm:aspect-square flex items-center justify-center my-6 overflow-hidden rounded-2xl p-4 border border-border/40 transition-all duration-300" style={{ background: heroStageTheme.background }}>
+                  <div className="aspect-square flex items-center justify-center my-6 overflow-hidden rounded-2xl p-4 border border-border/40 transition-all duration-300" style={{ background: heroStageTheme.background }}>
                     <img
                       src={heroProduct.image}
                       alt={heroProduct.name}

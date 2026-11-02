@@ -63,15 +63,6 @@ const AuthPage = () => {
           <p className="text-[13px] text-muted-foreground">Track every order from one place.</p>
         </div>
 
-        {!isConfigured && (
-          <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-amber-400 text-xs leading-relaxed space-y-1">
-            <p className="font-semibold">Backend Authentication Notice</p>
-            <p className="text-[11px] opacity-90">
-              Supabase environment variables (<code className="font-mono">VITE_SUPABASE_URL</code> &amp; <code className="font-mono">VITE_SUPABASE_PUBLISHABLE_KEY</code>) are not yet configured in your hosting dashboard. Add them to enable live user logins.
-            </p>
-          </div>
-        )}
-
         <button onClick={google} disabled={busy}
           className="w-full flex items-center justify-center gap-2 border border-border bg-background hover:bg-secondary py-3 rounded-full text-[14px] font-medium transition-colors">
           <svg className="w-4 h-4" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6 8-11.3 8a12 12 0 110-24c3 0 5.7 1.1 7.8 3l5.7-5.7C33.8 6.1 29.2 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 16 19 13 24 13c3 0 5.7 1.1 7.8 3l5.7-5.7C33.8 6.1 29.2 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.1 0 9.7-2 13.2-5.2l-6.1-5c-2 1.4-4.5 2.2-7.1 2.2-5.3 0-9.7-3.3-11.3-8l-6.5 5C9.6 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.7 2.1-2 4-3.7 5.4l6.1 5c-.4.4 6.6-4.8 6.6-14.4 0-1.3-.1-2.4-.7-3.5z"/></svg>

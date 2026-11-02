@@ -65,7 +65,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       {/* Product Image Stage */}
       <Link to={`/product/${product.id}`} className="block my-2">
         <div
-          className="aspect-[4/3] sm:aspect-square rounded-xl flex items-center justify-center overflow-hidden p-3 transition-all duration-300 border border-border/40"
+          className="aspect-square rounded-xl flex items-center justify-center overflow-hidden p-3 transition-all duration-300 border border-border/40"
           style={{ background: stageTheme.background }}
         >
           <ProductImage
