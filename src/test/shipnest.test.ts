@@ -117,6 +117,7 @@ describe("ShipNest Logistics & Tracking Engine", () => {
       subtotal: 1000,
       tax: 200,
       total: 1200,
+      notes: "",
       status: "In Transit",
       estimatedDelivery: new Date().toISOString(),
       placedAt: new Date().toISOString(),
