@@ -20,26 +20,25 @@ const imageBgCache = new Map<string, string>();
  * Specific tone images get their matching solid tone.
  */
 const ASSET_BACKGROUND_MAP: Record<string, string> = {
-  // Apple 18 Pro & Flagship Dark Assets (Pure black studio background #000000)
-  "/assets/products/apple/iphone-18-pro-black.jpg": "#000000",
-  "/assets/products/apple/iphone-18-pro-burgundy.jpg": "#000000",
-  "/assets/products/apple/iphone-18-pro-glacier.jpg": "#000000",
-  "/assets/products/apple/iphone-18-pro-hero.jpg": "#000000",
-  "/assets/products/apple/iphone-18-pro-silver.jpg": "#000000",
-  "/assets/products/apple/iphone-18-pro-size.jpg": "#000000",
-  // Apple Duo and White Studio Assets
-  "/assets/products/apple/iphone-duo-closed.jpg": "#ffffff",
-  "/assets/products/apple/iphone-duo-display.jpg": "#ffffff",
-  "/assets/products/apple/iphone-duo-foldable.jpg": "#ffffff",
-  "/assets/products/apple/iphone-duo-landscape.jpg": "#ffffff",
-  "/assets/products/apple/iphone-duo-laptop.jpg": "#ffffff",
-  "/assets/products/apple-iphone-duo.jpg": "#ffffff",
+  // Apple Flagship Studio Assets (Consistent pure white #ffffff studio presentation)
   "/assets/products/apple-iphone18-pro-max.jpg": "#ffffff",
   "/assets/products/apple-iphone18-pro.jpg": "#ffffff",
   "/assets/products/apple/iphone-18-pro-burgundy-square.jpg": "#ffffff",
   "/assets/products/apple/iphone-18-pro-glacier-square.jpg": "#ffffff",
   "/assets/products/apple/iphone-18-pro-silver-square.jpg": "#ffffff",
   "/assets/products/apple/iphone-18-pro-black-square.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-hero.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-burgundy.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-glacier.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-silver.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-black.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-size.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-closed.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-display.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-foldable.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-landscape.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-laptop.jpg": "#ffffff",
+  "/assets/products/apple-iphone-duo.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-nightsky.jpg": "#ffffff",
 };
 
@@ -139,30 +138,7 @@ export function getProductStageTheme(
   const hex = (variant?.hex || "").toLowerCase();
   const prodName = (product?.name || "").toLowerCase();
 
-  const isBlackVariant =
-    (variantName.includes("black") || variantName.includes("midnight") || hex === "#1c1c1e" || hex === "#2b2b2d") &&
-    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
-
-  const isBurgundyVariant =
-    (variantName.includes("burgundy") || hex === "#5e2734") &&
-    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
-
-  const isGlacierVariant =
-    (variantName.includes("glacier") || hex === "#b6c4ce") &&
-    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
-
-  const isSilverVariant =
-    (variantName.includes("silver") || hex === "#e2e4e5") &&
-    (prodName.includes("iphone 18") || normPath.includes("iphone-18"));
-
-  if (isBlackVariant || isBurgundyVariant || isGlacierVariant || isSilverVariant) {
-    return {
-      background: "#000000",
-      borderColor: "#27272a",
-      textColor: "#ffffff",
-      isLight: false,
-    };
-  }
+  // Studio photography renders on clean, seamless solid white canvas
 
   // Default clean white studio container (matches catalogue photography)
   return {

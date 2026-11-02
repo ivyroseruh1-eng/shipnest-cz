@@ -16,7 +16,7 @@ const verifiedReviewsDatabase: Record<string, Review[]> = {
       name: "Marcus V.",
       date: "2026-10-18",
       rating: 5,
-      comment: "Dispatched promptly from Prague with intact factory seals. Variable aperture camera sensor performs noticeably better in low light.",
+      comment: "Dispatched promptly via air express with intact factory seals. Variable aperture camera sensor performs noticeably better in low light.",
       verified: true,
       location: "Stockholm, SE",
     },

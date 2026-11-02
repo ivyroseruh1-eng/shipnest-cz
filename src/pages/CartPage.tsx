@@ -56,7 +56,7 @@ const CartPage = () => {
           Review Your Bag
         </h1>
         <p className="text-muted-foreground text-[14px] mb-8">
-          {items.length} {items.length === 1 ? "device" : "devices"} · Dispatches within 24 hours from Prague
+          {items.length} {items.length === 1 ? "device" : "devices"} · Dispatches within 24 hours via Insured Air Express
         </p>
 
         {/* Free Shipping Progress Callout */}

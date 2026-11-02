@@ -61,7 +61,7 @@ const ShoppingAssistant = ({ initialOpen = false, onClose }: ShoppingAssistantPr
       return "The iPhone Air introduces an ultra-thin 5.6mm aerospace titanium enclosure, uncompromised Pro performance, and high-efficiency silicon in our Technology department.";
     }
     if (q.includes("shipping") || q.includes("delivery") || q.includes("how long")) {
-      return "All shipments dispatch directly from our Central European logistics hub in Prague, Czech Republic via DHL Express, FedEx Priority, and UPS. Precise arrival dates and carrier options are calculated at checkout according to your destination address.";
+      return "All shipments dispatch directly from our international logistics hub via DHL Express, FedEx Priority, and UPS. Precise arrival dates and carrier options are calculated at checkout according to your destination address.";
     }
     if (q.includes("track") || q.includes("status") || q.includes("where is")) {
       return "Track your parcel anytime at /track using your tracking number or order ID. You can monitor live carrier radar milestones, customs clearance events, and delivery ETA. Delivery includes a secure 4-digit PIN handover.";
@@ -76,7 +76,7 @@ const ShoppingAssistant = ({ initialOpen = false, onClose }: ShoppingAssistantPr
       return "We accept Visa, MasterCard, American Express, Apple Pay, and Google Pay — every transaction is protected with 256-bit AES encryption.";
     }
 
-    return "ShipNest curates 665 flagship technology devices and authenticated luxury goods with global express dispatch from Prague to 60+ countries. Feel free to ask about any brand (such as Apple, Rolex, Louis Vuitton, Cartier, or Creed) or visit /shop to browse.";
+    return "ShipNest curates premier flagship technology devices and authenticated luxury goods with global express dispatch to 60+ countries. Feel free to ask about any brand (such as Apple, Rolex, Louis Vuitton, Cartier, or Creed) or visit /shop to browse.";
   };
 
   const send = async () => {

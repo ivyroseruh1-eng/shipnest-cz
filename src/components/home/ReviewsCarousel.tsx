@@ -5,7 +5,7 @@ const commitments = [
   {
     icon: ShieldCheck,
     title: "100% Verified Origin",
-    body: "Every product is inspected, authenticated, and sealed under strict custody at our Central European logistics hub in Prague.",
+    body: "Every product is inspected, authenticated, and sealed under strict custody at our verified international logistics hub.",
     badge: "Audited Sourcing",
   },
   {
@@ -66,7 +66,7 @@ const ReviewsCarousel = () => {
               </div>
 
               <div className="pt-3 border-t border-border/60 text-[11px] font-medium text-muted-foreground">
-                Prague Hub Protocol
+                Global Hub Protocol
               </div>
             </div>
           ))}

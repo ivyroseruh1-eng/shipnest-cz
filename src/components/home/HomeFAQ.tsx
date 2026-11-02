@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 const faqs = [
   {
     q: "How fast does ShipNest deliver?",
-    a: "Every order ships from our Prague hub via express partners (DHL, FedEx, UPS). Your exact delivery date is calculated and confirmed at checkout based on your address.",
+    a: "Every order ships from our secure international logistics hub via express partners (DHL, FedEx, UPS). Your exact delivery date is calculated and confirmed at checkout based on your address.",
   },
   {
     q: "Are products genuine and sealed?",

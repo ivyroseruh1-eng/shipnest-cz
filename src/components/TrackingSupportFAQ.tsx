@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const faqs = [
   { q: "My package hasn't moved in a few days — is it delayed?", a: "International legs often show no scans for 24-72 hours while in flight or in customs. If there's no update after 5 days, message support and we'll escalate with the carrier." },
-  { q: "Why is the package routed through Beijing/Istanbul?", a: "Our most reliable Prague → India corridor uses a consolidation hub. This adds 1-2 days but cuts customs delays significantly." },
+  { q: "Why is the package routed through Beijing/Istanbul?", a: "Our international priority air corridors utilize strategic hub consolidation to optimize customs clearance and guarantee safe delivery." },
   { q: "I lost my delivery PIN — what now?", a: "Sign in to ShipNest with the email you used at checkout — the PIN is shown on the order page. You can also request a one-time reset via support." },
   { q: "Can I change my delivery address mid-transit?", a: "Address changes are possible until the package reaches its destination country. Contact support with your order ID and the new address." },
 ];

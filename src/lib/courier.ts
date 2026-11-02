@@ -2,10 +2,10 @@
 // looks like a real, traceable shipment with carrier name + AWB + weight.
 
 const couriers = [
-  { name: "DHL Express", code: "DHL", awbPrefix: "JJD", facility: "Prague — Václav Havel Airport (PRG) Gateway" },
-  { name: "FedEx International Priority", code: "FX", awbPrefix: "7791", facility: "Prague — Stará Boleslav Hub" },
-  { name: "UPS Worldwide Express", code: "UPS", awbPrefix: "1Z6X4F", facility: "Prague — Rudná Distribution Center" },
-  { name: "Aramex Global", code: "ARX", awbPrefix: "4391", facility: "Prague — Horoměřice Sort Facility" },
+  { name: "DHL Express", code: "DHL", awbPrefix: "JJD", facility: "Central Air Cargo Gateway (PRG)" },
+  { name: "FedEx International Priority", code: "FX", awbPrefix: "7791", facility: "International Air Logistics Hub" },
+  { name: "UPS Worldwide Express", code: "UPS", awbPrefix: "1Z6X4F", facility: "Global Air Cargo Center" },
+  { name: "Aramex Global", code: "ARX", awbPrefix: "4391", facility: "Worldwide Air Sort Facility" },
 ];
 
 const indiaHandover = [
