@@ -83,7 +83,7 @@ const OrderConfirmationPage = () => {
                 Thank you, {order.customer.name.split(" ")[0]}.
               </h1>
               <p className="text-muted-foreground text-[14px] mt-2 max-w-lg mx-auto leading-relaxed">
-                We've sent a confirmed receipt to <span className="text-foreground font-semibold">{order.customer.email}</span>. Your device is being staged for express air dispatch at our Prague logistics facility.
+                We've sent a confirmed receipt to <span className="text-foreground font-semibold">{order.customer.email}</span>. Your device is being staged for express air dispatch at our central logistics facility.
               </p>
             </div>
 
@@ -135,12 +135,12 @@ const OrderConfirmationPage = () => {
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-[13px] font-bold text-foreground uppercase tracking-wider">Flight Routing & Dispatch</h2>
             <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-primary/10 text-primary font-bold uppercase tracking-wider">
-              Staging at Prague
+              Staging at Central Hub
             </span>
           </div>
 
           <RouteMap
-            origin={{ label: "Prague, CZ", sub: "ShipNest Hub 01" }}
+            origin={{ label: "Express Hub", sub: "Air Freight Terminal" }}
             destination={{ label: `${order.customer.city || "Destination"}, ${order.customer.country || "Intl"}`, sub: meta.indiaCourier }}
             progress={0.06}
             height={180}
@@ -149,7 +149,7 @@ const OrderConfirmationPage = () => {
           <div className="grid grid-cols-3 gap-3 mt-4 text-center sm:text-left border-t border-border/60 pt-4">
             <div>
               <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">Origin Hub</span>
-              <p className="text-[13px] font-bold text-foreground mt-0.5">Prague, CZ</p>
+              <p className="text-[13px] font-bold text-foreground mt-0.5">Express Hub</p>
               <p className="text-[11px] text-muted-foreground">ShipNest Air Freight</p>
             </div>
             <div>

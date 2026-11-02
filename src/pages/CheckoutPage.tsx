@@ -642,7 +642,7 @@ const CheckoutPage = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="Prague"
+                      placeholder="New York"
                       value={form.city}
                       onChange={(e) => update("city", e.target.value)}
                       className={inputClass}
@@ -655,7 +655,7 @@ const CheckoutPage = () => {
                     </label>
                     <input
                       type="text"
-                      placeholder="Czech Republic"
+                      placeholder="United States"
                       value={form.country}
                       onChange={(e) => update("country", e.target.value)}
                       className={inputClass}

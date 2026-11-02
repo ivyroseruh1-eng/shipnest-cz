@@ -25,7 +25,7 @@ const DeliveryEstimator = () => {
             </div>
 
             <div className="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-[12px] text-muted-foreground">
-              <span className="flex items-center gap-1.5"><Package className="w-3.5 h-3.5" /> Ships from Prague</span>
+              <span className="flex items-center gap-1.5"><Package className="w-3.5 h-3.5" /> Ships Priority Express</span>
               <span className="flex items-center gap-1.5"><Plane className="w-3.5 h-3.5" /> Express worldwide</span>
               <span className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" /> 60+ countries</span>
             </div>
@@ -51,7 +51,7 @@ const DeliveryEstimator = () => {
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[11px] text-muted-foreground uppercase tracking-wider">From</p>
-                    <p className="text-[15px] font-semibold text-foreground mt-1">Prague, CZ</p>
+                    <p className="text-[15px] font-semibold text-foreground mt-1">Express Hub</p>
                     <p className="text-[11px] text-muted-foreground">ShipNest Hub 01</p>
                   </div>
                   <div className="flex-1 mx-4 relative h-px bg-border">

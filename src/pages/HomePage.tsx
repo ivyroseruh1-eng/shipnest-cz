@@ -34,7 +34,9 @@ const HomePage = () => {
 
   // Flagship Hero Products
   const heroProduct = homepageProducts.find(p => p.id === "iphone-18-pro-max") || homepageProducts[0];
+  const [heroColorIndex, setHeroColorIndex] = useState(0);
   const heroStageTheme = useMemo(() => getProductStageTheme(heroProduct), [heroProduct]);
+  const activeHeroImage = heroProduct.colors?.[heroColorIndex]?.image || heroProduct.image;
   const secondaryHero = homepageProducts.find(p => p.id === "iphone-duo") || homepageProducts.find(p => p.id === "galaxy-s26-ultra") || homepageProducts[3];
 
   // Curated Collections — 6 products initially per section as requested
@@ -175,10 +177,32 @@ const HomePage = () => {
                     </div>
                   </div>
 
-                  {/* High Res Product Visual Stage */}
-                  <div className="aspect-square flex items-center justify-center my-6 overflow-hidden rounded-2xl p-4 border border-border/40 transition-all duration-300" style={{ background: heroStageTheme.background }}>
+                  {/* Apple Style Interactive Finish Swatches */}
+                  {heroProduct.colors && heroProduct.colors.length > 0 && (
+                    <div className="flex items-center justify-center gap-2 mt-4 mb-2">
+                      {heroProduct.colors.map((c, i) => (
+                        <button
+                          key={c.name}
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setHeroColorIndex(i);
+                          }}
+                          className={`w-4 h-4 rounded-full border border-black/15 transition-all ${
+                            heroColorIndex === i ? "ring-2 ring-primary ring-offset-2 scale-110" : "hover:scale-105 opacity-80"
+                          }`}
+                          style={{ backgroundColor: c.hex }}
+                          title={c.name}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  {/* High Res Product Visual Stage on Pure White #ffffff */}
+                  <div className="aspect-square flex items-center justify-center my-4 overflow-hidden rounded-2xl p-4 bg-white transition-all duration-300">
                     <img
-                      src={heroProduct.image}
+                      src={activeHeroImage}
                       alt={heroProduct.name}
                       className="max-h-[300px] sm:max-h-[340px] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
                     />

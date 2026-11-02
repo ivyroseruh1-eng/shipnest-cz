@@ -15,7 +15,7 @@ interface Props {
 const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   const [added, setAdded] = useState(false);
   const { addToCart } = useCart();
-  const monthly = product.price ? (product.price / 12).toFixed(2) : null;
+  const monthly = product.price ? Math.round(product.price / 12) : null;
   const stageTheme = useMemo(() => getProductStageTheme(product), [product]);
 
   const handleQuickAdd = (e: React.MouseEvent) => {
@@ -28,7 +28,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
   };
 
   return (
-    <div className="group relative flex flex-col h-full bg-card border border-border/70 rounded-2xl p-3 sm:p-4 transition-all duration-300 hover:shadow-xl hover:border-foreground/20 hover:-translate-y-1 overflow-hidden">
+    <div className="group relative flex flex-col h-full bg-card border border-border/70 rounded-3xl p-3.5 sm:p-4 transition-all duration-300 hover:shadow-xl hover:border-foreground/20 hover:-translate-y-1 overflow-hidden">
       {/* Top badges: Stock / Variant Badge (fixed h-6 to keep all cards uniform) */}
       <div className="flex items-center justify-between h-6 mb-1.5">
         {product.badge ? (
@@ -42,7 +42,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
             {product.badge}
           </span>
         ) : (
-          <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+          <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
             {product.brand}
           </span>
         )}
@@ -63,11 +63,10 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
         )}
       </div>
 
-      {/* Product Image Stage (No double inner border, seamless 1:1 square stage) */}
-      <Link to={`/product/${product.id}`} className="block my-1">
+      {/* Product Image Stage (Seamless 1:1 square stage on pure white #ffffff) */}
+      <Link to={`/product/${product.id}`} className="block my-1 focus:outline-none">
         <div
-          className="aspect-square rounded-xl flex items-center justify-center overflow-hidden p-2.5 transition-all duration-300"
-          style={{ background: stageTheme.background }}
+          className="aspect-square rounded-2xl flex items-center justify-center overflow-hidden p-2.5 transition-all duration-300 bg-white"
         >
           <ProductImage
             src={product.image}
@@ -75,7 +74,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
             alt={product.name}
             department={product.department}
             category={product.category}
-            stageTheme={stageTheme}
+            stageTheme={{ background: "#ffffff", borderColor: "#e5e7eb", textColor: "#09090b", isLight: true }}
             loading="lazy"
             width={400}
             height={400}
@@ -114,7 +113,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
           {product.specs[0] || product.brand}
         </p>
 
-        {/* Rating / Verification strip (h-4 to keep card heights uniform) */}
+        {/* Rating / Verification strip */}
         <div className="flex items-center gap-1.5 mt-1.5 text-[11px] text-muted-foreground h-4">
           {product.reviews > 0 ? (
             <>
@@ -150,7 +149,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
               </div>
               {monthly && (
                 <span className="text-[10px] sm:text-[11px] text-muted-foreground tabular-nums font-medium">
-                  or ${monthly}/mo
+                  From ${monthly}/mo
                 </span>
               )}
             </>
@@ -162,12 +161,12 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
           )}
         </div>
 
-        {/* Dedicated Full-Width Action Button */}
+        {/* Dedicated Full-Width Action Button (Apple Style) */}
         {product.price !== null ? (
           <button
             onClick={handleQuickAdd}
             disabled={!product.inStock}
-            className={`w-full py-2 px-3 rounded-xl text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 shadow-2xs active:scale-[0.98] ${
+            className={`w-full py-2.5 px-3 rounded-full text-[12px] font-semibold transition-all flex items-center justify-center gap-1.5 shadow-2xs active:scale-[0.98] ${
               added
                 ? "bg-emerald-600 text-white"
                 : "bg-foreground text-background hover:bg-foreground/85"
@@ -176,18 +175,18 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
           >
             {added ? (
               <>
-                <Check className="w-3.5 h-3.5" /> Added
+                <Check className="w-3.5 h-3.5" /> Added to Bag
               </>
             ) : (
               <>
-                <ShoppingBag className="w-3.5 h-3.5" /> Add
+                <ShoppingBag className="w-3.5 h-3.5" /> Add to Bag
               </>
             )}
           </button>
         ) : (
           <Link
             to={`/product/${product.id}`}
-            className="w-full py-2 px-3 rounded-xl text-[12px] font-semibold bg-secondary text-foreground hover:bg-foreground hover:text-background transition-colors flex items-center justify-center gap-1"
+            className="w-full py-2.5 px-3 rounded-full text-[12px] font-semibold bg-secondary text-foreground hover:bg-foreground hover:text-background transition-colors flex items-center justify-center gap-1"
           >
             Details <ArrowRight className="w-3.5 h-3.5" />
           </Link>

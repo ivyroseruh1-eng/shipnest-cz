@@ -32,9 +32,9 @@ const certs = [
   },
   {
     icon: Award,
-    title: "Czech Trade Registry",
+    title: "Commercial Trade Registry",
     badge: "IČO 12345678",
-    sub: "Prague · est. 2021",
+    sub: "EU Licensed · est. 2021",
     accent: "text-foreground",
   },
 ];

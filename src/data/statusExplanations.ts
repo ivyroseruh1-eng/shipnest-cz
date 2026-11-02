@@ -2,8 +2,9 @@
 export const statusExplanations: Record<string, string> = {
   "Order Placed": "We've received your order and our logistics team is preparing it for dispatch.",
   "Processing at Warehouse": "Your package is being picked, inspected, and securely sealed at our warehouse.",
-  "Departed from Prague": "Your package has left Václav Havel Airport and is on its first international flight.",
-  "In Transit to Istanbul": "Your shipment is mid-air on the Prague → Istanbul leg.",
+  "Departed from Prague": "Your package has cleared outbound cargo dispatch and is on its international flight.",
+  "Departed International Gateway": "Your package has cleared outbound cargo dispatch and is on its international flight.",
+  "In Transit to Istanbul": "Your shipment is mid-air on the outbound international transit leg.",
   "Arrived at Istanbul Hub": "Cleared the Istanbul transit hub and is awaiting the next outbound flight.",
   "In Transit to Beijing": "Currently on the Istanbul → Beijing long-haul leg. No scans during flight.",
   "Arrived at Beijing Hub": "Arrived at the Beijing consolidation hub for the final India-bound flight.",

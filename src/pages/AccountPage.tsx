@@ -182,7 +182,7 @@ const AccountPage = () => {
       <section className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-foreground">Order & Dispatch History</h2>
-          <span className="text-xs text-muted-foreground">Dispatched via Prague Central</span>
+          <span className="text-xs text-muted-foreground">Dispatched via Express Air</span>
         </div>
 
         {ordersLoading ? (

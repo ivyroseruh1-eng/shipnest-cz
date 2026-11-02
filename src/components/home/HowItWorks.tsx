@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 
 const steps = [
   { icon: Package, title: "Order", body: "Pick your device. Pay securely. Get instant confirmation." },
-  { icon: Warehouse, title: "Prague hub", body: "Sealed, inspected, and dispatched within 24 hours." },
+  { icon: Warehouse, title: "Fulfillment hub", body: "Sealed, inspected, and dispatched within 24 hours." },
   { icon: Plane, title: "Express transit", body: "Routed via DHL, FedEx or UPS with real-time tracking." },
   { icon: Home, title: "At your door", body: "Local last-mile delivery with signature on receipt." },
 ];
@@ -16,7 +16,7 @@ const HowItWorks = () => {
           <div className="text-center mb-12">
             <p className="text-[12px] text-primary font-medium uppercase tracking-wider mb-2">How it works</p>
             <h2 className="text-3xl sm:text-4xl font-semibold text-foreground tracking-tight">
-              From Prague to your door.
+              From our warehouse to your door.
             </h2>
             <p className="text-[15px] text-muted-foreground mt-3 max-w-xl mx-auto">
               Every order follows the same trusted path — engineered for speed, security and visibility.
