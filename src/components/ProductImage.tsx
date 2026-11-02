@@ -19,6 +19,22 @@ interface ProductImageProps {
   onImageChange?: (resolvedSrc: string) => void;
 }
 
+// In-memory global cache of successfully decoded/loaded image URLs so they never flash loaders
+export const loadedImageCache = new Set<string>();
+
+export function preloadProductImage(url: string): Promise<void> {
+  if (!url || loadedImageCache.has(url)) return Promise.resolve();
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => {
+      loadedImageCache.add(url);
+      resolve();
+    };
+    img.onerror = () => resolve();
+    img.src = url;
+  });
+}
+
 // Department-level verified fallback photography if specific product asset fails to resolve
 const DEPARTMENT_FALLBACKS: Record<string, string> = {
   "Designer Fashion & Accessories": "/assets/categories/luxury-bags.jpg",
@@ -50,8 +66,9 @@ export const ProductImage = ({
     new Set([src, ...fallbackImages, departmentFallback].filter(Boolean) as string[])
   );
 
+  const isEager = priority || loading === "eager";
   const [candidateIndex, setCandidateIndex] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(() => loadedImageCache.has(src) || isEager);
   const [failedAll, setFailedAll] = useState(false);
   const [displaySrc, setDisplaySrc] = useState<string>(candidates[0] || src);
   const imgRef = useRef<HTMLImageElement | null>(null);
@@ -59,10 +76,11 @@ export const ProductImage = ({
   // Reset when primary src changes (e.g. variant selection)
   useEffect(() => {
     setCandidateIndex(0);
-    setIsLoaded(false);
+    const cached = loadedImageCache.has(src);
+    setIsLoaded(cached || isEager);
     setFailedAll(false);
     setDisplaySrc(src);
-  }, [src]);
+  }, [src, isEager]);
 
   const currentSrc = candidates[candidateIndex];
   const effectiveTheme = stageTheme || getProductImageBackground(currentSrc);
@@ -71,7 +89,7 @@ export const ProductImage = ({
     if (candidateIndex < candidates.length - 1) {
       const nextIndex = candidateIndex + 1;
       setCandidateIndex(nextIndex);
-      setIsLoaded(false);
+      setIsLoaded(loadedImageCache.has(candidates[nextIndex]));
       setDisplaySrc(candidates[nextIndex]);
       if (onImageChange) {
         onImageChange(candidates[nextIndex]);
@@ -85,29 +103,29 @@ export const ProductImage = ({
   const handleLoad = async (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.currentTarget;
     try {
-      // Re-frame and center wide/off-center landscape banners (iPhone 18 Pro, Pro Max, Duo)
       const optimizedSrc = await processProductImage(target);
       if (optimizedSrc && optimizedSrc !== displaySrc) {
         setDisplaySrc(optimizedSrc);
+        loadedImageCache.add(optimizedSrc);
       }
     } catch {
       // Graceful fallback to original
     }
+    loadedImageCache.add(displaySrc);
+    loadedImageCache.add(src);
     setIsLoaded(true);
     if (onImageChange && currentSrc) {
       onImageChange(currentSrc);
     }
   };
 
-  const isEager = priority || loading === "eager";
-
   return (
     <div
       className={`relative w-full h-full flex items-center justify-center overflow-hidden transition-colors duration-200 ${containerClassName}`}
       style={{ background: effectiveTheme.background }}
     >
-      {/* Subtle loader skeleton during initial network decode */}
-      {!isLoaded && !failedAll && (
+      {/* Subtle loader skeleton only during cold initial network decode on lazy images */}
+      {!isLoaded && !failedAll && !isEager && (
         <div
           className="absolute inset-0 flex items-center justify-center z-10"
           style={{ background: effectiveTheme.background }}
@@ -131,8 +149,8 @@ export const ProductImage = ({
           onLoad={handleLoad}
           onError={handleError}
           className={`${className} transition-opacity duration-200 ${
-            isLoaded ? "opacity-100" : "opacity-0"
-          } ${effectiveTheme.isLight ? "mix-blend-multiply" : ""}`}
+            isLoaded || isEager ? "opacity-100" : "opacity-0"
+          }`}
         />
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-secondary/30">
