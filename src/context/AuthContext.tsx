@@ -8,77 +8,65 @@ interface AuthContextType {
   loading: boolean;
   isConfigured: boolean;
   signOut: () => Promise<void>;
-  signInWithPassword: (email: string, password?: string) => Promise<{ error: Error | null }>;
-  signUp: (email: string, password: string, fullName: string) => Promise<{ error: Error | null }>;
-  signInWithGoogle: () => Promise<{ error: Error | null }>;
-  signInDemo: () => Promise<void>;
+  signIn: (identifier: string, password: string) => Promise<{ error: Error | null }>;
+  signUp: (username: string, email: string, password: string, fullName: string) => Promise<{ error: Error | null }>;
 }
 
-const LOCAL_STORAGE_KEY = "shipnest_auth_session";
+const STALE_LOCAL_KEY = "shipnest_auth_session";
 
-const createLocalUser = (email: string, fullName?: string): User => {
-  return {
-    id: "usr_" + Math.random().toString(36).substring(2, 10),
-    app_metadata: { provider: "email" },
-    user_metadata: { full_name: fullName || email.split("@")[0] },
-    aud: "authenticated",
-    confirmation_sent_at: new Date().toISOString(),
-    confirmed_at: new Date().toISOString(),
-    created_at: new Date().toISOString(),
-    email,
-    email_confirmed_at: new Date().toISOString(),
-    last_sign_in_at: new Date().toISOString(),
-    phone: "",
-    role: "authenticated",
-    updated_at: new Date().toISOString(),
-  } as User;
+const friendlyError = (message?: string): Error => {
+  const msg = (message || "").toLowerCase();
+  if (msg.includes("invalid login credentials")) {
+    return new Error("Wrong email/username or password. Please try again.");
+  }
+  if (msg.includes("already registered") || msg.includes("already exists")) {
+    return new Error("An account with this email already exists. Please sign in instead.");
+  }
+  if (msg.includes("username") && msg.includes("taken")) {
+    return new Error("That username is taken. Please choose another.");
+  }
+  if (msg.includes("rate limit")) {
+    return new Error("Too many attempts. Please wait a moment and try again.");
+  }
+  if (msg.includes("network") || msg.includes("fetch") || msg.includes("failed to fetch")) {
+    return new Error("Network problem — please check your connection and try again.");
+  }
+  return new Error(message || "Something went wrong. Please try again.");
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (saved) return JSON.parse(saved);
-    } catch (e) {
-      // ignore
-    }
-    return null;
-  });
+  const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let active = true;
 
-    // Fast fail-safe: loading must resolve immediately so user never gets stuck
+    // Remove stale fake/local sessions from the older demo login
+    try {
+      localStorage.removeItem(STALE_LOCAL_KEY);
+    } catch (e) {}
+
+    // Fail-safe so the UI never hangs on a slow network
     const safetyTimer = setTimeout(() => {
       if (active) setLoading(false);
-    }, 400);
+    }, 4000);
 
     try {
       const { data } = supabase.auth.onAuthStateChange((_e, s) => {
         if (!active) return;
         setSession(s);
-        if (s?.user) {
-          setUser(s.user);
-          try {
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(s.user));
-          } catch (e) {}
-        }
+        setUser(s?.user ?? null);
       });
 
-      supabase.auth.getSession()
+      supabase.auth
+        .getSession()
         .then(({ data: { session: s } }) => {
           if (!active) return;
-          if (s?.user) {
-            setSession(s);
-            setUser(s.user);
-            try {
-              localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(s.user));
-            } catch (e) {}
-          }
+          setSession(s);
+          setUser(s?.user ?? null);
           setLoading(false);
         })
         .catch(() => {
@@ -99,97 +87,67 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  const signInWithPassword = async (email: string, password = "defaultPassword123") => {
-    try {
-      // 2.5s network timeout race so login never hangs or keeps loading
-      const remotePromise = supabase.auth.signInWithPassword({ email, password });
-      const timeoutPromise = new Promise<{ error: Error }>((resolve) =>
-        setTimeout(() => resolve({ error: new Error("NETWORK_TIMEOUT") }), 2500)
-      );
-
-      const res: any = await Promise.race([remotePromise, timeoutPromise]);
-      if (res?.data?.user) {
-        setUser(res.data.user);
-        setSession(res.data.session);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(res.data.user));
-        return { error: null };
-      }
-    } catch (e) {
-      // Fall through to instant local session
+  const signIn = async (identifier: string, password: string) => {
+    if (!isSupabaseConfigured) {
+      return { error: new Error("Sign-in is temporarily unavailable. Please try again shortly.") };
     }
-
-    // Seamless fallback: sign the user in locally
-    const localUser = createLocalUser(email);
-    setUser(localUser);
     try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(localUser));
-    } catch (e) {}
-    return { error: null };
+      let email = identifier.trim();
+      // Usernames are resolved to the account email server-side before sign-in
+      if (!email.includes("@")) {
+        const { data: resolved, error: rpcError } = await supabase.rpc("resolve_login_identifier", {
+          identifier: email,
+        });
+        if (rpcError || !resolved || resolved.length === 0 || !resolved[0]?.email) {
+          return { error: new Error("No account found with that username or email.") };
+        }
+        email = resolved[0].email;
+      }
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) return { error: friendlyError(error.message) };
+      if (data.session && data.user) {
+        setUser(data.user);
+        setSession(data.session);
+      }
+      return { error: null };
+    } catch (e: any) {
+      return { error: friendlyError(e?.message) };
+    }
   };
 
-  const signUp = async (email: string, password: string, fullName: string) => {
+  const signUp = async (username: string, email: string, password: string, fullName: string) => {
+    if (!isSupabaseConfigured) {
+      return { error: new Error("Sign-up is temporarily unavailable. Please try again shortly.") };
+    }
     try {
-      const remotePromise = supabase.auth.signUp({
-        email,
+      const { data, error } = await supabase.auth.signUp({
+        email: email.trim(),
         password,
-        options: { data: { full_name: fullName } },
+        options: {
+          emailRedirectTo: `${window.location.origin}/account`,
+          data: {
+            full_name: fullName.trim(),
+            username: username.trim(),
+          },
+        },
       });
-      const timeoutPromise = new Promise<{ error: Error }>((resolve) =>
-        setTimeout(() => resolve({ error: new Error("NETWORK_TIMEOUT") }), 2500)
-      );
-
-      const res: any = await Promise.race([remotePromise, timeoutPromise]);
-      if (res?.data?.user) {
-        setUser(res.data.user);
-        setSession(res.data.session);
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(res.data.user));
+      if (error) return { error: friendlyError(error.message) };
+      if (data.session && data.user) {
+        setUser(data.user);
+        setSession(data.session);
         return { error: null };
       }
-    } catch (e) {
-      // Fall through to instant local session
+      // Without auto-confirm the account exists but is not signed in yet
+      return { error: new Error("Account created. Please sign in with your email or username.") };
+    } catch (e: any) {
+      return { error: friendlyError(e?.message) };
     }
-
-    const localUser = createLocalUser(email, fullName);
-    setUser(localUser);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(localUser));
-    } catch (e) {}
-    return { error: null };
-  };
-
-  const signInWithGoogle = async () => {
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: { redirectTo: `${window.location.origin}/account` },
-      });
-      if (error) throw error;
-      return { error: null };
-    } catch (e) {
-      // Fallback Google demo user
-      const googleUser = createLocalUser("google.shopper@shipnest.com", "Google Shopper");
-      setUser(googleUser);
-      try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(googleUser));
-      } catch (err) {}
-      return { error: null };
-    }
-  };
-
-  const signInDemo = async () => {
-    const demoUser = createLocalUser("shopper@shipnest.com", "Alex Morgan");
-    setUser(demoUser);
-    try {
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(demoUser));
-    } catch (e) {}
   };
 
   const signOut = async () => {
     try {
       await supabase.auth.signOut();
-    } catch (e) {}
-    try {
-      localStorage.removeItem(LOCAL_STORAGE_KEY);
     } catch (e) {}
     setUser(null);
     setSession(null);
@@ -203,10 +161,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         loading,
         isConfigured: isSupabaseConfigured,
         signOut,
-        signInWithPassword,
+        signIn,
         signUp,
-        signInWithGoogle,
-        signInDemo,
       }}
     >
       {children}
