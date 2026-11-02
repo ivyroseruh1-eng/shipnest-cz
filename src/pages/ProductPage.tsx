@@ -28,7 +28,7 @@ import { products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
-import ProductImage from "@/components/ProductImage";
+import ProductImage, { preloadProductImage } from "@/components/ProductImage";
 import { getProductReviews } from "@/data/reviews";
 import { getProductStageTheme } from "@/lib/productPresentation";
 import { toast } from "sonner";

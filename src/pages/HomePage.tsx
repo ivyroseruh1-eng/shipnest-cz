@@ -200,7 +200,7 @@ const HomePage = () => {
                   )}
 
                   {/* High Res Product Visual Stage on Pure White #ffffff */}
-                  <div className="aspect-square flex items-center justify-center my-4 overflow-hidden rounded-2xl p-4 bg-white transition-all duration-300">
+                  <div className="aspect-square flex items-center justify-center my-4 overflow-hidden p-2 transition-all duration-300">
                     <img
                       src={activeHeroImage}
                       alt={heroProduct.name}

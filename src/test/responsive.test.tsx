@@ -15,6 +15,8 @@ import ComparePage from "@/pages/ComparePage";
 import ContactPage from "@/pages/ContactPage";
 import AuthPage from "@/pages/AuthPage";
 import ReturnsPage from "@/pages/ReturnsPage";
+import ProductPage from "@/pages/ProductPage";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +34,29 @@ const REQUIRED_VIEWPORTS = [
   { width: 768, height: 1024, name: "iPad Mini / Tablet (768px)" },
   { width: 1024, height: 768, name: "Desktop Small (1024px)" },
 ];
+
+
+function renderProductPageWithRoute(productId: string) {
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <MemoryRouter initialEntries={[`/product/${productId}`]}>
+          <AuthProvider>
+            <LocationProvider>
+              <CartProvider>
+                <OrderProvider>
+                  <Routes>
+                    <Route path="/product/:id" element={<ProductPage />} />
+                  </Routes>
+                </OrderProvider>
+              </CartProvider>
+            </LocationProvider>
+          </AuthProvider>
+        </MemoryRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  );
+}
 
 function renderWithProviders(ui: React.ReactElement) {
   return render(
@@ -132,6 +157,28 @@ describe("ShipNest Mobile-First & Responsive Geometry", () => {
       Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
 
       const { container } = renderWithProviders(<ReturnsPage />);
+      expect(container).toBeDefined();
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
+    });
+
+    it(`verifies ProductPage renders without crashing for iPhone 18 Pro Max at ${name}`, () => {
+      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
+
+      const { container } = renderProductPageWithRoute("iphone-18-pro-max");
+      expect(container).toBeDefined();
+      expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
+    });
+
+    it(`verifies ProductPage renders without crashing for Louis Vuitton Speedy at ${name}`, () => {
+      Object.defineProperty(window, "innerWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(window, "innerHeight", { writable: true, configurable: true, value: height });
+      Object.defineProperty(document.documentElement, "clientWidth", { writable: true, configurable: true, value: width });
+      Object.defineProperty(document.documentElement, "scrollWidth", { writable: true, configurable: true, value: width });
+
+      const { container } = renderProductPageWithRoute("snl-louis-vuitton-speedy");
       expect(container).toBeDefined();
       expect(document.documentElement.scrollWidth).toBeLessThanOrEqual(window.innerWidth);
     });
