@@ -29,7 +29,7 @@ const Footer = () => {
               <div>
                 <h4 className="text-[14px] font-semibold text-foreground tracking-tight">Worldwide Air Express</h4>
                 <p className="text-[13px] text-muted-foreground mt-1 leading-relaxed">
-                  Dispatched directly from our Prague central hub to over 60 countries with end-to-end milestone tracking.
+                  Dispatched directly to over 60 countries with end-to-end milestone tracking.
                 </p>
               </div>
             </div>
@@ -68,11 +68,11 @@ const Footer = () => {
           <div className="col-span-2 space-y-4 pr-0 md:pr-6">
             <Logo variant="full" size={32} />
             <p className="text-[13px] text-muted-foreground leading-relaxed max-w-sm">
-              ShipNest is a premier international electronics retailer and smart logistics provider based in Prague, Czech Republic. We deliver sealed flagship hardware globally with guaranteed authentic provenance.
+              ShipNest is a premier international electronics retailer and smart logistics provider. We deliver sealed flagship hardware globally with guaranteed authentic provenance.
             </p>
             <div className="pt-2 flex items-center gap-2 text-[12px] text-muted-foreground">
               <Globe className="w-3.5 h-3.5 text-primary" />
-              <span>Prague Central Hub · Dispatching to 60+ countries</span>
+              <span>Worldwide Air Express · Dispatching to 60+ countries</span>
             </div>
           </div>
 
@@ -94,7 +94,7 @@ const Footer = () => {
             <h5 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/80 mb-4">Logistics</h5>
             <ul className="space-y-2.5 text-[13px]">
               <li><Link to="/track" className="text-muted-foreground hover:text-foreground transition-colors">Track Shipment</Link></li>
-              <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">Prague Fulfillment Hub</Link></li>
+              <li><Link to="/about" className="text-muted-foreground hover:text-foreground transition-colors">Fulfillment Hub</Link></li>
               <li><Link to="/returns" className="text-muted-foreground hover:text-foreground transition-colors">Shipping & Returns</Link></li>
               <li><Link to="/contact" className="text-muted-foreground hover:text-foreground transition-colors">Customs & Clearance</Link></li>
               <li><Link to="/admin" className="text-muted-foreground hover:text-foreground transition-colors">Operations Portal</Link></li>

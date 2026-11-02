@@ -171,7 +171,7 @@ const TrackPage = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="text-[14px] font-bold text-foreground uppercase tracking-wider">Air Transit Route</h3>
-                <p className="text-[12px] text-muted-foreground">Prague International Gateway (PRG) to Final Destination</p>
+                <p className="text-[12px] text-muted-foreground">Air Logistics Gateway (PRG) to Final Destination</p>
               </div>
               <span className="text-[12px] font-mono font-bold text-primary">
                 {progress.toFixed(0)}% Completed
@@ -179,7 +179,7 @@ const TrackPage = () => {
             </div>
 
             <RouteMap
-              origin={{ label: "Prague Hub (PRG)", sub: meta.courier.split(" ")[0] }}
+              origin={{ label: "Air Gateway (PRG)", sub: meta.courier.split(" ")[0] }}
               destination={{ label: `${order.customer.city || "Destination"}, ${order.customer.country || "IN"}`, sub: meta.indiaCourier.split(" ")[0] }}
               progress={Math.min(Math.max(completedSteps / order.trackingSteps.length, 0.05), 1)}
               height={190}
@@ -330,9 +330,9 @@ const TrackPage = () => {
         <div className="grid sm:grid-cols-3 gap-4 pt-10 text-left">
           <div className="p-5 bg-card border border-border rounded-2xl space-y-2">
             <Building2 className="w-5 h-5 text-primary" />
-            <p className="text-[13px] font-bold text-foreground">Prague Airport Hub</p>
+            <p className="text-[13px] font-bold text-foreground">Central Air Logistics Hub</p>
             <p className="text-[12px] text-muted-foreground leading-relaxed">
-              Consignments are sorted, sealed and air-dispatched directly from Prague Terminal PRG.
+              Consignments are sorted, sealed and air-dispatched directly from the air cargo terminal.
             </p>
           </div>
 

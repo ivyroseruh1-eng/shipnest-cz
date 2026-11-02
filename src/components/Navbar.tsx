@@ -8,7 +8,7 @@ import Logo from "@/components/brand/Logo";
 import LocationChip from "@/components/location/LocationChip";
 
 const announcements = [
-  "Direct European hub dispatch from Prague · Worldwide insured express air shipping",
+  "Worldwide insured express air shipping · Sealed factory originals",
   "Official manufacturer warranty on electronics · Verified authenticity on all luxury items",
   "Apple iPhone 18 Pro lineup & certified luxury collections available now",
 ];

@@ -7,9 +7,9 @@ const events = [
   { icon: Plane, color: "text-primary", text: "Departed Frankfurt FRA Cargo", time: "23 min ago" },
   { icon: MapPin, color: "text-foreground", text: "Cleared customs · Amsterdam Schiphol", time: "38 min ago" },
   { icon: Plane, color: "text-primary", text: "Departed Istanbul transit hub", time: "1 hr ago" },
-  { icon: Warehouse, color: "text-primary", text: "Scanned at Prague PRG Gateway", time: "1 hr ago" },
+  { icon: Warehouse, color: "text-primary", text: "Scanned at Air Express Gateway", time: "1 hr ago" },
   { icon: CheckCircle2, color: "text-success", text: "Delivered in Madrid, ES", time: "2 hr ago" },
-  { icon: Package, color: "text-primary", text: "Packed at Prague warehouse", time: "3 hr ago" },
+  { icon: Package, color: "text-primary", text: "Packed at central warehouse", time: "3 hr ago" },
   { icon: Truck, color: "text-foreground", text: "Out for delivery in Dubai, AE", time: "3 hr ago" },
   { icon: CheckCircle2, color: "text-success", text: "Delivered in Warsaw, PL", time: "4 hr ago" },
 ];
