@@ -418,6 +418,13 @@ const ProductPage = () => {
                   <Check className="w-3.5 h-3.5" /> In Stock & Ready to Dispatch
                 </span>
               </div>
+
+              {/* Apple-Style Editorial Overview */}
+              {product.description && (
+                <div className="mt-4 pt-3.5 border-t border-border/50 text-[14px] sm:text-[15px] text-muted-foreground leading-relaxed">
+                  <p>{product.description}</p>
+                </div>
+              )}
             </div>
 
             {/* Apple-Style Price Block */}
@@ -669,18 +676,44 @@ const ProductPage = () => {
 
           {activeTab === "specs" && (
             <div className="max-w-3xl mx-auto divide-y divide-border/70 border border-border/80 rounded-3xl bg-card overflow-hidden shadow-xs">
-              {product.specs.map((spec, i) => (
-                <div
-                  key={i}
-                  className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2"
-                >
-                  <span className="text-[13px] font-semibold text-foreground w-48">Feature {i + 1}</span>
-                  <span className="text-[13px] text-muted-foreground flex-1 sm:text-right">{spec}</span>
-                </div>
-              ))}
+              {product.specs.map((spec, i) => {
+                let label = `Specification ${i + 1}`;
+                let value = spec;
+                if (spec.includes(":")) {
+                  const parts = spec.split(":");
+                  label = parts[0].trim();
+                  value = parts.slice(1).join(":").trim();
+                } else {
+                  const lower = spec.toLowerCase();
+                  if (lower.includes("oled") || lower.includes("retina") || lower.includes("display") || lower.includes("screen") || lower.includes("amoled")) {
+                    label = "Display";
+                  } else if (lower.includes("chip") || lower.includes("bionic") || lower.includes("silicon") || lower.includes("snapdragon") || lower.includes("tensor") || lower.includes("exynos")) {
+                    label = "Processor & Chip";
+                  } else if (lower.includes("camera") || lower.includes("mp") || lower.includes("fusion") || lower.includes("telephoto") || lower.includes("ultra wide") || lower.includes("zoom")) {
+                    label = "Camera System";
+                  } else if (lower.includes("titanium") || lower.includes("unibody") || lower.includes("aluminum") || lower.includes("chassis") || lower.includes("enclosure") || lower.includes("hinge")) {
+                    label = "Materials & Enclosure";
+                  } else if (lower.includes("battery") || lower.includes("playback") || lower.includes("mah") || lower.includes("magsafe") || lower.includes("charging")) {
+                    label = "Power & Battery";
+                  } else if (lower.includes("video") || lower.includes("fps") || lower.includes("dolby") || lower.includes("cinematic")) {
+                    label = "Video Recording";
+                  } else if (lower.includes("usb") || lower.includes("wi-fi") || lower.includes("5g") || lower.includes("bluetooth") || lower.includes("thunderbolt")) {
+                    label = "Connectivity";
+                  }
+                }
+                return (
+                  <div
+                    key={i}
+                    className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2"
+                  >
+                    <span className="text-[13px] font-semibold text-foreground w-48 shrink-0">{label}</span>
+                    <span className="text-[13px] text-muted-foreground flex-1 sm:text-right">{value}</span>
+                  </div>
+                );
+              })}
               {product.variantsToVerify && (
                 <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 bg-secondary/20">
-                  <span className="text-[13px] font-semibold text-foreground w-48">Variant Specifications</span>
+                  <span className="text-[13px] font-semibold text-foreground w-48 shrink-0">Variant Details</span>
                   <span className="text-[13px] text-muted-foreground flex-1 sm:text-right">
                     {product.variantsToVerify}
                   </span>
