@@ -132,7 +132,7 @@ export const ProductImage = ({
           onError={handleError}
           className={`${className} transition-opacity duration-200 ${
             isLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          } ${effectiveTheme.isLight ? "mix-blend-multiply" : ""}`}
         />
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-center p-4 text-center bg-secondary/30">
