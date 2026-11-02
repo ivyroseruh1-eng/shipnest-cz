@@ -70,7 +70,7 @@ export const technologyProducts: Product[] = [
     department: "Technology",
     price: 2199,
     originalPrice: 2399,
-    image: "/assets/products/apple/iphone-duo-display.jpg",
+    image: "/assets/products/apple-iphone-duo.jpg",
     gallery: [
       "/assets/products/apple/iphone-duo-display.jpg",
       "/assets/products/apple/iphone-duo-foldable.jpg",

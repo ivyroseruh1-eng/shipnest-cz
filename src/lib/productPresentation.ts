@@ -27,23 +27,20 @@ const ASSET_BACKGROUND_MAP: Record<string, string> = {
   "/assets/products/apple/iphone-18-pro-hero.jpg": "#000000",
   "/assets/products/apple/iphone-18-pro-silver.jpg": "#000000",
   "/assets/products/apple/iphone-18-pro-size.jpg": "#000000",
-  // Tone-specific Apple assets
-  "/assets/products/apple/iphone-17.jpg": "#ded5e9",
-  "/assets/products/apple/iphone-air.jpg": "#bbcad5",
   // Apple Duo and White Studio Assets
   "/assets/products/apple/iphone-duo-closed.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-display.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-foldable.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-landscape.jpg": "#ffffff",
   "/assets/products/apple/iphone-duo-laptop.jpg": "#ffffff",
-  "/assets/products/apple-iphone-duo.jpg": "#f5f5f7",
-  "/assets/products/apple-iphone18-pro-max.jpg": "#f5f5f7",
-  "/assets/products/apple-iphone18-pro.jpg": "#f5f5f7",
-  "/assets/products/apple/iphone-18-pro-burgundy-square.jpg": "#f5f5f7",
-  "/assets/products/apple/iphone-18-pro-glacier-square.jpg": "#f5f5f7",
-  "/assets/products/apple/iphone-18-pro-silver-square.jpg": "#f5f5f7",
-  "/assets/products/apple/iphone-18-pro-black-square.jpg": "#f5f5f7",
-  "/assets/products/apple/iphone-duo-nightsky.jpg": "#f5f5f7",
+  "/assets/products/apple-iphone-duo.jpg": "#ffffff",
+  "/assets/products/apple-iphone18-pro-max.jpg": "#ffffff",
+  "/assets/products/apple-iphone18-pro.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-burgundy-square.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-glacier-square.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-silver-square.jpg": "#ffffff",
+  "/assets/products/apple/iphone-18-pro-black-square.jpg": "#ffffff",
+  "/assets/products/apple/iphone-duo-nightsky.jpg": "#ffffff",
 };
 
 /**
