@@ -224,9 +224,10 @@ const CartPage = () => {
                 </button>
               </form>
 
+              {/* Desktop Proceed to Checkout (On mobile, floating sticky action bar provides one-touch checkout) */}
               <Link
                 to="/checkout"
-                className="block w-full bg-foreground text-background py-3.5 rounded-full font-semibold text-center text-[14px] hover:bg-foreground/85 transition-all shadow-sm active:scale-98"
+                className="hidden lg:block w-full bg-foreground text-background py-3.5 rounded-full font-semibold text-center text-[14px] hover:bg-foreground/85 transition-all shadow-sm active:scale-98"
               >
                 Proceed to Checkout
               </Link>
