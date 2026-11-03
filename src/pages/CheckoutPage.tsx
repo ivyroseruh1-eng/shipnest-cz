@@ -47,7 +47,6 @@ import { useLocation } from "@/context/LocationContext";
 import PaymentScene from "@/components/payment/PaymentScene";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
-import PaymentScene from "@/components/payment/PaymentScene";
 
 type PaymentCategory = "card" | "usa" | "europe" | "china" | "japan";
 
