@@ -549,10 +549,10 @@ const CheckoutPage = () => {
           </div>
         </div>
 
-        <form onSubmit={handleAddressSubmit} className="grid lg:grid-cols-12 gap-10 items-start">
+        <form onSubmit={handleAddressSubmit} className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start w-full max-w-full min-w-0">
           {/* Shipping Form (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="bg-card border border-border rounded-3xl p-6 sm:p-8 shadow-xs space-y-5">
+          <div className="lg:col-span-7 space-y-6 w-full max-w-full min-w-0">
+            <div className="bg-card border border-border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-xs space-y-5 w-full max-w-full min-w-0 overflow-hidden">
               <div className="flex items-center justify-between border-b border-border/60 pb-4">
                 <h2 className="text-[18px] font-bold text-foreground tracking-tight">
                   1. Delivery Address
@@ -577,7 +577,7 @@ const CheckoutPage = () => {
                   />
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full min-w-0">
                   <div>
                     <label className="text-[12px] font-semibold text-foreground mb-1 block">
                       Email Address *
@@ -620,7 +620,7 @@ const CheckoutPage = () => {
                   />
                 </div>
 
-                <div className="grid sm:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0">
                   <div>
                     <label className="text-[12px] font-semibold text-foreground mb-1 block">
                       ZIP / Postal Code *
@@ -681,8 +681,8 @@ const CheckoutPage = () => {
           </div>
 
           {/* Right Summary Column (5 cols) */}
-          <div className="lg:col-span-5 space-y-5">
-            <div className="bg-card border border-border rounded-3xl p-6 sm:p-7 shadow-sm space-y-6">
+          <div className="lg:col-span-5 space-y-5 w-full max-w-full min-w-0">
+            <div className="bg-card border border-border rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-7 shadow-sm space-y-6 w-full max-w-full min-w-0 overflow-hidden">
               <h2 className="text-[18px] font-bold text-foreground tracking-tight">Order Review</h2>
 
               {/* Items preview list */}
@@ -710,26 +710,26 @@ const CheckoutPage = () => {
               </div>
 
               {/* Cost Breakdown */}
-              <div className="border-t border-border pt-4 space-y-2.5 text-[13px]">
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal</span>
-                  <span className="text-foreground font-semibold tabular-nums">
+              <div className="border-t border-border pt-4 space-y-2.5 text-[13px] w-full min-w-0">
+                <div className="flex justify-between items-baseline gap-2 text-muted-foreground min-w-0">
+                  <span className="truncate">Subtotal</span>
+                  <span className="text-foreground font-semibold tabular-nums shrink-0">
                     ${subtotal.toFixed(2)}
                   </span>
                 </div>
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Worldwide Air Express</span>
-                  <span className="text-emerald-600 font-semibold">FREE</span>
+                <div className="flex justify-between items-baseline gap-2 text-muted-foreground min-w-0">
+                  <span className="truncate">Worldwide Air Express</span>
+                  <span className="text-emerald-600 font-semibold shrink-0">FREE</span>
                 </div>
-                <div className="flex justify-between text-muted-foreground">
-                  <span>VAT & Customs (20%)</span>
-                  <span className="text-foreground font-semibold tabular-nums">
+                <div className="flex justify-between items-baseline gap-2 text-muted-foreground min-w-0">
+                  <span className="truncate">VAT & Customs (20%)</span>
+                  <span className="text-foreground font-semibold tabular-nums shrink-0">
                     ${tax.toFixed(2)}
                   </span>
                 </div>
-                <div className="border-t border-border pt-3.5 flex justify-between items-baseline text-foreground">
+                <div className="border-t border-border pt-3.5 flex justify-between items-baseline gap-2 text-foreground min-w-0">
                   <span className="text-[16px] font-bold">Total</span>
-                  <span className="text-2xl font-bold tracking-tight tabular-nums">
+                  <span className="text-xl sm:text-2xl font-bold tracking-tight tabular-nums shrink-0">
                     ${total.toFixed(2)}
                   </span>
                 </div>

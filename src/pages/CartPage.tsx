@@ -49,8 +49,8 @@ const CartPage = () => {
   }
 
   return (
-    <div className="bg-background min-h-screen text-foreground py-6 sm:py-10 lg:py-14 pb-36 lg:pb-16">
-      <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
+    <div className="bg-background min-h-screen text-foreground py-6 sm:py-10 lg:py-14 pb-36 lg:pb-16 w-full max-w-full overflow-x-hidden">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 w-full max-w-full min-w-0">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
@@ -62,7 +62,7 @@ const CartPage = () => {
         </div>
 
         {/* Free Shipping Progress Callout (Mobile-first compact banner) */}
-        <div className="mb-6 p-3.5 sm:p-4 bg-primary/5 border border-primary/20 rounded-2xl flex items-center gap-3">
+        <div className="mb-6 p-3.5 sm:p-4 bg-primary/5 border border-primary/20 rounded-2xl flex items-center gap-3 w-full max-w-full min-w-0 overflow-hidden">
           <div className="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center shrink-0">
             <Truck className="w-4 h-4" />
           </div>
@@ -76,13 +76,13 @@ const CartPage = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start w-full max-w-full min-w-0">
           {/* Left Column (8 cols): Mobile-First Cart Items List */}
-          <div className="lg:col-span-8 divide-y divide-border/70 border border-border/80 rounded-2xl sm:rounded-3xl bg-card p-4 sm:p-6 lg:p-8 shadow-xs">
+          <div className="lg:col-span-8 divide-y divide-border/70 border border-border/80 rounded-2xl sm:rounded-3xl bg-card p-4 sm:p-6 lg:p-8 shadow-xs w-full max-w-full min-w-0 overflow-hidden">
             {items.map((item) => (
               <div
                 key={item.product.id}
-                className="py-4 sm:py-6 first:pt-0 last:pb-0 flex gap-3.5 sm:gap-5 items-start"
+                className="py-4 sm:py-6 first:pt-0 last:pb-0 flex gap-3.5 sm:gap-5 items-start w-full min-w-0"
               >
                 {/* Product Thumbnail (Standardized Studio Container) */}
                 <Link
@@ -174,51 +174,51 @@ const CartPage = () => {
           </div>
 
           {/* Right Column (4 cols): Order Summary */}
-          <div className="lg:col-span-4 space-y-5">
-            <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-xs space-y-5">
+          <div className="lg:col-span-4 space-y-5 w-full max-w-full min-w-0">
+            <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-7 shadow-xs space-y-5 w-full max-w-full min-w-0 overflow-hidden">
               <h2 className="text-[17px] sm:text-[18px] font-bold text-foreground tracking-tight">Order Summary</h2>
 
-              <div className="space-y-3 text-[13px]">
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Subtotal</span>
-                  <span className="text-foreground font-semibold tabular-nums">${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              <div className="space-y-3 text-[13px] w-full min-w-0">
+                <div className="flex justify-between items-baseline gap-2 text-muted-foreground min-w-0">
+                  <span className="truncate">Subtotal</span>
+                  <span className="text-foreground font-semibold tabular-nums shrink-0">${subtotal.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
 
                 {appliedDiscount > 0 && (
-                  <div className="flex justify-between text-emerald-600 font-medium">
-                    <span>Discount</span>
-                    <span className="tabular-nums">-${appliedDiscount.toFixed(2)}</span>
+                  <div className="flex justify-between items-baseline gap-2 text-emerald-600 font-medium min-w-0">
+                    <span className="truncate">Discount</span>
+                    <span className="tabular-nums shrink-0">-${appliedDiscount.toFixed(2)}</span>
                   </div>
                 )}
 
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Worldwide Express Shipping</span>
-                  <span className="text-emerald-600 font-semibold">FREE</span>
+                <div className="flex justify-between items-baseline gap-2 text-muted-foreground min-w-0">
+                  <span className="truncate">Worldwide Express Shipping</span>
+                  <span className="text-emerald-600 font-semibold shrink-0">FREE</span>
                 </div>
 
-                <div className="flex justify-between text-muted-foreground">
-                  <span>Estimated VAT & Duties (20%)</span>
-                  <span className="text-foreground font-semibold tabular-nums">${tax.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <div className="flex justify-between items-baseline gap-2 text-muted-foreground min-w-0">
+                  <span className="truncate">Estimated VAT & Duties (20%)</span>
+                  <span className="text-foreground font-semibold tabular-nums shrink-0">${tax.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
 
-                <div className="border-t border-border pt-3.5 flex justify-between items-baseline text-foreground">
+                <div className="border-t border-border pt-3.5 flex justify-between items-baseline gap-2 text-foreground min-w-0">
                   <span className="text-[15px] sm:text-[16px] font-bold">Total</span>
-                  <span className="text-2xl font-bold tracking-tight tabular-nums">${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                  <span className="text-xl sm:text-2xl font-bold tracking-tight tabular-nums shrink-0">${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               </div>
 
               {/* Promo code form */}
-              <form onSubmit={handleApplyPromo} className="pt-2 border-t border-border/70 flex gap-2">
+              <form onSubmit={handleApplyPromo} className="pt-2 border-t border-border/70 flex gap-2 w-full min-w-0">
                 <input
                   type="text"
                   placeholder="Promo (e.g. SHIPNEST10)"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
-                  className="w-full bg-secondary/70 border border-border/80 rounded-xl px-3.5 py-2.5 text-[12px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 uppercase font-mono"
+                  className="flex-1 min-w-0 bg-secondary/70 border border-border/80 rounded-xl px-3.5 py-2.5 text-[12px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 uppercase font-mono"
                 />
                 <button
                   type="submit"
-                  className="bg-secondary hover:bg-secondary/70 border border-border text-foreground px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shrink-0"
+                  className="bg-secondary hover:bg-secondary/70 border border-border text-foreground px-4 py-2.5 rounded-xl text-[12px] font-semibold transition-colors shrink-0 active:scale-95"
                 >
                   Apply
                 </button>
@@ -231,9 +231,9 @@ const CartPage = () => {
                 Proceed to Checkout
               </Link>
 
-              <div className="pt-2 space-y-1.5 text-[11px] text-muted-foreground text-center">
+              <div className="pt-2 space-y-1.5 text-[11px] text-muted-foreground text-center w-full min-w-0">
                 <p className="flex items-center justify-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary" /> 256-bit SSL encrypted checkout
+                  <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" /> 256-bit SSL encrypted checkout
                 </p>
                 <p>30-day money-back guarantee with prepaid return labels.</p>
               </div>
