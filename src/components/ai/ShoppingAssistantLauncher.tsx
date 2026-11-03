@@ -1,18 +1,28 @@
 import { useState, lazy, Suspense } from "react";
 import { MessageCircle, Sparkles } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 // Lazy-load the complete ShoppingAssistant module only when explicitly opened by user
 const ShoppingAssistant = lazy(() => import("@/components/ai/ShoppingAssistant"));
 
 export const ShoppingAssistantLauncher = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+
+  // On checkout or cart pages where bottom sticky action bars exist on mobile,
+  // float cleanly above the sticky bar so it NEVER intercepts the primary Checkout CTA
+  const isBottomActionRoute = location.pathname.startsWith("/cart") || location.pathname.startsWith("/checkout");
 
   return (
     <>
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 px-4 py-2.5 bg-foreground text-background rounded-full shadow-lg hover:bg-foreground/90 transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-primary/40"
+          className={`fixed z-30 flex items-center gap-2.5 px-4 py-2.5 bg-foreground text-background rounded-full shadow-lg hover:bg-foreground/90 transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-primary/40 ${
+            isBottomActionRoute
+              ? "bottom-24 right-4 sm:bottom-6 sm:right-6"
+              : "bottom-5 right-5 sm:bottom-6 sm:right-6"
+          }`}
           aria-label="Open AI Shopping Assistant"
         >
           <div className="relative">

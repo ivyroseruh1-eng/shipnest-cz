@@ -97,7 +97,7 @@ const Navbar = () => {
   return (
     <>
       {/* Top Utility Announcement Bar */}
-      <div className="bg-[#1d1d1f] text-white text-[11px] sm:text-[12px] font-normal transition-colors">
+      <div className="bg-[#1d1d1f] text-white text-[11px] sm:text-[12px] font-normal transition-colors w-full overflow-hidden">
         <div className="max-w-[1240px] mx-auto px-4 h-8 flex items-center justify-between">
           <p className="transition-opacity duration-500 truncate pr-4 text-white/90" key={announcementIndex}>
             {announcements[announcementIndex]}
