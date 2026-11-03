@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { getProductStageTheme } from "@/lib/productPresentation";
+import ProductImage from "@/components/ProductImage";
 import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Truck, Lock } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
@@ -49,7 +49,7 @@ const CartPage = () => {
   }
 
   return (
-    <div className="bg-background min-h-screen text-foreground py-6 sm:py-10 lg:py-14 pb-28 lg:pb-16">
+    <div className="bg-background min-h-screen text-foreground py-6 sm:py-10 lg:py-14 pb-36 lg:pb-16">
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6">
         {/* Header */}
         <div className="mb-6 sm:mb-8">
@@ -84,15 +84,19 @@ const CartPage = () => {
                 key={item.product.id}
                 className="py-4 sm:py-6 first:pt-0 last:pb-0 flex gap-3.5 sm:gap-5 items-start"
               >
-                {/* Product Thumbnail */}
+                {/* Product Thumbnail (Standardized Studio Container) */}
                 <Link
                   to={`/product/${item.product.id}`}
-                  style={{ background: getProductStageTheme(item.product).background }}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border border-border/60 flex items-center justify-center p-2 shrink-0 overflow-hidden bg-white"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border border-border/70 flex items-center justify-center p-2 shrink-0 overflow-hidden bg-white shadow-2xs"
                 >
-                  <img
+                  <ProductImage
                     src={item.product.image}
+                    fallbackImages={item.product.fallbackImages}
                     alt={item.product.name}
+                    department={item.product.department}
+                    category={item.product.category}
+                    width={160}
+                    height={160}
                     className="w-full h-full object-contain"
                   />
                 </Link>
@@ -112,11 +116,11 @@ const CartPage = () => {
                           {item.product.name}
                         </Link>
                       </div>
-                      {/* Delete Icon */}
+                      {/* Delete Icon (Comfortable mobile touch target) */}
                       <button
                         onClick={() => removeFromCart(item.product.id)}
-                        className="p-1.5 -mr-1 text-muted-foreground hover:text-destructive transition-colors rounded-full hover:bg-destructive/10 shrink-0"
-                        aria-label="Remove item"
+                        className="w-8 h-8 -mr-1.5 -mt-1 text-muted-foreground hover:text-destructive transition-colors rounded-full hover:bg-destructive/10 flex items-center justify-center shrink-0 active:scale-90"
+                        aria-label={`Remove ${item.product.name} from bag`}
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -129,33 +133,40 @@ const CartPage = () => {
 
                   {/* Quantity Stepper & Price Row */}
                   <div className="flex items-center justify-between gap-3 pt-3 mt-auto">
-                    {/* Stepper */}
-                    <div className="flex items-center border border-border rounded-full bg-secondary/50 p-0.5 shrink-0">
+                    {/* Stepper with comfortable tap zones */}
+                    <div className="flex items-center border border-border/80 rounded-full bg-secondary/60 p-0.5 shrink-0 shadow-2xs">
                       <button
                         onClick={() => updateQty(item.product.id, item.qty - 1)}
-                        className="w-7 h-7 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-colors active:scale-95"
+                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-all active:scale-90"
                         aria-label="Decrease quantity"
                       >
-                        <Minus className="w-3 h-3" />
+                        <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </button>
-                      <span className="w-7 text-center text-[12px] sm:text-[13px] font-bold text-foreground tabular-nums">
+                      <span className="w-7 sm:w-8 text-center text-[12px] sm:text-[13px] font-bold text-foreground tabular-nums select-none">
                         {item.qty}
                       </span>
                       <button
                         onClick={() => updateQty(item.product.id, item.qty + 1)}
-                        className="w-7 h-7 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-colors active:scale-95"
+                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-all active:scale-90"
                         aria-label="Increase quantity"
                       >
-                        <Plus className="w-3 h-3" />
+                        <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </button>
                     </div>
 
-                    {/* Price */}
-                    <span className="text-[15px] sm:text-[16px] font-bold text-foreground tabular-nums text-right">
-                      {item.product.price !== null
-                        ? `$${(item.product.price * item.qty).toLocaleString()}`
-                        : "Upon Inquiry"}
-                    </span>
+                    {/* Price Block */}
+                    <div className="text-right">
+                      {item.qty > 1 && item.product.price !== null && (
+                        <span className="text-[10px] text-muted-foreground block tabular-nums">
+                          ${item.product.price.toLocaleString()} each
+                        </span>
+                      )}
+                      <span className="text-[15px] sm:text-[16px] font-bold text-foreground tabular-nums">
+                        {item.product.price !== null
+                          ? `$${(item.product.price * item.qty).toLocaleString()}`
+                          : "Upon Inquiry"}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -232,15 +243,17 @@ const CartPage = () => {
       </div>
 
       {/* Mobile Sticky Floating Checkout Action Bar (Apple / Amazon Style) */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-background/95 backdrop-blur-md border-t border-border p-3.5 z-40 shadow-xl">
-        <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-4">
-          <div>
-            <span className="text-[11px] text-muted-foreground block font-medium">Estimated Total</span>
-            <span className="text-[18px] font-bold text-foreground tabular-nums">${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+      <div className="lg:hidden fixed bottom-0 inset-x-0 bg-background/95 backdrop-blur-md border-t border-border px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] z-20 shadow-xl">
+        <div className="max-w-[1240px] mx-auto flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <span className="text-[10px] sm:text-[11px] text-muted-foreground block font-medium uppercase tracking-wider">Estimated Total</span>
+            <span className="text-[18px] sm:text-[20px] font-bold text-foreground tabular-nums leading-none block mt-0.5">
+              ${total.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>
           </div>
           <Link
             to="/checkout"
-            className="flex-1 max-w-[220px] bg-foreground text-background py-3 px-5 rounded-full font-semibold text-center text-[13px] sm:text-[14px] hover:bg-foreground/85 transition-all shadow-md active:scale-98 flex items-center justify-center gap-1.5"
+            className="flex-1 max-w-[210px] bg-foreground text-background py-3 px-5 rounded-full font-semibold text-center text-[13px] sm:text-[14px] hover:bg-foreground/85 transition-all shadow-md active:scale-98 flex items-center justify-center gap-2"
           >
             <Lock className="w-3.5 h-3.5" /> Checkout
           </Link>
