@@ -25,6 +25,12 @@ const friendlyError = (message?: string): Error => {
   if (msg.includes("username") && msg.includes("taken")) {
     return new Error("That username is taken. Please choose another.");
   }
+  if (msg.includes("weak") || msg.includes("easy to guess") || msg.includes("pwned")) {
+    return new Error("That password is too common. Please choose a stronger one (mix letters, numbers and symbols).");
+  }
+  if (msg.includes("password should be")) {
+    return new Error("Password must be at least 6 characters.");
+  }
   if (msg.includes("rate limit")) {
     return new Error("Too many attempts. Please wait a moment and try again.");
   }
