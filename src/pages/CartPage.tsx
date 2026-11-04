@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import ProductImage from "@/components/ProductImage";
-import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, ShieldCheck, Truck, Lock } from "lucide-react";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowRight, Truck, Lock } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -255,12 +255,7 @@ const CartPage = () => {
                 Proceed to Checkout
               </Link>
 
-              <div className="pt-2 space-y-1.5 text-[11px] text-muted-foreground text-center w-full min-w-0">
-                <p className="flex items-center justify-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" /> 256-bit SSL encrypted checkout
-                </p>
-                <p>30-day money-back guarantee with prepaid return labels.</p>
-              </div>
+
             </div>
           </div>
         </div>

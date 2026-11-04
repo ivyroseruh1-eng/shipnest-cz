@@ -72,16 +72,9 @@ export const calculateEstimatedDeliveryDate = (
 
   let offsetDays: number;
   if (isIndia) {
-    // 20–30 days delivery to India
-    if (deliveryMethod === "priority") {
-      // Priority White-Glove to India: 21–25 days
-      const variance = seed ? Math.abs(hashString(seed)) % 5 : 2;
-      offsetDays = 21 + variance;
-    } else {
-      // Standard Insured Air Freight to India: 23–29 days (average 26 days)
-      const variance = seed ? Math.abs(hashString(seed)) % 7 : 3;
-      offsetDays = 23 + variance; // strictly within 20–30 days
-    }
+    // Single consolidated 20–30 days delivery window for India
+    const variance = seed ? Math.abs(hashString(seed)) % 7 : 3;
+    offsetDays = 23 + variance; // strictly within 20–30 days (average 26 days)
   } else {
     // European / Global transit
     if (deliveryMethod === "priority") {
@@ -107,16 +100,17 @@ export const getShippingMethodMeta = (isIndia: boolean) => {
         badge: "Recommended",
         estimate: "20–30 days",
         description:
-          "Delivered in 20–30 days via direct cargo flight manifest & Indian customs clearance with continuous custody tracking.",
+          "International deliveries to India require export handling, international air-cargo transportation, import customs clearance, and onward domestic distribution. After arriving in India, shipments pass through regional logistics hubs before reaching the destination city. Estimated delivery: 20–30 days.",
         cost: "FREE",
       },
+      // Backward-compatible fallback for historical data
       priority: {
         id: "priority" as const,
-        name: "Priority White-Glove Courier",
-        badge: "Fast Track",
-        estimate: "20–25 days",
+        name: "Insured Air Express Freight",
+        badge: "Recommended",
+        estimate: "20–30 days",
         description:
-          "Delivered in 20–25 days with scheduled doorstep 4-digit PIN verification and priority customs dispatch.",
+          "International deliveries to India require export handling, international air-cargo transportation, import customs clearance, and onward domestic distribution. After arriving in India, shipments pass through regional logistics hubs before reaching the destination city. Estimated delivery: 20–30 days.",
         cost: "FREE",
       },
     };

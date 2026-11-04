@@ -107,19 +107,8 @@ const ShoppingAssistant = ({ initialOpen = false, onClose }: ShoppingAssistantPr
 
   return (
     <>
-      {!open && (
-        <button
-          onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-40 bg-primary text-primary-foreground rounded-full shadow-2xl px-5 py-3.5 flex items-center gap-2 hover:scale-105 transition-transform"
-          aria-label="Open shopping assistant"
-        >
-          <Sparkles className="w-4 h-4" />
-          <span className="text-[13px] font-medium">Ask Nest</span>
-        </button>
-      )}
-
       {open && (
-        <div className="fixed bottom-6 right-6 z-50 w-[calc(100vw-3rem)] sm:w-96 h-[540px] max-h-[80vh] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-in">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-96 h-[540px] max-h-[85vh] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-fade-in">
           {/* Header */}
           <div className="bg-foreground text-background p-4 flex items-center justify-between">
             <div className="flex items-center gap-2.5">

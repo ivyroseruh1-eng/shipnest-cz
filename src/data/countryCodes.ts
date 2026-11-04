@@ -13,7 +13,16 @@ export interface CountryCodeOption {
 
 // Indian mobile numbers: 10 digits, typically starting with 6, 7, 8, or 9
 const formatIndianPhone = (raw: string): string => {
-  const digits = raw.replace(/\D/g, "").slice(0, 10);
+  let digits = raw.replace(/\D/g, "");
+  // Strip country code (+91) or domestic trunk prefix (0) if present
+  if ((digits.length === 12 || digits.length > 10) && digits.startsWith("91")) {
+    digits = digits.slice(2);
+  } else if (digits.length === 11 && digits.startsWith("0")) {
+    digits = digits.slice(1);
+  } else if (digits.length > 10) {
+    digits = digits.slice(-10);
+  }
+  digits = digits.slice(0, 10);
   if (digits.length <= 5) return digits;
   return `${digits.slice(0, 5)} ${digits.slice(5)}`;
 };
