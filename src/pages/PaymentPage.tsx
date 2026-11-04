@@ -14,6 +14,7 @@ import {
   RefreshCw,
   QrCode,
   Info,
+  Landmark,
 } from "lucide-react";
 import {
   Visa,
@@ -26,6 +27,7 @@ import {
   IdealIcon,
   BancontactIcon,
   BlikIcon,
+  PaymentBadge,
 } from "@/components/PaymentIcons";
 import { useCart } from "@/context/CartContext";
 import {
@@ -602,7 +604,7 @@ const PaymentPage: React.FC = () => {
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     }`}
                   >
-                    <SepaIcon className="h-3.5 w-auto" />
+                    <Landmark className="w-4 h-4" />
                     <span>SEPA</span>
                   </button>
 
@@ -666,10 +668,10 @@ const PaymentPage: React.FC = () => {
                       <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
                         Visa, Mastercard, Amex
                       </p>
-                      <div className="flex items-center gap-1 mt-1.5">
-                        <Visa className="h-3 w-auto" />
-                        <Mastercard className="h-3 w-auto" />
-                        <Amex className="h-3 w-auto" />
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <PaymentBadge brand="visa" size="xs" />
+                        <PaymentBadge brand="mastercard" size="xs" />
+                        <PaymentBadge brand="amex" size="xs" />
                       </div>
                     </div>
                   </button>
@@ -709,9 +711,9 @@ const PaymentPage: React.FC = () => {
                         iDEAL, Bancontact, BLIK
                       </p>
                       <div className="flex items-center gap-1.5 mt-1.5">
-                        <IdealIcon className="h-3 w-auto" />
-                        <BancontactIcon className="h-3 w-auto" />
-                        <BlikIcon className="h-3 w-auto" />
+                        <PaymentBadge brand="ideal" size="xs" />
+                        <PaymentBadge brand="bancontact" size="xs" />
+                        <PaymentBadge brand="blik" size="xs" />
                       </div>
                     </div>
                   </button>
@@ -736,7 +738,7 @@ const PaymentPage: React.FC = () => {
                           : "bg-background text-foreground border-border"
                       }`}
                     >
-                      <SepaIcon className="h-3.5 w-auto" />
+                      <Landmark className="w-4 h-4" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
@@ -750,8 +752,8 @@ const PaymentPage: React.FC = () => {
                       <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
                         IBAN Bank Transfer
                       </p>
-                      <div className="mt-1.5">
-                        <SepaIcon className="h-2.5 w-auto opacity-80" />
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <PaymentBadge brand="sepa" size="xs" />
                       </div>
                     </div>
                   </button>
@@ -791,9 +793,9 @@ const PaymentPage: React.FC = () => {
                         Apple Pay, Google Pay, PayPal
                       </p>
                       <div className="flex items-center gap-1.5 mt-1.5">
-                        <ApplePay className="h-3 w-auto" />
-                        <GPay className="h-3 w-auto" />
-                        <PayPalIcon className="h-3 w-auto" />
+                        <PaymentBadge brand="apple-pay" size="xs" />
+                        <PaymentBadge brand="google-pay" size="xs" />
+                        <PaymentBadge brand="paypal" size="xs" />
                       </div>
                     </div>
                   </button>
@@ -878,9 +880,9 @@ const PaymentPage: React.FC = () => {
                           </p>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <Visa className="h-3.5 w-auto" />
-                          <Mastercard className="h-3.5 w-auto" />
-                          <Amex className="h-3.5 w-auto" />
+                          <PaymentBadge brand="visa" size="sm" />
+                          <PaymentBadge brand="mastercard" size="sm" />
+                          <PaymentBadge brand="amex" size="sm" />
                         </div>
                       </div>
 
@@ -917,14 +919,17 @@ const PaymentPage: React.FC = () => {
                             onChange={handleCardNumberChange}
                             placeholder="•••• •••• •••• ••••"
                             maxLength={19}
-                            className="w-full h-11 pl-3.5 pr-14 rounded-xl border border-border bg-background text-[15px] sm:text-[14px] font-mono text-foreground tracking-wider focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
+                            className="w-full h-11 pl-3.5 pr-20 rounded-xl border border-border bg-background text-[15px] sm:text-[14px] font-mono text-foreground tracking-wider focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                           />
-                          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
-                            {detectedBrand === "visa" && <Visa className="h-4 w-auto" />}
-                            {detectedBrand === "mc" && <Mastercard className="h-4 w-auto" />}
-                            {detectedBrand === "amex" && <Amex className="h-4 w-auto" />}
+                          <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+                            {detectedBrand === "visa" && <PaymentBadge brand="visa" size="xs" />}
+                            {detectedBrand === "mc" && <PaymentBadge brand="mastercard" size="xs" />}
+                            {detectedBrand === "amex" && <PaymentBadge brand="amex" size="xs" />}
                             {detectedBrand === "unknown" && (
-                              <CreditCard className="w-4 h-4 text-muted-foreground/60" />
+                              <div className="flex items-center gap-1 opacity-70">
+                                <PaymentBadge brand="visa" size="xs" />
+                                <PaymentBadge brand="mastercard" size="xs" />
+                              </div>
                             )}
                           </div>
                         </div>
@@ -1026,7 +1031,7 @@ const PaymentPage: React.FC = () => {
                               : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
-                          <IdealIcon className="h-3.5 w-auto" />
+                          <PaymentBadge brand="ideal" size="xs" />
                           <span>iDEAL (NL)</span>
                         </button>
 
@@ -1042,7 +1047,7 @@ const PaymentPage: React.FC = () => {
                               : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
-                          <BancontactIcon className="h-3.5 w-auto" />
+                          <PaymentBadge brand="bancontact" size="xs" />
                           <span>Bancontact (BE)</span>
                         </button>
 
@@ -1058,7 +1063,7 @@ const PaymentPage: React.FC = () => {
                               : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
-                          <BlikIcon className="h-3.5 w-auto" />
+                          <PaymentBadge brand="blik" size="xs" />
                           <span>BLIK (PL)</span>
                         </button>
                       </div>
@@ -1075,7 +1080,7 @@ const PaymentPage: React.FC = () => {
                                 Netherlands interbank protocol
                               </p>
                             </div>
-                            <IdealIcon className="h-4.5 w-auto" />
+                            <PaymentBadge brand="ideal" size="md" />
                           </div>
 
                           <div>
@@ -1132,7 +1137,7 @@ const PaymentPage: React.FC = () => {
                                 Belgium debit card and mobile app
                               </p>
                             </div>
-                            <BancontactIcon className="h-4.5 w-auto" />
+                            <PaymentBadge brand="bancontact" size="md" />
                           </div>
 
                           <div className="grid grid-cols-2 gap-2">
@@ -1198,7 +1203,7 @@ const PaymentPage: React.FC = () => {
                                 Polski Standard Płatności (6-digit code)
                               </p>
                             </div>
-                            <BlikIcon className="h-4.5 w-auto" />
+                            <PaymentBadge brand="blik" size="md" />
                           </div>
 
                           <div>
@@ -1255,7 +1260,7 @@ const PaymentPage: React.FC = () => {
                             European Payments Council (EPC) Euro Clearing
                           </p>
                         </div>
-                        <SepaIcon className="h-4.5 w-auto" />
+                        <PaymentBadge brand="sepa" size="md" />
                       </div>
 
                       <div>
@@ -1359,10 +1364,10 @@ const PaymentPage: React.FC = () => {
                             Biometric tokenized authorization
                           </p>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <ApplePay className="h-4 w-auto" />
-                          <GPay className="h-4 w-auto" />
-                          <PayPalIcon className="h-4 w-auto" />
+                        <div className="flex items-center gap-1.5">
+                          <PaymentBadge brand="apple-pay" size="sm" />
+                          <PaymentBadge brand="google-pay" size="sm" />
+                          <PaymentBadge brand="paypal" size="sm" />
                         </div>
                       </div>
 
@@ -1372,9 +1377,12 @@ const PaymentPage: React.FC = () => {
                           type="button"
                           disabled={isProcessing}
                           onClick={() => handleWalletSubmit("Apple Pay")}
-                          className="w-full h-12 rounded-xl bg-black text-white hover:bg-neutral-900 disabled:opacity-50 transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] border border-black"
+                          className="w-full h-12 rounded-xl bg-black text-white hover:bg-neutral-900 disabled:opacity-50 transition-all flex items-center justify-center gap-1.5 shadow-xs active:scale-[0.99] border border-black font-semibold text-[15px]"
                         >
-                          <ApplePay className="h-5 w-auto" />
+                          <svg className="h-5 w-auto fill-white" viewBox="0 0 170 170" fill="currentColor">
+                            <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.74 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.69-3.08-7.83-8.08-12.42-15.01-6.19-9.33-11.08-19.78-14.67-31.36-3.59-11.58-5.39-22.58-5.39-33 0-14.39 3.59-26.24 10.78-35.54 7.19-9.31 16.27-14.07 27.24-14.28 4.47 0 9.47 1.25 15 3.75 5.53 2.5 9.41 3.81 11.64 3.93 1.95 0 5.92-1.39 11.91-4.17 5.99-2.77 11.09-3.99 15.3-3.66 11.83.91 21.36 5.37 28.58 13.38-10.42 6.31-15.53 14.89-15.32 25.75.21 8.49 3.5 15.61 9.87 21.37 6.37 5.76 13.78 9.04 22.23 9.84-2.22 6.94-4.87 13.78-7.96 20.52zm-28.71-105.78c0 3.71-.85 7.4-2.55 11.08-1.7 3.68-4.14 6.9-7.32 9.66-3.07 2.66-6.42 4.47-10.05 5.43-.53-.96-.8-1.97-.8-3.03 0-3.6.93-7.24 2.79-10.92 1.86-3.68 4.38-6.84 7.56-9.48 3.18-2.64 6.64-4.32 10.37-5.04z" />
+                          </svg>
+                          <span>Pay</span>
                         </button>
 
                         {/* Google Pay Button */}
@@ -1384,7 +1392,11 @@ const PaymentPage: React.FC = () => {
                           onClick={() => handleWalletSubmit("Google Pay")}
                           className="w-full h-12 rounded-xl bg-white text-neutral-900 hover:bg-neutral-50 disabled:opacity-50 transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] border border-border"
                         >
-                          <GPay className="h-5 w-auto" />
+                          <img
+                            src="/assets/payment/google-pay.svg"
+                            alt="Google Pay"
+                            className="h-7 w-auto object-contain"
+                          />
                         </button>
 
                         {/* PayPal Button */}
@@ -1394,7 +1406,11 @@ const PaymentPage: React.FC = () => {
                           onClick={() => handleWalletSubmit("PayPal")}
                           className="w-full h-12 rounded-xl bg-[#003087] text-white hover:bg-[#00256c] disabled:opacity-50 transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
                         >
-                          <PayPalIcon className="h-5 w-auto" />
+                          <img
+                            src="/assets/payment/paypal.svg"
+                            alt="PayPal"
+                            className="h-7 w-auto object-contain"
+                          />
                         </button>
                       </div>
 
