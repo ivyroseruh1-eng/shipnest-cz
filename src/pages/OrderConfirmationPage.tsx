@@ -196,7 +196,14 @@ const OrderConfirmationPage = () => {
                     />
                     <div className="min-w-0">
                       <p className="text-[13px] font-semibold text-foreground truncate">{item.name}</p>
-                      <p className="text-[11px] text-muted-foreground">Qty: {item.qty} · {item.brand}</p>
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <p className="text-[11px] text-muted-foreground">Qty: {item.qty} · {item.brand}</p>
+                        {(item.selectedColor || item.selectedStorage) && (
+                          <span className="text-[10px] text-primary font-medium bg-primary/10 px-1.5 py-0.5 rounded">
+                            {[item.selectedColor, item.selectedStorage].filter(Boolean).join(" · ")}
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <span className="text-[14px] font-bold text-foreground tabular-nums">

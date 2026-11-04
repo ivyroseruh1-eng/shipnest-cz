@@ -33,8 +33,6 @@ import { getProductReviews } from "@/data/reviews";
 import { getProductStageTheme, getProductGalleryLayout } from "@/lib/productPresentation";
 import { toast } from "sonner";
 
-const STORAGE_OPTIONS = ["128GB", "256GB", "512GB", "1TB"];
-
 const ProductPage = () => {
   const { id } = useParams();
   const product = products.find(
@@ -48,8 +46,21 @@ const ProductPage = () => {
   const { toggleWishlist, isWishlisted } = useWishlist();
   const navigate = useNavigate();
 
+  const availableStorageOptions = useMemo(() => product?.storageOptions || [], [product]);
+  const hasStorageOptions = availableStorageOptions.length > 0;
+  const [selectedStorage, setSelectedStorage] = useState<string>(
+    product?.baseStorage || (product?.storageOptions?.[0] ?? "")
+  );
+
+  useEffect(() => {
+    if (product?.storageOptions && product.storageOptions.length > 0) {
+      setSelectedStorage(product.baseStorage || product.storageOptions[0]);
+    } else {
+      setSelectedStorage("");
+    }
+  }, [product?.id]);
+
   const [selectedColor, setSelectedColor] = useState(0);
-  const [selectedStorage, setSelectedStorage] = useState(1); // Default to 256GB
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [zoomOpen, setZoomOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"specs" | "shipping" | "reviews">("specs");
@@ -125,12 +136,20 @@ const ProductPage = () => {
     );
   }
 
-  const hasPrice = product.price !== null && product.price !== undefined;
+  const currentPrice = useMemo(() => {
+    if (!product || product.price === null || product.price === undefined) return null;
+    if (selectedStorage && product.storagePrices && product.storagePrices[selectedStorage]) {
+      return product.storagePrices[selectedStorage];
+    }
+    return product.price;
+  }, [product, selectedStorage]);
+
+  const hasPrice = currentPrice !== null && currentPrice !== undefined;
   const savings =
-    hasPrice && product.originalPrice && product.originalPrice > product.price
-      ? product.originalPrice - product.price
+    hasPrice && product.originalPrice && product.originalPrice > currentPrice
+      ? product.originalPrice - currentPrice
       : null;
-  const monthly = hasPrice ? (product.price / 12).toFixed(2) : null;
+  const monthly = hasPrice ? (currentPrice / 12).toFixed(2) : null;
 
   const related = products
     .filter(
@@ -149,10 +168,19 @@ const ProductPage = () => {
       toast.info("Pricing inquiry recorded. Our concierge team will reach out.");
       return;
     }
-    const itemToAdd = selectedVariant
-      ? { ...product, image: activeImage, name: `${product.name} (${selectedVariant.name})` }
-      : { ...product, image: activeImage };
-    addToCart(itemToAdd, 1);
+    const itemToAdd = {
+      ...product,
+      price: currentPrice,
+      image: activeImage,
+      name: selectedVariant ? `${product.name} (${selectedVariant.name})` : product.name,
+    };
+    addToCart(
+      itemToAdd,
+      1,
+      selectedVariant?.name,
+      selectedStorage || undefined,
+      currentPrice
+    );
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
   };
@@ -163,10 +191,19 @@ const ProductPage = () => {
       toast.info("Pricing inquiry recorded. Concierge desk notified.");
       return;
     }
-    const itemToAdd = selectedVariant
-      ? { ...product, image: activeImage, name: `${product.name} (${selectedVariant.name})` }
-      : { ...product, image: activeImage };
-    addToCart(itemToAdd, 1);
+    const itemToAdd = {
+      ...product,
+      price: currentPrice,
+      image: activeImage,
+      name: selectedVariant ? `${product.name} (${selectedVariant.name})` : product.name,
+    };
+    addToCart(
+      itemToAdd,
+      1,
+      selectedVariant?.name,
+      selectedStorage || undefined,
+      currentPrice
+    );
     navigate("/checkout");
   };
 
@@ -451,7 +488,7 @@ const ProductPage = () => {
                 <>
                   <div className="flex items-baseline gap-3">
                     <span className="text-3xl sm:text-4xl font-bold text-foreground tracking-tight tabular-nums">
-                      ${product.price}
+                      ${currentPrice}
                     </span>
                     {savings && savings > 0 && (
                       <>
@@ -522,25 +559,55 @@ const ProductPage = () => {
             )}
 
             {/* Storage / Capacity Selector (Apple style segmented pills) */}
-            {product.department === "Technology" && (
+            {hasStorageOptions && (
               <div className="space-y-3">
-                <label className="text-[13px] font-semibold text-foreground block">
-                  Capacity
-                </label>
-                <div className="grid grid-cols-4 gap-2">
-                  {STORAGE_OPTIONS.map((size, index) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedStorage(index)}
-                      className={`py-2.5 rounded-2xl border text-[13px] font-semibold transition-all text-center ${
-                        selectedStorage === index
-                          ? "border-foreground bg-foreground text-background shadow-xs"
-                          : "border-border/80 hover:border-foreground/40 bg-card text-foreground"
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+                <div className="flex items-center justify-between">
+                  <label className="text-[13px] font-semibold text-foreground block">
+                    Capacity
+                  </label>
+                  {selectedStorage && (
+                    <span className="text-[12px] text-muted-foreground font-medium">
+                      {selectedStorage}
+                    </span>
+                  )}
+                </div>
+                <div
+                  className={`grid gap-2 ${
+                    availableStorageOptions.length <= 2
+                      ? "grid-cols-2"
+                      : availableStorageOptions.length === 3
+                      ? "grid-cols-3"
+                      : "grid-cols-4"
+                  }`}
+                >
+                  {availableStorageOptions.map((size) => {
+                    const optPrice = product.storagePrices?.[size];
+                    return (
+                      <button
+                        key={size}
+                        type="button"
+                        onClick={() => setSelectedStorage(size)}
+                        className={`py-2.5 px-2 rounded-2xl border text-[13px] font-semibold transition-all text-center flex flex-col items-center justify-center ${
+                          selectedStorage === size
+                            ? "border-foreground bg-foreground text-background shadow-xs"
+                            : "border-border/80 hover:border-foreground/40 bg-card text-foreground"
+                        }`}
+                      >
+                        <span>{size}</span>
+                        {optPrice && (
+                          <span
+                            className={`text-[10px] font-normal mt-0.5 ${
+                              selectedStorage === size
+                                ? "text-background/80"
+                                : "text-muted-foreground"
+                            }`}
+                          >
+                            ${optPrice}
+                          </span>
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -853,7 +920,14 @@ const ProductPage = () => {
           >
             <div className="min-w-0">
               <p className="text-[13px] font-bold text-foreground truncate">{product.name}</p>
-              <p className="text-[12px] font-semibold text-foreground tabular-nums">${product.price}</p>
+              <div className="flex items-center gap-2">
+                <p className="text-[12px] font-semibold text-foreground tabular-nums">${currentPrice}</p>
+                {selectedStorage && (
+                  <span className="text-[10px] text-muted-foreground font-medium bg-secondary px-1.5 py-0.5 rounded-md">
+                    {selectedStorage}
+                  </span>
+                )}
+              </div>
             </div>
             <button
               onClick={handleAddToCart}

@@ -4,9 +4,15 @@ import { toast } from "sonner";
 
 interface CartContextType {
   items: CartItem[];
-  addToCart: (product: Product, qty?: number) => void;
-  removeFromCart: (productId: string) => void;
-  updateQty: (productId: string, qty: number) => void;
+  addToCart: (
+    product: Product,
+    qty?: number,
+    selectedColor?: string,
+    selectedStorage?: string,
+    unitPrice?: number
+  ) => void;
+  removeFromCart: (identifier: string) => void;
+  updateQty: (identifier: string, qty: number) => void;
   clearCart: () => void;
   totalItems: number;
   subtotal: number;
@@ -24,31 +30,86 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("shipnest-cart", JSON.stringify(items));
   }, [items]);
 
-  const addToCart = (product: Product, qty = 1) => {
-    setItems(prev => {
-      const existing = prev.find(i => i.product.id === product.id);
-      if (existing) {
-        return prev.map(i => i.product.id === product.id ? { ...i, qty: i.qty + qty } : i);
+  const addToCart = (
+    product: Product,
+    qty = 1,
+    selectedColor?: string,
+    selectedStorage?: string,
+    unitPrice?: number
+  ) => {
+    const effectivePrice = unitPrice !== undefined ? unitPrice : (product.price || 0);
+    const targetLineId = `${product.id}__${selectedColor || ""}_${selectedStorage || ""}`;
+
+    setItems((prev) => {
+      const existingIndex = prev.findIndex(
+        (i) =>
+          (i.lineId || `${i.product.id}__${i.selectedColor || ""}_${i.selectedStorage || ""}`) ===
+          targetLineId
+      );
+
+      if (existingIndex > -1) {
+        return prev.map((item, idx) =>
+          idx === existingIndex
+            ? { ...item, qty: item.qty + qty, unitPrice: effectivePrice }
+            : item
+        );
       }
-      return [...prev, { product, qty }];
+
+      return [
+        ...prev,
+        {
+          product,
+          qty,
+          selectedColor,
+          selectedStorage,
+          unitPrice: effectivePrice,
+          lineId: targetLineId,
+        },
+      ];
     });
-    toast.success(`${product.name} added to cart`);
+
+    const variantLabel = [selectedColor, selectedStorage].filter(Boolean).join(" · ");
+    toast.success(
+      variantLabel
+        ? `${product.name} (${variantLabel}) added to bag`
+        : `${product.name} added to bag`
+    );
   };
 
-  const removeFromCart = (productId: string) => {
-    setItems(prev => prev.filter(i => i.product.id !== productId));
-    toast.info("Item removed from cart");
+  const removeFromCart = (identifier: string) => {
+    setItems((prev) =>
+      prev.filter(
+        (i) =>
+          (i.lineId || `${i.product.id}__${i.selectedColor || ""}_${i.selectedStorage || ""}`) !==
+            identifier && i.product.id !== identifier
+      )
+    );
+    toast.info("Item removed from bag");
   };
 
-  const updateQty = (productId: string, qty: number) => {
-    if (qty < 1) return removeFromCart(productId);
-    setItems(prev => prev.map(i => i.product.id === productId ? { ...i, qty } : i));
+  const updateQty = (identifier: string, qty: number) => {
+    if (qty < 1) return removeFromCart(identifier);
+    setItems((prev) =>
+      prev.map((i) => {
+        const lineId =
+          i.lineId || `${i.product.id}__${i.selectedColor || ""}_${i.selectedStorage || ""}`;
+        if (lineId === identifier || i.product.id === identifier) {
+          return { ...i, qty };
+        }
+        return i;
+      })
+    );
   };
 
   const clearCart = () => setItems([]);
 
   const totalItems = items.reduce((sum, i) => sum + i.qty, 0);
-  const subtotal = items.reduce((sum, i) => sum + (i.product.price || 0) * i.qty, 0);
+  const subtotal = items.reduce(
+    (sum, i) =>
+      sum +
+      (i.unitPrice !== undefined ? i.unitPrice : i.product.price || 0) * i.qty,
+    0
+  );
 
   return (
     <CartContext.Provider value={{ items, addToCart, removeFromCart, updateQty, clearCart, totalItems, subtotal }}>

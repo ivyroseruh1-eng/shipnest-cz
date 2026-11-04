@@ -79,98 +79,121 @@ const CartPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 items-start w-full max-w-full min-w-0">
           {/* Left Column (8 cols): Mobile-First Cart Items List */}
           <div className="lg:col-span-8 divide-y divide-border/70 border border-border/80 rounded-2xl sm:rounded-3xl bg-card p-4 sm:p-6 lg:p-8 shadow-xs w-full max-w-full min-w-0 overflow-hidden">
-            {items.map((item) => (
-              <div
-                key={item.product.id}
-                className="py-4 sm:py-6 first:pt-0 last:pb-0 flex gap-3.5 sm:gap-5 items-start w-full min-w-0"
-              >
-                {/* Product Thumbnail (Standardized Studio Container) */}
-                <Link
-                  to={`/product/${item.product.id}`}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border border-border/70 flex items-center justify-center p-2 shrink-0 overflow-hidden bg-white shadow-2xs"
+            {items.map((item) => {
+              const itemIdentifier =
+                item.lineId || `${item.product.id}__${item.selectedColor || ""}_${item.selectedStorage || ""}`;
+              const itemPrice =
+                item.unitPrice !== undefined ? item.unitPrice : item.product.price;
+
+              return (
+                <div
+                  key={itemIdentifier}
+                  className="py-4 sm:py-6 first:pt-0 last:pb-0 flex gap-3.5 sm:gap-5 items-start w-full min-w-0"
                 >
-                  <ProductImage
-                    src={item.product.image}
-                    fallbackImages={item.product.fallbackImages}
-                    alt={item.product.name}
-                    department={item.product.department}
-                    category={item.product.category}
-                    width={160}
-                    height={160}
-                    className="w-full h-full object-contain"
-                  />
-                </Link>
+                  {/* Product Thumbnail (Standardized Studio Container) */}
+                  <Link
+                    to={`/product/${item.product.id}`}
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl border border-border/70 flex items-center justify-center p-2 shrink-0 overflow-hidden bg-white shadow-2xs"
+                  >
+                    <ProductImage
+                      src={item.product.image}
+                      fallbackImages={item.product.fallbackImages}
+                      alt={item.product.name}
+                      department={item.product.department}
+                      category={item.product.category}
+                      width={160}
+                      height={160}
+                      className="w-full h-full object-contain"
+                    />
+                  </Link>
 
-                {/* Content & Controls (Mobile First Layout) */}
-                <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
-                  <div>
-                    <div className="flex items-start justify-between gap-2">
-                      <div className="min-w-0">
-                        <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-primary block truncate">
-                          {item.product.brand}
-                        </span>
-                        <Link
-                          to={`/product/${item.product.id}`}
-                          className="text-[14px] sm:text-[15px] font-semibold text-foreground hover:text-primary transition-colors block truncate"
+                  {/* Content & Controls (Mobile First Layout) */}
+                  <div className="flex-1 min-w-0 flex flex-col justify-between self-stretch">
+                    <div>
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="min-w-0">
+                          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-primary block truncate">
+                            {item.product.brand}
+                          </span>
+                          <Link
+                            to={`/product/${item.product.id}`}
+                            className="text-[14px] sm:text-[15px] font-semibold text-foreground hover:text-primary transition-colors block truncate"
+                          >
+                            {item.product.name}
+                          </Link>
+                        </div>
+                        {/* Delete Icon (Comfortable mobile touch target) */}
+                        <button
+                          onClick={() => removeFromCart(itemIdentifier)}
+                          className="w-8 h-8 -mr-1.5 -mt-1 text-muted-foreground hover:text-destructive transition-colors rounded-full hover:bg-destructive/10 flex items-center justify-center shrink-0 active:scale-90"
+                          aria-label={`Remove ${item.product.name} from bag`}
                         >
-                          {item.product.name}
-                        </Link>
+                          <Trash2 className="w-4 h-4" />
+                        </button>
                       </div>
-                      {/* Delete Icon (Comfortable mobile touch target) */}
-                      <button
-                        onClick={() => removeFromCart(item.product.id)}
-                        className="w-8 h-8 -mr-1.5 -mt-1 text-muted-foreground hover:text-destructive transition-colors rounded-full hover:bg-destructive/10 flex items-center justify-center shrink-0 active:scale-90"
-                        aria-label={`Remove ${item.product.name} from bag`}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
 
-                    <p className="text-[11px] sm:text-[12px] text-muted-foreground truncate mt-0.5">
-                      {item.product.specs?.[0] || "Authentic Sealed Package"}
-                    </p>
-                  </div>
-
-                  {/* Quantity Stepper & Price Row */}
-                  <div className="flex items-center justify-between gap-3 pt-3 mt-auto">
-                    {/* Stepper with comfortable tap zones */}
-                    <div className="flex items-center border border-border/80 rounded-full bg-secondary/60 p-0.5 shrink-0 shadow-2xs">
-                      <button
-                        onClick={() => updateQty(item.product.id, item.qty - 1)}
-                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-all active:scale-90"
-                        aria-label="Decrease quantity"
-                      >
-                        <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                      </button>
-                      <span className="w-7 sm:w-8 text-center text-[12px] sm:text-[13px] font-bold text-foreground tabular-nums select-none">
-                        {item.qty}
-                      </span>
-                      <button
-                        onClick={() => updateQty(item.product.id, item.qty + 1)}
-                        className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-all active:scale-90"
-                        aria-label="Increase quantity"
-                      >
-                        <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                      </button>
-                    </div>
-
-                    {/* Price Block */}
-                    <div className="text-right">
-                      {item.qty > 1 && item.product.price !== null && (
-                        <span className="text-[10px] text-muted-foreground block tabular-nums">
-                          ${item.product.price.toLocaleString()} each
-                        </span>
+                      {/* Selected Variants */}
+                      {(item.selectedColor || item.selectedStorage) && (
+                        <div className="flex items-center gap-1.5 mt-1 flex-wrap">
+                          {item.selectedColor && (
+                            <span className="inline-flex items-center text-[10px] font-medium bg-secondary text-foreground px-2 py-0.5 rounded-md border border-border/60">
+                              {item.selectedColor}
+                            </span>
+                          )}
+                          {item.selectedStorage && (
+                            <span className="inline-flex items-center text-[10px] font-semibold bg-primary/10 text-primary px-2 py-0.5 rounded-md border border-primary/20">
+                              {item.selectedStorage}
+                            </span>
+                          )}
+                        </div>
                       )}
-                      <span className="text-[15px] sm:text-[16px] font-bold text-foreground tabular-nums">
-                        {item.product.price !== null
-                          ? `$${(item.product.price * item.qty).toLocaleString()}`
-                          : "Upon Inquiry"}
-                      </span>
+
+                      <p className="text-[11px] sm:text-[12px] text-muted-foreground truncate mt-1">
+                        {item.product.specs?.[0] || "Authentic Sealed Package"}
+                      </p>
+                    </div>
+
+                    {/* Quantity Stepper & Price Row */}
+                    <div className="flex items-center justify-between gap-3 pt-3 mt-auto">
+                      {/* Stepper with comfortable tap zones */}
+                      <div className="flex items-center border border-border/80 rounded-full bg-secondary/60 p-0.5 shrink-0 shadow-2xs">
+                        <button
+                          onClick={() => updateQty(itemIdentifier, item.qty - 1)}
+                          className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-all active:scale-90"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        </button>
+                        <span className="w-7 sm:w-8 text-center text-[12px] sm:text-[13px] font-bold text-foreground tabular-nums select-none">
+                          {item.qty}
+                        </span>
+                        <button
+                          onClick={() => updateQty(itemIdentifier, item.qty + 1)}
+                          className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center text-foreground hover:bg-background rounded-full transition-all active:scale-90"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                        </button>
+                      </div>
+
+                      {/* Price Block */}
+                      <div className="text-right">
+                        {item.qty > 1 && itemPrice !== null && (
+                          <span className="text-[10px] text-muted-foreground block tabular-nums">
+                            ${itemPrice.toLocaleString()} each
+                          </span>
+                        )}
+                        <span className="text-[15px] sm:text-[16px] font-bold text-foreground tabular-nums">
+                          {itemPrice !== null
+                            ? `$${(itemPrice * item.qty).toLocaleString()}`
+                            : "Upon Inquiry"}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Right Column (4 cols): Order Summary */}
@@ -214,7 +237,7 @@ const CartPage = () => {
                   placeholder="Promo (e.g. SHIPNEST10)"
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
-                  className="flex-1 min-w-0 bg-secondary/70 border border-border/80 rounded-xl px-3.5 py-2.5 text-[12px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 uppercase font-mono"
+                  className="flex-1 min-w-0 bg-secondary/70 border border-border/80 rounded-xl px-3.5 py-2.5 text-[16px] sm:text-[13px] h-11 sm:h-auto text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 uppercase font-mono"
                 />
                 <button
                   type="submit"

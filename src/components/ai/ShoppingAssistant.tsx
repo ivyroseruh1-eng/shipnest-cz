@@ -189,7 +189,7 @@ const ShoppingAssistant = ({ initialOpen = false, onClose }: ShoppingAssistantPr
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && send()}
               placeholder="Ask Nest anything…"
-              className="flex-1 bg-secondary border-0 rounded-full px-4 py-2.5 text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/30"
+              className="flex-1 bg-secondary border-0 rounded-full px-4 py-2.5 text-[16px] sm:text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/30"
             />
             <button
               onClick={send}

@@ -156,3 +156,85 @@ describe("ShipNest Financial & E-Commerce Calculations", () => {
     expect(shippingCost).toBe(0);
   });
 });
+
+describe("ShipNest Data Accuracy & Product Storage Configurations", () => {
+  it("pro flagships start at 256GB and do not contain 128GB options", () => {
+    const proFlagships = [
+      "iphone-18-pro-max",
+      "iphone-17-pro-max",
+      "iphone-16-pro-max",
+      "iphone-15-pro-max",
+      "galaxy-s25-ultra",
+      "galaxy-s25-plus",
+      "galaxy-s24-ultra",
+      "galaxy-z-fold-6",
+      "galaxy-z-flip-6",
+      "galaxy-tab-s10-ultra",
+      "pixel-9-pro-fold",
+      "oneplus-13",
+      "oneplus-12",
+      "xiaomi-15-ultra",
+      "sony-xperia-1-vi",
+    ];
+
+    proFlagships.forEach((id) => {
+      const p = products.find((prod) => prod.id === id);
+      expect(p, `Product ${id} should exist in catalog`).toBeDefined();
+      expect(p?.baseStorage, `${id} baseStorage must be 256GB`).toBe("256GB");
+      expect(p?.storageOptions, `${id} must have storageOptions`).toBeDefined();
+      expect(p?.storageOptions).not.toContain("128GB");
+      expect(p?.storageOptions?.[0]).toBe("256GB");
+    });
+  });
+
+  it("ultra-foldable OnePlus Open starts at 512GB", () => {
+    const p = products.find((prod) => prod.id === "oneplus-open");
+    expect(p).toBeDefined();
+    expect(p?.baseStorage).toBe("512GB");
+    expect(p?.storageOptions).not.toContain("128GB");
+    expect(p?.storageOptions).not.toContain("256GB");
+  });
+
+  it("wearables, headphones, and luxury products do not have storage selector options", () => {
+    const noStorageIds = [
+      "apple-watch-ultra-2",
+      "apple-watch-series-10",
+      "galaxy-watch-7-ultra",
+      "garmin-fenix-8-solar",
+      "airpods-pro-2",
+      "airpods-max-2",
+      "sony-wh-1000xm5",
+      "sony-wf-1000xm5",
+    ];
+
+    noStorageIds.forEach((id) => {
+      const p = products.find((prod) => prod.id === id);
+      expect(p, `Product ${id} should exist`).toBeDefined();
+      expect(p?.storageOptions).toBeUndefined();
+      expect(p?.baseStorage).toBeUndefined();
+    });
+
+    const luxurySample = products.filter((p) => p.badge === "LUXURY").slice(0, 50);
+    luxurySample.forEach((p) => {
+      expect(p.storageOptions).toBeUndefined();
+      expect(p.baseStorage).toBeUndefined();
+    });
+  });
+
+  it("storage upgrade prices are strictly monotonically increasing with capacity", () => {
+    const productsWithStorage = products.filter((p) => p.storageOptions && p.storageOptions.length > 1);
+    expect(productsWithStorage.length).toBeGreaterThan(30);
+
+    productsWithStorage.forEach((p) => {
+      const prices = p.storagePrices;
+      expect(prices, `${p.id} must have storagePrices map`).toBeDefined();
+      if (!prices || !p.storageOptions) return;
+
+      for (let i = 1; i < p.storageOptions.length; i++) {
+        const prevCap = p.storageOptions[i - 1];
+        const currCap = p.storageOptions[i];
+        expect(prices[currCap], `${p.id} price for ${currCap}`).toBeGreaterThan(prices[prevCap]);
+      }
+    });
+  });
+});

@@ -23,6 +23,9 @@ export const technologyProducts: Product[] = [
     reviews: 412,
     badge: "NEW",
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1299, "512GB": 1499, "1TB": 1699},
     description: "iPhone 18 Pro Max is forged in Grade 5 titanium, featuring a stunning 6.9-inch Super Retina XDR display with ProMotion and the thinnest borders ever engineered. Powered by the breakthrough A20 Pro chip, it introduces advanced Apple Intelligence capabilities, a 48MP Fusion camera system with next-generation variable aperture, 5x Tetraprism optical zoom, and dedicated Camera Control. Delivering up to 35 hours of video playback and high-speed USB-C connectivity, it sets the definitive standard for professional mobile computing.",
     specs: ["Display: 6.9\" Super Retina XDR OLED with 120Hz ProMotion and Always-On", "Processor: A20 Pro chip with 6-core GPU and 16-core Neural Engine for Apple Intelligence", "Camera: 48MP Fusion (ƒ/1.78) + 48MP Ultra Wide (ƒ/2.2) + 12MP 5x Telephoto (ƒ/2.8)", "Video: 4K Dolby Vision at up to 120 fps with spatial audio recording", "Enclosure: Grade 5 Aerospace Titanium with textured matte glass back", "Battery: Up to 35 hours video playback with MagSafe 25W wireless charging", "Connectivity: USB-C with USB 3 speeds up to 10Gb/s, Wi-Fi 7, and 5G NR"],
     colors: [
@@ -53,6 +56,9 @@ export const technologyProducts: Product[] = [
     reviews: 356,
     badge: "NEW",
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB", "1TB"],
+    storagePrices: {"128GB": 1199, "256GB": 1299, "512GB": 1499, "1TB": 1699},
     description: "iPhone 18 Pro brings unprecedented pro capability to a compact 6.3-inch titanium design. Engineered with the A20 Pro chip, it runs on-device Apple Intelligence models with exceptional power efficiency. The 48MP Fusion camera with mechanical variable aperture captures rich textures in any lighting, while the 5x Telephoto lens and tactile Camera Control give you creative studio precision anywhere.",
     specs: ["Display: 6.3\" Super Retina XDR OLED with 120Hz ProMotion and Always-On", "Processor: A20 Pro chip with 6-core GPU and advanced Apple Intelligence", "Camera: 48MP Fusion main camera + 48MP Ultra Wide + 5x Tetraprism optical zoom", "Enclosure: Compact Grade 5 Titanium chassis with Ceramic Shield front", "Battery: Up to 30 hours video playback with all-day smart power management", "Connectivity: USB-C with USB 3 speeds up to 10Gb/s, Wi-Fi 7, and Ultra Wideband"],
     colors: [
@@ -83,6 +89,9 @@ export const technologyProducts: Product[] = [
     reviews: 128,
     badge: "NEW",
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 2199, "512GB": 2399, "1TB": 2599},
     description: "iPhone Duo redefines Apple design with a revolutionary folding dual-display architecture. An exterior 6.3-inch Super Retina cover screen seamlessly unfolds into an expansive 7.9-inch tandem OLED workspace powered by the A20 Pro chip. The zero-crease titanium hinge enables fluid continuity across laptop, tent, and tablet modes, backed by Pro computational cameras and all-day endurance.",
     specs: ["Displays: 7.9\" Foldable Tandem OLED main display + 6.3\" Super Retina cover display", "Processor: A20 Pro chip with dual-screen multitasking and Apple Intelligence", "Hinge & Enclosure: Zero-crease titanium alloy hinge with aerospace aluminum unibody", "Modes: Adaptive multi-posture support including Laptop, Tent, and Canvas modes", "Camera: Dual 48MP Pro computational camera system with LiDAR Scanner", "Battery: 5200mAh dual-cell architecture with 30W wired and MagSafe charging"],
     colors: [
@@ -155,6 +164,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["6.9\" Super Retina XDR OLED", "A19 Pro chip", "48MP Pro Fusion Camera", "Forged Aluminum Unibody", "USB-C Thunderbolt", "Up to 2TB Storage"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1199, "512GB": 1399, "1TB": 1599},
     colors: [
       { name: "Cosmic Orange", hex: "#D9663B", image: "/assets/products/iphone-17-pro-max-cosmic-orange.jpg?v=20261103e" },
       { name: "Deep Blue", hex: "#2E3B5C", image: "/assets/products/iphone-17-pro-max-deep-blue.jpg?v=20261103e" },
@@ -175,6 +187,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["6.3\" Super Retina XDR OLED", "A19 Pro chip", "48MP Pro Fusion Camera", "Forged Aluminum Unibody", "USB-C", "Up to 2TB"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB", "1TB"],
+    storagePrices: {"128GB": 999, "256GB": 1099, "512GB": 1299, "1TB": 1499},
     colors: [
       { name: "Cosmic Orange", hex: "#D9663B", image: "/assets/products/iphone-17-pro-cosmic-orange.jpg?v=20261103e" },
       { name: "Deep Blue", hex: "#2E3B5C", image: "/assets/products/iphone-17-pro-deep-blue.jpg?v=20261103e" },
@@ -200,6 +215,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.1\" Super Retina XDR OLED Display", "A19 Bionic chip with Apple Intelligence", "Dynamic Island & Action Button", "48MP Dual Fusion Camera", "USB-C", "All-day battery life"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB"],
+    storagePrices: {"128GB": 799, "256GB": 899, "512GB": 1099},
     colors: [
       { name: "Lavender", hex: "#C9B8DA", image: "/assets/products/iphone-17-lavender.jpg?v=20261103e" },
       { name: "Mist Blue", hex: "#A9C3D6", image: "/assets/products/iphone-17-mist-blue.jpg?v=20261103e" },
@@ -224,6 +242,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.1\" OLED Display", "A18 chip with Apple Intelligence", "48MP Fusion Camera", "Action button & USB-C", "Lightweight aluminum unibody"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 599, "256GB": 699},
     colors: [
       { name: "Starlight", hex: "#F5F5F0", image: "/assets/products/apple/iphone-17.jpg?v=20261103e" },
       { name: "Midnight", hex: "#1C1C1E", image: "/assets/products/apple/iphone-17.jpg?v=20261103e" },
@@ -252,6 +273,9 @@ export const technologyProducts: Product[] = [
     description: "iPhone Air introduces an ultralight 5.6mm profile sculpted from aerospace titanium. Featuring a 6.6-inch Super Retina XDR OLED display and A19 Pro silicon, it combines architectural minimalism with uninterrupted all-day battery life and computational pro imaging.",
     specs: ["Design: Ultralight 5.6mm aerospace-grade titanium unibody", "Display: 6.6-inch Super Retina XDR OLED with ProMotion up to 120Hz", "Processor: A19 Pro chip with Apple Intelligence neural engine", "Camera: 48MP Fusion camera with 2x optical zoom and Action button", "Battery: Custom high-density thin cell with all-day endurance", "Ports: USB-C with fast charging and DisplayPort video out"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1099, "512GB": 1299, "1TB": 1499},
     colors: [
       { name: "Sky Blue", hex: "#A9C3D6", image: "/assets/products/iphone-17-air-sky-blue.jpg?v=20261103e" },
       { name: "Cloud White", hex: "#F1F1EE", image: "/assets/products/iphone-17-air-cloud-white.jpg?v=20261103e" },
@@ -290,6 +314,9 @@ export const technologyProducts: Product[] = [
       "Battery: Up to 33 hours video playback with MagSafe wireless charging up to 25W"
     ],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1199, "512GB": 1399, "1TB": 1599},
     colors: [
       { name: "Desert Titanium", hex: "#C3A992", image: "/assets/products/apple/iphone-16-pro-max-desert.jpg?v=20261103e" },
       { name: "Natural Titanium", hex: "#9E9A93", image: "/assets/products/apple/iphone-16-pro-max-natural.jpg?v=20261103e" },
@@ -326,6 +353,9 @@ export const technologyProducts: Product[] = [
       "Battery: Up to 27 hours video playback with MagSafe wireless fast charging"
     ],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB", "1TB"],
+    storagePrices: {"128GB": 999, "256GB": 1099, "512GB": 1299, "1TB": 1499},
     colors: [
       { name: "Desert Titanium", hex: "#C3A992", image: "/assets/products/apple/iphone-16-pro-desert.jpg?v=20261103e" },
       { name: "Natural Titanium", hex: "#9E9A93", image: "/assets/products/apple/iphone-16-pro-natural.jpg?v=20261103e" },
@@ -363,6 +393,9 @@ export const technologyProducts: Product[] = [
       "Battery: Up to 22 hours video playback with MagSafe wireless charging"
     ],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB"],
+    storagePrices: {"128GB": 799, "256GB": 899, "512GB": 1099},
     colors: [
       { name: "Black", hex: "#1C1C1E", image: "/assets/products/apple/iphone-16-black.jpg?v=20261103e" },
       { name: "White", hex: "#F5F5F7", image: "/assets/products/apple/iphone-16-white.jpg?v=20261103e" },
@@ -384,6 +417,9 @@ export const technologyProducts: Product[] = [
     reviews: 3156,
     specs: ["6.7\" OLED Display", "A18 chip", "48MP Camera", "Pink", "All-day battery", "MagSafe"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB"],
+    storagePrices: {"128GB": 899, "256GB": 999, "512GB": 1199},
     colors: [
       { name: "Ultramarine", hex: "#3F4FA3", image: "/assets/products/iphone-16-plus-ultramarine.jpg?v=20261103e" },
       { name: "Teal", hex: "#4E9F96", image: "/assets/products/iphone-16-plus-teal.jpg?v=20261103e" },
@@ -422,6 +458,9 @@ export const technologyProducts: Product[] = [
       "Battery: Up to 29 hours video playback"
     ],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1099, "512GB": 1299, "1TB": 1499},
     colors: [
       { name: "Natural Titanium", hex: "#9E9A93", image: "/assets/products/apple/iphone-15-pro-max-natural.jpg?v=20261103e" },
       { name: "Blue Titanium", hex: "#3B4454", image: "/assets/products/apple/iphone-15-pro-max-blue.jpg?v=20261103e" },
@@ -443,6 +482,9 @@ export const technologyProducts: Product[] = [
     badge: "SALE",
     specs: ["6.1\" Super Retina XDR", "A17 Pro chip", "48MP Camera", "Black Titanium", "Action button", "USB-C"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB", "1TB"],
+    storagePrices: {"128GB": 899, "256GB": 999, "512GB": 1199, "1TB": 1399},
     colors: [
       { name: "Natural Titanium", hex: "#A8A9AD", image: "/assets/products/iphone-15-pro-natural-titanium.jpg?v=20261103e" },
       { name: "Blue Titanium", hex: "#394E6A", image: "/assets/products/iphone-15-pro-blue-titanium.jpg?v=20261103e" },
@@ -464,6 +506,9 @@ export const technologyProducts: Product[] = [
     badge: "SALE",
     specs: ["6.1\" OLED Display", "A16 chip", "48MP Camera", "Pink", "Dynamic Island", "USB-C"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB"],
+    storagePrices: {"128GB": 699, "256GB": 799, "512GB": 999},
     colors: [
       { name: "Black", hex: "#1C1C1E", image: "/assets/products/iphone-15-black.jpg?v=20261103e" },
       { name: "Blue", hex: "#6B8DAD", image: "/assets/products/iphone-15-blue.jpg?v=20261103e" },
@@ -620,6 +665,9 @@ export const technologyProducts: Product[] = [
     badge: "ELITE",
     specs: ["Micro-OLED displays", "M2 + R1 chips", "EyeSight display", "Spatial Computing", "visionOS", "Hand & eye tracking"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 3499, "512GB": 3699, "1TB": 3899},
   },
   // Samsung Galaxy S
   {
@@ -636,6 +684,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["6.9\" Dynamic AMOLED 2X", "Snapdragon 8 Elite", "200MP Camera", "Titanium frame", "S Pen built-in", "5000mAh battery"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1299, "512GB": 1419, "1TB": 1659},
   },
   {
     id: "galaxy-s25-plus",
@@ -650,6 +701,9 @@ export const technologyProducts: Product[] = [
     reviews: 2345,
     specs: ["6.7\" Dynamic AMOLED 2X", "Snapdragon 8 Elite", "50MP Camera", "4900mAh battery", "45W fast charging", "Galaxy AI"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 999, "512GB": 1119},
   },
   {
     id: "galaxy-s25",
@@ -665,6 +719,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.2\" Dynamic AMOLED 2X", "Snapdragon 8 Elite", "50MP Camera", "4000mAh battery", "Galaxy AI", "IP68"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 799, "256GB": 859},
   },
   {
     id: "galaxy-s24-ultra",
@@ -680,6 +737,9 @@ export const technologyProducts: Product[] = [
     badge: "SALE",
     specs: ["6.8\" Dynamic AMOLED 2X", "Snapdragon 8 Gen 3", "200MP Camera", "Titanium frame", "S Pen", "Galaxy AI"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1099, "512GB": 1219, "1TB": 1459},
   },
   // Samsung Galaxy Z
   {
@@ -696,6 +756,9 @@ export const technologyProducts: Product[] = [
     badge: "FOLD",
     specs: ["7.6\" + 6.3\" Dual Display", "Snapdragon 8 Gen 3", "50MP Camera", "Flex Mode", "S Pen support", "IPX8"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1899, "512GB": 2019, "1TB": 2259},
   },
   {
     id: "galaxy-z-flip-6",
@@ -711,6 +774,9 @@ export const technologyProducts: Product[] = [
     badge: "FLIP",
     specs: ["6.7\" + 3.4\" Dual Display", "Snapdragon 8 Gen 3", "50MP Camera", "FlexWindow", "4000mAh battery", "IPX8"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 1099, "512GB": 1219},
   },
   // Samsung Other
   {
@@ -727,6 +793,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["14.6\" Dynamic AMOLED 2X", "MediaTek Dimensity 9300+", "S Pen included", "16GB RAM", "IP68", "11200mAh battery"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1199, "512GB": 1319, "1TB": 1619},
   },
   {
     id: "galaxy-watch-7-ultra",
@@ -788,6 +857,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["6.5\" 4K HDR OLED", "Snapdragon 8 Gen 3", "Exmor T sensor", "CineAlta camera", "3.5mm jack", "Gorilla Glass Victus 2"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 1399, "512GB": 1549},
   },
   // Garmin
   {
@@ -820,6 +892,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.7\" AMOLED 120Hz", "Dimensity 7350 Pro", "50MP Camera", "Glyph Interface", "5000mAh battery", "Nothing OS 2.6"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB"],
+    storagePrices: {"256GB": 399},
   },
   {
     id: "nothing-phone-3a-pro",
@@ -835,6 +910,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.77\" AMOLED 120Hz", "Snapdragon 7s Gen 3", "50MP Periscope Telephoto", "Glyph Interface 2.0", "5000mAh battery", "Nothing OS 3.1"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 499, "512GB": 549},
   },
   {
     id: "nothing-cmf-phone-1",
@@ -850,6 +928,9 @@ export const technologyProducts: Product[] = [
     badge: "BUDGET",
     specs: ["6.67\" AMOLED 120Hz", "MediaTek Dimensity 7300 Pro", "50MP Camera", "Modular Design", "5000mAh battery", "Nothing OS 2.6"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 199, "256GB": 239},
   },
   // Google Pixel
   {
@@ -867,6 +948,9 @@ export const technologyProducts: Product[] = [
     description: "Pixel 9 Pro XL is engineered by Google to bring the best of Google AI first. Built with a polished metal frame and silky matte glass back, it features a 6.8-inch Super Actua display, Google Tensor G4 with 16GB RAM, and a pro triple camera system with 30x Super Res Zoom.",
     specs: ["Display: 6.8-inch Super Actua display (LTPO OLED, 1-120Hz, up to 3000 nits)", "Processor: Google Tensor G4 with Titan M2 security coprocessor", "Camera: 50MP Wide + 48MP Ultra Wide with Macro Focus + 48MP 5x Telephoto", "Memory: 16GB RAM for advanced on-device multimodal Gemini Nano", "Battery: 5060mAh with 37W fast charging and Qi-certified wireless charging", "Durability: Corning Gorilla Glass Victus 2 with IP68 water and dust resistance"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB", "1TB"],
+    storagePrices: {"128GB": 1099, "256GB": 1199, "512GB": 1319, "1TB": 1549},
   },
   {
     id: "pixel-9-pro",
@@ -882,6 +966,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["6.3\" Super Actua LTPO OLED", "Google Tensor G4", "50MP Triple Pro Camera", "16GB RAM", "4700mAh battery", "Gemini AI built-in"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB", "512GB", "1TB"],
+    storagePrices: {"128GB": 999, "256GB": 1099, "512GB": 1219, "1TB": 1449},
   },
   {
     id: "pixel-9",
@@ -897,6 +984,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.3\" Actua OLED 120Hz", "Google Tensor G4", "50MP Dual Camera", "12GB RAM", "4700mAh battery", "Magic Editor & Magic Eraser"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 799, "256GB": 899},
   },
   {
     id: "pixel-9-pro-fold",
@@ -912,6 +1002,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["8.0\" Inner LTPO OLED", "6.3\" Outer Actua OLED", "Google Tensor G4", "48MP Triple Camera", "16GB RAM", "Foldable design"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 1799, "512GB": 1919},
   },
   {
     id: "pixel-8a",
@@ -927,6 +1020,9 @@ export const technologyProducts: Product[] = [
     badge: "BUDGET",
     specs: ["6.1\" Actua OLED 120Hz", "Google Tensor G3", "64MP Dual Camera", "8GB RAM", "4492mAh battery", "7 years of updates"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 499, "256GB": 559},
   },
   {
     id: "pixel-10-pro-xl",
@@ -942,6 +1038,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.8\" Super Actua LTPO OLED", "Google Tensor G5", "50MP Pro Triple Camera", "16GB RAM", "5200mAh battery", "Gemini Nano on device"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1199, "512GB": 1319, "1TB": 1549},
   },
   // Xiaomi
   {
@@ -958,6 +1057,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["6.73\" LTPO AMOLED 120Hz", "Snapdragon 8 Elite", "Leica Quad Camera 50MP", "16GB RAM", "6000mAh battery", "90W HyperCharge"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 1299, "512GB": 1419, "1TB": 1599},
   },
   {
     id: "xiaomi-15",
@@ -973,6 +1075,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.36\" LTPO AMOLED 120Hz", "Snapdragon 8 Elite", "Leica Triple Camera 50MP", "12GB RAM", "5240mAh battery", "HyperOS 2"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 899, "512GB": 999},
   },
   {
     id: "xiaomi-14t-pro",
@@ -988,6 +1093,9 @@ export const technologyProducts: Product[] = [
     badge: "POPULAR",
     specs: ["6.67\" CrystalRes AMOLED", "Dimensity 9300+", "Leica Triple Camera 50MP", "12GB RAM", "5000mAh battery", "120W HyperCharge"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB", "1TB"],
+    storagePrices: {"256GB": 799, "512GB": 899, "1TB": 999},
   },
   {
     id: "redmi-note-14-pro-plus",
@@ -1003,6 +1111,9 @@ export const technologyProducts: Product[] = [
     badge: "POPULAR",
     specs: ["6.67\" CrystalRes AMOLED 120Hz", "Snapdragon 7s Gen 3", "200MP OIS Camera", "12GB RAM", "5110mAh battery", "120W HyperCharge"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 399, "512GB": 449},
   },
   {
     id: "poco-x7-pro",
@@ -1018,6 +1129,9 @@ export const technologyProducts: Product[] = [
     badge: "BUDGET",
     specs: ["6.67\" 1.5K AMOLED 120Hz", "Dimensity 8400 Ultra", "50MP OIS Camera", "12GB RAM", "6000mAh battery", "90W HyperCharge"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 349, "512GB": 399},
   },
   // OnePlus
   {
@@ -1034,6 +1148,9 @@ export const technologyProducts: Product[] = [
     badge: "NEW",
     specs: ["6.82\" LTPO AMOLED 120Hz", "Snapdragon 8 Elite", "Hasselblad Triple 50MP", "16GB RAM", "6000mAh battery", "100W SuperVOOC"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 899, "512GB": 999},
   },
   {
     id: "oneplus-13r",
@@ -1049,6 +1166,9 @@ export const technologyProducts: Product[] = [
     badge: "POPULAR",
     specs: ["6.78\" LTPO AMOLED 120Hz", "Snapdragon 8 Gen 3", "50MP Triple Camera", "12GB RAM", "6000mAh battery", "80W SuperVOOC"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 599, "512GB": 649},
   },
   {
     id: "oneplus-12",
@@ -1064,6 +1184,9 @@ export const technologyProducts: Product[] = [
     badge: "POPULAR",
     specs: ["6.82\" LTPO AMOLED 120Hz", "Snapdragon 8 Gen 3", "Hasselblad Triple 50MP", "16GB RAM", "5400mAh battery", "100W SuperVOOC"],
     inStock: true,
+    baseStorage: "256GB",
+    storageOptions: ["256GB", "512GB"],
+    storagePrices: {"256GB": 799, "512GB": 899},
   },
   {
     id: "oneplus-open",
@@ -1079,6 +1202,9 @@ export const technologyProducts: Product[] = [
     badge: "PRO",
     specs: ["7.82\" Inner LTPO AMOLED", "6.31\" Outer AMOLED", "Snapdragon 8 Gen 2", "Hasselblad Triple 48MP", "16GB RAM", "Foldable hinge"],
     inStock: true,
+    baseStorage: "512GB",
+    storageOptions: ["512GB"],
+    storagePrices: {"512GB": 1699},
   },
   // Samsung — additional
   {
@@ -1095,6 +1221,9 @@ export const technologyProducts: Product[] = [
     badge: "POPULAR",
     specs: ["6.7\" Dynamic AMOLED 2X", "Exynos 2400e", "50MP Triple Camera", "8GB RAM", "4700mAh battery", "Galaxy AI features"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 649, "256GB": 709},
   },
   {
     id: "galaxy-a55",
@@ -1110,6 +1239,9 @@ export const technologyProducts: Product[] = [
     badge: "BUDGET",
     specs: ["6.6\" Super AMOLED 120Hz", "Exynos 1480", "50MP OIS Triple Camera", "8GB RAM", "5000mAh battery", "IP67 water resistant"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 449, "256GB": 499},
   },
   {
     id: "galaxy-a35",
@@ -1125,5 +1257,8 @@ export const technologyProducts: Product[] = [
     badge: "BUDGET",
     specs: ["6.6\" Super AMOLED 120Hz", "Exynos 1380", "50MP Triple Camera", "8GB RAM", "5000mAh battery", "IP67 rated"],
     inStock: true,
+    baseStorage: "128GB",
+    storageOptions: ["128GB", "256GB"],
+    storagePrices: {"128GB": 329, "256GB": 379},
   },
 ];

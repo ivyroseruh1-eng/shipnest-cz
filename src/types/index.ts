@@ -33,12 +33,18 @@ export interface Product {
   variantsToVerify?: string;
   description?: string;
   colors?: ColorVariant[];
+  storageOptions?: string[];
+  baseStorage?: string;
+  storagePrices?: Record<string, number>;
 }
 
 export interface CartItem {
   product: Product;
   qty: number;
   selectedColor?: string;
+  selectedStorage?: string;
+  unitPrice?: number;
+  lineId?: string;
 }
 
 export interface TrackingStep {
@@ -70,6 +76,8 @@ export interface OrderItem {
   image: string;
   price: number;
   qty: number;
+  selectedColor?: string;
+  selectedStorage?: string;
 }
 
 export interface Order {
