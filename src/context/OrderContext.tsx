@@ -579,8 +579,14 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     } catch (err) {
       console.warn("Using offline demo orders:", err);
-      setOrders(DEMO_SEED_ORDERS);
-      setLoading(false);
+      try {
+        if (typeof window !== "undefined") {
+          setOrders(DEMO_SEED_ORDERS);
+          setLoading(false);
+        }
+      } catch {
+        // Environment may be torn down during tests
+      }
     }
     };
     fetchOrders();

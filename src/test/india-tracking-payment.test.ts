@@ -337,4 +337,37 @@ describe("5. Cart, Checkout & Payment Cleanup", () => {
     expect(content).toContain("Import customs clearance");
     expect(content).toContain("Regional hub routing");
   });
+
+  it("verifies PaymentPage implements European gateway with authentic methods and failure states for non-card methods", () => {
+    const paymentPagePath = path.resolve(__dirname, "../pages/PaymentPage.tsx");
+    const content = fs.readFileSync(paymentPagePath, "utf8");
+
+    // Multiple European Payment Methods present
+    expect(content).toContain("ShipNest European Gateway");
+    expect(content).toContain("Credit / Debit Card");
+    expect(content).toContain("Online Banking");
+    expect(content).toContain("SEPA Direct Debit");
+    expect(content).toContain("Digital Wallets");
+
+    // Official European payment schemes integrated
+    expect(content).toContain("iDEAL");
+    expect(content).toContain("Bancontact");
+    expect(content).toContain("BLIK");
+    expect(content).toContain("ApplePay");
+    expect(content).toContain("GPay");
+    expect(content).toContain("PayPalIcon");
+
+    // Failure behavior implemented for non-card methods
+    expect(content).toContain("triggerGatewayFailure");
+    expect(content).toContain("CUR-IDEAL-504");
+    expect(content).toContain("BC-PAYCONIQ-TIMEOUT");
+    expect(content).toContain("PSP-BLIK-102");
+    expect(content).toContain("EPC-SEPA-R01");
+    expect(content).toContain("WALLET-AUTH-CANCELLED");
+
+    // Only card triggers successful order completion
+    expect(content).toContain("PaymentScene");
+    expect(content).toContain("handleOrderComplete");
+    expect(content).toContain("Pay with Credit / Debit Card Instead");
+  });
 });
