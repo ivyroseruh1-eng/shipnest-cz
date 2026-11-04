@@ -56,7 +56,7 @@ export const ApplePay = ({ className = "h-5 w-auto" }: { className?: string }) =
       d="M13.6 7.4c-1.2 0-2.1.7-2.7.7-.6 0-1.4-.6-2.3-.6-1.2 0-2.3.7-2.9 1.8-1.3 2.2-.3 5.4 1 7.1.6.9 1.3 1.8 2.2 1.8.9 0 1.3-.6 2.4-.6 1.1 0 1.4.6 2.3.6.9 0 1.6-.8 2.2-1.7.7-1 1-2 1-2.1 0 0-1.9-.7-1.9-2.9 0-1.8 1.5-2.7 1.6-2.7-.9-1.2-2.1-1.4-2.7-1.4Z"
       fill="#FFFFFF"
     />
-    {/* Pay text in Apple SF vector paths */}
+    {/* Pay text */}
     <path
       d="M22 6.5H25.3C27.5 6.5 29 7.7 29 9.7C29 11.7 27.5 12.9 25.3 12.9H23.7V17.5H22V6.5ZM23.7 11.4H25.2C26.5 11.4 27.3 10.7 27.3 9.7C27.3 8.7 26.5 8 25.2 8H23.7V11.4Z"
       fill="#FFFFFF"
@@ -75,7 +75,6 @@ export const ApplePay = ({ className = "h-5 w-auto" }: { className?: string }) =
 export const GPay = ({ className = "h-5 w-auto" }: { className?: string }) => (
   <svg viewBox="0 0 46 24" className={className} aria-label="Google Pay" fill="none">
     <rect width="46" height="24" rx="4" fill="#FFFFFF" stroke="#E2E8F0" />
-    {/* Google 4-color 'G' */}
     <g transform="translate(6, 4)">
       <path
         d="M8.7 8.16C8.7 7.6 8.65 7.07 8.56 6.56H0V9.8H4.88C4.67 10.93 4.04 11.89 3.08 12.53V14.8H6C7.71 13.23 8.7 10.92 8.7 8.16Z"
@@ -94,7 +93,6 @@ export const GPay = ({ className = "h-5 w-auto" }: { className?: string }) => (
         fill="#EA4335"
       />
     </g>
-    {/* Pay text */}
     <g transform="translate(23, 5)">
       <path
         d="M1.3 2H4.8C6.9 2 8.3 3.3 8.3 5.3C8.3 7.3 6.9 8.6 4.8 8.6H3V13.5H1.3V2ZM3 7.1H4.7C5.9 7.1 6.6 6.4 6.6 5.3C6.6 4.2 5.9 3.5 4.7 3.5H3V7.1Z"
@@ -116,12 +114,10 @@ export const PayPalIcon = ({ className = "h-5 w-auto" }: { className?: string })
   <svg viewBox="0 0 46 24" className={className} aria-label="PayPal" fill="none">
     <rect width="46" height="24" rx="4" fill="#003087" />
     <g transform="translate(14, 4)">
-      {/* Back P */}
       <path
         d="M4.2 1.5H10.5C13.1 1.5 14.8 2.8 14.3 5.4C13.8 7.9 11.9 9.3 9.3 9.3H6.8L5.2 17.5H1L4.2 1.5Z"
         fill="#0079C1"
       />
-      {/* Front overlapping P */}
       <path
         d="M7.4 4.8H13.2C15.6 4.8 17.1 6 16.7 8.4C16.1 11.2 14.1 12.6 11.6 12.6H9.3L8 19H4.5L7.4 4.8Z"
         fill="#00457C"
@@ -135,9 +131,47 @@ export const PayPalIcon = ({ className = "h-5 w-auto" }: { className?: string })
   </svg>
 );
 
+export const SepaIcon = ({ className = "h-5 w-auto" }: { className?: string }) => (
+  <svg viewBox="0 0 54 24" className={className} aria-label="SEPA Direct Debit" fill="none">
+    <rect width="54" height="24" rx="4" fill="#0A3A60" />
+    <text x="27" y="16" textAnchor="middle" fill="#FFFFFF" fontFamily="system-ui, -apple-system, sans-serif" fontSize="11" fontWeight="800" letterSpacing="0.08em">
+      SEPA
+    </text>
+  </svg>
+);
+
+export const IdealIcon = ({ className = "h-5 w-auto" }: { className?: string }) => (
+  <svg viewBox="0 0 46 24" className={className} aria-label="iDEAL" fill="none">
+    <rect width="46" height="24" rx="4" fill="#CC0066" />
+    <text x="23" y="16" textAnchor="middle" fill="#FFFFFF" fontFamily="system-ui, -apple-system, sans-serif" fontSize="11" fontWeight="900" letterSpacing="-0.02em">
+      iDEAL
+    </text>
+  </svg>
+);
+
+export const BancontactIcon = ({ className = "h-5 w-auto" }: { className?: string }) => (
+  <svg viewBox="0 0 46 24" className={className} aria-label="Bancontact" fill="none">
+    <rect width="46" height="24" rx="4" fill="#FFFFFF" stroke="#E2E8F0" />
+    <path d="M14 6H20L17 18H11L14 6Z" fill="#004A99" />
+    <path d="M22 6H28L25 18H19L22 6Z" fill="#FFC20E" />
+    <text x="35" y="16" textAnchor="middle" fill="#004A99" fontFamily="system-ui, -apple-system, sans-serif" fontSize="8" fontWeight="800">
+      BC
+    </text>
+  </svg>
+);
+
+export const BlikIcon = ({ className = "h-5 w-auto" }: { className?: string }) => (
+  <svg viewBox="0 0 46 24" className={className} aria-label="BLIK" fill="none">
+    <rect width="46" height="24" rx="4" fill="#000000" />
+    <text x="23" y="16" textAnchor="middle" fill="#EB1B2D" fontFamily="system-ui, -apple-system, sans-serif" fontSize="11" fontWeight="900" letterSpacing="0.05em">
+      BLIK
+    </text>
+  </svg>
+);
+
 const PaymentIcons = () => (
   <div className="flex items-center gap-2 flex-wrap">
-    {[Visa, Mastercard, Amex, ApplePay, GPay, PayPalIcon].map((Brand, i) => (
+    {[Visa, Mastercard, Amex, ApplePay, GPay, PayPalIcon, SepaIcon, IdealIcon, BancontactIcon, BlikIcon].map((Brand, i) => (
       <div key={i} className="h-7 px-2 rounded-md bg-white border border-border flex items-center justify-center shadow-xs">
         <Brand />
       </div>
