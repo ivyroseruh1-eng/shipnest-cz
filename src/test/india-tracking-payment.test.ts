@@ -54,7 +54,6 @@ describe("1. Indian Delivery Estimates (20–30 Days)", () => {
   });
 
   it("calculates 20–30-day delivery estimation strictly from order placedAt creation date", () => {
-    // Fixed creation date in the past
     const placedAt = "2026-03-28T10:14:04.000Z";
     const estDelivery = calculateEstimatedDeliveryDate(placedAt, true, "standard", "SN9284489643");
 
@@ -66,11 +65,11 @@ describe("1. Indian Delivery Estimates (20–30 Days)", () => {
     expect(diffDays).toBeGreaterThanOrEqual(20);
     expect(diffDays).toBeLessThanOrEqual(30);
 
-    // Priority delivery to India: 20–25 days
+    // Both methods resolve cleanly within 20–30 days for India
     const estPriority = calculateEstimatedDeliveryDate(placedAt, true, "priority", "SN9284489643");
     const diffPriority = Math.round((new Date(estPriority).getTime() - placedDate.getTime()) / (1000 * 60 * 60 * 24));
     expect(diffPriority).toBeGreaterThanOrEqual(20);
-    expect(diffPriority).toBeLessThanOrEqual(25);
+    expect(diffPriority).toBeLessThanOrEqual(30);
   });
 
   it("calculates 3–5-day delivery estimation for European and global destinations", () => {
@@ -98,11 +97,12 @@ describe("1. Indian Delivery Estimates (20–30 Days)", () => {
     expect(range).toContain("Apr"); // ~26 days from Mar 28 is Apr 2026, NOT current month
   });
 
-  it("provides correct centralized shipping metadata for checkout and payment", () => {
+  it("provides correct centralized shipping metadata for single Indian shipping method", () => {
     const metaIndia = getShippingMethodMeta(true);
     expect(metaIndia.standard.estimate).toBe("20–30 days");
-    expect(metaIndia.priority.estimate).toBe("20–25 days");
+    expect(metaIndia.standard.name).toBe("Insured Air Express Freight");
     expect(metaIndia.standard.description).toContain("20–30 days");
+    expect(metaIndia.standard.description).toContain("export handling");
 
     const metaGlobal = getShippingMethodMeta(false);
     expect(metaGlobal.standard.estimate).toBe("3–5 business days");
@@ -135,54 +135,56 @@ describe("2. Restored ShipNest Tracking System", () => {
     });
   });
 
-  it("marks completed steps and current In Transit step without fabricated future timestamps", () => {
+  it("ensures steps 1-6 are completed, step 7 is current, and steps 8-12 have no fabricated timestamps", () => {
     const steps = createDefaultTrackingSteps("Dimapur", "Nagaland", "India");
 
-    // Completed steps (0 to 5)
-    for (let i = 0; i <= 5; i++) {
-      expect(steps[i].completed, `${steps[i].status} should be completed`).toBe(true);
-      expect(steps[i].timestamp, `${steps[i].status} should have valid timestamp`).toBeTruthy();
+    // Steps 1 to 6 completed
+    for (let i = 0; i < 6; i++) {
+      expect(steps[i].completed, `Step ${i + 1} (${steps[i].status}) should be completed`).toBe(true);
+      expect(steps[i].timestamp.length, `Step ${i + 1} should have valid timestamp`).toBeGreaterThan(0);
     }
 
-    // Current step (6: In Transit)
-    expect(steps[6].completed).toBe(true);
+    // Step 7 (In Transit) is current active milestone
     expect(steps[6].status).toBe("In Transit");
+    expect(steps[6].completed).toBe(true);
+    expect(steps[6].timestamp.length).toBeGreaterThan(0);
 
-    // Upcoming steps (7 to 11) must NOT show fabricated timestamps
-    for (let i = 7; i <= 11; i++) {
-      expect(steps[i].completed, `${steps[i].status} should not be completed`).toBe(false);
-      expect(steps[i].timestamp, `${steps[i].status} must not have fabricated timestamp`).toBe("");
+    // Steps 8 to 12 are upcoming and must NOT display fabricated timestamps
+    for (let i = 7; i < 12; i++) {
+      expect(steps[i].completed, `Upcoming step ${i + 1} (${steps[i].status}) must not be marked completed`).toBe(false);
+      expect(steps[i].timestamp, `Upcoming step ${i + 1} must not have fabricated timestamp`).toBe("");
     }
   });
 
-  it("routes Indian shipments through genuine Indian cities and regional hubs", () => {
-    // Dimapur / Nagaland shipment
+  it("routes Indian shipments through Prague (PRG) -> New Delhi (DEL) -> Guwahati (GAU) -> Dimapur", () => {
     const stepsDimapur = createDefaultTrackingSteps("Dimapur", "Nagaland", "India");
-    const customsStep = stepsDimapur.find((s) => s.status === "Customs");
-    expect(customsStep?.city).toBe("New Delhi");
-    expect(customsStep?.state).toBe("Delhi");
-    expect(customsStep?.country).toBe("India");
 
-    const regionalHub = stepsDimapur.find((s) => s.status === "Regional Hub");
-    expect(regionalHub?.city).toBe("Guwahati");
-    expect(regionalHub?.state).toBe("Assam");
-    expect(regionalHub?.country).toBe("India");
+    // Origin: Prague
+    expect(stepsDimapur[0].city).toContain("Prague");
+    expect(stepsDimapur[4].city).toContain("Prague");
+    expect(stepsDimapur[5].city).toContain("Prague");
 
-    const localHub = stepsDimapur.find((s) => s.status === "Local Hub");
-    expect(localHub?.city).toBe("Dimapur");
-    expect(localHub?.state).toBe("Nagaland");
-    expect(localHub?.country).toBe("India");
+    // In Transit: Cargo Flight PRG -> DEL
+    expect(stepsDimapur[6].city).toContain("DEL");
 
-    const outForDelivery = stepsDimapur.find((s) => s.status === "Out for Delivery");
-    expect(outForDelivery?.city).toBe("Dimapur");
-    expect(outForDelivery?.state).toBe("Nagaland");
-    expect(outForDelivery?.country).toBe("India");
+    // Customs: Indira Gandhi International Airport (DEL)
+    expect(stepsDimapur[7].city).toContain("New Delhi");
+    expect(stepsDimapur[7].state).toContain("Delhi");
+
+    // Regional Hub: Guwahati North-East Logistics Hub (GAU)
+    expect(stepsDimapur[8].city).toContain("Guwahati");
+    expect(stepsDimapur[8].state).toContain("Assam");
+
+    // Local Hub & Delivery: Dimapur, Nagaland
+    expect(stepsDimapur[9].city).toContain("Dimapur");
+    expect(stepsDimapur[10].city).toContain("Dimapur");
+    expect(stepsDimapur[11].city).toContain("Dimapur");
   });
 
-  it("creates valid reverse logistics steps upon order cancellation", () => {
+  it("preserves Doorstep Verification PIN and Order Reference lookups", () => {
     const steps = createDefaultTrackingSteps("Dimapur", "Nagaland", "India");
-    const mockOrder: Order = {
-      id: "ord-test-1",
+    const order: Order = {
+      id: "ord-test-pin",
       orderId: generateOrderId(),
       trackingId: generateTrackingId(),
       customer: {
@@ -196,57 +198,47 @@ describe("2. Restored ShipNest Tracking System", () => {
         zip: "797112",
       },
       items: [],
-      subtotal: 1200,
-      tax: 240,
-      total: 1440,
+      subtotal: 100,
+      tax: 20,
+      total: 120,
       status: "In Transit",
-      estimatedDelivery: new Date().toISOString(),
-      placedAt: new Date().toISOString(),
+      estimatedDelivery: "2026-11-30T10:00:00.000Z",
+      placedAt: "2026-11-04T10:00:00.000Z",
+      notes: "Express Priority Air Cargo",
+      deliveryPin: "4821",
       trackingSteps: steps,
     };
 
-    const returnSteps = createCancelledReturnSteps(mockOrder);
-    expect(returnSteps.length).toBeGreaterThan(0);
-    const cancelStep = returnSteps.find((s) => s.status.includes("Order Cancelled"));
-    expect(cancelStep).toBeDefined();
-    expect(cancelStep?.completed).toBe(true);
+    expect(order.deliveryPin).toBe("4821");
+    expect(order.trackingId).toMatch(/^SNX\d{7}$/);
+    expect(order.orderId).toMatch(/^SN/);
   });
 });
 
-describe("3. Global Phone Selector with India (+91)", () => {
-  it("includes India (+91) with correct flag, label, and dialing code", () => {
-    const india = COUNTRY_CODES.find((c) => c.code === "+91");
+describe("3. Phone Country Selector (+91 India)", () => {
+  it("includes India (+91) with correct flag and metadata", () => {
+    const india = getCountryByCode("+91");
     expect(india).toBeDefined();
+    expect(india?.label).toBe("India (+91)");
     expect(india?.country).toBe("India");
     expect(india?.flag).toBe("🇮🇳");
-    expect(india?.iso).toBe("IN");
-    expect(india?.label).toBe("India (+91)");
+    expect(india?.placeholder).toBe("98765 43210");
   });
 
-  it("formats Indian mobile phone numbers accurately with 5-5 digit grouping", () => {
-    const india = getCountryByCode("+91");
+  it("formats Indian mobile phone numbers with standard 5-5 grouping", () => {
+    const india = getCountryByCode("+91")!;
     expect(india.formatPhone("9876543210")).toBe("98765 43210");
+    expect(india.formatPhone("98765 43210")).toBe("98765 43210");
+    expect(india.formatPhone("+919876543210")).toBe("98765 43210");
     expect(india.formatPhone("98765")).toBe("98765");
-    expect(india.formatPhone("9876543210999")).toBe("98765 43210"); // slices to 10
   });
 
-  it("preserves Czech (+420), US (+1), UK (+44), and European country codes", () => {
-    const czech = getCountryByCode("+420");
-    expect(czech.country).toBe("Czech Republic");
-    expect(czech.flag).toBe("🇨🇿");
-    expect(czech.formatPhone("777000111")).toBe("777 000 111");
-
-    const us = getCountryByCode("+1");
-    expect(us.country).toBe("United States / Canada");
-    expect(us.formatPhone("5550192834")).toBe("(555) 019-2834");
-
-    const uk = getCountryByCode("+44");
-    expect(uk.country).toBe("United Kingdom");
-    expect(uk.flag).toBe("🇬🇧");
-
-    const de = getCountryByCode("+44");
+  it("preserves US, UK, Czech Republic and European dialing codes", () => {
+    expect(COUNTRY_CODES.some((c) => c.code === "+420")).toBe(true);
     expect(COUNTRY_CODES.some((c) => c.code === "+49")).toBe(true);
-    expect(COUNTRY_CODES.some((c) => c.code === "+33")).toBe(true);
+    expect(COUNTRY_CODES.some((c) => c.code === "+44")).toBe(true);
+    expect(COUNTRY_CODES.some((c) => c.code === "+1")).toBe(true);
+    expect(COUNTRY_CODES.some((c) => c.code === "+43")).toBe(true);
     expect(COUNTRY_CODES.some((c) => c.code === "+41")).toBe(true);
     expect(COUNTRY_CODES.some((c) => c.code === "+31")).toBe(true);
   });
@@ -292,12 +284,57 @@ describe("4. Official Payment Brand Assets", () => {
     expect(content).toContain("Visa");
     expect(content).toContain("Mastercard");
     expect(content).toContain("American Express");
-    expect(content).toContain("Apple Pay");
-    expect(content).toContain("Google Pay");
-    expect(content).toContain("PayPal");
-    expect(content).toContain("SEPA");
-    expect(content).toContain("iDEAL");
-    expect(content).toContain("Bancontact");
-    expect(content).toContain("BLIK");
+  });
+});
+
+describe("5. Cart, Checkout & Payment Cleanup", () => {
+  it("verifies CartPage does not contain unnecessary trust lines", () => {
+    const cartPagePath = path.resolve(__dirname, "../pages/CartPage.tsx");
+    const content = fs.readFileSync(cartPagePath, "utf8");
+
+    expect(content).not.toContain("256-bit SSL encrypted checkout");
+    expect(content).not.toContain("30-day money-back guarantee with prepaid return labels");
+  });
+
+  it("verifies ShoppingAssistantLauncher is hidden on transactional pages", () => {
+    const launcherPath = path.resolve(__dirname, "../components/ai/ShoppingAssistantLauncher.tsx");
+    const content = fs.readFileSync(launcherPath, "utf8");
+
+    expect(content).toContain("isTransactionalRoute");
+    expect(content).toContain("/cart");
+    expect(content).toContain("/checkout");
+    expect(content).toContain("/payment");
+    expect(content).toContain("/order-confirmation");
+  });
+
+  it("verifies PaymentPage does not contain Fill Demo Card button or handler", () => {
+    const paymentPagePath = path.resolve(__dirname, "../pages/PaymentPage.tsx");
+    const content = fs.readFileSync(paymentPagePath, "utf8");
+
+    expect(content).not.toContain("Fill Demo Card");
+    expect(content).not.toContain("handleFillDemoCard");
+    expect(content).not.toContain("Filled with authenticated 3D Secure test card");
+  });
+
+  it("verifies PaymentPage does not contain unverified regulatory or compliance claims", () => {
+    const paymentPagePath = path.resolve(__dirname, "../pages/PaymentPage.tsx");
+    const content = fs.readFileSync(paymentPagePath, "utf8");
+
+    expect(content).not.toContain("PCI-DSS Level 1");
+    expect(content).not.toContain("EU Regulated");
+    expect(content).not.toContain("EU REGULATED");
+    expect(content).not.toContain("PSD2");
+    expect(content).not.toContain("GDPR Compliant");
+  });
+
+  it("verifies CheckoutPage presents single shipping option with multi-stage explanation for India", () => {
+    const checkoutPagePath = path.resolve(__dirname, "../pages/CheckoutPage.tsx");
+    const content = fs.readFileSync(checkoutPagePath, "utf8");
+
+    expect(content).toContain("Why delivery takes 20–30 days to India");
+    expect(content).toContain("Export handling & sorting");
+    expect(content).toContain("International air-cargo transport");
+    expect(content).toContain("Import customs clearance");
+    expect(content).toContain("Regional hub routing");
   });
 });

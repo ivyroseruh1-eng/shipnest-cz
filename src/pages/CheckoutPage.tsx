@@ -110,6 +110,11 @@ const CheckoutPage: React.FC = () => {
     setShippingForm((prev) => {
       const next = { ...prev, [field]: val };
 
+      // Ensure India destinations always use single standard method
+      if (isIndiaDestination(next)) {
+        next.deliveryMethod = "standard";
+      }
+
       // If country changed, auto-synchronize dialing code if appropriate
       if (field === "country") {
         const cLower = String(val).toLowerCase();
@@ -422,83 +427,130 @@ const CheckoutPage: React.FC = () => {
                   )}
                 </div>
 
-                <div className="space-y-3">
-                  <label
-                    className={`p-4 rounded-2xl border flex items-start justify-between cursor-pointer transition-all ${
-                      shippingForm.deliveryMethod === "standard"
-                        ? "border-foreground bg-secondary/30 ring-1 ring-foreground/15"
-                        : "border-border/80 hover:border-foreground/30 bg-card"
-                    }`}
-                  >
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="radio"
-                        name="deliveryMethod"
-                        value="standard"
-                        checked={shippingForm.deliveryMethod === "standard"}
-                        onChange={() => updateShipping("deliveryMethod", "standard")}
-                        className="mt-1 w-4 h-4 text-primary focus:ring-primary"
-                      />
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[14px] font-semibold text-foreground">
-                            {shippingMeta.standard.name}
-                          </span>
-                          <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 px-2 py-0.5 rounded-md">
-                            {shippingMeta.standard.badge}
-                          </span>
-                          <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-1.5 py-0.2 rounded border border-border/60">
-                            {shippingMeta.standard.estimate}
-                          </span>
+                {isIndia ? (
+                  <div className="space-y-4">
+                    {/* Single Consolidated Shipping Option for India */}
+                    <div className="p-4 sm:p-5 rounded-2xl border border-foreground bg-secondary/30 ring-1 ring-foreground/15 flex items-start justify-between">
+                      <div className="flex items-start gap-3">
+                        <div className="mt-1 w-4 h-4 rounded-full border-2 border-foreground flex items-center justify-center shrink-0">
+                          <div className="w-2 h-2 rounded-full bg-foreground" />
                         </div>
-                        <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
-                          {shippingMeta.standard.description}
-                        </p>
+                        <div>
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <span className="text-[14px] font-semibold text-foreground">
+                              {shippingMeta.standard.name}
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 px-2 py-0.5 rounded-md">
+                              FREE
+                            </span>
+                            <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-2 py-0.5 rounded border border-border/60">
+                              20–30 days
+                            </span>
+                          </div>
+                          <p className="text-[12.5px] text-muted-foreground mt-2 leading-relaxed">
+                            International deliveries to India require export handling at origin, international air-cargo transportation, import customs clearance, and onward domestic distribution. After arriving in India, shipments pass through regional logistics hubs before reaching the destination city. Estimated delivery: 20–30 days.
+                          </p>
+                        </div>
                       </div>
+                      <span className="text-[13px] font-bold text-emerald-600 shrink-0 pl-3">
+                        FREE
+                      </span>
                     </div>
-                    <span className="text-[13px] font-bold text-emerald-600 shrink-0">
-                      {shippingMeta.standard.cost}
-                    </span>
-                  </label>
 
-                  <label
-                    className={`p-4 rounded-2xl border flex items-start justify-between cursor-pointer transition-all ${
-                      shippingForm.deliveryMethod === "priority"
-                        ? "border-foreground bg-secondary/30 ring-1 ring-foreground/15"
-                        : "border-border/80 hover:border-foreground/30 bg-card"
-                    }`}
-                  >
-                    <div className="flex items-start gap-3">
-                      <input
-                        type="radio"
-                        name="deliveryMethod"
-                        value="priority"
-                        checked={shippingForm.deliveryMethod === "priority"}
-                        onChange={() => updateShipping("deliveryMethod", "priority")}
-                        className="mt-1 w-4 h-4 text-primary focus:ring-primary"
-                      />
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[14px] font-semibold text-foreground">
-                            {shippingMeta.priority.name}
-                          </span>
-                          <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-md">
-                            {shippingMeta.priority.badge}
-                          </span>
-                          <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-1.5 py-0.2 rounded border border-border/60">
-                            {shippingMeta.priority.estimate}
-                          </span>
-                        </div>
-                        <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
-                          {shippingMeta.priority.description}
-                        </p>
-                      </div>
+                    {/* Logistics Stages Explanation */}
+                    <div className="bg-secondary/40 border border-border/70 rounded-2xl p-4 sm:p-4.5 space-y-2.5 text-[12px] text-muted-foreground">
+                      <p className="font-semibold text-foreground text-[12.5px] flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-primary shrink-0" />
+                        Why delivery takes 20–30 days to India
+                      </p>
+                      <ul className="space-y-1.5 list-disc list-inside leading-relaxed text-[11.5px] sm:text-[12px] text-muted-foreground/90 pl-1">
+                        <li><strong className="text-foreground/90">Export handling & sorting:</strong> Consignment inspection and bonded packing at European logistics origin.</li>
+                        <li><strong className="text-foreground/90">International air-cargo transport:</strong> Direct scheduled freight routing to Indian air logistics gateway.</li>
+                        <li><strong className="text-foreground/90">Import customs clearance:</strong> Formal documentation, tariff assessment, and Indian customs processing.</li>
+                        <li><strong className="text-foreground/90">Regional hub routing:</strong> Transfer from international gateway through regional distribution centers.</li>
+                        <li><strong className="text-foreground/90">Final domestic delivery:</strong> White-glove transportation to your local PIN code with doorstep PIN verification.</li>
+                      </ul>
                     </div>
-                    <span className="text-[13px] font-bold text-emerald-600 shrink-0">
-                      {shippingMeta.priority.cost}
-                    </span>
-                  </label>
-                </div>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    <label
+                      className={`p-4 rounded-2xl border flex items-start justify-between cursor-pointer transition-all ${
+                        shippingForm.deliveryMethod === "standard"
+                          ? "border-foreground bg-secondary/30 ring-1 ring-foreground/15"
+                          : "border-border/80 hover:border-foreground/30 bg-card"
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="radio"
+                          name="deliveryMethod"
+                          value="standard"
+                          checked={shippingForm.deliveryMethod === "standard"}
+                          onChange={() => updateShipping("deliveryMethod", "standard")}
+                          className="mt-1 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[14px] font-semibold text-foreground">
+                              {shippingMeta.standard.name}
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 px-2 py-0.5 rounded-md">
+                              {shippingMeta.standard.badge}
+                            </span>
+                            <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-1.5 py-0.2 rounded border border-border/60">
+                              {shippingMeta.standard.estimate}
+                            </span>
+                          </div>
+                          <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
+                            {shippingMeta.standard.description}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[13px] font-bold text-emerald-600 shrink-0">
+                        {shippingMeta.standard.cost}
+                      </span>
+                    </label>
+
+                    <label
+                      className={`p-4 rounded-2xl border flex items-start justify-between cursor-pointer transition-all ${
+                        shippingForm.deliveryMethod === "priority"
+                          ? "border-foreground bg-secondary/30 ring-1 ring-foreground/15"
+                          : "border-border/80 hover:border-foreground/30 bg-card"
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="radio"
+                          name="deliveryMethod"
+                          value="priority"
+                          checked={shippingForm.deliveryMethod === "priority"}
+                          onChange={() => updateShipping("deliveryMethod", "priority")}
+                          className="mt-1 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[14px] font-semibold text-foreground">
+                              {shippingMeta.priority.name}
+                            </span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-md">
+                              {shippingMeta.priority.badge}
+                            </span>
+                            <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-1.5 py-0.2 rounded border border-border/60">
+                              {shippingMeta.priority.estimate}
+                            </span>
+                          </div>
+                          <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
+                            {shippingMeta.priority.description}
+                          </p>
+                        </div>
+                      </div>
+                      <span className="text-[13px] font-bold text-emerald-600 shrink-0">
+                        {shippingMeta.priority.cost}
+                      </span>
+                    </label>
+                  </div>
+                )}
               </div>
 
               {/* Main Continue Action Button */}

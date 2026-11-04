@@ -9,20 +9,26 @@ export const ShoppingAssistantLauncher = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // On checkout or cart pages where bottom sticky action bars exist on mobile,
-  // float cleanly above the sticky bar so it NEVER intercepts the primary Checkout CTA
-  const isBottomActionRoute = location.pathname.startsWith("/cart") || location.pathname.startsWith("/checkout");
+  // Hide the floating assistant on transactional pages: cart, checkout, payment, and order confirmation
+  const isTransactionalRoute =
+    location.pathname === "/cart" ||
+    location.pathname.startsWith("/cart/") ||
+    location.pathname === "/checkout" ||
+    location.pathname.startsWith("/checkout/") ||
+    location.pathname === "/payment" ||
+    location.pathname.startsWith("/payment/") ||
+    location.pathname.startsWith("/order-confirmation");
+
+  if (isTransactionalRoute) {
+    return null;
+  }
 
   return (
     <>
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className={`fixed z-30 flex items-center gap-2.5 px-4 py-2.5 bg-foreground text-background rounded-full shadow-lg hover:bg-foreground/90 transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-primary/40 ${
-            isBottomActionRoute
-              ? "bottom-24 right-4 sm:bottom-6 sm:right-6"
-              : "bottom-5 right-5 sm:bottom-6 sm:right-6"
-          }`}
+          className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-30 flex items-center gap-2.5 px-4 py-2.5 bg-foreground text-background rounded-full shadow-lg hover:bg-foreground/90 transition-all duration-300 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-2 focus:ring-primary/40"
           aria-label="Open AI Shopping Assistant"
         >
           <div className="relative">
