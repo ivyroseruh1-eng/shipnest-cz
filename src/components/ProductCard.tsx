@@ -66,7 +66,8 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
       {/* Product Image Stage (Seamless 1:1 square stage on pure white #ffffff) */}
       <Link to={`/product/${product.id}`} className="block my-1 focus:outline-none">
         <div
-          className="aspect-square rounded-2xl flex items-center justify-center overflow-hidden p-2.5 transition-all duration-300 bg-white"
+          className="aspect-square rounded-2xl flex items-center justify-center overflow-hidden p-2.5 transition-all duration-300"
+          style={{ background: stageTheme.background }}
         >
           <ProductImage
             src={product.image}
@@ -74,7 +75,7 @@ const ProductCard = ({ product, isWishlisted, onToggleWishlist }: Props) => {
             alt={product.name}
             department={product.department}
             category={product.category}
-            stageTheme={{ background: "#ffffff", borderColor: "#e5e7eb", textColor: "#09090b", isLight: true }}
+            stageTheme={stageTheme}
             loading="lazy"
             width={400}
             height={400}

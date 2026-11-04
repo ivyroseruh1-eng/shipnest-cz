@@ -8,10 +8,127 @@ export interface StageTheme {
   isLight: boolean;
 }
 
-// In-memory cache for processed square/centered image data URLs so each asset is processed at most once
+// In-memory cache for processed image data URLs so each asset is processed at most once
 const imageCache = new Map<string, string>();
 // In-memory cache for detected background colors
 const imageBgCache = new Map<string, string>();
+
+export interface GalleryLayoutConfig {
+  containerAspectClass: string;
+  maxHeightClass: string;
+  proportion: "landscape" | "portrait" | "square";
+}
+
+/**
+ * Computes optimal gallery layout and proportions based on product type.
+ * Eliminates oversized fixed square presentations and adapts cleanly to:
+ * - Handbags, Shoes, Laptops -> Landscape (4:3)
+ * - Smartphones, Fragrances, Apparel -> Portrait (4:5)
+ * - Watches, Jewellery, Audio -> Balanced Square (1:1)
+ */
+export function getProductGalleryLayout(product?: Partial<Product> | null): GalleryLayoutConfig {
+  if (!product) {
+    return {
+      containerAspectClass: "aspect-[4/3]",
+      maxHeightClass: "max-h-[460px] lg:max-h-[500px]",
+      proportion: "landscape",
+    };
+  }
+
+  const cat = (product.category || "").toLowerCase();
+  const subcat = (product.subcategory || "").toLowerCase();
+  const name = (product.name || "").toLowerCase();
+  const dept = (product.department || "").toLowerCase();
+  const prodType = (product.productType || "").toLowerCase();
+
+  // 1. Handbags, Bags, Totes, Shoes, Footwear, Laptops -> Landscape (4:3)
+  const isHandbag =
+    cat.includes("bag") ||
+    subcat.includes("bag") ||
+    prodType.includes("bag") ||
+    name.includes("bag") ||
+    name.includes("tote") ||
+    name.includes("speedy") ||
+    name.includes("neverfull") ||
+    name.includes("alma") ||
+    name.includes("backpack") ||
+    name.includes("pouch") ||
+    name.includes("wallet") ||
+    name.includes("crossbody");
+
+  const isFootwear =
+    cat.includes("footwear") ||
+    cat.includes("shoe") ||
+    subcat.includes("shoe") ||
+    subcat.includes("footwear") ||
+    prodType.includes("footwear") ||
+    prodType.includes("shoe") ||
+    name.includes("sneaker") ||
+    name.includes("shoe") ||
+    name.includes("sandal") ||
+    name.includes("loafer") ||
+    name.includes("pump") ||
+    name.includes("boot") ||
+    name.includes("slide");
+
+  const isLandscapeDevice =
+    cat.includes("laptop") ||
+    cat.includes("tablet") ||
+    cat.includes("monitor") ||
+    name.includes("macbook") ||
+    name.includes("ipad") ||
+    name.includes("duo");
+
+  if (isHandbag || isFootwear || isLandscapeDevice) {
+    return {
+      containerAspectClass: "aspect-[4/3]",
+      maxHeightClass: "max-h-[460px] lg:max-h-[500px]",
+      proportion: "landscape",
+    };
+  }
+
+  // 2. Smartphones, Fragrance/Perfumes, Apparel -> Portrait (4:5)
+  const isPhone =
+    cat.includes("phone") ||
+    cat.includes("smartphone") ||
+    dept.includes("phone") ||
+    name.includes("iphone") ||
+    name.includes("galaxy s") ||
+    name.includes("galaxy a") ||
+    name.includes("galaxy z") ||
+    name.includes("pixel");
+
+  const isFragrance =
+    cat.includes("fragrance") ||
+    cat.includes("perfume") ||
+    dept.includes("fragrance") ||
+    dept.includes("perfume") ||
+    name.includes("perfume") ||
+    name.includes("eau de") ||
+    name.includes("parfum") ||
+    name.includes("mist");
+
+  const isApparel =
+    cat.includes("clothing") ||
+    cat.includes("apparel") ||
+    cat.includes("dress") ||
+    cat.includes("jacket");
+
+  if (isPhone || isFragrance || isApparel) {
+    return {
+      containerAspectClass: "aspect-[4/5]",
+      maxHeightClass: "max-h-[540px] lg:max-h-[580px]",
+      proportion: "portrait",
+    };
+  }
+
+  // 3. Watches, Jewellery, Audio, and others -> Balanced Square (1:1)
+  return {
+    containerAspectClass: "aspect-square",
+    maxHeightClass: "max-h-[480px] lg:max-h-[520px]",
+    proportion: "square",
+  };
+}
 
 /**
  * Precomputed exact solid background color mapping for catalogue assets.
@@ -169,22 +286,27 @@ export function isImageDark(imageSrc?: string): boolean {
 
 /**
  * Client-side non-destructive image processor.
- * - Inspects the actual image background color.
- * - Detects if an image has wide letterbox margins or an off-center subject (e.g. 2880x1520 Apple marketing banners).
- * - Centers the phone/subject horizontally and vertically into a clean square canvas with ~85% height.
- * - Fills the surrounding container canvas with the EXACT matching background color.
- * - Completely eliminates the tiny/off-center appearance of iPhone 18 Pro, Pro Max & Duo.
- * - Preserves 100% of the original image details, highlights, cameras, and aspect ratio without distortion or cropping.
- * - Original files on disk are NEVER touched.
+ * - Inspects the actual image background color and transparency.
+ * - Detects subject boundaries accurately across all orientations (square, portrait, landscape).
+ * - Trims excessive empty canvas margins so products fill their frame cleanly and prominently.
+ * - Preserves natural aspect ratio, legitimate soft shadows, product reflections, and image quality.
+ * - Completely avoids distorting or stretching the product.
+ * - Leaves real photo/lifestyle backgrounds untouched.
+ * - Never touches files on disk.
  */
 export function processProductImage(
   img: HTMLImageElement,
-  maxDimension = 1024
+  maxDimension = 1200
 ): Promise<string> {
   return new Promise((resolve) => {
     try {
       const src = img.currentSrc || img.src;
       if (!src) return resolve("");
+
+      // Skip already processed data URLs immediately
+      if (src.startsWith("data:")) {
+        return resolve(src);
+      }
 
       if (imageCache.has(src)) {
         return resolve(imageCache.get(src)!);
@@ -198,19 +320,13 @@ export function processProductImage(
       const nh = img.naturalHeight;
       const normPath = normalizeAssetPath(src);
 
-      // Check if this image has a precomputed bounding box (iPhone 18 Pro & Duo landscape banners)
+      // Check if this image has a precomputed bounding box (wide Apple marketing banners)
       const hasPresetBox = normPath in ASSET_BOUNDING_BOXES;
-      const aspect = nw / nh;
-      const isWideBanner = aspect > 1.25;
 
-      // If it's already a square or portrait image and not a known off-center asset, keep untouched
-      if (!hasPresetBox && !isWideBanner) {
-        imageCache.set(src, src);
-        return resolve(src);
-      }
-
-      // Sample edge color to match the image background
+      // Sample edge color and transparency to detect background
       let r = 255, g = 255, b = 255;
+      let isTransparent = false;
+
       if (normPath in ASSET_BACKGROUND_MAP) {
         const mappedHex = ASSET_BACKGROUND_MAP[normPath];
         if (mappedHex === "#000000") {
@@ -236,6 +352,9 @@ export function processProductImage(
             tCtx.getImageData(3, nh - 4, 1, 1).data,
             tCtx.getImageData(nw - 4, nh - 4, 1, 1).data,
           ];
+
+          isTransparent = corners.some(c => c[3] < 240);
+
           let sr = 0, sg = 0, sb = 0;
           for (const c of corners) { sr += c[0]; sg += c[1]; sb += c[2]; }
           r = Math.round(sr / 4);
@@ -243,6 +362,17 @@ export function processProductImage(
           b = Math.round(sb / 4);
           if (r < 25 && g < 25 && b < 25) { r = 0; g = 0; b = 0; }
           else if (r > 240 && g > 240 && b > 240) { r = 255; g = 255; b = 255; }
+
+          // If corner colors differ dramatically and it's not transparent, this is a real photo/lifestyle background
+          if (!isTransparent && !hasPresetBox) {
+            const maxCornerDiff = Math.max(
+              ...corners.map(c => Math.abs(c[0] - r) + Math.abs(c[1] - g) + Math.abs(c[2] - b))
+            );
+            if (maxCornerDiff > 35) {
+              imageCache.set(src, src);
+              return resolve(src);
+            }
+          }
         }
       }
 
@@ -253,7 +383,6 @@ export function processProductImage(
 
       if (hasPresetBox) {
         const [px1, py1, px2, py2] = ASSET_BOUNDING_BOXES[normPath];
-        // Scale preset coordinates if natural dimensions differ
         const sx = nw / 2880;
         const sy = nh / 1520;
         cropMinX = Math.round(px1 * sx);
@@ -263,7 +392,7 @@ export function processProductImage(
       } else {
         // Dynamic subject boundary detection on downsampled grid
         const gridW = 320;
-        const gridH = Math.round(320 * (nh / nw));
+        const gridH = Math.max(1, Math.round(320 * (nh / nw)));
         const gridC = document.createElement("canvas");
         gridC.width = gridW;
         gridC.height = gridH;
@@ -276,12 +405,22 @@ export function processProductImage(
         const gData = gCtx.getImageData(0, 0, gridW, gridH).data;
 
         let minX = gridW, maxX = 0, minY = gridH, maxY = 0;
-        const diffThreshold = 28;
+        const diffThreshold = 24;
+
         for (let y = 0; y < gridH; y++) {
           for (let x = 0; x < gridW; x++) {
             const idx = (y * gridW + x) * 4;
-            const diff = Math.abs(gData[idx] - r) + Math.abs(gData[idx + 1] - g) + Math.abs(gData[idx + 2] - b);
-            if (diff > diffThreshold) {
+            const alpha = gData[idx + 3];
+            let isSubjectPixel = false;
+
+            if (isTransparent) {
+              isSubjectPixel = alpha > 30;
+            } else {
+              const diff = Math.abs(gData[idx] - r) + Math.abs(gData[idx + 1] - g) + Math.abs(gData[idx + 2] - b);
+              isSubjectPixel = diff > diffThreshold;
+            }
+
+            if (isSubjectPixel) {
               if (x < minX) minX = x;
               if (x > maxX) maxX = x;
               if (y < minY) minY = y;
@@ -290,6 +429,7 @@ export function processProductImage(
           }
         }
 
+        // Blank or unsegmented image -> return original
         if (minX >= maxX || minY >= maxY) {
           imageCache.set(src, src);
           return resolve(src);
@@ -301,42 +441,75 @@ export function processProductImage(
         cropMaxY = Math.ceil(maxY * (nh / gridH));
       }
 
-      const subjectW = Math.max(1, cropMaxX - cropMinX);
-      const subjectH = Math.max(1, cropMaxY - cropMinY);
+      const rawSw = Math.max(1, cropMaxX - cropMinX);
+      const rawSh = Math.max(1, cropMaxY - cropMinY);
 
-      // Create target square canvas
-      const targetSize = Math.min(maxDimension, Math.max(subjectW, subjectH, 960));
+      // If the subject already covers >= 90% of both dimensions and is reasonably centered, keep original
+      const covW = rawSw / nw;
+      const covH = rawSh / nh;
+      const isCenteredX = Math.abs(cropMinX - (nw - cropMaxX)) < nw * 0.06;
+      const isCenteredY = Math.abs(cropMinY - (nh - cropMaxY)) < nh * 0.06;
+
+      if (!hasPresetBox && covW >= 0.90 && covH >= 0.90 && isCenteredX && isCenteredY) {
+        imageCache.set(src, src);
+        return resolve(src);
+      }
+
+      // Add a clean 5% breathing safety margin so no product details, bevels or shadows are clipped
+      const padX = Math.round(rawSw * 0.05);
+      const padY = Math.round(rawSh * 0.05);
+      const finalMinX = Math.max(0, cropMinX - padX);
+      const finalMinY = Math.max(0, cropMinY - padY);
+      const finalMaxX = Math.min(nw, cropMaxX + padX);
+      const finalMaxY = Math.min(nh, cropMaxY + padY);
+
+      const targetW = Math.max(1, finalMaxX - finalMinX);
+      const targetH = Math.max(1, finalMaxY - finalMinY);
+
+      // Cap maximum dimension to maxDimension (default 1200) to keep memory lean
+      let outW = targetW;
+      let outH = targetH;
+      const maxDim = Math.max(outW, outH);
+      if (maxDim > maxDimension) {
+        const scale = maxDimension / maxDim;
+        outW = Math.round(outW * scale);
+        outH = Math.round(outH * scale);
+      }
+
       const outCanvas = document.createElement("canvas");
-      outCanvas.width = targetSize;
-      outCanvas.height = targetSize;
+      outCanvas.width = outW;
+      outCanvas.height = outH;
       const outCtx = outCanvas.getContext("2d");
       if (!outCtx) {
         imageCache.set(src, src);
         return resolve(src);
       }
 
-      // Fill with EXACT matching solid background color
-      outCtx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-      outCtx.fillRect(0, 0, targetSize, targetSize);
-
-      // Scale subject so its largest dimension occupies ~85% of target frame (leaving ~7.5% safety margin on all sides)
-      const targetScale = (targetSize * 0.85) / Math.max(subjectW, subjectH);
-      const dw = Math.round(subjectW * targetScale);
-      const dh = Math.round(subjectH * targetScale);
-      const dx = Math.round((targetSize - dw) / 2);
-      const dy = Math.round((targetSize - dh) / 2);
+      // Fill matching solid background (or clear if transparent)
+      if (isTransparent) {
+        outCtx.clearRect(0, 0, outW, outH);
+      } else {
+        outCtx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+        outCtx.fillRect(0, 0, outW, outH);
+      }
 
       outCtx.imageSmoothingEnabled = true;
       outCtx.imageSmoothingQuality = "high";
       outCtx.drawImage(
         img,
-        cropMinX, cropMinY, subjectW, subjectH,
-        dx, dy, dw, dh
+        finalMinX, finalMinY, targetW, targetH,
+        0, 0, outW, outH
       );
 
-      const mimeType = (r === 0 && g === 0 && b === 0) || (r === 255 && g === 255 && b === 255) ? "image/jpeg" : "image/png";
-      const processedDataUrl = outCanvas.toDataURL(mimeType, 0.92);
+      const mimeType = isTransparent
+        ? "image/png"
+        : (r === 0 && g === 0 && b === 0) || (r === 255 && g === 255 && b === 255)
+          ? "image/jpeg"
+          : "image/png";
+
+      const processedDataUrl = outCanvas.toDataURL(mimeType, 0.94);
       imageCache.set(src, processedDataUrl);
+      imageCache.set(processedDataUrl, processedDataUrl);
       return resolve(processedDataUrl);
     } catch {
       return resolve(img.currentSrc || img.src);

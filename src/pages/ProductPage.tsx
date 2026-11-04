@@ -30,7 +30,7 @@ import { useWishlist } from "@/hooks/useWishlist";
 import ProductCard from "@/components/ProductCard";
 import ProductImage, { preloadProductImage } from "@/components/ProductImage";
 import { getProductReviews } from "@/data/reviews";
-import { getProductStageTheme } from "@/lib/productPresentation";
+import { getProductStageTheme, getProductGalleryLayout } from "@/lib/productPresentation";
 import { toast } from "sonner";
 
 const STORAGE_OPTIONS = ["128GB", "256GB", "512GB", "1TB"];
@@ -93,6 +93,7 @@ const ProductPage = () => {
     () => getProductStageTheme(product, selectedVariant, activeImage),
     [product, selectedVariant, activeImage]
   );
+  const galleryLayout = useMemo(() => getProductGalleryLayout(product), [product]);
 
   // Listen to scroll to reveal mobile sticky action bar
   useEffect(() => {
@@ -262,71 +263,81 @@ const ProductPage = () => {
                 </div>
               )}
 
-              {/* Main Apple Stage (Pure #ffffff canvas, zero black border box) */}
-              <div className="flex-1 w-full bg-white border border-border/50 rounded-3xl p-6 sm:p-10 flex items-center justify-center aspect-square relative overflow-hidden group shadow-xs">
-                {product.badge && (
-                  <span className="absolute top-5 left-5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-foreground text-background shadow-xs">
-                    {product.badge}
-                  </span>
-                )}
-
-                <div className="absolute top-5 right-5 flex items-center gap-2 z-10">
+              {/* Main Product Stage (Adaptive proportions, no black badge clip, clean spacing) */}
+              <div
+                className={`flex-1 w-full border border-border/50 rounded-3xl p-3 sm:p-5 flex items-center justify-center relative overflow-hidden group shadow-xs ${galleryLayout.containerAspectClass} ${galleryLayout.maxHeightClass}`}
+                style={{ background: stageTheme.background }}
+              >
+                {/* Controls Overlay: Zoom & Wishlist */}
+                <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 flex items-center gap-2 z-10">
                   <button
                     onClick={() => setZoomOpen(true)}
-                    className="p-2.5 rounded-full border border-border/70 bg-white/90 text-foreground hover:bg-white shadow-xs hover:scale-105 transition-all"
+                    className={`p-2 sm:p-2.5 rounded-full border border-border/70 ${
+                      stageTheme.isLight ? "bg-white/90 text-foreground" : "bg-zinc-800/90 text-white border-zinc-700"
+                    } shadow-xs hover:scale-105 transition-all`}
                     aria-label="Zoom image"
                   >
                     <ZoomIn className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => toggleWishlist(product.id)}
-                    className="p-2.5 rounded-full border border-border/70 bg-white/90 shadow-xs hover:scale-105 transition-all"
+                    className={`p-2 sm:p-2.5 rounded-full border border-border/70 ${
+                      stageTheme.isLight ? "bg-white/90" : "bg-zinc-800/90 border-zinc-700"
+                    } shadow-xs hover:scale-105 transition-all`}
                     aria-label={wish ? "Remove from wishlist" : "Add to wishlist"}
                   >
                     <Heart
                       className={`w-4 h-4 ${
-                        wish ? "fill-destructive text-destructive" : "text-muted-foreground"
+                        wish
+                          ? "fill-destructive text-destructive"
+                          : stageTheme.isLight ? "text-muted-foreground" : "text-zinc-400"
                       }`}
                     />
                   </button>
                 </div>
 
-                {/* Main Apple Stage (Zero layout stacking, zero loader spinners, smooth crossfade) */}
+                {/* Main Image Stage */}
                 <div
                   className="w-full h-full flex items-center justify-center cursor-zoom-in relative select-none"
                   onClick={() => setZoomOpen(true)}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center p-2 sm:p-5">
-                    <ProductImage
-                      key={activeImage}
-                      src={activeImage}
-                      fallbackImages={product.fallbackImages}
-                      alt={product.name}
-                      department={product.department}
-                      category={product.category}
-                      stageTheme={{ background: "#ffffff", borderColor: "#e5e7eb", textColor: "#09090b", isLight: true }}
-                      priority={true}
-                      loading="eager"
-                      width={1000}
-                      height={1000}
-                      className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
+                  <ProductImage
+                    key={activeImage}
+                    src={activeImage}
+                    fallbackImages={product.fallbackImages}
+                    alt={product.name}
+                    department={product.department}
+                    category={product.category}
+                    stageTheme={stageTheme}
+                    priority={true}
+                    loading="eager"
+                    width={1000}
+                    height={1000}
+                    className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
 
                 {/* Left/Right Arrow Controls */}
                 {galleryList.length > 1 && (
-                  <div className="absolute inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none">
+                  <div className="absolute inset-x-2 sm:inset-x-3 top-1/2 -translate-y-1/2 flex justify-between pointer-events-none z-10">
                     <button
                       onClick={prevImage}
-                      className="pointer-events-auto w-10 h-10 rounded-full border border-border/80 bg-white/95 text-foreground shadow-md flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
+                      className={`pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-full border ${
+                        stageTheme.isLight
+                          ? "border-border/80 bg-white/95 text-foreground"
+                          : "border-zinc-700 bg-zinc-800/95 text-white"
+                      } shadow-md flex items-center justify-center hover:scale-105 active:scale-95 transition-all`}
                       aria-label="Previous image"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={nextImage}
-                      className="pointer-events-auto w-10 h-10 rounded-full border border-border/80 bg-white/95 text-foreground shadow-md flex items-center justify-center hover:scale-105 active:scale-95 transition-all"
+                      className={`pointer-events-auto w-9 h-9 sm:w-10 sm:h-10 rounded-full border ${
+                        stageTheme.isLight
+                          ? "border-border/80 bg-white/95 text-foreground"
+                          : "border-zinc-700 bg-zinc-800/95 text-white"
+                      } shadow-md flex items-center justify-center hover:scale-105 active:scale-95 transition-all`}
                       aria-label="Next image"
                     >
                       <ChevronRight className="w-5 h-5" />
