@@ -55,26 +55,26 @@ const ContactPage = () => {
             <div>
               <label className="text-[12px] text-muted-foreground font-medium mb-1 block">Name</label>
               <input type="text" required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20" />
+                className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 h-11 sm:h-10 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20" />
             </div>
             <div>
               <label className="text-[12px] text-muted-foreground font-medium mb-1 block">Email</label>
               <input type="email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20" />
+                className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 h-11 sm:h-10 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20" />
             </div>
           </div>
           <div>
             <label className="text-[12px] text-muted-foreground font-medium mb-1 block">Subject</label>
             <input type="text" required value={form.subject} onChange={e => setForm(f => ({ ...f, subject: e.target.value }))}
               placeholder="e.g. Order #SNX4829371 question"
-              className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20" />
+              className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 h-11 sm:h-10 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20" />
           </div>
           <div>
             <label className="text-[12px] text-muted-foreground font-medium mb-1 block">Message</label>
             <textarea required rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-              className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20 resize-none" />
+              className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 min-h-[120px] text-[16px] sm:text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground/20 resize-none" />
           </div>
-          <button type="submit" className="w-full bg-foreground text-background py-3 rounded-full font-semibold text-[14px] hover:bg-foreground/90 transition-colors">
+          <button type="submit" className="w-full bg-foreground text-background py-3 rounded-full font-semibold text-[15px] hover:bg-foreground/90 transition-colors">
             Send Message
           </button>
         </form>

@@ -86,6 +86,29 @@
     font-weight: 700;
     letter-spacing: -0.035em;
   }
+
+  /* Universal Anti-Zoom Rule:
+     On mobile devices (screen width <= 768px or touch screens), all form inputs,
+     textareas, and selects MUST have font-size >= 16px to prevent iOS Safari,
+     Chrome, and WebKit browsers from triggering unwanted automatic focus zoom.
+     Preserves manual pinch-to-zoom accessibility while eliminating input focus auto-zoom.
+  */
+  @media screen and (max-width: 768px) {
+    input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+    textarea,
+    select {
+      font-size: 16px !important;
+      line-height: 1.35 !important;
+    }
+  }
+
+  /* Ensure virtual keyboards or sticky headers do not obscure focused form controls */
+  input,
+  textarea,
+  select {
+    scroll-margin-top: 5rem;
+    scroll-margin-bottom: 5rem;
+  }
 }
 
 @layer utilities {

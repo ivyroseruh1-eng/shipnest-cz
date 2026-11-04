@@ -218,7 +218,7 @@ const ShopPage = () => {
                 placeholder="Search models, brands, fragrances..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-background border border-border rounded-full pl-10 pr-8 py-2 text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 focus:border-primary transition-all"
+                className="w-full bg-background border border-border rounded-full pl-10 pr-8 py-2 h-11 sm:h-9 text-[16px] sm:text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 focus:border-primary transition-all"
               />
               {searchQuery && (
                 <button
@@ -262,7 +262,7 @@ const ShopPage = () => {
               <select
                 value={brand}
                 onChange={(e) => handleBrandChange(e.target.value)}
-                className="bg-secondary/80 border border-border rounded-xl px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 cursor-pointer max-w-[160px] sm:max-w-[200px]"
+                className="bg-secondary/80 border border-border rounded-xl px-3 py-2 sm:py-1.5 text-[16px] sm:text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 cursor-pointer max-w-[160px] sm:max-w-[200px]"
               >
                 {availableBrands.map((b) => (
                   <option key={b} value={b}>
@@ -278,7 +278,7 @@ const ShopPage = () => {
               <select
                 value={category}
                 onChange={(e) => handleCategoryChange(e.target.value)}
-                className="bg-secondary/80 border border-border rounded-xl px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 cursor-pointer max-w-[160px] sm:max-w-[200px]"
+                className="bg-secondary/80 border border-border rounded-xl px-3 py-2 sm:py-1.5 text-[16px] sm:text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 cursor-pointer max-w-[160px] sm:max-w-[200px]"
               >
                 {availableCategories.map((c) => (
                   <option key={c} value={c}>
@@ -315,7 +315,7 @@ const ShopPage = () => {
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
-                className="bg-secondary/80 border border-border rounded-xl px-3 py-1.5 text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 cursor-pointer"
+                className="bg-secondary/80 border border-border rounded-xl px-3 py-2 sm:py-1.5 text-[16px] sm:text-xs font-medium text-foreground focus:outline-none focus:ring-1 focus:ring-primary/40 cursor-pointer"
               >
                 {sortOptions.map((opt) => (
                   <option key={opt.value} value={opt.value}>

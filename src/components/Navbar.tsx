@@ -271,7 +271,7 @@ const Navbar = () => {
                   onKeyDown={e => {
                     if (e.key === "Escape") setSearchOpen(false);
                   }}
-                  className="w-full bg-secondary border border-border/60 rounded-full pl-11 pr-10 py-3 text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+                  className="w-full bg-secondary border border-border/60 rounded-full pl-11 pr-10 py-3 text-[16px] sm:text-[14px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
                 />
                 {searchQuery && (
                   <button
