@@ -47,7 +47,7 @@ const TrackPage = () => {
     toast.success(`${label} copied to clipboard!`);
   };
 
-  if (loading && id) {
+  if (loading && id && !order) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-24 text-center space-y-4">
         <div className="animate-spin w-8 h-8 border-2 border-foreground/20 border-t-primary rounded-full mx-auto" />

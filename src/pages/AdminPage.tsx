@@ -7,7 +7,10 @@ import {
   generateDeliveryPin,
   createDefaultTrackingSteps,
   STEP_DAY_OFFSETS,
+  STEP_DAY_OFFSETS_INDIA,
+  STEP_DAY_OFFSETS_GLOBAL,
 } from "@/context/OrderContext";
+import { isIndiaDestination, calculateEstimatedDeliveryDate } from "@/lib/shipping";
 import { products } from "@/data/products";
 import { Order, TrackingStep } from "@/types";
 import { ProductImage } from "@/components/ProductImage";
@@ -58,6 +61,9 @@ const INTERNATIONAL_DESTINATIONS = [
   { city: "Stockholm", state: "Stockholm", country: "Sweden", zip: "111 20" },
   { city: "Vienna", state: "Vienna", country: "Austria", zip: "1010" },
   { city: "Amsterdam", state: "North Holland", country: "Netherlands", zip: "1012 JS" },
+  { city: "Dimapur", state: "Nagaland", country: "India", zip: "797112" },
+  { city: "New Delhi", state: "Delhi", country: "India", zip: "110001" },
+  { city: "Mumbai", state: "Maharashtra", country: "India", zip: "400001" },
 ];
 
 const PREVIEW_CLIENT_ACCOUNTS = [
@@ -161,12 +167,19 @@ const AdminPage = () => {
     const placedDate = new Date();
     placedDate.setDate(placedDate.getDate() - daysAgo);
 
-    const deliveryDate = new Date(placedDate);
-    deliveryDate.setDate(deliveryDate.getDate() + 7);
+    const orderId = generateOrderId();
+    const isIndian = isIndiaDestination(loc);
+    const estimatedDelivery = calculateEstimatedDeliveryDate(
+      placedDate.toISOString(),
+      isIndian,
+      "standard",
+      orderId
+    );
 
+    const offsets = isIndian ? STEP_DAY_OFFSETS_INDIA : STEP_DAY_OFFSETS_GLOBAL;
     const steps = createDefaultTrackingSteps(loc.city, loc.state, loc.country);
     steps.forEach((step, i) => {
-      const stepDay = STEP_DAY_OFFSETS[i] ?? i * 2;
+      const stepDay = offsets[i] ?? i * 2;
       if (daysAgo >= stepDay) {
         step.completed = true;
         const stepDate = new Date(placedDate);
@@ -179,12 +192,14 @@ const AdminPage = () => {
 
     const order: Order = {
       id: crypto.randomUUID(),
-      orderId: generateOrderId(),
+      orderId,
       trackingId: generateTrackingId(),
       customer: {
         name: cust.name,
         email: cust.email,
-        phone: `+${Math.floor(100 + Math.random() * 899)} ${Math.floor(100000000 + Math.random() * 899999999)}`,
+        phone: isIndian
+          ? `+91 ${Math.floor(90000 + Math.random() * 9000)} ${Math.floor(10000 + Math.random() * 90000)}`
+          : `+${Math.floor(100 + Math.random() * 899)} ${Math.floor(100000000 + Math.random() * 899999999)}`,
         address: `${Math.floor(1 + Math.random() * 150)} Central Boulevard`,
         city: loc.city,
         state: loc.state,
@@ -195,10 +210,12 @@ const AdminPage = () => {
       subtotal,
       tax,
       total,
-      status: latestCompleted?.status || "Order Placed",
-      estimatedDelivery: deliveryDate.toISOString(),
+      status: latestCompleted?.status || "Order Received",
+      estimatedDelivery,
       placedAt: placedDate.toISOString(),
-      notes: "Express Priority Air Cargo via Prague Hub",
+      notes: isIndian
+        ? "Express Priority Air Cargo PRG → DEL · 20–30 Days Guaranteed"
+        : "Express Priority Air Cargo via Prague Hub",
       paymentMethod: ["Apple Pay", "Credit Card", "Bank Transfer (SEPA)", "Google Pay"][Math.floor(Math.random() * 4)],
       deliveryPin: generateDeliveryPin(),
       trackingSteps: steps,

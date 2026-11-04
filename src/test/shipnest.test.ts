@@ -84,12 +84,12 @@ describe("ShipNest Logistics & Tracking Engine", () => {
 
   it("creates default multi-milestone tracking steps originating in Prague", () => {
     const steps = createDefaultTrackingSteps("Zurich", "ZH", "Switzerland");
-    expect(steps.length).toBe(16);
+    expect(steps.length).toBe(12);
 
     // Initial milestone should be at Prague Hub
     expect(steps[0].city).toBe("Prague");
     expect(steps[0].country).toBe("Czech Republic");
-    expect(steps[0].status).toBe("Order Placed");
+    expect(steps[0].status).toBe("Order Received");
 
     // Final milestone should be delivered at destination
     const lastStep = steps[steps.length - 1];

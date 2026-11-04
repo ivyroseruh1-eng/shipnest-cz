@@ -8,6 +8,7 @@ import ProductImage from "@/components/ProductImage";
 import { getProductImageBackground } from "@/lib/productPresentation";
 import { getShipmentMeta } from "@/lib/courier";
 import RouteMap from "@/components/RouteMap";
+import { isIndiaDestination, formatOrderDeliveryRange } from "@/lib/shipping";
 
 const formatDeliveryRange = (estDate: string) => {
   const d = new Date(estDate);
@@ -166,7 +167,7 @@ const OrderConfirmationPage = () => {
 
           <div className="mt-4 pt-3.5 border-t border-border/60 flex items-center justify-between text-[12px]">
             <span className="text-muted-foreground">Estimated Delivery Window:</span>
-            <span className="text-foreground font-semibold">{formatDeliveryRange(order.estimatedDelivery)}</span>
+            <span className="text-foreground font-semibold">{formatOrderDeliveryRange(order.estimatedDelivery, isIndiaDestination(order.customer))}</span>
           </div>
         </motion.div>
 

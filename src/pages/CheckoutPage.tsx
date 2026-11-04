@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   Truck,
@@ -15,6 +15,8 @@ import ProductImage from "@/components/ProductImage";
 import { useCart } from "@/context/CartContext";
 import { lookupPincode } from "@/lib/pincode";
 import { useLocation } from "@/context/LocationContext";
+import { COUNTRY_CODES, getCountryByCode } from "@/data/countryCodes";
+import { isIndiaDestination, getShippingMethodMeta } from "@/lib/shipping";
 import { toast } from "sonner";
 
 export interface DeliveryInfo {
@@ -30,23 +32,6 @@ export interface DeliveryInfo {
   zip: string;
   deliveryMethod: "standard" | "priority";
 }
-
-const COUNTRY_CODES = [
-  { code: "+1", label: "US / CA (+1)" },
-  { code: "+420", label: "CZ (+420)" },
-  { code: "+44", label: "UK (+44)" },
-  { code: "+49", label: "DE (+49)" },
-  { code: "+33", label: "FR (+33)" },
-  { code: "+41", label: "CH (+41)" },
-  { code: "+31", label: "NL (+31)" },
-  { code: "+32", label: "BE (+32)" },
-  { code: "+48", label: "PL (+48)" },
-  { code: "+43", label: "AT (+43)" },
-  { code: "+39", label: "IT (+39)" },
-  { code: "+34", label: "ES (+34)" },
-  { code: "+81", label: "JP (+81)" },
-  { code: "+86", label: "CN (+86)" },
-];
 
 const CheckoutPage: React.FC = () => {
   const { items, subtotal } = useCart();
@@ -67,9 +52,9 @@ const CheckoutPage: React.FC = () => {
     return {
       email: "",
       name: "",
-      countryCode: "+1",
+      countryCode: "+91", // Defaults to India (+91) with global support
       phone: "",
-      country: "United States",
+      country: "India",
       address: "",
       apartment: "",
       city: "",
@@ -79,15 +64,27 @@ const CheckoutPage: React.FC = () => {
     };
   });
 
+  // Check if destination is India
+  const isIndia = useMemo(() => isIndiaDestination(shippingForm), [shippingForm]);
+  const shippingMeta = useMemo(() => getShippingMethodMeta(isIndia), [isIndia]);
+
+  // Selected country details for phone input formatting
+  const currentCountry = useMemo(
+    () => getCountryByCode(shippingForm.countryCode),
+    [shippingForm.countryCode]
+  );
+
   // Prefill from saved location context if empty
   useEffect(() => {
     if (location && !shippingForm.zip) {
+      const isLocIndia = isIndiaDestination(location);
       setShippingForm((f) => ({
         ...f,
         zip: location.pincode,
         city: f.city || location.city,
         state: f.state || location.state,
         country: f.country || location.country,
+        countryCode: isLocIndia ? "+91" : f.countryCode,
       }));
     }
   }, [location]);
@@ -97,18 +94,54 @@ const CheckoutPage: React.FC = () => {
     if (!zip || (shippingForm.city && shippingForm.country)) return;
     const result = await lookupPincode(zip);
     if (result) {
+      const isResultIndia = isIndiaDestination(result);
       setShippingForm((f) => ({
         ...f,
         city: f.city || result.city,
         state: f.state || result.state,
         country: f.country || result.country,
+        countryCode: isResultIndia ? "+91" : f.countryCode,
       }));
       toast.success(`Location detected: ${result.city}, ${result.country}`);
     }
   };
 
   const updateShipping = <K extends keyof DeliveryInfo>(field: K, val: DeliveryInfo[K]) => {
-    setShippingForm((prev) => ({ ...prev, [field]: val }));
+    setShippingForm((prev) => {
+      const next = { ...prev, [field]: val };
+
+      // If country changed, auto-synchronize dialing code if appropriate
+      if (field === "country") {
+        const cLower = String(val).toLowerCase();
+        if (cLower.includes("india") || cLower === "in") {
+          next.countryCode = "+91";
+        } else if (cLower.includes("czech") || cLower.includes("cz")) {
+          next.countryCode = "+420";
+        } else if (cLower.includes("united states") || cLower === "usa" || cLower === "us") {
+          next.countryCode = "+1";
+        } else if (cLower.includes("united kingdom") || cLower === "uk" || cLower === "gb") {
+          next.countryCode = "+44";
+        } else if (cLower.includes("germany") || cLower === "de") {
+          next.countryCode = "+49";
+        }
+      }
+
+      // If country code changed, synchronize country name if empty or generic
+      if (field === "countryCode") {
+        const found = getCountryByCode(String(val));
+        if (found) {
+          next.country = found.country;
+        }
+      }
+
+      return next;
+    });
+  };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value;
+    const formatted = currentCountry.formatPhone(raw);
+    updateShipping("phone", formatted);
   };
 
   const handleContinueToPayment = (e: React.FormEvent) => {
@@ -118,6 +151,7 @@ const CheckoutPage: React.FC = () => {
     if (
       !shippingForm.email.trim() ||
       !shippingForm.name.trim() ||
+      !shippingForm.phone.trim() ||
       !shippingForm.address.trim() ||
       !shippingForm.city.trim() ||
       !shippingForm.zip.trim() ||
@@ -217,20 +251,21 @@ const CheckoutPage: React.FC = () => {
                     />
                   </div>
 
-                  {/* Phone with Country Code Selector */}
+                  {/* Phone with Global Country Code Selector including India (+91) */}
                   <div>
                     <label className="block text-[12px] font-semibold text-foreground mb-1.5">
                       Phone Number *
                     </label>
                     <div className="flex gap-2">
                       <select
+                        aria-label="Country calling code"
                         value={shippingForm.countryCode}
                         onChange={(e) => updateShipping("countryCode", e.target.value)}
-                        className="h-12 px-3 rounded-xl border border-border bg-background text-[16px] sm:text-[13px] text-foreground font-medium focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all shrink-0 w-32"
+                        className="h-12 px-3 rounded-xl border border-border bg-background text-[16px] sm:text-[13px] text-foreground font-medium focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all shrink-0 w-36 sm:w-44"
                       >
                         {COUNTRY_CODES.map((c) => (
                           <option key={c.code} value={c.code}>
-                            {c.label}
+                            {c.flag} {c.label}
                           </option>
                         ))}
                       </select>
@@ -239,9 +274,9 @@ const CheckoutPage: React.FC = () => {
                         name="phone"
                         required
                         value={shippingForm.phone}
-                        onChange={(e) => updateShipping("phone", e.target.value)}
-                        placeholder="(555) 019-2834"
-                        className="flex-1 h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
+                        onChange={handlePhoneChange}
+                        placeholder={currentCountry.placeholder}
+                        className="flex-1 h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
                     <span className="text-[11px] text-muted-foreground mt-1 block">
@@ -290,7 +325,7 @@ const CheckoutPage: React.FC = () => {
                       required
                       value={shippingForm.address}
                       onChange={(e) => updateShipping("address", e.target.value)}
-                      placeholder="1740 Broadway"
+                      placeholder="1740 Broadway / Circular Road"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
@@ -305,7 +340,7 @@ const CheckoutPage: React.FC = () => {
                       name="apartment"
                       value={shippingForm.apartment}
                       onChange={(e) => updateShipping("apartment", e.target.value)}
-                      placeholder="Floor 15, Suite 400"
+                      placeholder="Floor 2, Flat 204"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
@@ -314,7 +349,7 @@ const CheckoutPage: React.FC = () => {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-[12px] font-semibold text-foreground mb-1.5">
-                        Postal Code *
+                        Postal Code / PIN *
                       </label>
                       <input
                         type="text"
@@ -323,8 +358,8 @@ const CheckoutPage: React.FC = () => {
                         value={shippingForm.zip}
                         onChange={(e) => updateShipping("zip", e.target.value)}
                         onBlur={handleZipBlur}
-                        placeholder="10019"
-                        className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
+                        placeholder={isIndia ? "797112" : "10019"}
+                        className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
                     <div>
@@ -337,7 +372,7 @@ const CheckoutPage: React.FC = () => {
                         required
                         value={shippingForm.city}
                         onChange={(e) => updateShipping("city", e.target.value)}
-                        placeholder="New York"
+                        placeholder={isIndia ? "Dimapur" : "New York"}
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -350,7 +385,7 @@ const CheckoutPage: React.FC = () => {
                         name="state"
                         value={shippingForm.state}
                         onChange={(e) => updateShipping("state", e.target.value)}
-                        placeholder="NY"
+                        placeholder={isIndia ? "Nagaland" : "NY"}
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -367,19 +402,24 @@ const CheckoutPage: React.FC = () => {
                       required
                       value={shippingForm.country}
                       onChange={(e) => updateShipping("country", e.target.value)}
-                      placeholder="United States"
+                      placeholder="India"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* SECTION 3: Delivery Options */}
+              {/* SECTION 3: Centralized Shipping Method Selection */}
               <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl p-5 sm:p-7 shadow-2xs space-y-4">
-                <div className="border-b border-border/60 pb-3">
+                <div className="border-b border-border/60 pb-3 flex items-center justify-between">
                   <h2 className="text-[16px] font-bold text-foreground tracking-tight">
                     Shipping Method
                   </h2>
+                  {isIndia && (
+                    <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-md flex items-center gap-1">
+                      🇮🇳 India Delivery: 20–30 Days
+                    </span>
+                  )}
                 </div>
 
                 <div className="space-y-3">
@@ -402,19 +442,22 @@ const CheckoutPage: React.FC = () => {
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="text-[14px] font-semibold text-foreground">
-                            Insured Air Express
+                            {shippingMeta.standard.name}
                           </span>
                           <span className="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-600 px-2 py-0.5 rounded-md">
-                            Recommended
+                            {shippingMeta.standard.badge}
+                          </span>
+                          <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-1.5 py-0.2 rounded border border-border/60">
+                            {shippingMeta.standard.estimate}
                           </span>
                         </div>
-                        <p className="text-[12px] text-muted-foreground mt-0.5">
-                          Delivered in 3–5 business days via direct cargo manifest with continuous custody tracking.
+                        <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
+                          {shippingMeta.standard.description}
                         </p>
                       </div>
                     </div>
                     <span className="text-[13px] font-bold text-emerald-600 shrink-0">
-                      FREE
+                      {shippingMeta.standard.cost}
                     </span>
                   </label>
 
@@ -435,16 +478,24 @@ const CheckoutPage: React.FC = () => {
                         className="mt-1 w-4 h-4 text-primary focus:ring-primary"
                       />
                       <div>
-                        <span className="text-[14px] font-semibold text-foreground">
-                          Priority White-Glove Courier
-                        </span>
-                        <p className="text-[12px] text-muted-foreground mt-0.5">
-                          Delivered in 2–3 business days with scheduled doorstep PIN verification.
+                        <div className="flex items-center gap-2">
+                          <span className="text-[14px] font-semibold text-foreground">
+                            {shippingMeta.priority.name}
+                          </span>
+                          <span className="text-[10px] font-bold uppercase tracking-wider bg-primary/10 text-primary px-2 py-0.5 rounded-md">
+                            {shippingMeta.priority.badge}
+                          </span>
+                          <span className="text-[11px] font-mono font-semibold text-foreground/80 bg-secondary px-1.5 py-0.2 rounded border border-border/60">
+                            {shippingMeta.priority.estimate}
+                          </span>
+                        </div>
+                        <p className="text-[12px] text-muted-foreground mt-0.5 leading-relaxed">
+                          {shippingMeta.priority.description}
                         </p>
                       </div>
                     </div>
                     <span className="text-[13px] font-bold text-emerald-600 shrink-0">
-                      FREE
+                      {shippingMeta.priority.cost}
                     </span>
                   </label>
                 </div>
@@ -541,7 +592,9 @@ const CheckoutPage: React.FC = () => {
                     </span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
-                    <span>Insured Air Express Freight</span>
+                    <span>
+                      {isIndia ? "Insured Air Freight to India" : "Insured Air Express Freight"}
+                    </span>
                     <span className="font-semibold text-emerald-600">FREE</span>
                   </div>
                   <div className="flex justify-between text-muted-foreground">
@@ -558,12 +611,21 @@ const CheckoutPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Value assurance note */}
+                {/* Value assurance note with India-specific delivery timeline */}
                 <div className="p-3 bg-secondary/50 rounded-xl border border-border/50 text-[11px] text-muted-foreground space-y-1">
                   <p className="font-semibold text-foreground flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5 text-primary" /> Dispatches within 24 Hours
+                    <Clock className="w-3.5 h-3.5 text-primary" />
+                    <span>
+                      {isIndia
+                        ? "Delivery to India: 20–30 Days Guaranteed"
+                        : "Dispatches within 24 Hours"}
+                    </span>
                   </p>
-                  <p>All items packaged in sealed, tamper-evident factory boxes.</p>
+                  <p>
+                    {isIndia
+                      ? "Direct cargo flight from Prague PRG to New Delhi IGI, cleared through Indian customs and dispatched to your local hub."
+                      : "All items packaged in sealed, tamper-evident factory boxes."}
+                  </p>
                 </div>
               </div>
             </div>
