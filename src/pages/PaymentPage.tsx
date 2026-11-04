@@ -40,6 +40,7 @@ import PaymentScene, { CardBrand } from "@/components/payment/PaymentScene";
 import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import type { DeliveryInfo } from "@/pages/CheckoutPage";
+import { isIndiaDestination, calculateEstimatedDeliveryDate } from "@/lib/shipping";
 
 type PaymentCategory = "card" | "sepa" | "regional" | "wallets";
 type RegionalMethod = "ideal" | "bancontact" | "blik";
@@ -113,6 +114,8 @@ const PaymentPage: React.FC = () => {
   // Retrieve delivery info saved during Step 1 (/checkout)
   const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(null);
   const [orderRef] = useState(() => `SN-${Math.floor(100000 + Math.random() * 900000)}`);
+  const [paymentDuration, setPaymentDuration] = useState<number>(() => Math.floor(Math.random() * 2200) + 3600);
+  const isIndia = useMemo(() => isIndiaDestination(deliveryInfo), [deliveryInfo]);
 
   useEffect(() => {
     try {
@@ -218,6 +221,7 @@ const PaymentPage: React.FC = () => {
   // Trigger payment processing animation
   const handlePaymentSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (isProcessing) return;
 
     if (activeCategory === "card") {
       if (!cardForm.cardName.trim()) {
@@ -261,6 +265,7 @@ const PaymentPage: React.FC = () => {
         methodLabel: `${detectedBrand.toUpperCase()} •••• ${cardForm.cardNumber.replace(/\D/g, "").slice(-4)}`,
         cardLast4: cardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242",
       });
+      setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
       setIsProcessing(true);
       return;
     }
@@ -288,6 +293,7 @@ const PaymentPage: React.FC = () => {
         methodLabel: `SEPA IBAN •••• ${cleanIban.slice(-4)}`,
         cardLast4: cleanIban.slice(-4),
       });
+      setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
       setIsProcessing(true);
       return;
     }
@@ -306,6 +312,7 @@ const PaymentPage: React.FC = () => {
           methodLabel: `iDEAL (${idealBank})`,
           cardLast4: "iDEAL",
         });
+        setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
         setIsProcessing(true);
         return;
       }
@@ -323,6 +330,7 @@ const PaymentPage: React.FC = () => {
           methodLabel: "BLIK Direct",
           cardLast4: blikCode.slice(-4),
         });
+        setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
         setIsProcessing(true);
         return;
       }
@@ -336,6 +344,7 @@ const PaymentPage: React.FC = () => {
           methodLabel: "Bancontact App",
           cardLast4: "BCTC",
         });
+        setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
         setIsProcessing(true);
         return;
       }
@@ -350,12 +359,14 @@ const PaymentPage: React.FC = () => {
         methodLabel: "Apple Pay (Device Account Number)",
         cardLast4: "8812",
       });
+      setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
       setIsProcessing(true);
     }
   };
 
   // Wallet 1-Touch Handler
   const handleWalletExpressPay = (walletName: "Apple Pay" | "Google Pay" | "PayPal") => {
+    if (isProcessing) return;
     const networkMap = {
       "Apple Pay": "Apple Pay Secure Enclave",
       "Google Pay": "Google Pay Tokenized Route",
@@ -369,6 +380,7 @@ const PaymentPage: React.FC = () => {
       methodLabel: walletName,
       cardLast4: "7749",
     });
+    setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
     setIsProcessing(true);
   };
 
@@ -376,12 +388,28 @@ const PaymentPage: React.FC = () => {
   const handleOrderComplete = () => {
     const orderId = generateOrderId();
     const trackingId = generateTrackingId();
-    const deliveryDays = Math.floor(Math.random() * 4) + 3;
-    const estimatedDelivery = new Date(
-      Date.now() + deliveryDays * 24 * 60 * 60 * 1000
-    ).toISOString();
+    const placedAt = new Date().toISOString();
+    const isIndianOrder = isIndiaDestination(deliveryInfo);
+    const estimatedDelivery = calculateEstimatedDeliveryDate(
+      placedAt,
+      isIndianOrder,
+      deliveryInfo?.deliveryMethod || "standard",
+      orderId
+    );
 
-    const recipient = deliveryInfo || {
+    const recipient = deliveryInfo || (isIndianOrder ? {
+      name: cardForm.cardName || "Valued Customer",
+      email: "order@shipnest.com",
+      phone: "+91 98765 43210",
+      address: "Circular Road",
+      city: "Dimapur",
+      state: "Nagaland",
+      country: "India",
+      zip: "797112",
+      deliveryMethod: "standard",
+      countryCode: "+91",
+      apartment: "",
+    } : {
       name: cardForm.cardName || "Valued Customer",
       email: "order@shipnest.com",
       phone: "+420 777 000 111",
@@ -393,7 +421,7 @@ const PaymentPage: React.FC = () => {
       deliveryMethod: "standard",
       countryCode: "+420",
       apartment: "",
-    };
+    });
 
     const newOrder = {
       id: crypto.randomUUID(),
@@ -422,10 +450,12 @@ const PaymentPage: React.FC = () => {
       subtotal,
       tax,
       total,
-      status: "Processing",
+      status: "In Transit",
       estimatedDelivery,
-      placedAt: new Date().toISOString(),
-      notes: "Priority Insured Air Express Freight · White-Glove Dispatch",
+      placedAt,
+      notes: isIndianOrder
+        ? "Express Priority Air Cargo PRG → DEL · 20–30 Days Guaranteed"
+        : "Priority Insured Air Express Freight · White-Glove Dispatch",
       paymentMethod: authData?.methodLabel || "Credit Card",
       deliveryPin: String(Math.floor(1000 + Math.random() * 9000)),
       trackingSteps: createDefaultTrackingSteps(recipient.city, recipient.state, recipient.country),
@@ -701,7 +731,11 @@ const PaymentPage: React.FC = () => {
                   </p>
                   <p className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1 pt-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                    {deliveryInfo.deliveryMethod === "priority"
+                    {isIndia
+                      ? `Guaranteed 20–30 Days Delivery to India (${
+                          deliveryInfo.deliveryMethod === "priority" ? "Priority Air" : "Insured Air Freight"
+                        })`
+                      : deliveryInfo.deliveryMethod === "priority"
                       ? "Priority White-Glove Courier"
                       : "Insured Air Express Freight"}
                   </p>
@@ -1110,8 +1144,9 @@ const PaymentPage: React.FC = () => {
                       {/* Apple Pay Button */}
                       <button
                         type="button"
+                        disabled={isProcessing}
                         onClick={() => handleWalletExpressPay("Apple Pay")}
-                        className="w-full h-13 rounded-xl bg-black text-white hover:bg-neutral-900 transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
+                        className="w-full h-13 rounded-xl bg-black text-white hover:bg-neutral-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
                       >
                         <ApplePay className="h-5 w-auto" />
                       </button>
@@ -1119,8 +1154,9 @@ const PaymentPage: React.FC = () => {
                       {/* Google Pay Button */}
                       <button
                         type="button"
+                        disabled={isProcessing}
                         onClick={() => handleWalletExpressPay("Google Pay")}
-                        className="w-full h-13 rounded-xl bg-white text-neutral-800 border border-border hover:bg-neutral-50 transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
+                        className="w-full h-13 rounded-xl bg-white text-neutral-800 border border-border hover:bg-neutral-50 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
                       >
                         <GPay className="h-5 w-auto" />
                       </button>
@@ -1128,8 +1164,9 @@ const PaymentPage: React.FC = () => {
                       {/* PayPal Button */}
                       <button
                         type="button"
+                        disabled={isProcessing}
                         onClick={() => handleWalletExpressPay("PayPal")}
-                        className="w-full h-13 rounded-xl bg-[#003087] text-white hover:bg-[#00256c] transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
+                        className="w-full h-13 rounded-xl bg-[#003087] text-white hover:bg-[#00256c] disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
                       >
                         <PayPalIcon className="h-5 w-auto" />
                       </button>
@@ -1142,7 +1179,8 @@ const PaymentPage: React.FC = () => {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full h-14 rounded-full bg-foreground text-background font-semibold text-[15px] sm:text-[16px] hover:bg-foreground/85 transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2"
+                      disabled={isProcessing}
+                      className="w-full h-14 rounded-full bg-foreground text-background font-semibold text-[15px] sm:text-[16px] hover:bg-foreground/85 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md active:scale-[0.99] flex items-center justify-center gap-2"
                     >
                       <Lock className="w-4 h-4" />
                       <span>
@@ -1184,6 +1222,7 @@ const PaymentPage: React.FC = () => {
             issuer={authData.issuer}
             authCode={authData.authCode}
             refCode={authData.refCode}
+            durationMs={paymentDuration}
             onDone={handleOrderComplete}
             onCancel={() => setIsProcessing(false)}
           />

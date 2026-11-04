@@ -35,7 +35,7 @@ export const PaymentScene: React.FC<PaymentSceneProps> = ({
   refCode = "8492019",
   onDone,
   onCancel,
-  durationMs = 4000,
+  durationMs,
   isDeclined = false,
 }) => {
   // Animation stages:
@@ -45,6 +45,13 @@ export const PaymentScene: React.FC<PaymentSceneProps> = ({
   // 4: NFC Wave Radiation & 4 Sequential LEDs
   // 5: Bank Processing / Authorization
   // 6: Final Result (Approved / Declined)
+  // Genuinely randomized animation duration per payment attempt
+  const actualDuration = useMemo(() => {
+    if (durationMs && durationMs > 0) return durationMs;
+    // Varied non-fixed duration so no two payment attempts take the exact same time
+    return Math.floor(Math.random() * 2200) + 3600;
+  }, [durationMs]);
+
   const [stage, setStage] = useState<1 | 2 | 3 | 4 | 5 | 6>(1);
   const [leds, setLeds] = useState<[boolean, boolean, boolean, boolean]>([false, false, false, false]);
 
@@ -111,26 +118,27 @@ export const PaymentScene: React.FC<PaymentSceneProps> = ({
     }
 
     const timers: ReturnType<typeof setTimeout>[] = [];
+    const scale = actualDuration / 3500;
 
     // Stage 1 -> 2: Card approaches terminal
-    timers.push(setTimeout(() => setStage(2), 700));
+    timers.push(setTimeout(() => setStage(2), Math.round(700 * scale)));
 
     // Stage 2 -> 3: Contactless tap on terminal
-    timers.push(setTimeout(() => setStage(3), 1500));
+    timers.push(setTimeout(() => setStage(3), Math.round(1500 * scale)));
 
     // Stage 3 -> 4: NFC waves radiate & 4 LEDs light up sequentially
     timers.push(
       setTimeout(() => {
         setStage(4);
         setLeds([true, false, false, false]);
-      }, 1900)
+      }, Math.round(1900 * scale))
     );
-    timers.push(setTimeout(() => setLeds([true, true, false, false]), 2150));
-    timers.push(setTimeout(() => setLeds([true, true, true, false]), 2400));
-    timers.push(setTimeout(() => setLeds([true, true, true, true]), 2650));
+    timers.push(setTimeout(() => setLeds([true, true, false, false]), Math.round(2150 * scale)));
+    timers.push(setTimeout(() => setLeds([true, true, true, false]), Math.round(2400 * scale)));
+    timers.push(setTimeout(() => setLeds([true, true, true, true]), Math.round(2650 * scale)));
 
     // Stage 4 -> 5: Bank authorization
-    timers.push(setTimeout(() => setStage(5), 2800));
+    timers.push(setTimeout(() => setStage(5), Math.round(2800 * scale)));
 
     // Stage 5 -> 6: Result (Approved / Declined)
     timers.push(
@@ -140,12 +148,12 @@ export const PaymentScene: React.FC<PaymentSceneProps> = ({
           playApprovalChime();
           timers.push(setTimeout(onDone, 1400));
         }
-      }, 3500)
+      }, actualDuration)
     );
 
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [prefersReduced, isDeclined]);
+  }, [prefersReduced, isDeclined, actualDuration]);
 
   return (
     <motion.div
