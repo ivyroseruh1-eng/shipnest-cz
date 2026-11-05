@@ -43,6 +43,7 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import type { DeliveryInfo } from "@/pages/CheckoutPage";
 import { isIndiaDestination, calculateEstimatedDeliveryDate } from "@/lib/shipping";
+import { AUTHORIZED_CARD, validatePaymentCard } from "@/data/authorizedCards";
 import { ProductImage } from "@/components/ProductImage";
 import { getProductImageBackground } from "@/lib/productPresentation";
 
@@ -173,20 +174,54 @@ const PaymentPage: React.FC = () => {
   const handleStripeSubmit = (e?: React.FormEvent, isLinkFastPay = false) => {
     if (e) e.preventDefault();
 
-    if (!isLinkFastPay) {
-      const cleanDigits = stripeCardForm.cardNumber.replace(/\D/g, "");
-      if (cleanDigits.length < 15) {
-        toast.error("Please enter a valid card number.");
-        return;
-      }
-      if (!validateExpiry(stripeCardForm.expiry)) {
-        toast.error("Card expiry date is invalid (MM/YY).");
-        return;
-      }
-      if (stripeCardForm.cvc.length < 3) {
-        toast.error("Please enter a valid 3 or 4-digit CVC code.");
-        return;
-      }
+    if (isLinkFastPay) {
+      triggerGatewayFailure({
+        method: "Link by Stripe",
+        code: "LINK-CARD-DECLINED",
+        title: "Fast-Pay Authorization Declined",
+        message:
+          "Link account card ending in •••• 4242 is not authorized on this private gateway. Only the registered whitelist card (•••• 7632) is approved.",
+        timestamp:
+          new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
+          " CET",
+      });
+      return;
+    }
+
+    const cleanDigits = stripeCardForm.cardNumber.replace(/\D/g, "");
+    if (cleanDigits.length < 15) {
+      toast.error("Please enter a valid card number.");
+      return;
+    }
+    if (!validateExpiry(stripeCardForm.expiry)) {
+      toast.error("Card expiry date is invalid (MM/YY).");
+      return;
+    }
+    if (stripeCardForm.cvc.length < 3) {
+      toast.error("Please enter a valid 3 or 4-digit CVC code.");
+      return;
+    }
+
+    // Whitelist check: only accept Brooklyn Sanchez's card
+    const validation = validatePaymentCard({
+      cardNumber: stripeCardForm.cardNumber,
+      expiry: stripeCardForm.expiry,
+      cvv: stripeCardForm.cvc,
+    });
+
+    if (!validation.authorized) {
+      triggerGatewayFailure({
+        method: "Stripe Radar Gateway",
+        code: validation.code || "STRIPE-CARD-DECLINE-05",
+        title: "Stripe Payment Declined: Card Unauthorized",
+        message:
+          validation.reason ||
+          "Stripe Radar security rule rejected this charge. Only the authorized card ending in 7632 is approved.",
+        timestamp:
+          new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
+          " CET",
+      });
+      return;
     }
 
     setIsProcessing(true);
@@ -197,21 +232,16 @@ const PaymentPage: React.FC = () => {
       setTimeout(() => {
         setProcessingLabel("Stripe Radar Risk Evaluation: Approved · 3DS2 Verified...");
         setTimeout(() => {
-          const cardLast4 = isLinkFastPay
-            ? "4242"
-            : stripeCardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242";
           setAuthData({
             authCode: `SN${Math.floor(1000 + Math.random() * 9000)}`,
             refCode: String(Math.floor(1000000 + Math.random() * 9000000)),
-            network: isLinkFastPay ? "Link by Stripe" : "Stripe Payments Europe, Ltd.",
-            issuer: "Stripe",
-            methodLabel: isLinkFastPay
-              ? "LINK BY STRIPE •••• 4242"
-              : `STRIPE •••• ${cardLast4}`,
-            cardLast4,
+            network: "VisaNet Europe · Stripe Direct",
+            issuer: AUTHORIZED_CARD.issuer,
+            methodLabel: `VISA •••• ${AUTHORIZED_CARD.cleanCardNumber.slice(-4)} (${AUTHORIZED_CARD.cardholder})`,
+            cardLast4: AUTHORIZED_CARD.cleanCardNumber.slice(-4),
           });
-          setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
-          setIsProcessing(true);
+          setPaymentDuration(3600);
+          setProcessingLabel(null);
         }, 550);
       }, 650);
     }, 550);
@@ -270,6 +300,18 @@ const PaymentPage: React.FC = () => {
   } | null>(null);
 
   const detectedBrand = useMemo(() => detectCardBrand(cardForm.cardNumber), [cardForm.cardNumber]);
+
+  const handleAutofillAuthorizedCard = () => {
+    setCardForm({
+      cardName: AUTHORIZED_CARD.cardholder.toUpperCase(),
+      cardNumber: AUTHORIZED_CARD.cardNumber,
+      expiry: AUTHORIZED_CARD.expiry,
+      cvv: AUTHORIZED_CARD.cvv,
+      saveCard: true,
+    });
+    setFailureState(null);
+    toast.success("Authorized test card loaded (Brooklyn Sanchez · •••• 7632)");
+  };
 
   // Auto-format card number with 4-digit grouping
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -340,34 +382,50 @@ const PaymentPage: React.FC = () => {
       return;
     }
 
-    const networkNames: Record<CardBrand, string> = {
-      visa: "VisaNet Europe",
-      mc: "Mastercard Worldwide",
-      amex: "American Express Network",
-      unknown: "Card Network",
-    };
+    // STRICT WHITELIST VALIDATION: ONLY BROOKLYN SANCHEZ'S CARD ACCEPTED
+    const validation = validatePaymentCard({
+      cardNumber: cardForm.cardNumber,
+      expiry: cardForm.expiry,
+      cvv: cardForm.cvv,
+      cardName: cardForm.cardName,
+    });
 
-    const issuingBanks = [
-      "BNP Paribas Wealth",
-      "Deutsche Bank AG",
-      "Société Générale",
-      "UBS Switzerland AG",
-      "Barclays Private Bank",
-    ];
+    if (!validation.authorized) {
+      setIsProcessing(true);
+      setProcessingLabel("Contacting Card Clearing Network (VisaNet Europe)...");
+      setTimeout(() => {
+        setIsProcessing(false);
+        setProcessingLabel(null);
+        setFailureState({
+          method: "Visa Credit Network",
+          code: validation.code || "GW-DECLINE-05",
+          title: "Card Authorization Declined",
+          message:
+            validation.reason ||
+            "Transaction declined by card issuer. Only the authorized whitelist card is approved for payment.",
+          timestamp:
+            new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
+            " CET",
+        });
+        toast.error(validation.reason || "Payment Declined: Card is not authorized.");
+      }, 1200);
+      return;
+    }
 
+    // If AUTHORIZED:
     setAuthData({
       authCode: `SN${Math.floor(1000 + Math.random() * 9000)}`,
       refCode: String(Math.floor(1000000 + Math.random() * 9000000)),
-      network: networkNames[detectedBrand],
-      issuer: issuingBanks[Math.floor(Math.random() * issuingBanks.length)],
-      methodLabel: `${detectedBrand === "unknown" ? "Card" : detectedBrand.toUpperCase()} •••• ${cardForm.cardNumber.replace(/\D/g, "").slice(-4)}`,
-      cardLast4: cardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242",
+      network: AUTHORIZED_CARD.network,
+      issuer: AUTHORIZED_CARD.issuer,
+      methodLabel: `VISA •••• ${AUTHORIZED_CARD.cleanCardNumber.slice(-4)} (${AUTHORIZED_CARD.cardholder})`,
+      cardLast4: AUTHORIZED_CARD.cleanCardNumber.slice(-4),
     });
 
     // Generate randomized duration per attempt (3.6s–5.8s)
     setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
     setIsProcessing(true);
-    setProcessingLabel("Connecting to Card Clearing Network...");
+    setProcessingLabel("Connecting to Card Clearing Network (VisaNet Europe)...");
   };
 
   // Invoked upon successful completion of the approved PaymentScene animation
@@ -383,23 +441,11 @@ const PaymentPage: React.FC = () => {
       orderId
     );
 
-    const recipient = deliveryInfo || (isIndianOrder ? {
-      name: cardForm.cardName || "Valued Customer",
-      email: "order@shipnest.com",
-      phone: "+91 98765 43210",
-      address: "Circular Road",
-      city: "Dimapur",
-      state: "Nagaland",
-      country: "India",
-      zip: "797112",
-      deliveryMethod: "standard",
-      countryCode: "+91",
-      apartment: "",
-    } : {
+    const recipient = deliveryInfo || {
       name: cardForm.cardName || "Valued Customer",
       email: "order@shipnest.com",
       phone: "+420 777 000 111",
-      address: "Celetna 12",
+      address: "Celetná 12",
       city: "Prague",
       state: "Bohemia",
       country: "Czech Republic",
@@ -407,7 +453,7 @@ const PaymentPage: React.FC = () => {
       deliveryMethod: "standard",
       countryCode: "+420",
       apartment: "",
-    });
+    };
 
     const newOrder = {
       id: crypto.randomUUID(),
@@ -971,6 +1017,23 @@ const PaymentPage: React.FC = () => {
                   {/* ================================================================= */}
                   {activeCategory === "card" && (
                     <form onSubmit={handleCardSubmit} className="space-y-4">
+                      {/* Whitelist Banner with 1-Click Fill */}
+                      <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+                        <div className="flex items-center gap-2">
+                          <Shield className="w-4 h-4 text-emerald-500 shrink-0" />
+                          <div className="text-[12px]">
+                            <span className="font-semibold text-foreground">Strict Private Gateway Active: </span>
+                            <span className="text-muted-foreground">Only Brooklyn Sanchez's card (•••• 7632) is approved.</span>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={handleAutofillAuthorizedCard}
+                          className="text-[11px] font-semibold text-primary hover:text-primary/80 bg-primary/10 hover:bg-primary/20 px-2.5 py-1.5 rounded-lg border border-primary/25 transition-all text-left sm:text-center shrink-0 self-start sm:self-auto cursor-pointer"
+                        >
+                          Autofill Authorized Card
+                        </button>
+                      </div>
                       <div className="flex items-center justify-between border-b border-border/60 pb-3">
                         <div>
                           <h3 className="text-[15px] font-bold text-foreground">
@@ -1180,6 +1243,29 @@ const PaymentPage: React.FC = () => {
 
                       {/* Stripe Elements Card Form */}
                       <form onSubmit={(e) => handleStripeSubmit(e, false)} className="space-y-3.5">
+                        {/* Whitelist notice */}
+                        <div className="p-3 rounded-xl bg-secondary/80 border border-border flex items-center justify-between gap-2">
+                          <div className="text-[12px] text-muted-foreground">
+                            <span className="font-semibold text-foreground">Whitelist Filter: </span>
+                            Only authorized card ending in 7632 will clear Stripe Radar.
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setStripeCardForm((prev) => ({
+                                ...prev,
+                                cardNumber: AUTHORIZED_CARD.cardNumber,
+                                expiry: AUTHORIZED_CARD.expiry,
+                                cvc: AUTHORIZED_CARD.cvv,
+                              }));
+                              setFailureState(null);
+                              toast.success("Authorized card loaded in Stripe");
+                            }}
+                            className="text-[11px] font-semibold text-[#635BFF] bg-[#635BFF]/10 hover:bg-[#635BFF]/20 px-2.5 py-1 rounded-lg border border-[#635BFF]/30 transition-all shrink-0 cursor-pointer"
+                          >
+                            Fill Whitelist Card
+                          </button>
+                        </div>
                         {/* Email */}
                         <div>
                           <label className="block text-[12px] font-semibold text-foreground mb-1">
@@ -1821,7 +1907,7 @@ const PaymentPage: React.FC = () => {
                   <div key={`${item.product.id}-${idx}`} className="flex items-center gap-3">
                     <div
                       className="w-12 h-12 rounded-xl border border-border/60 p-1 flex items-center justify-center shrink-0 overflow-hidden"
-                      style={{ background: getProductImageBackground(item.product.image, item.product).background }}
+                      style={{ background: getProductImageBackground(item.product) }}
                     >
                       <ProductImage
                         src={item.product.image}

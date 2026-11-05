@@ -16,6 +16,9 @@ import { Order, TrackingStep } from "@/types";
 import { ProductImage } from "@/components/ProductImage";
 import { getProductImageBackground } from "@/lib/productPresentation";
 import { toast } from "sonner";
+import { Visa, PaymentBadge } from "@/components/PaymentIcons";
+import { AUTHORIZED_CARD } from "@/data/authorizedCards";
+import { OrderEmailModal } from "@/components/admin/OrderEmailModal";
 import {
   LogOut,
   Edit,
@@ -43,6 +46,10 @@ import {
   Lock,
   ArrowUpRight,
   Filter,
+  CreditCard,
+  Mail,
+  Copy,
+  Check,
 } from "lucide-react";
 
 const ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || "shipnest2024";
@@ -80,7 +87,17 @@ const PREVIEW_CLIENT_ACCOUNTS = [
 const AdminPage = () => {
   const [authenticated, setAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
-  const [tab, setTab] = useState<"dashboard" | "orders" | "products" | "settings">("dashboard");
+  const [tab, setTab] = useState<"dashboard" | "orders" | "emails" | "products" | "gateway" | "settings">("dashboard");
+  const [emailModalOrder, setEmailModalOrder] = useState<{ order: Order; step?: string } | null>(null);
+  const [selectedEmailOrderId, setSelectedEmailOrderId] = useState<string>("");
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  const copyToClipboard = (val: string, label: string) => {
+    navigator.clipboard.writeText(val);
+    setCopiedKey(label);
+    toast.success(`${label} copied to clipboard`);
+    setTimeout(() => setCopiedKey(null), 2000);
+  };
   const { orders, updateOrder, addOrder, deleteOrder, cancelOrder } = useOrders();
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -378,7 +395,9 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
   const tabs = [
     { id: "dashboard" as const, icon: BarChart3, label: "Logistics Overview" },
     { id: "orders" as const, icon: Package, label: `Orders (${orders.length})` },
+    { id: "emails" as const, icon: Mail, label: "Customer Emails" },
     { id: "products" as const, icon: Eye, label: `Catalog (${products.length})` },
+    { id: "gateway" as const, icon: CreditCard, label: "Payment Gateway & Cards" },
     { id: "settings" as const, icon: Settings, label: "Hub Operations" },
   ];
 
@@ -578,6 +597,13 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                           <td className="p-4 text-right">
                             <div className="flex items-center justify-end gap-2">
                               <button
+                                onClick={() => setEmailModalOrder({ order: o })}
+                                className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-primary/10 hover:bg-primary/20 border border-primary/25 rounded-lg text-primary transition-colors"
+                                title="Customer HTML Email"
+                              >
+                                <Mail className="w-3 h-3" /> Email
+                              </button>
+                              <button
                                 onClick={() => setEditingOrder({ ...o })}
                                 className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary hover:bg-secondary/80 border border-border rounded-lg text-foreground transition-colors"
                               >
@@ -772,6 +798,13 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                           <td className="p-3.5 text-right">
                             <div className="flex items-center justify-end gap-1.5">
                               <button
+                                onClick={() => setEmailModalOrder({ order: o })}
+                                className="p-1.5 text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                title="Generate and send HTML email to customer"
+                              >
+                                <Mail className="w-3.5 h-3.5" />
+                              </button>
+                              <button
                                 onClick={() => setEditingOrder({ ...o })}
                                 className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg transition-colors"
                                 title="Edit order & checkpoints"
@@ -802,6 +835,78 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               </div>
             )}
           </div>
+        </div>
+      )}
+
+      {/* Tab: Customer Emails & Notification Dispatcher */}
+      {tab === "emails" && (
+        <div className="max-w-5xl space-y-6">
+          {/* Header & Order Selector */}
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-7 shadow-sm space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <Mail className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-foreground">Customer Email Dispatch Center</h2>
+                  <p className="text-xs text-muted-foreground">Generate, preview, and dispatch luxury HTML status notifications for all order steps</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                  13 Logistics Milestones
+                </span>
+              </div>
+            </div>
+
+            {/* Order Picker Dropdown */}
+            <div>
+              <label className="text-[11px] font-bold text-muted-foreground uppercase tracking-wider block mb-2">
+                Select Customer Order to Preview / Send Email
+              </label>
+              <div className="grid sm:grid-cols-12 gap-3 items-center">
+                <select
+                  value={selectedEmailOrderId || orders[0]?.orderId || ""}
+                  onChange={(e) => setSelectedEmailOrderId(e.target.value)}
+                  className="sm:col-span-8 bg-secondary/60 border border-border rounded-xl px-4 py-2.5 text-xs text-foreground font-medium focus:outline-none focus:border-foreground"
+                >
+                  {orders.map((o) => (
+                    <option key={o.orderId} value={o.orderId}>
+                      #{o.orderId} · {o.customer.name} ({o.customer.city}, {o.customer.country}) — ${o.total.toLocaleString()} [{o.status}]
+                    </option>
+                  ))}
+                </select>
+
+                <div className="sm:col-span-4 flex items-center gap-2 text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground">{orders.length}</span> placed orders available
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Inline Email Composer & Multi-Step Previewer */}
+          {(() => {
+            const activeOrder = orders.find((o) => o.orderId === (selectedEmailOrderId || orders[0]?.orderId)) || orders[0];
+            if (!activeOrder) {
+              return (
+                <div className="bg-card border border-border rounded-2xl p-8 text-center text-muted-foreground text-sm">
+                  No orders placed yet. Create a dispatch order to generate customer emails.
+                </div>
+              );
+            }
+            return (
+              <div className="bg-card border border-border rounded-2xl p-6 sm:p-7 shadow-sm">
+                <OrderEmailModal
+                  key={activeOrder.orderId}
+                  order={activeOrder}
+                  isInlineTab={true}
+                />
+              </div>
+            );
+          })()}
         </div>
       )}
 
@@ -859,9 +964,310 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
         </div>
       )}
 
+      {/* Tab: Payment Gateway & Authorized Whitelist */}
+      {tab === "gateway" && (
+        <div className="max-w-5xl space-y-6">
+          {/* Status Header */}
+          <div className="bg-card border border-border rounded-2xl p-6 sm:p-7 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <CreditCard className="w-5 h-5" />
+                </div>
+                <div>
+                  <h2 className="text-lg font-bold text-foreground">Payment Gateway & Whitelist Configuration</h2>
+                  <p className="text-xs text-muted-foreground">Private Acquirer Clearing · Single-Card Strict Whitelist Active</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 border border-emerald-500/25 shadow-xs">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Exclusive Whitelist Active
+                </span>
+              </div>
+            </div>
+
+            <p className="text-xs text-muted-foreground pt-4 leading-relaxed">
+              The ShipNest European Checkout Terminal is strictly configured to accept <strong className="text-foreground">ONLY</strong> the registered card below. All other card numbers, incorrect expiry dates, invalid CVVs, or non-matching cardholder credentials are systematically rejected with Code 05 (Do Not Honor).
+            </p>
+          </div>
+
+          {/* Physical Luxury Card & Credentials Grid */}
+          <div className="grid lg:grid-cols-12 gap-6">
+            {/* Visual 3D Luxury Visa Card representation */}
+            <div className="lg:col-span-5 flex flex-col justify-between">
+              <div className="relative w-full aspect-[1.586/1] rounded-2xl sm:rounded-3xl p-6 sm:p-7 text-white shadow-2xl overflow-hidden border border-amber-500/30 flex flex-col justify-between bg-gradient-to-br from-[#0e1320] via-[#161f36] to-[#0a0d16]">
+                {/* Background Sheen & Holographic Effect */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-400/15 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute -bottom-10 -right-10 w-48 h-48 rounded-full bg-blue-500/10 blur-2xl pointer-events-none" />
+
+                {/* Top Row: EMV Chip & Card Brand */}
+                <div className="relative z-10 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {/* Golden Chip */}
+                    <div className="w-11 h-8 rounded-md bg-gradient-to-br from-amber-200 via-amber-400 to-amber-600 border border-amber-200/50 p-1 flex flex-col justify-between shadow-xs">
+                      <div className="h-0.5 bg-amber-700/40 rounded-full" />
+                      <div className="h-0.5 bg-amber-700/40 rounded-full" />
+                      <div className="h-0.5 bg-amber-700/40 rounded-full" />
+                    </div>
+                    {/* Contactless waves */}
+                    <div className="text-amber-200/60">
+                      <svg className="w-5 h-5 -rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.393 9.393c5.857-5.857 15.355-5.857 21.213 0" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Visa Badge */}
+                  <div className="flex items-center gap-1.5 bg-white/90 px-2.5 py-1 rounded-md shadow-xs">
+                    <span className="font-extrabold italic tracking-tight text-blue-900 text-sm font-sans">VISA</span>
+                  </div>
+                </div>
+
+                {/* Card Number */}
+                <div className="relative z-10 my-auto py-2">
+                  <span className="text-[10px] uppercase font-mono tracking-wider text-amber-200/70 block mb-1">Card Number</span>
+                  <div className="text-lg sm:text-xl md:text-2xl font-mono font-bold tracking-[0.2em] text-white drop-shadow-sm">
+                    {AUTHORIZED_CARD.cardNumber}
+                  </div>
+                </div>
+
+                {/* Bottom Row: Cardholder & Expiry */}
+                <div className="relative z-10 flex items-end justify-between border-t border-white/10 pt-3">
+                  <div>
+                    <span className="text-[9px] uppercase font-mono tracking-wider text-amber-200/70 block">Cardholder</span>
+                    <span className="text-xs sm:text-sm font-bold uppercase tracking-wide text-white font-mono">
+                      {AUTHORIZED_CARD.cardholder}
+                    </span>
+                  </div>
+
+                  <div className="text-center">
+                    <span className="text-[9px] uppercase font-mono tracking-wider text-amber-200/70 block">Expires</span>
+                    <span className="text-xs sm:text-sm font-bold tracking-widest text-white font-mono">
+                      {AUTHORIZED_CARD.expiry}
+                    </span>
+                  </div>
+
+                  <div className="text-right">
+                    <span className="text-[9px] uppercase font-mono tracking-wider text-amber-200/70 block">CVV</span>
+                    <span className="text-xs sm:text-sm font-bold tracking-widest text-white font-mono">
+                      {AUTHORIZED_CARD.cvv}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Quick Actions under Card */}
+              <div className="flex gap-2.5 mt-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    const block = `Cardholder: ${AUTHORIZED_CARD.cardholder}\nCard Number: ${AUTHORIZED_CARD.cardNumber}\nExpiry Date: ${AUTHORIZED_CARD.expiry}\nCVV: ${AUTHORIZED_CARD.cvv}\nCard Type: ${AUTHORIZED_CARD.cardType}`;
+                    copyToClipboard(block, "Full Credentials");
+                  }}
+                  className="flex-1 py-2.5 px-3 bg-secondary hover:bg-secondary/80 border border-border rounded-xl text-xs font-semibold text-foreground flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                >
+                  {copiedKey === "Full Credentials" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>Copy All Credentials</span>
+                </button>
+                <Link
+                  to="/payment"
+                  className="py-2.5 px-4 bg-foreground text-background hover:bg-foreground/90 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <span>Test in Checkout</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Credential Data Table & Fast Copy Cards */}
+            <div className="lg:col-span-7 space-y-3">
+              <div className="grid sm:grid-cols-2 gap-3">
+                {/* Field: Cardholder */}
+                <div className="bg-card border border-border rounded-xl p-3.5 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground block">Authorized Cardholder</span>
+                    <span className="text-sm font-bold text-foreground font-mono">{AUTHORIZED_CARD.cardholder}</span>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard(AUTHORIZED_CARD.cardholder, "Cardholder")}
+                    className="p-2 rounded-lg bg-secondary/80 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                    title="Copy Cardholder"
+                  >
+                    {copiedKey === "Cardholder" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+
+                {/* Field: Card Number */}
+                <div className="bg-card border border-border rounded-xl p-3.5 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground block">Card Number (16-Digit)</span>
+                    <span className="text-sm font-bold text-foreground font-mono">{AUTHORIZED_CARD.cardNumber}</span>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard(AUTHORIZED_CARD.cardNumber, "Card Number")}
+                    className="p-2 rounded-lg bg-secondary/80 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                    title="Copy Card Number"
+                  >
+                    {copiedKey === "Card Number" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+
+                {/* Field: Expiry Date */}
+                <div className="bg-card border border-border rounded-xl p-3.5 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground block">Expiry Date</span>
+                    <span className="text-sm font-bold text-foreground font-mono">{AUTHORIZED_CARD.expiry}</span>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard(AUTHORIZED_CARD.expiry, "Expiry Date")}
+                    className="p-2 rounded-lg bg-secondary/80 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                    title="Copy Expiry Date"
+                  >
+                    {copiedKey === "Expiry Date" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+
+                {/* Field: CVV Code */}
+                <div className="bg-card border border-border rounded-xl p-3.5 flex items-center justify-between">
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-muted-foreground block">Security Code (CVV)</span>
+                    <span className="text-sm font-bold text-foreground font-mono">{AUTHORIZED_CARD.cvv}</span>
+                  </div>
+                  <button
+                    onClick={() => copyToClipboard(AUTHORIZED_CARD.cvv, "CVV")}
+                    className="p-2 rounded-lg bg-secondary/80 hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+                    title="Copy CVV"
+                  >
+                    {copiedKey === "CVV" ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+              </div>
+
+              {/* Extended Clearing & Network Metadata */}
+              <div className="bg-card border border-border rounded-2xl p-4 sm:p-5 space-y-3">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Gateway Clearing Details</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Card Scheme</span>
+                    <span className="font-semibold text-foreground flex items-center gap-1.5 mt-0.5">
+                      <PaymentBadge brand="visa" size="xs" />
+                      <span>{AUTHORIZED_CARD.cardType}</span>
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Network Route</span>
+                    <span className="font-semibold text-foreground mt-0.5 block">{AUTHORIZED_CARD.network}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Issuing Acquirer</span>
+                    <span className="font-semibold text-foreground mt-0.5 block">{AUTHORIZED_CARD.issuer}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Card Tier</span>
+                    <span className="font-semibold text-foreground mt-0.5 block">{AUTHORIZED_CARD.tier}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Supported Currencies</span>
+                    <span className="font-semibold text-foreground mt-0.5 block">{AUTHORIZED_CARD.currency}</span>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground block text-[10px] uppercase font-semibold">Filter Enforcement</span>
+                    <span className="font-semibold text-emerald-600 mt-0.5 block">Strict Reject (100%)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Gateway Security & Enforcement Policy Card */}
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
+            <div className="flex items-center gap-2.5 pb-3 border-b border-border">
+              <ShieldCheck className="w-5 h-5 text-emerald-500" />
+              <div>
+                <h3 className="font-bold text-foreground text-sm">Automated Security & Reject Rules</h3>
+                <p className="text-[11px] text-muted-foreground">Gateway policy behavior verified in production</p>
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-4 text-xs">
+              <div className="p-3.5 rounded-xl bg-secondary/50 border border-border space-y-1.5">
+                <span className="text-emerald-600 font-bold text-[11px] flex items-center gap-1">
+                  <Check className="w-3.5 h-3.5" /> Whitelist Card Approved
+                </span>
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
+                  Transactions with card <strong>•••• 7632</strong> (Brooklyn Sanchez, Exp 08/30, CVV 482) pass 3DS2 and clear automatically.
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-secondary/50 border border-border space-y-1.5">
+                <span className="text-rose-600 font-bold text-[11px] flex items-center gap-1">
+                  <XCircle className="w-3.5 h-3.5" /> Alternative Cards Declined
+                </span>
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
+                  Any other card number, expiry date, or CVV is rejected with <strong>Code 05 (Do Not Honor)</strong>.
+                </p>
+              </div>
+
+              <div className="p-3.5 rounded-xl bg-secondary/50 border border-border space-y-1.5">
+                <span className="text-amber-600 font-bold text-[11px] flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" /> Non-Card Methods Rejected
+                </span>
+                <p className="text-muted-foreground text-[11px] leading-relaxed">
+                  SEPA, iDEAL, BLIK, Bancontact, and Wallets are automatically rejected to enforce single-card flow.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Tab: Settings */}
       {tab === "settings" && (
         <div className="max-w-3xl space-y-6">
+          {/* Whitelisted Card Integration Banner */}
+          <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-border">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  <CreditCard className="w-4.5 h-4.5" />
+                </div>
+                <div>
+                  <h3 className="font-bold text-foreground text-sm sm:text-base">Authorized Whitelist Payment Card</h3>
+                  <p className="text-[12px] text-muted-foreground">Cardholder: Brooklyn Sanchez · Visa •••• 7632</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setTab("gateway")}
+                className="px-3.5 py-1.5 text-xs font-semibold bg-primary/10 hover:bg-primary/20 text-primary border border-primary/25 rounded-lg transition-colors cursor-pointer"
+              >
+                View Full Gateway
+              </button>
+            </div>
+
+            <div className="grid sm:grid-cols-4 gap-3 text-xs">
+              <div className="p-3 bg-secondary/50 rounded-xl border border-border">
+                <span className="text-[10px] uppercase font-semibold text-muted-foreground block">Cardholder</span>
+                <span className="font-bold text-foreground font-mono">{AUTHORIZED_CARD.cardholder}</span>
+              </div>
+              <div className="p-3 bg-secondary/50 rounded-xl border border-border">
+                <span className="text-[10px] uppercase font-semibold text-muted-foreground block">Card Number</span>
+                <span className="font-bold text-foreground font-mono">{AUTHORIZED_CARD.cardNumber}</span>
+              </div>
+              <div className="p-3 bg-secondary/50 rounded-xl border border-border">
+                <span className="text-[10px] uppercase font-semibold text-muted-foreground block">Expiry / CVV</span>
+                <span className="font-bold text-foreground font-mono">{AUTHORIZED_CARD.expiry} · {AUTHORIZED_CARD.cvv}</span>
+              </div>
+              <div className="p-3 bg-secondary/50 rounded-xl border border-border">
+                <span className="text-[10px] uppercase font-semibold text-muted-foreground block">Clearing Status</span>
+                <span className="font-bold text-emerald-600 font-mono">100% Authorized</span>
+              </div>
+            </div>
+          </div>
+
+
           <div className="bg-card border border-border rounded-2xl p-6 space-y-4">
             <div className="flex items-center gap-3 pb-3 border-b border-border">
               <Building2 className="w-5 h-5 text-primary" />
@@ -932,6 +1338,14 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-lg font-bold text-foreground">Edit Dispatch Record</h3>
+                  <button
+                    type="button"
+                    onClick={() => setEmailModalOrder({ order: editingOrder, step: editingOrder.status })}
+                    className="inline-flex items-center gap-1.5 px-3 py-1 bg-primary/10 hover:bg-primary/20 text-primary border border-primary/25 rounded-lg text-xs font-semibold transition-colors cursor-pointer"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Email Customer</span>
+                  </button>
                   <span className="font-mono text-xs px-2 py-0.5 rounded-md bg-secondary text-foreground">
                     {editingOrder.orderId}
                   </span>
@@ -1241,6 +1655,14 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
             </div>
           </div>
         </div>
+      )}
+      {/* Customer Email Dispatch Modal */}
+      {emailModalOrder && (
+        <OrderEmailModal
+          order={emailModalOrder.order}
+          initialStep={emailModalOrder.step}
+          onClose={() => setEmailModalOrder(null)}
+        />
       )}
     </div>
   );

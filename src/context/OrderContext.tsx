@@ -43,9 +43,9 @@ export const createDefaultTrackingSteps = (
     country: customerCountry,
   });
 
-  const city = customerCity || (isIndia ? "Dimapur" : "Prague");
-  const state = customerState || (isIndia ? "Nagaland" : "Bohemia");
-  const country = customerCountry || (isIndia ? "India" : "Czech Republic");
+  const city = customerCity || "Prague";
+  const state = customerState || "Bohemia";
+  const country = customerCountry || "Czech Republic";
 
   // Regional hub routing for Indian destinations
   let regionalHubCity = "Guwahati";
