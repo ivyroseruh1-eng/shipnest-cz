@@ -6,6 +6,7 @@ export type PaymentBrand =
   | "visa"
   | "mastercard"
   | "amex"
+  | "stripe"
   | "apple-pay"
   | "google-pay"
   | "paypal"
@@ -24,6 +25,7 @@ const BRAND_ALTS: Record<PaymentBrand, string> = {
   visa: "Visa",
   mastercard: "Mastercard",
   amex: "American Express",
+  stripe: "Stripe",
   "apple-pay": "Apple Pay",
   "google-pay": "Google Pay",
   paypal: "PayPal",
@@ -190,9 +192,22 @@ export const BlikIcon = ({ className = "", size = "sm", withContainer = true }: 
     />
   );
 
+export const StripeIcon = ({ className = "", size = "sm", withContainer = true }: PaymentIconProps) =>
+  withContainer ? (
+    <PaymentBadge brand="stripe" size={size} className={className} />
+  ) : (
+    <img
+      src="/assets/payment/stripe.svg"
+      alt="Stripe"
+      className={`object-contain select-none ${className || "h-5 w-auto"}`}
+      loading="lazy"
+      draggable={false}
+    />
+  );
+
 const PaymentIcons = () => (
   <div className="flex items-center gap-1.5 flex-wrap">
-    {(["visa", "mastercard", "amex", "apple-pay", "google-pay", "paypal", "sepa", "ideal", "bancontact", "blik"] as PaymentBrand[]).map(
+    {(["visa", "mastercard", "amex", "stripe", "apple-pay", "google-pay", "paypal", "sepa", "ideal", "bancontact", "blik"] as PaymentBrand[]).map(
       (brand) => (
         <PaymentBadge key={brand} brand={brand} size="sm" />
       )

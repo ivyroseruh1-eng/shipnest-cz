@@ -252,6 +252,7 @@ describe("4. Official Payment Brand Assets", () => {
       "visa.svg",
       "mastercard.svg",
       "amex.svg",
+      "stripe.svg",
       "apple-pay.svg",
       "google-pay.svg",
       "paypal.svg",
