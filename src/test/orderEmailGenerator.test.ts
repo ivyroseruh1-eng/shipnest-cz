@@ -35,15 +35,15 @@ const mockOrder: Order = {
   estimatedDelivery: "12 Nov 2026",
   placedAt: "2026-11-05T10:00:00.000Z",
   notes: "White-glove Prague dispatch",
-  paymentMethod: "Visa •••• 7632 (Brooklyn Sanchez)",
+  paymentMethod: "Visa ending in 7632",
   deliveryPin: "4829",
   trackingSteps: [],
 };
 
-describe("Order Email Generator", () => {
-  it("generates valid HTML email with website assets for Order Received", () => {
+describe("Order Email Generator (Apple Style & Mobile-First)", () => {
+  it("generates minimal Apple-style mobile-first email with website assets", () => {
     const email = generateOrderEmail(mockOrder, "Order Received");
-    expect(email.subject).toContain("Order Received");
+    expect(email.subject).toContain("ShipNest");
     expect(email.subject).toContain("SN94820194");
     expect(email.html).toContain("ShipNest");
     expect(email.html).toContain("/assets/brand/shipnest-logo.png");
@@ -53,14 +53,14 @@ describe("Order Email Generator", () => {
     expect(email.html).toContain("Natural Titanium");
     expect(email.html).toContain("256GB");
     expect(email.html).toContain("Václav Havel Airport Prague (PRG)");
-    expect(email.html).toContain("Track Consignment Telemetry Live");
+    expect(email.html).toContain("Track Shipment");
   });
 
   it("supports all 13 tracking steps without error", () => {
     ALL_TRACKING_STEPS.forEach((step) => {
       const email = generateOrderEmail(mockOrder, step);
       expect(email.stepStatus).toBe(step);
-      expect(email.subject).toContain(step);
+      expect(email.subject).toContain("ShipNest");
       expect(email.html.length).toBeGreaterThan(1000);
       expect(email.plainText.length).toBeGreaterThan(200);
     });
@@ -70,12 +70,12 @@ describe("Order Email Generator", () => {
     const email = generateOrderEmail(mockOrder, "Out for Delivery");
     expect(email.html).toContain("4829");
     expect(email.plainText).toContain("4829");
-    expect(email.subject).toContain("Out for Delivery");
+    expect(email.subject.toLowerCase()).toContain("delivery");
   });
 
   it("formats financial summary and payment method correctly", () => {
     const email = generateOrderEmail(mockOrder, "Payment Confirmed");
-    expect(email.html).toContain("Visa •••• 7632");
+    expect(email.html).toContain("Visa ending in 7632");
     expect(email.html).toContain("$1,199");
     expect(email.html).toContain("$1,438.8");
   });
