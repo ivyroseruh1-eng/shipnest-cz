@@ -1,23 +1,23 @@
 # ShipNest Official Payment Brand Assets
 
-This directory contains verified, official payment provider vector marks used across ShipNest's European payment gateway.
+This directory contains authentic, verified payment provider vector SVGs used across ShipNest's European payment gateway.
 
 ## Asset Inventory & Brand Guidelines
 
-| Provider | File | Source & Specifications | Official Colors |
-| :--- | :--- | :--- | :--- |
-| **Visa** | `visa.svg` | Official Visa Brand Guidelines 2024 | `#1434CB` (Visa Blue), `#EEB111` (Gold Serif) |
-| **Mastercard** | `mastercard.svg` | Mastercard Brand Center Specification | `#EB001B` (Red), `#F79E1B` (Yellow), `#FF5F00` (Overlap) |
-| **American Express** | `amex.svg` | American Express Merchant Brand Guidelines | `#006FCF` (Amex Blue), `#FFFFFF` (White Type) |
-| **Apple Pay** | `apple-pay.svg` | Apple Pay Identity Guidelines for the Web | `#000000` (Background), `#FFFFFF` (Apple Mark & Type) |
-| **Google Pay** | `google-pay.svg` | Google Pay Brand Guidelines 2024 | Google 4-Color G (`#4285F4`, `#34A853`, `#FBBC05`, `#EA4335`) |
-| **PayPal** | `paypal.svg` | PayPal Brand Central Identity Guidelines | `#0079C1` (PayPal Light Blue), `#00457C` (Dark Blue) |
-| **SEPA** | `sepa.svg` | European Payments Council (EPC) SEPA Scheme | `#0A3A60` (EPC Blue), `#29B6F6` (Euro Arch) |
-| **iDEAL** | `ideal.svg` | Currence iDEAL 2.0 Brand Guidelines (NL) | `#CC0066` (iDEAL Magenta), `#FFFFFF` (White) |
-| **Bancontact** | `bancontact.svg` | Bancontact Payconiq Company Specifications (BE) | `#004A99` (Bancontact Blue), `#FFC20E` (Yellow) |
-| **BLIK** | `blik.svg` | Polski Standard Płatności Brand Guidelines (PL) | `#EB1B2D` (BLIK Red), `#000000` (Black) |
+| Provider | File | ViewBox / Ratio | Brand Standard & Provenance | Official Colors |
+| :--- | :--- | :--- | :--- | :--- |
+| **Visa** | `visa.svg` | `120x80` (3:2) | Modern Official Visa Wordmark (no obsolete 2006 yellow horn) | `#1434CB` (Visa Blue) |
+| **Mastercard** | `mastercard.svg` | `120x80` (3:2) | Official Interlocking Dual Circles via Datatrans | `#EB001B` (Red), `#FF5F00` (Intersection), `#F79E1B` (Yellow) |
+| **American Express** | `amex.svg` | `120x80` (3:2) | Official Centered Blue Box Card with White Typography | `#006FCF` (Amex Blue), `#FFFFFF` (White) |
+| **Apple Pay** | `apple-pay.svg` | `120x80` (3:2) | Official Apple Mark + Pay Typography (Border-free) | `#000000` (Black Mark) / Transparent background |
+| **Google Pay** | `google-pay.svg` | `120x80` (3:2) | Official 4-Color Google G + Pay via Datatrans | `#4285F4`, `#34A853`, `#FABB05`, `#E94235`, `#3C4043` |
+| **PayPal** | `paypal.svg` | `120x80` (3:2) | Official Dual-Blue Wordmark via Datatrans | `#003087` (Navy), `#009CDE` (Light Blue) |
+| **SEPA** | `sepa.svg` | `120x80` (3:2) | European Payments Council (EPC) SEPA Scheme via Payrexx | `#003399` (EPC Blue), `#FFCC00` (EU Gold Wave) |
+| **iDEAL** | `ideal.svg` | `120x80` (3:2) | Currence iDEAL Official Trapezoid Badge (NL) via Datatrans | `#CC0066` (Magenta), `#000000` (Black) |
+| **Bancontact** | `bancontact.svg` | `120x80` (3:2) | Bancontact Payconiq Dual-Wave Brand Mark (BE) via Datatrans | `#002C6C` (Blue), `#FF9E1B` (Yellow) |
+| **BLIK** | `blik.svg` | `120x80` (3:2) | Polski Standard Płatności (PSP) Vector Mark (PL) | `#1A1A1A` (Black), `#EB0029` (Red Dot) |
 
 ## Usage Guidelines
-- All assets are vector SVGs scalable to any display resolution.
-- Aspect ratio: Fixed 138×85 (standard credit card ratio `1.62:1`) or inline scalable marks.
-- Do not distort, modify brand colors, or use unapproved alterations.
+- All assets are standardized to `120x80` (3:2 international payment card proportions).
+- Handled uniformly via `<PaymentBadge brand="..." size="xs|sm|md|lg" />` in `@/components/PaymentIcons`.
+- Guarantees zero stretched graphics, zero naked unbordered logos, and identical optical weight across mobile and desktop viewports.
