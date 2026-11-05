@@ -17,6 +17,7 @@ import {
   STEP_DAY_OFFSETS,
 } from "@/context/OrderContext";
 import { Order } from "@/types";
+import { applyShippingUpdate, type DeliveryInfo } from "@/pages/CheckoutPage";
 
 describe("1. Indian Delivery Estimates (20–30 Days)", () => {
   it("accurately identifies all Indian destinations including Nagaland and Dimapur", () => {
@@ -241,6 +242,34 @@ describe("3. Phone Country Selector (+91 India)", () => {
     expect(COUNTRY_CODES.some((c) => c.code === "+43")).toBe(true);
     expect(COUNTRY_CODES.some((c) => c.code === "+41")).toBe(true);
     expect(COUNTRY_CODES.some((c) => c.code === "+31")).toBe(true);
+  });
+});
+
+describe("Checkout address preservation", () => {
+  it("keeps all entered delivery address fields when the destination country changes", () => {
+    const existing: DeliveryInfo = {
+      email: "ivy@example.com",
+      name: "Ivy Rose",
+      countryCode: "+420",
+      phone: "123456789",
+      country: "Czech Republic",
+      address: "Celetná 12",
+      apartment: "Floor 2",
+      city: "Prague",
+      state: "Bohemia",
+      zip: "110 00",
+      deliveryMethod: "standard",
+    };
+
+    const updated = applyShippingUpdate(existing, "country", "India");
+
+    expect(updated.country).toBe("India");
+    expect(updated.countryCode).toBe("+91");
+    expect(updated.address).toBe("Celetná 12");
+    expect(updated.apartment).toBe("Floor 2");
+    expect(updated.city).toBe("Prague");
+    expect(updated.state).toBe("Bohemia");
+    expect(updated.zip).toBe("110 00");
   });
 });
 

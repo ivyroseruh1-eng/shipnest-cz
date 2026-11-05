@@ -33,6 +33,34 @@ export interface DeliveryInfo {
   deliveryMethod: "standard" | "priority";
 }
 
+export function applyShippingUpdate<K extends keyof DeliveryInfo>(
+  previous: DeliveryInfo,
+  field: K,
+  value: DeliveryInfo[K]
+): DeliveryInfo {
+  const next = { ...previous, [field]: value };
+
+  if (isIndiaDestination(next)) {
+    next.deliveryMethod = "standard";
+  }
+
+  if (field === "country") {
+    const country = String(value).toLowerCase();
+    if (country.includes("india") || country === "in") next.countryCode = "+91";
+    else if (country.includes("czech") || country.includes("cz")) next.countryCode = "+420";
+    else if (country.includes("united states") || country === "usa" || country === "us") next.countryCode = "+1";
+    else if (country.includes("united kingdom") || country === "uk" || country === "gb") next.countryCode = "+44";
+    else if (country.includes("germany") || country === "de") next.countryCode = "+49";
+  }
+
+  if (field === "countryCode") {
+    const found = getCountryByCode(String(value));
+    if (found) next.country = found.country;
+  }
+
+  return next;
+}
+
 const CheckoutPage: React.FC = () => {
   const { items, subtotal } = useCart();
   const { location } = useLocation();
@@ -107,40 +135,7 @@ const CheckoutPage: React.FC = () => {
   };
 
   const updateShipping = <K extends keyof DeliveryInfo>(field: K, val: DeliveryInfo[K]) => {
-    setShippingForm((prev) => {
-      const next = { ...prev, [field]: val };
-
-      // Ensure India destinations always use single standard method
-      if (isIndiaDestination(next)) {
-        next.deliveryMethod = "standard";
-      }
-
-      // If country changed, auto-synchronize dialing code if appropriate
-      if (field === "country") {
-        const cLower = String(val).toLowerCase();
-        if (cLower.includes("india") || cLower === "in") {
-          next.countryCode = "+91";
-        } else if (cLower.includes("czech") || cLower.includes("cz")) {
-          next.countryCode = "+420";
-        } else if (cLower.includes("united states") || cLower === "usa" || cLower === "us") {
-          next.countryCode = "+1";
-        } else if (cLower.includes("united kingdom") || cLower === "uk" || cLower === "gb") {
-          next.countryCode = "+44";
-        } else if (cLower.includes("germany") || cLower === "de") {
-          next.countryCode = "+49";
-        }
-      }
-
-      // If country code changed, synchronize country name if empty or generic
-      if (field === "countryCode") {
-        const found = getCountryByCode(String(val));
-        if (found) {
-          next.country = found.country;
-        }
-      }
-
-      return next;
-    });
+    setShippingForm((prev) => applyShippingUpdate(prev, field, val));
   };
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -330,7 +325,7 @@ const CheckoutPage: React.FC = () => {
                       required
                       value={shippingForm.address}
                       onChange={(e) => updateShipping("address", e.target.value)}
-                      placeholder="Celetná 12 / Karlova 25"
+                      placeholder="House number and street name"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
@@ -345,7 +340,7 @@ const CheckoutPage: React.FC = () => {
                       name="apartment"
                       value={shippingForm.apartment}
                       onChange={(e) => updateShipping("apartment", e.target.value)}
-                      placeholder="Floor 2, Flat 204"
+                      placeholder="Apartment, suite, unit (optional)"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
@@ -363,7 +358,7 @@ const CheckoutPage: React.FC = () => {
                         value={shippingForm.zip}
                         onChange={(e) => updateShipping("zip", e.target.value)}
                         onBlur={handleZipBlur}
-                        placeholder={isIndia ? "797112" : "110 00"}
+                        placeholder="ZIP / Postal code"
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -377,7 +372,7 @@ const CheckoutPage: React.FC = () => {
                         required
                         value={shippingForm.city}
                         onChange={(e) => updateShipping("city", e.target.value)}
-                        placeholder={isIndia ? "Dimapur" : "Prague"}
+                        placeholder="City / Town"
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -390,7 +385,7 @@ const CheckoutPage: React.FC = () => {
                         name="state"
                         value={shippingForm.state}
                         onChange={(e) => updateShipping("state", e.target.value)}
-                        placeholder={isIndia ? "Nagaland" : "Bohemia"}
+                        placeholder="State / Province / Region"
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -407,7 +402,7 @@ const CheckoutPage: React.FC = () => {
                       required
                       value={shippingForm.country}
                       onChange={(e) => updateShipping("country", e.target.value)}
-                      placeholder="Czech Republic"
+                      placeholder="Country / Region"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
