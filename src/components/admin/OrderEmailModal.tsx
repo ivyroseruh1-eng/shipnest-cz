@@ -217,7 +217,7 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
                 className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                   viewport === "desktop" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
                 }`}
-                title="Desktop View (620px)"
+                title="Apple Style View (560px)"
               >
                 <Monitor className="w-4 h-4" />
               </button>
@@ -227,7 +227,7 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
                 className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                   viewport === "mobile" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
                 }`}
-                title="Mobile View (375px)"
+                title="Gmail App Mobile View (375px)"
               >
                 <Smartphone className="w-4 h-4" />
               </button>
@@ -280,7 +280,7 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
             <div
               className="transition-all duration-300 w-full shadow-2xl rounded-2xl overflow-hidden border border-border bg-white"
               style={{
-                maxWidth: viewport === "desktop" ? "620px" : "375px",
+                maxWidth: viewport === "desktop" ? "560px" : "375px",
               }}
             >
               <iframe

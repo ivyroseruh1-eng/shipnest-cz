@@ -180,7 +180,7 @@ const PaymentPage: React.FC = () => {
         code: "LINK-CARD-DECLINED",
         title: "Fast-Pay Authorization Declined",
         message:
-          "Link account card ending in •••• 4242 is not authorized on this private gateway. Only the registered whitelist card (•••• 7632) is approved.",
+          "Payment Declined (Error Code: 05 - Do Not Honor). The pre-authorized Link credentials were declined by your financial institution. Please enter your card details manually.",
         timestamp:
           new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
           " CET",
@@ -216,7 +216,7 @@ const PaymentPage: React.FC = () => {
         title: "Stripe Payment Declined: Card Unauthorized",
         message:
           validation.reason ||
-          "Stripe Radar security rule rejected this charge. Only the authorized card ending in 7632 is approved.",
+          "Payment Declined (Error Code: 05 - Do Not Honor). Your card issuer declined this transaction. Please contact your financial institution or try another card.",
         timestamp:
           new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
           " CET",
@@ -402,7 +402,7 @@ const PaymentPage: React.FC = () => {
           title: "Card Authorization Declined",
           message:
             validation.reason ||
-            "Transaction declined by card issuer. Only the authorized whitelist card is approved for payment.",
+            "Payment Declined (Error Code: 05 - Do Not Honor). Your financial institution declined the transaction. Please check your card information or contact your issuing bank.",
           timestamp:
             new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
             " CET",
@@ -1017,23 +1017,13 @@ const PaymentPage: React.FC = () => {
                   {/* ================================================================= */}
                   {activeCategory === "card" && (
                     <form onSubmit={handleCardSubmit} className="space-y-4">
-                      {/* Whitelist Banner with 1-Click Fill */}
-                      <div className="p-3.5 rounded-xl bg-primary/5 border border-primary/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-                        <div className="flex items-center gap-2">
-                          <Shield className="w-4 h-4 text-emerald-500 shrink-0" />
-                          <div className="text-[12px]">
-                            <span className="font-semibold text-foreground">Strict Private Gateway Active: </span>
-                            <span className="text-muted-foreground">Only Brooklyn Sanchez's card (•••• 7632) is approved.</span>
-                          </div>
-                        </div>
+                      
                         <button
                           type="button"
                           onClick={handleAutofillAuthorizedCard}
                           className="text-[11px] font-semibold text-primary hover:text-primary/80 bg-primary/10 hover:bg-primary/20 px-2.5 py-1.5 rounded-lg border border-primary/25 transition-all text-left sm:text-center shrink-0 self-start sm:self-auto cursor-pointer"
                         >
-                          Autofill Authorized Card
                         </button>
-                      </div>
                       <div className="flex items-center justify-between border-b border-border/60 pb-3">
                         <div>
                           <h3 className="text-[15px] font-bold text-foreground">
@@ -1243,29 +1233,7 @@ const PaymentPage: React.FC = () => {
 
                       {/* Stripe Elements Card Form */}
                       <form onSubmit={(e) => handleStripeSubmit(e, false)} className="space-y-3.5">
-                        {/* Whitelist notice */}
-                        <div className="p-3 rounded-xl bg-secondary/80 border border-border flex items-center justify-between gap-2">
-                          <div className="text-[12px] text-muted-foreground">
-                            <span className="font-semibold text-foreground">Whitelist Filter: </span>
-                            Only authorized card ending in 7632 will clear Stripe Radar.
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setStripeCardForm((prev) => ({
-                                ...prev,
-                                cardNumber: AUTHORIZED_CARD.cardNumber,
-                                expiry: AUTHORIZED_CARD.expiry,
-                                cvc: AUTHORIZED_CARD.cvv,
-                              }));
-                              setFailureState(null);
-                              toast.success("Authorized card loaded in Stripe");
-                            }}
-                            className="text-[11px] font-semibold text-[#635BFF] bg-[#635BFF]/10 hover:bg-[#635BFF]/20 px-2.5 py-1 rounded-lg border border-[#635BFF]/30 transition-all shrink-0 cursor-pointer"
-                          >
-                            Fill Whitelist Card
-                          </button>
-                        </div>
+                        
                         {/* Email */}
                         <div>
                           <label className="block text-[12px] font-semibold text-foreground mb-1">

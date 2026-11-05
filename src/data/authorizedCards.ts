@@ -41,6 +41,7 @@ export interface CardValidationResult {
  * Validates a payment attempt strictly against the authorized whitelist card.
  * Only card number 4837 9215 6084 7632, expiry 08/30, CVV 482, and
  * cardholder Brooklyn Sanchez are accepted. Everything else is rejected.
+ * Error messages use authentic, professional banking decline descriptions (no fake-sounding text).
  */
 export const validatePaymentCard = (input: {
   cardNumber: string;
@@ -55,9 +56,9 @@ export const validatePaymentCard = (input: {
     return {
       authorized: false,
       code: "GW-DECLINE-05-UNAUTHORIZED-CARD",
-      reason: `Transaction Declined (Code 05: Do Not Honor): Card ending in ••••${
+      reason: `Payment Declined (Error Code: 05 - Do Not Honor). Your financial institution declined the transaction for card ending in ••••${
         cleanNumber.slice(-4) || "0000"
-      } is not authorized. This checkout terminal only accepts the whitelisted Visa card (•••• 7632).`,
+      }. Please check your card number or contact your card issuer.`,
     };
   }
 
@@ -67,7 +68,7 @@ export const validatePaymentCard = (input: {
     return {
       authorized: false,
       code: "GW-DECLINE-54-INVALID-EXPIRY",
-      reason: `Transaction Declined: Expiry date mismatch (${cleanExpiry || "empty"}). Expected ${AUTHORIZED_CARD.expiry}.`,
+      reason: "Payment Declined (Error Code: 54 - Invalid Expiration Date). The expiration date entered does not match your card issuer's records. Please verify the expiry date on your card.",
     };
   }
 
@@ -77,7 +78,7 @@ export const validatePaymentCard = (input: {
     return {
       authorized: false,
       code: "GW-DECLINE-82-INVALID-CVV",
-      reason: "Transaction Declined: Invalid CVV security code verification failure.",
+      reason: "Payment Declined (Error Code: 82 - Security Code Mismatch). Card security code (CVV) verification failed. Please check the 3-digit code on the back of your card.",
     };
   }
 
@@ -89,7 +90,7 @@ export const validatePaymentCard = (input: {
       return {
         authorized: false,
         code: "GW-DECLINE-NAME-MISMATCH",
-        reason: `Transaction Declined: Cardholder name mismatch ("${input.cardName}"). Only registered cardholder Brooklyn Sanchez is authorized.`,
+        reason: "Payment Declined (Error Code: 57 - Cardholder Verification Failure). The cardholder name entered could not be authenticated by the issuing bank.",
       };
     }
   }
