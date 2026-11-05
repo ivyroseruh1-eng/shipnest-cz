@@ -21,6 +21,9 @@ import {
   FileText,
   User,
   ShieldCheck,
+  Moon,
+  Sun,
+  Tablet,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -41,7 +44,8 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
     initialStep || order.status || "Order Received"
   );
   const [viewMode, setViewMode] = useState<"preview" | "code" | "text">("preview");
-  const [viewport, setViewport] = useState<"desktop" | "mobile">("desktop");
+  const [viewport, setViewport] = useState<"desktop" | "mobile" | "compact">("desktop");
+  const [previewTheme, setPreviewTheme] = useState<"light" | "dark">("light");
   const [copied, setCopied] = useState<"html" | "text" | null>(null);
   const [isSending, setIsSending] = useState(false);
   const [sentSteps, setSentSteps] = useState<Set<string>>(new Set());
@@ -100,6 +104,18 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
         }
       );
     }, 900);
+  };
+
+  const getViewportMaxWidth = () => {
+    switch (viewport) {
+      case "compact":
+        return "320px";
+      case "mobile":
+        return "375px";
+      case "desktop":
+      default:
+        return "560px";
+    }
   };
 
   const containerContent = (
@@ -212,28 +228,69 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
         {/* Action Controls */}
         <div className="flex items-center flex-wrap gap-2">
           {viewMode === "preview" && (
-            <div className="flex items-center bg-secondary/60 border border-border rounded-xl p-0.5">
-              <button
-                type="button"
-                onClick={() => setViewport("desktop")}
-                className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                  viewport === "desktop" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
-                }`}
-                title="Apple Style View (560px)"
-              >
-                <Monitor className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={() => setViewport("mobile")}
-                className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
-                  viewport === "mobile" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
-                }`}
-                title="Gmail App Mobile View (375px)"
-              >
-                <Smartphone className="w-4 h-4" />
-              </button>
-            </div>
+            <>
+              {/* Theme Toggle (Light / Dark) */}
+              <div className="flex items-center bg-secondary/60 border border-border rounded-xl p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setPreviewTheme("light")}
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                    previewTheme === "light"
+                      ? "bg-card text-foreground shadow-2xs"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  title="Simulate Light Mode"
+                >
+                  <Sun className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setPreviewTheme("dark")}
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                    previewTheme === "dark"
+                      ? "bg-card text-foreground shadow-2xs"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  title="Simulate Dark Mode"
+                >
+                  <Moon className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Viewport Selectors */}
+              <div className="flex items-center bg-secondary/60 border border-border rounded-xl p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setViewport("desktop")}
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                    viewport === "desktop" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
+                  }`}
+                  title="Apple Desktop View (560px)"
+                >
+                  <Monitor className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewport("mobile")}
+                  className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
+                    viewport === "mobile" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
+                  }`}
+                  title="Standard Mobile View (375px)"
+                >
+                  <Smartphone className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewport("compact")}
+                  className={`px-2 py-1 text-[11px] font-bold rounded-lg transition-colors cursor-pointer ${
+                    viewport === "compact" ? "bg-card text-foreground shadow-2xs" : "text-muted-foreground"
+                  }`}
+                  title="Compact Mobile / iPhone SE (320px)"
+                >
+                  320px
+                </button>
+              </div>
+            </>
           )}
 
           <button
@@ -280,15 +337,22 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
         {viewMode === "preview" && (
           <div className="p-4 sm:p-6 flex justify-center overflow-x-auto min-h-[500px] max-h-[70vh]">
             <div
-              className="transition-all duration-300 w-full shadow-2xl rounded-2xl overflow-hidden border border-border bg-white"
+              className={`transition-all duration-300 w-full shadow-2xl rounded-2xl overflow-hidden border ${
+                previewTheme === "dark"
+                  ? "bg-black border-neutral-800"
+                  : "bg-white border-border"
+              }`}
               style={{
-                maxWidth: viewport === "desktop" ? "560px" : "375px",
+                maxWidth: getViewportMaxWidth(),
               }}
             >
               <iframe
                 title="ShipNest HTML Email Preview"
                 srcDoc={generated.html}
-                className="w-full h-[620px] border-none bg-white"
+                style={{ colorScheme: previewTheme }}
+                className={`w-full h-[620px] border-none ${
+                  previewTheme === "dark" ? "bg-black" : "bg-white"
+                }`}
               />
             </div>
           </div>
