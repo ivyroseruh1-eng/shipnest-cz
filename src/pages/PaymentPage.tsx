@@ -197,24 +197,21 @@ const PaymentPage: React.FC = () => {
       setTimeout(() => {
         setProcessingLabel("Stripe Radar Risk Evaluation: Approved · 3DS2 Verified...");
         setTimeout(() => {
-          setIsProcessing(false);
           const cardLast4 = isLinkFastPay
             ? "4242"
             : stripeCardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242";
           setAuthData({
-            method: "stripe",
+            authCode: `SN${Math.floor(1000 + Math.random() * 9000)}`,
+            refCode: String(Math.floor(1000000 + Math.random() * 9000000)),
             network: isLinkFastPay ? "Link by Stripe" : "Stripe Payments Europe, Ltd.",
-            brand: "stripe",
-            cardLast4,
+            issuer: "Stripe",
             methodLabel: isLinkFastPay
               ? "LINK BY STRIPE •••• 4242"
               : `STRIPE •••• ${cardLast4}`,
-            amount: total,
-            timestamp:
-              new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
-              " CET",
+            cardLast4,
           });
-          setShowApprovalModal(true);
+          setPaymentDuration(Math.floor(Math.random() * 2200) + 3600);
+          setIsProcessing(true);
         }, 550);
       }, 650);
     }, 550);
@@ -1824,7 +1821,7 @@ const PaymentPage: React.FC = () => {
                   <div key={`${item.product.id}-${idx}`} className="flex items-center gap-3">
                     <div
                       className="w-12 h-12 rounded-xl border border-border/60 p-1 flex items-center justify-center shrink-0 overflow-hidden"
-                      style={{ background: getProductImageBackground(item.product) }}
+                      style={{ background: getProductImageBackground(item.product.image, item.product).background }}
                     >
                       <ProductImage
                         src={item.product.image}
