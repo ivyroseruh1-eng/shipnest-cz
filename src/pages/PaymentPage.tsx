@@ -28,6 +28,7 @@ import {
   IdealIcon,
   BancontactIcon,
   BlikIcon,
+  StripeIcon,
   PaymentBadge,
 } from "@/components/PaymentIcons";
 import { useCart } from "@/context/CartContext";
@@ -46,7 +47,7 @@ import { ProductImage } from "@/components/ProductImage";
 import { getProductImageBackground } from "@/lib/productPresentation";
 
 // Razorpay-style European Payment Gateway Categories
-export type PaymentCategory = "card" | "netbanking" | "sepa" | "wallets";
+export type PaymentCategory = "card" | "stripe" | "netbanking" | "sepa" | "wallets";
 export type NetbankingMethod = "ideal" | "bancontact" | "blik";
 
 export interface GatewayFailure {
@@ -139,6 +140,85 @@ const PaymentPage: React.FC = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [processingLabel, setProcessingLabel] = useState<string | null>(null);
   const [failureState, setFailureState] = useState<GatewayFailure | null>(null);
+
+  // Stripe payment form state
+  const [stripeCardForm, setStripeCardForm] = useState({
+    email: "",
+    cardNumber: "",
+    expiry: "",
+    cvc: "",
+    zip: "110 00",
+    saveWithLink: true,
+  });
+
+  const stripeDetectedBrand = useMemo(
+    () => detectCardBrand(stripeCardForm.cardNumber),
+    [stripeCardForm.cardNumber]
+  );
+
+  const handleStripeCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const raw = e.target.value.replace(/\D/g, "").slice(0, 16);
+    const formatted = raw.replace(/(\d{4})/g, "$1 ").trim();
+    setStripeCardForm((prev) => ({ ...prev, cardNumber: formatted }));
+  };
+
+  const handleStripeExpiryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let raw = e.target.value.replace(/\D/g, "").slice(0, 4);
+    if (raw.length >= 2) {
+      raw = raw.slice(0, 2) + "/" + raw.slice(2);
+    }
+    setStripeCardForm((prev) => ({ ...prev, expiry: raw }));
+  };
+
+  const handleStripeSubmit = (e?: React.FormEvent, isLinkFastPay = false) => {
+    if (e) e.preventDefault();
+
+    if (!isLinkFastPay) {
+      const cleanDigits = stripeCardForm.cardNumber.replace(/\D/g, "");
+      if (cleanDigits.length < 15) {
+        toast.error("Please enter a valid card number.");
+        return;
+      }
+      if (!validateExpiry(stripeCardForm.expiry)) {
+        toast.error("Card expiry date is invalid (MM/YY).");
+        return;
+      }
+      if (stripeCardForm.cvc.length < 3) {
+        toast.error("Please enter a valid 3 or 4-digit CVC code.");
+        return;
+      }
+    }
+
+    setIsProcessing(true);
+    setProcessingLabel("Connecting to Stripe API (api.stripe.com)...");
+
+    setTimeout(() => {
+      setProcessingLabel("Creating Stripe PaymentIntent (pi_3N9x...)...");
+      setTimeout(() => {
+        setProcessingLabel("Stripe Radar Risk Evaluation: Approved · 3DS2 Verified...");
+        setTimeout(() => {
+          setIsProcessing(false);
+          const cardLast4 = isLinkFastPay
+            ? "4242"
+            : stripeCardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242";
+          setAuthData({
+            method: "stripe",
+            network: isLinkFastPay ? "Link by Stripe" : "Stripe Payments Europe, Ltd.",
+            brand: "stripe",
+            cardLast4,
+            methodLabel: isLinkFastPay
+              ? "LINK BY STRIPE •••• 4242"
+              : `STRIPE •••• ${cardLast4}`,
+            amount: total,
+            timestamp:
+              new Date().toLocaleTimeString("en-GB", { timeZone: "Europe/Prague" }) +
+              " CET",
+          });
+          setShowApprovalModal(true);
+        }, 550);
+      }, 650);
+    }, 550);
+  };
 
   // Card payment form state
   const [cardForm, setCardForm] = useState({
@@ -547,14 +627,14 @@ const PaymentPage: React.FC = () => {
 
               {/* Mobile Tab Selector Bar (Horizontal scroll-free tabs on mobile screens) */}
               <div className="md:hidden border-b border-border/70 p-2 bg-secondary/20">
-                <div className="grid grid-cols-4 gap-1.5 text-center">
+                <div className="grid grid-cols-5 gap-1 text-center">
                   <button
                     type="button"
                     onClick={() => {
                       setActiveCategory("card");
                       setFailureState(null);
                     }}
-                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
+                    className={`py-2 px-1 rounded-xl text-[11px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
                       activeCategory === "card"
                         ? "bg-foreground text-background shadow-xs"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
@@ -564,6 +644,24 @@ const PaymentPage: React.FC = () => {
                       <img src="/assets/payment/categories/card.svg" alt="Card" className="w-full h-full object-contain" />
                     </div>
                     <span>Card</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveCategory("stripe");
+                      setFailureState(null);
+                    }}
+                    className={`py-2 px-1 rounded-xl text-[11px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
+                      activeCategory === "stripe"
+                        ? "bg-foreground text-background shadow-xs"
+                        : "text-muted-foreground hover:text-foreground hover:bg-secondary"
+                    }`}
+                  >
+                    <div className="w-7 h-5 rounded-[4px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="/assets/payment/categories/stripe.svg" alt="Stripe" className="w-full h-full object-contain" />
+                    </div>
+                    <span>Stripe</span>
                   </button>
 
                   <button
@@ -666,7 +764,41 @@ const PaymentPage: React.FC = () => {
                     </div>
                   </button>
 
-                  {/* 2. European Online Banking Option (iDEAL, Bancontact, BLIK) */}
+                  {/* 2. Stripe Payment Gateway (1-Click & Elements) */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveCategory("stripe");
+                      setFailureState(null);
+                    }}
+                    className={`w-full p-3 rounded-xl text-left transition-all flex items-start gap-3 border ${
+                      activeCategory === "stripe"
+                        ? "bg-background border-foreground shadow-xs text-foreground ring-1 ring-foreground/15"
+                        : "border-transparent hover:bg-secondary/60 text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <div className="w-9 h-6.5 rounded-[5px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                      <img src="/assets/payment/categories/stripe.svg" alt="Stripe" className="w-full h-full object-contain" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-bold text-foreground">
+                          Stripe Gateway
+                        </span>
+                        <span className="text-[9px] font-bold uppercase tracking-wide bg-[#635BFF]/10 text-[#635BFF] px-1.5 py-0.2 rounded">
+                          1-Click
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-muted-foreground mt-0.5 truncate">
+                        Link by Stripe & Card
+                      </p>
+                      <div className="flex items-center gap-1.5 mt-1.5">
+                        <PaymentBadge brand="stripe" size="xs" />
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* 3. European Online Banking Option (iDEAL, Bancontact, BLIK) */}
                   <button
                     type="button"
                     onClick={() => {
@@ -982,6 +1114,215 @@ const PaymentPage: React.FC = () => {
                         </p>
                       </div>
                     </form>
+                  )}
+
+                  {/* ================================================================= */}
+                  {/* VIEW 1.5: Stripe Payment Gateway (Link 1-Click + Elements)        */}
+                  {/* ================================================================= */}
+                  {activeCategory === "stripe" && (
+                    <div className="space-y-4 animate-fade-in">
+                      {/* Header */}
+                      <div className="flex items-center justify-between border-b border-border/60 pb-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h3 className="text-[15px] font-bold text-foreground">
+                              Stripe Payment
+                            </h3>
+                            <span className="text-[10px] font-bold font-mono px-2 py-0.5 rounded-full bg-[#635BFF]/10 text-[#635BFF]">
+                              PCI DSS Level 1
+                            </span>
+                          </div>
+                          <p className="text-[12px] text-muted-foreground">
+                            Encrypted processing via Stripe Payments Europe, Ltd.
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <PaymentBadge brand="stripe" size="sm" />
+                        </div>
+                      </div>
+
+                      {/* Link by Stripe 1-Click Fast Pay Card */}
+                      <div className="p-3.5 sm:p-4 rounded-2xl bg-gradient-to-r from-[#635BFF]/8 via-[#635BFF]/4 to-transparent border border-[#635BFF]/25 space-y-2.5">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#00D66F] flex items-center justify-center text-white font-bold text-[11px]">
+                              ⚡
+                            </div>
+                            <span className="text-[13px] font-bold text-foreground">
+                              Pay faster with Link
+                            </span>
+                          </div>
+                          <span className="text-[11px] font-medium text-muted-foreground">
+                            by Stripe
+                          </span>
+                        </div>
+                        <p className="text-[12px] text-muted-foreground leading-relaxed">
+                          Securely save or use your saved payment info for instant 1-click checkout across hundreds of thousands of sites.
+                        </p>
+                        <button
+                          type="button"
+                          disabled={isProcessing}
+                          onClick={() => handleStripeSubmit(undefined, true)}
+                          className="w-full h-11 rounded-xl bg-[#00D66F] hover:bg-[#00c063] text-[#0A2540] font-bold text-[13.5px] transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
+                        >
+                          <span>Pay with</span>
+                          <span className="font-extrabold tracking-wide text-[15px]">link</span>
+                        </button>
+                      </div>
+
+                      <div className="relative my-2">
+                        <div className="absolute inset-0 flex items-center">
+                          <div className="w-full border-t border-border/80" />
+                        </div>
+                        <div className="relative flex justify-center text-[11px] uppercase">
+                          <span className="bg-card px-2 text-muted-foreground font-semibold">
+                            Or pay with card via Stripe
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Stripe Elements Card Form */}
+                      <form onSubmit={(e) => handleStripeSubmit(e, false)} className="space-y-3.5">
+                        {/* Email */}
+                        <div>
+                          <label className="block text-[12px] font-semibold text-foreground mb-1">
+                            Email *
+                          </label>
+                          <input
+                            type="email"
+                            required
+                            value={stripeCardForm.email}
+                            onChange={(e) =>
+                              setStripeCardForm((prev) => ({ ...prev, email: e.target.value }))
+                            }
+                            placeholder="customer@example.com"
+                            className="w-full h-11 px-3.5 rounded-xl border border-border bg-background text-[15px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-[#635BFF]/30 focus:border-[#635BFF] transition-all"
+                          />
+                        </div>
+
+                        {/* Card Number */}
+                        <div>
+                          <label className="block text-[12px] font-semibold text-foreground mb-1">
+                            Card Information *
+                          </label>
+                          <div className="relative">
+                            <input
+                              type="tel"
+                              required
+                              value={stripeCardForm.cardNumber}
+                              onChange={handleStripeCardNumberChange}
+                              placeholder="1234 1234 1234 1234"
+                              maxLength={19}
+                              className="w-full h-11 pl-3.5 pr-20 rounded-xl border border-border bg-background text-[15px] sm:text-[14px] font-mono text-foreground tracking-wider focus:outline-none focus:ring-2 focus:ring-[#635BFF]/30 focus:border-[#635BFF] transition-all"
+                            />
+                            <div className="absolute right-2.5 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
+                              {stripeDetectedBrand === "visa" && <PaymentBadge brand="visa" size="xs" />}
+                              {stripeDetectedBrand === "mc" && <PaymentBadge brand="mastercard" size="xs" />}
+                              {stripeDetectedBrand === "amex" && <PaymentBadge brand="amex" size="xs" />}
+                              {stripeDetectedBrand === "unknown" && (
+                                <div className="flex items-center gap-1 opacity-70">
+                                  <PaymentBadge brand="visa" size="xs" />
+                                  <PaymentBadge brand="mastercard" size="xs" />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Expiry, CVC & ZIP in one clean grid */}
+                        <div className="grid grid-cols-3 gap-2">
+                          <div>
+                            <label className="block text-[11px] font-semibold text-foreground mb-1">
+                              Expiry *
+                            </label>
+                            <input
+                              type="tel"
+                              required
+                              value={stripeCardForm.expiry}
+                              onChange={handleStripeExpiryChange}
+                              placeholder="MM / YY"
+                              maxLength={5}
+                              className="w-full h-11 px-3 rounded-xl border border-border bg-background text-[14px] font-mono text-center text-foreground focus:outline-none focus:ring-2 focus:ring-[#635BFF]/30 focus:border-[#635BFF] transition-all"
+                            />
+                          </div>
+
+                          <div>
+                            <label className="block text-[11px] font-semibold text-foreground mb-1">
+                              CVC *
+                            </label>
+                            <div className="relative">
+                              <input
+                                type="password"
+                                required
+                                value={stripeCardForm.cvc}
+                                onChange={(e) =>
+                                  setStripeCardForm((prev) => ({
+                                    ...prev,
+                                    cvc: e.target.value.replace(/\D/g, "").slice(0, 4),
+                                  }))
+                                }
+                                placeholder="•••"
+                                maxLength={4}
+                                className="w-full h-11 pl-3 pr-7 rounded-xl border border-border bg-background text-[14px] font-mono text-center text-foreground focus:outline-none focus:ring-2 focus:ring-[#635BFF]/30 focus:border-[#635BFF] transition-all"
+                              />
+                              <Lock className="w-3 h-3 text-muted-foreground absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-[11px] font-semibold text-foreground mb-1">
+                              ZIP / PIN *
+                            </label>
+                            <input
+                              type="text"
+                              required
+                              value={stripeCardForm.zip}
+                              onChange={(e) =>
+                                setStripeCardForm((prev) => ({ ...prev, zip: e.target.value }))
+                              }
+                              placeholder="110 00"
+                              maxLength={10}
+                              className="w-full h-11 px-3 rounded-xl border border-border bg-background text-[14px] font-mono text-center text-foreground focus:outline-none focus:ring-2 focus:ring-[#635BFF]/30 focus:border-[#635BFF] transition-all"
+                            />
+                          </div>
+                        </div>
+
+                        {/* Save with Link checkbox */}
+                        <div className="pt-1 flex items-center gap-2.5">
+                          <input
+                            type="checkbox"
+                            id="saveWithLink"
+                            checked={stripeCardForm.saveWithLink}
+                            onChange={(e) =>
+                              setStripeCardForm((prev) => ({ ...prev, saveWithLink: e.target.checked }))
+                            }
+                            className="w-4 h-4 rounded text-[#635BFF] focus:ring-[#635BFF] border-border cursor-pointer"
+                          />
+                          <label
+                            htmlFor="saveWithLink"
+                            className="text-[12px] text-muted-foreground cursor-pointer select-none"
+                          >
+                            Save payment details for 1-click checkout with Link
+                          </label>
+                        </div>
+
+                        {/* Stripe Pay Button */}
+                        <button
+                          type="submit"
+                          disabled={isProcessing}
+                          className="w-full h-12 rounded-xl bg-[#635BFF] hover:bg-[#534acb] text-white font-bold text-[14px] transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] disabled:opacity-50 mt-2"
+                        >
+                          <Lock className="w-4 h-4" />
+                          <span>Pay ${total.toFixed(2)} with Stripe</span>
+                        </button>
+
+                        <div className="text-center pt-1.5 flex items-center justify-center gap-2 text-[11px] text-muted-foreground font-mono">
+                          <span>Powered by Stripe</span>
+                          <span>•</span>
+                          <span>256-bit TLS Encryption</span>
+                        </div>
+                      </form>
+                    </div>
                   )}
 
                   {/* ================================================================= */}
@@ -1344,6 +1685,19 @@ const PaymentPage: React.FC = () => {
                       </div>
 
                       <div className="space-y-3 pt-1">
+                        {/* Link by Stripe 1-Click Fast Pay Button */}
+                        <button
+                          type="button"
+                          disabled={isProcessing}
+                          onClick={() => handleStripeSubmit(undefined, true)}
+                          className="w-full h-12 rounded-xl bg-[#00D66F] hover:bg-[#00c063] text-[#0A2540] font-bold text-[14px] transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99] border border-[#00c063]"
+                          aria-label="Pay with Link by Stripe"
+                        >
+                          <span>Pay with</span>
+                          <span className="font-extrabold tracking-wide text-[16px]">link</span>
+                          <span className="text-[10px] font-semibold opacity-75 uppercase ml-1">by Stripe</span>
+                        </button>
+
                         {/* Apple Pay Button */}
                         <button
                           type="button"
