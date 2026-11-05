@@ -6,7 +6,7 @@ This directory contains authentic, verified payment provider vector SVGs used ac
 
 | Provider | File | ViewBox / Ratio | Brand Standard & Provenance | Official Colors |
 | :--- | :--- | :--- | :--- | :--- |
-| **Visa** | `visa.svg` | `120x80` (3:2) | Modern Official Visa Wordmark (no obsolete 2006 yellow horn) | `#1434CB` (Visa Blue) |
+| **Visa** | `visa.svg` | `1000x324.68` (Direct Vector) | Official Visa Inc. Vector Logo via Wikimedia Commons (`Visa_Inc._logo_(2021–present).svg`) | `#1434cb` (Visa Blue) |
 | **Mastercard** | `mastercard.svg` | `120x80` (3:2) | Official Interlocking Dual Circles via Datatrans | `#EB001B` (Red), `#FF5F00` (Intersection), `#F79E1B` (Yellow) |
 | **American Express** | `amex.svg` | `120x80` (3:2) | Official Centered Blue Box Card with White Typography | `#006FCF` (Amex Blue), `#FFFFFF` (White) |
 | **Apple Pay** | `apple-pay.svg` | `120x80` (3:2) | Official Apple Mark + Pay Typography (Border-free) | `#000000` (Black Mark) / Transparent background |
