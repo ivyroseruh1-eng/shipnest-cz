@@ -94,7 +94,9 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
       toast.success(
         `Dispatched "${selectedStep}" notification to ${order.customer.email}`,
         {
-          description: `Order #${order.orderId} · Tracking PIN: ${order.deliveryPin || "••••"}`,
+          description: order.deliveryPin
+            ? `Order #${order.orderId} · Verification PIN: ${order.deliveryPin}`
+            : `Order #${order.orderId} · Tracking: ${order.trackingId}`,
         }
       );
     }, 900);
@@ -153,7 +155,7 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
             <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
             <div>
               <span className="text-[10px] text-muted-foreground font-semibold uppercase block">Doorstep Verification PIN</span>
-              <span className="font-mono font-bold text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">{order.deliveryPin || "4829"}</span>
+              <span className="font-mono font-bold text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">{order.deliveryPin || "Not assigned"}</span>
             </div>
           </div>
         </div>
