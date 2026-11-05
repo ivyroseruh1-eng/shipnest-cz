@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Logo from "@/components/brand/Logo";
 import {
   CreditCard,
   Lock,
@@ -537,24 +538,11 @@ const PaymentPage: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             <div className="bg-card border border-border/80 rounded-2xl sm:rounded-3xl shadow-2xs overflow-hidden">
               {/* Gateway Brand Header */}
-              <div className="px-5 sm:px-6 py-4 bg-secondary/35 border-b border-border/60 flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-lg bg-foreground text-background flex items-center justify-center font-bold text-[13px]">
-                    SN
-                  </div>
-                  <div>
-                    <h2 className="text-[14px] font-bold text-foreground tracking-tight">
-                      ShipNest European Gateway
-                    </h2>
-                    <p className="text-[11px] text-muted-foreground">
-                      Encrypted multi-currency settlement & clearing
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5 text-[11px] font-medium text-emerald-600 bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
-                  <Shield className="w-3.5 h-3.5" />
-                  <span>256-bit TLS</span>
-                </div>
+              <div className="px-5 sm:px-6 py-4 bg-secondary/30 border-b border-border/60 flex items-center gap-3" aria-label="ShipNest European Gateway">
+                <Logo variant="mark" size={26} linkTo={false} alt="ShipNest" />
+                <h2 className="text-[14.5px] sm:text-[15px] font-bold text-foreground tracking-tight">
+                  ShipNest European Payment Gateway
+                </h2>
               </div>
 
               {/* Mobile Tab Selector Bar (Horizontal scroll-free tabs on mobile screens) */}
@@ -566,13 +554,15 @@ const PaymentPage: React.FC = () => {
                       setActiveCategory("card");
                       setFailureState(null);
                     }}
-                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1 transition-all ${
+                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
                       activeCategory === "card"
                         ? "bg-foreground text-background shadow-xs"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     }`}
                   >
-                    <CreditCard className="w-4 h-4" />
+                    <div className="w-7 h-5 rounded-[4px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="/assets/payment/categories/card.svg" alt="Card" className="w-full h-full object-contain" />
+                    </div>
                     <span>Card</span>
                   </button>
 
@@ -582,13 +572,15 @@ const PaymentPage: React.FC = () => {
                       setActiveCategory("netbanking");
                       setFailureState(null);
                     }}
-                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1 transition-all ${
+                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
                       activeCategory === "netbanking"
                         ? "bg-foreground text-background shadow-xs"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     }`}
                   >
-                    <Building2 className="w-4 h-4" />
+                    <div className="w-7 h-5 rounded-[4px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="/assets/payment/categories/banking.svg" alt="Banking" className="w-full h-full object-contain" />
+                    </div>
                     <span>Banking</span>
                   </button>
 
@@ -598,13 +590,15 @@ const PaymentPage: React.FC = () => {
                       setActiveCategory("sepa");
                       setFailureState(null);
                     }}
-                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1 transition-all ${
+                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
                       activeCategory === "sepa"
                         ? "bg-foreground text-background shadow-xs"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     }`}
                   >
-                    <Landmark className="w-4 h-4" />
+                    <div className="w-7 h-5 rounded-[4px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="/assets/payment/categories/sepa.svg" alt="SEPA" className="w-full h-full object-contain" />
+                    </div>
                     <span>SEPA</span>
                   </button>
 
@@ -614,13 +608,15 @@ const PaymentPage: React.FC = () => {
                       setActiveCategory("wallets");
                       setFailureState(null);
                     }}
-                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1 transition-all ${
+                    className={`py-2 px-1 rounded-xl text-[11.5px] font-semibold flex flex-col items-center justify-center gap-1.5 transition-all ${
                       activeCategory === "wallets"
                         ? "bg-foreground text-background shadow-xs"
                         : "text-muted-foreground hover:text-foreground hover:bg-secondary"
                     }`}
                   >
-                    <Wallet className="w-4 h-4" />
+                    <div className="w-7 h-5 rounded-[4px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 overflow-hidden">
+                      <img src="/assets/payment/categories/wallets.svg" alt="Wallets" className="w-full h-full object-contain" />
+                    </div>
                     <span>Wallets</span>
                   </button>
                 </div>
@@ -647,14 +643,8 @@ const PaymentPage: React.FC = () => {
                         : "border-transparent hover:bg-secondary/60 text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
-                        activeCategory === "card"
-                          ? "bg-foreground text-background border-foreground"
-                          : "bg-background text-foreground border-border"
-                      }`}
-                    >
-                      <CreditCard className="w-4 h-4" />
+                    <div className="w-9 h-6.5 rounded-[5px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                      <img src="/assets/payment/categories/card.svg" alt="Credit / Debit Card" className="w-full h-full object-contain" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
@@ -689,14 +679,8 @@ const PaymentPage: React.FC = () => {
                         : "border-transparent hover:bg-secondary/60 text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
-                        activeCategory === "netbanking"
-                          ? "bg-foreground text-background border-foreground"
-                          : "bg-background text-foreground border-border"
-                      }`}
-                    >
-                      <Building2 className="w-4 h-4" />
+                    <div className="w-9 h-6.5 rounded-[5px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                      <img src="/assets/payment/categories/banking.svg" alt="Online Banking" className="w-full h-full object-contain" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
@@ -731,14 +715,8 @@ const PaymentPage: React.FC = () => {
                         : "border-transparent hover:bg-secondary/60 text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
-                        activeCategory === "sepa"
-                          ? "bg-foreground text-background border-foreground"
-                          : "bg-background text-foreground border-border"
-                      }`}
-                    >
-                      <Landmark className="w-4 h-4" />
+                    <div className="w-9 h-6.5 rounded-[5px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                      <img src="/assets/payment/categories/sepa.svg" alt="SEPA Direct Debit" className="w-full h-full object-contain" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
@@ -771,14 +749,8 @@ const PaymentPage: React.FC = () => {
                         : "border-transparent hover:bg-secondary/60 text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${
-                        activeCategory === "wallets"
-                          ? "bg-foreground text-background border-foreground"
-                          : "bg-background text-foreground border-border"
-                      }`}
-                    >
-                      <Wallet className="w-4 h-4" />
+                    <div className="w-9 h-6.5 rounded-[5px] bg-white border border-border/80 shadow-2xs flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
+                      <img src="/assets/payment/categories/wallets.svg" alt="Digital Wallets" className="w-full h-full object-contain" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between">
