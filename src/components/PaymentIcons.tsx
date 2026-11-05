@@ -52,7 +52,7 @@ export const PaymentBadge: React.FC<{
       <img
         src={`/assets/payment/${brand}.svg`}
         alt={BRAND_ALTS[brand]}
-        className="w-full h-full object-contain p-0.5"
+        className="w-full h-full object-contain"
         loading="lazy"
         draggable={false}
       />

@@ -52,9 +52,9 @@ const CheckoutPage: React.FC = () => {
     return {
       email: "",
       name: "",
-      countryCode: "+91", // Defaults to India (+91) with global support
+      countryCode: "+420", // Defaults to Czech Republic (+420)
       phone: "",
-      country: "India",
+      country: "Czech Republic",
       address: "",
       apartment: "",
       city: "",
@@ -330,7 +330,7 @@ const CheckoutPage: React.FC = () => {
                       required
                       value={shippingForm.address}
                       onChange={(e) => updateShipping("address", e.target.value)}
-                      placeholder="1740 Broadway / Circular Road"
+                      placeholder="Celetná 12 / Karlova 25"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>
@@ -363,7 +363,7 @@ const CheckoutPage: React.FC = () => {
                         value={shippingForm.zip}
                         onChange={(e) => updateShipping("zip", e.target.value)}
                         onBlur={handleZipBlur}
-                        placeholder={isIndia ? "797112" : "10019"}
+                        placeholder={isIndia ? "797112" : "110 00"}
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] font-mono text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -377,7 +377,7 @@ const CheckoutPage: React.FC = () => {
                         required
                         value={shippingForm.city}
                         onChange={(e) => updateShipping("city", e.target.value)}
-                        placeholder={isIndia ? "Dimapur" : "New York"}
+                        placeholder={isIndia ? "Dimapur" : "Prague"}
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -390,7 +390,7 @@ const CheckoutPage: React.FC = () => {
                         name="state"
                         value={shippingForm.state}
                         onChange={(e) => updateShipping("state", e.target.value)}
-                        placeholder={isIndia ? "Nagaland" : "NY"}
+                        placeholder={isIndia ? "Nagaland" : "Bohemia"}
                         className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                       />
                     </div>
@@ -407,7 +407,7 @@ const CheckoutPage: React.FC = () => {
                       required
                       value={shippingForm.country}
                       onChange={(e) => updateShipping("country", e.target.value)}
-                      placeholder="India"
+                      placeholder="Czech Republic"
                       className="w-full h-12 px-3.5 rounded-xl border border-border bg-background text-[16px] sm:text-[14px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20 focus:border-foreground transition-all"
                     />
                   </div>

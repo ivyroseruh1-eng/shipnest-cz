@@ -1,9 +1,10 @@
 // One-line plain-English explainers shown under the current tracking step.
 export const statusExplanations: Record<string, string> = {
-  "Order Received": "We've received your order and our logistics team is preparing it for dispatch.",
-  "Order Placed": "We've received your order and our logistics team is preparing it for dispatch.",
-  "Payment Confirmed": "Your payment has been successfully authorized and verified by our European gateway.",
-  "Processing": "Your package is being picked, inspected, and verified against factory serial records.",
+  "Order Received": "We've received your order and our logistics team is sourcing and preparing it for Prague hub dispatch.",
+  "Order Placed": "We've received your order and our logistics team is sourcing and preparing it for Prague hub dispatch.",
+  "Order Confirmed": "Your order is confirmed. Consignment items are being sourced and staged at the Prague logistics gateway.",
+  "Payment Confirmed": "Your payment has been successfully authorized. Consignment items are being sourced to the Prague Logistics Hub.",
+  "Processing": "Your package is being sourced, inspected, and verified against factory serial records at the central hub.",
   "Processing at Warehouse": "Your package is being picked, inspected, and securely sealed at our warehouse.",
   "Packed": "Your order is sealed in tamper-evident packaging and assigned an international flight barcode.",
   "Shipment Created": "International cargo manifest and air waybill (AWB) generated at Prague PRG Gateway.",
