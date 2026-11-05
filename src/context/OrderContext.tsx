@@ -34,7 +34,8 @@ export const createDefaultTrackingSteps = (
   customerCity: string,
   customerState: string,
   customerCountry: string,
-  basePlacedAt: string | Date = new Date()
+  basePlacedAt: string | Date = new Date(),
+  isNewOrder: boolean = false
 ): TrackingStep[] => {
   const isIndia = isIndiaDestination({
     city: customerCity,
@@ -42,9 +43,9 @@ export const createDefaultTrackingSteps = (
     country: customerCountry,
   });
 
-  const city = customerCity || (isIndia ? "Dimapur" : "Your City");
-  const state = customerState || (isIndia ? "Nagaland" : "");
-  const country = customerCountry || (isIndia ? "India" : "Destination");
+  const city = customerCity || (isIndia ? "Dimapur" : "Prague");
+  const state = customerState || (isIndia ? "Nagaland" : "Bohemia");
+  const country = customerCountry || (isIndia ? "India" : "Czech Republic");
 
   // Regional hub routing for Indian destinations
   let regionalHubCity = "Guwahati";
@@ -114,8 +115,8 @@ export const createDefaultTrackingSteps = (
       city: "Prague",
       state: "Bohemia",
       country: "Czech Republic",
-      timestamp: new Date(baseTime + 45 * 60000).toISOString(),
-      completed: true,
+      timestamp: isNewOrder ? "" : new Date(baseTime + 45 * 60000).toISOString(),
+      completed: !isNewOrder,
     },
     {
       id: "4",
@@ -124,8 +125,8 @@ export const createDefaultTrackingSteps = (
       city: "Prague",
       state: "Bohemia",
       country: "Czech Republic",
-      timestamp: new Date(baseTime + 120 * 60000).toISOString(),
-      completed: true,
+      timestamp: isNewOrder ? "" : new Date(baseTime + 120 * 60000).toISOString(),
+      completed: !isNewOrder,
     },
     {
       id: "5",
@@ -134,8 +135,8 @@ export const createDefaultTrackingSteps = (
       city: "Prague",
       state: "Bohemia",
       country: "Czech Republic",
-      timestamp: new Date(baseTime + 180 * 60000).toISOString(),
-      completed: true,
+      timestamp: isNewOrder ? "" : new Date(baseTime + 180 * 60000).toISOString(),
+      completed: !isNewOrder,
     },
     {
       id: "6",
@@ -144,8 +145,8 @@ export const createDefaultTrackingSteps = (
       city: "Prague",
       state: "Bohemia",
       country: "Czech Republic",
-      timestamp: new Date(baseTime + 240 * 60000).toISOString(),
-      completed: true,
+      timestamp: isNewOrder ? "" : new Date(baseTime + 240 * 60000).toISOString(),
+      completed: !isNewOrder,
     },
     {
       id: "7",
@@ -154,8 +155,8 @@ export const createDefaultTrackingSteps = (
       city: isIndia ? "Air Transit (PRG → DEL)" : "International Air Transit",
       state: "",
       country: isIndia ? "Air Corridor" : "Transit",
-      timestamp: new Date(baseTime + 300 * 60000).toISOString(),
-      completed: true,
+      timestamp: isNewOrder ? "" : new Date(baseTime + 300 * 60000).toISOString(),
+      completed: !isNewOrder,
     },
     {
       id: "8",

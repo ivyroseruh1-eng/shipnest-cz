@@ -359,7 +359,7 @@ const PaymentPage: React.FC = () => {
       subtotal,
       tax,
       total,
-      status: "In Transit",
+      status: "Order Confirmed",
       estimatedDelivery,
       placedAt,
       notes: isIndianOrder
@@ -367,7 +367,7 @@ const PaymentPage: React.FC = () => {
         : "Priority Insured Air Express Freight · White-Glove Dispatch",
       paymentMethod: authData?.methodLabel || `${detectedBrand.toUpperCase()} •••• ${cardForm.cardNumber.replace(/\D/g, "").slice(-4) || "4242"}`,
       deliveryPin: String(Math.floor(1000 + Math.random() * 9000)),
-      trackingSteps: createDefaultTrackingSteps(recipient.city, recipient.state, recipient.country),
+      trackingSteps: createDefaultTrackingSteps(recipient.city, recipient.state, recipient.country, placedAt, true),
     };
 
     // Store in context & clear sessionStorage delivery info
