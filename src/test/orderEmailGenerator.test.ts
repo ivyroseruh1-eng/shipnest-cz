@@ -214,4 +214,155 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
       });
     });
   });
+
+  describe("Apple-Quality Transactional Email Communication Standards", () => {
+    it("keeps all 13 subject lines strictly under 50 characters", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        expect(email.subject.length).toBeLessThanOrEqual(50);
+      });
+    });
+
+    it("puts important status information first without leading brand repetition", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        expect(email.subject).not.toMatch(/^ShipNest:/i);
+        expect(email.subject).toMatch(/^[A-Z][a-z]+/);
+      });
+    });
+
+    it("ensures preheaders are distinct across all 13 tracking steps", () => {
+      const preheaders = ALL_TRACKING_STEPS.map(
+        (step) => generateOrderEmail(mockOrder, step).preheader
+      );
+      const uniquePreheaders = new Set(preheaders);
+      expect(uniquePreheaders.size).toBe(ALL_TRACKING_STEPS.length);
+    });
+
+    it("ensures preheaders are complementary rather than repeating the subject line", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        expect(email.preheader.toLowerCase()).not.toContain(email.subject.toLowerCase());
+      });
+    });
+
+    it("strictly separates delivery verification PIN from subject and preheader", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        expect(email.subject).not.toContain(mockOrder.deliveryPin!);
+        expect(email.preheader).not.toContain(mockOrder.deliveryPin!);
+      });
+    });
+
+    it("does not claim delivery verification occurred when delivering", () => {
+      const email = generateOrderEmail(mockOrder, "Delivered");
+      expect(email.html).not.toMatch(/verified with your (?:4-digit )?PIN/i);
+      expect(email.plainText).not.toMatch(/verified with your (?:4-digit )?PIN/i);
+      expect(email.html).not.toMatch(/enjoy your authentic/i);
+    });
+
+    it("does not invent refund timelines for cancelled orders", () => {
+      const email = generateOrderEmail(mockOrder, "Cancelled");
+      expect(email.html).not.toMatch(/5[–-]7 business days/i);
+      expect(email.plainText).not.toMatch(/5[–-]7 business days/i);
+      expect(email.html).toContain("released by your card issuer");
+      expect(email.plainText).toContain("released by your card issuer");
+    });
+
+    it("avoids internal logistics jargon across all emails", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        const combined = `${email.subject} ${email.preheader} ${email.html} ${email.plainText}`;
+        expect(combined).not.toMatch(/air waybill|AWB|cargo manifest|PRG Gateway|flight barcode|tamper-evident|consignment items/i);
+      });
+    });
+
+    it("uses customer first name naturally in greeting in both HTML and plain text", () => {
+      const email = generateOrderEmail(mockOrder, "Order Received");
+      expect(email.html).toContain("Hello Alexander,");
+      expect(email.plainText).toContain("Hello Alexander,");
+    });
+
+    it("maintains concise mobile reading length (~200 words or fewer in plain text)", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        const wordCount = email.plainText.split(/\s+/).filter(Boolean).length;
+        expect(wordCount).toBeLessThan(200);
+      });
+    });
+  });
+
+  describe("Mobile-First Architecture, Dark Mode, and Parity", () => {
+    it("includes mobile responsive stacking CSS rules for small viewports", () => {
+      const email = generateOrderEmail(mockOrder, "Out for Delivery");
+      expect(email.html).toContain(".mobile-stack");
+      expect(email.html).toContain(".mobile-stack-bottom");
+      expect(email.html).toContain("@media only screen and (max-width: 520px)");
+      expect(email.html).toContain("width: 100% !important");
+    });
+
+    it("supports automatic dark mode logo switching with shipnest-logo-white.png", () => {
+      const email = generateOrderEmail(mockOrder, "In Transit");
+      expect(email.html).toContain("shipnest-logo-white.png");
+      expect(email.html).toContain("light-logo-wrap");
+      expect(email.html).toContain("dark-logo-wrap");
+      expect(email.html).toContain("@media (prefers-color-scheme: dark)");
+    });
+
+    it("renders DHL/Amazon high-security delivery PIN module with individual digit cells", () => {
+      const email = generateOrderEmail(mockOrder, "Out for Delivery");
+      expect(email.html).toContain("apple-pin-cell");
+      expect(email.html).toContain("Delivery Verification PIN");
+      expect(email.html).toContain("Present this 4-digit code in person to your courier upon delivery");
+      // Check each digit rendered
+      expect(email.html).toContain("4");
+      expect(email.html).toContain("8");
+      expect(email.html).toContain("2");
+      expect(email.html).toContain("9");
+    });
+
+    it("renders 4-stage Apple segmented progress bars with active/inactive CSS classes", () => {
+      const email = generateOrderEmail(mockOrder, "In Transit");
+      expect(email.html).toContain("apple-bar-active");
+      expect(email.html).toContain("apple-bar-inactive");
+      expect(email.html).toContain("PLACED");
+      expect(email.html).toContain("PREPARED");
+      expect(email.html).toContain("IN TRANSIT");
+      expect(email.html).toContain("DELIVERED");
+    });
+
+    it("guarantees 100% data parity between HTML and Plain-Text versions", () => {
+      ALL_TRACKING_STEPS.forEach((step) => {
+        const email = generateOrderEmail(mockOrder, step);
+        // Customer name
+        expect(email.html).toContain(mockOrder.customer.name);
+        expect(email.plainText).toContain(mockOrder.customer.name);
+
+        // Order ID and tracking ID
+        expect(email.html).toContain(mockOrder.orderId);
+        expect(email.plainText).toContain(mockOrder.orderId);
+        expect(email.html).toContain(mockOrder.trackingId);
+        expect(email.plainText).toContain(mockOrder.trackingId);
+
+        // Tracking URL
+        const expectedTrackUrl = `https://shipnest.getvoroa.com/track/${mockOrder.trackingId}`;
+        expect(email.html).toContain(expectedTrackUrl);
+        expect(email.plainText).toContain(expectedTrackUrl);
+
+        // Item names & totals
+        mockOrder.items.forEach((item) => {
+          expect(email.html).toContain(item.name);
+          expect(email.plainText).toContain(item.name);
+        });
+        expect(email.html).toContain(mockOrder.total.toLocaleString());
+        expect(email.plainText).toContain(mockOrder.total.toLocaleString());
+
+        // Delivery PIN
+        if (mockOrder.deliveryPin) {
+          expect(email.html).toContain(mockOrder.deliveryPin);
+          expect(email.plainText).toContain(mockOrder.deliveryPin);
+        }
+      });
+    });
+  });
 });
