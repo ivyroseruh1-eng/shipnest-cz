@@ -519,27 +519,6 @@ const TrackPage = () => {
           </button>
         </div>
 
-        {/* Active Dispatch Quick Select Chips */}
-        <div className="space-y-3 pt-2">
-          <p className="text-[12px] text-muted-foreground">
-            Or inspect an active air consignment in transit:
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            {(orders.length > 0
-              ? orders.slice(0, 4).map((o) => o.trackingId)
-              : ["SNX1037910", "SNX7829104", "SNX4829104"]
-            ).map((t) => (
-              <button
-                key={t}
-                onClick={() => handleSearch(t)}
-                className="font-mono text-[12px] bg-card hover:bg-secondary border border-border/80 px-4 py-1.5 rounded-full text-foreground transition-colors shadow-2xs"
-              >
-                {t}
-              </button>
-            ))}
-          </div>
-        </div>
-
         {/* 3 Apple/Samsung Assurance Feature Tiles */}
         <div className="grid sm:grid-cols-3 gap-4 pt-10 text-left">
           <div className="p-6 bg-card border border-border/80 rounded-3xl space-y-2.5 shadow-[0_2px_8px_-4px_rgba(0,0,0,0.04)]">
