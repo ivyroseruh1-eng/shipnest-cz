@@ -36,11 +36,11 @@ export type TrackingStepName = typeof ALL_TRACKING_STEPS[number];
  * NEVER contain localhost, 127.0.0.1, preview deployment domains, shipnest.com,
  * or relative tracking paths.
  */
-export const CANONICAL_PRODUCTION_SITE_URL = "https://shipnest.getvoroa.com";
+export const CANONICAL_PRODUCTION_SITE_URL = "https://shipnest-cz.lovable.app";
 
 /**
  * Returns the canonical public website URL, honoring VITE_PUBLIC_SITE_URL when set,
- * but safely falling back to https://shipnest.getvoroa.com and rejecting localhost/preview URLs.
+ * but safely falling back to https://shipnest-cz.lovable.app and rejecting localhost/preview URLs.
  */
 export const getCanonicalSiteUrl = (customOrigin?: string): string => {
   if (customOrigin && typeof customOrigin === "string") {
@@ -56,6 +56,23 @@ export const getCanonicalSiteUrl = (customOrigin?: string): string => {
 
     if (!isForbidden && (lower.startsWith("https://") || lower.startsWith("http://"))) {
       return trimmed;
+    }
+  }
+
+  // In browser environment, honor active origin if it is not localhost or preview
+  if (typeof window !== "undefined" && window.location && window.location.origin) {
+    const browserOrigin = window.location.origin.trim().replace(/\/+$/, "");
+    const lower = browserOrigin.toLowerCase();
+    const isForbidden =
+      lower.includes("localhost") ||
+      lower.includes("127.0.0.1") ||
+      lower.includes("shipnest.com") ||
+      lower.includes("vercel.app") ||
+      lower.includes("netlify.app") ||
+      lower.includes("github.dev");
+
+    if (!isForbidden && (lower.startsWith("https://") || lower.startsWith("http://"))) {
+      return browserOrigin;
     }
   }
 
@@ -99,7 +116,8 @@ export const normalizeEmailImageUrl = (
     return fallback;
   }
 
-  const trimmed = imagePath.trim();
+  // Sanitize fragile cache-busting queries (?v=...) and hash fragments
+  const trimmed = imagePath.trim().replace(/[?#].*$/, "").trim();
   if (!trimmed) return fallback;
 
   const lower = trimmed.toLowerCase();
@@ -117,7 +135,7 @@ export const normalizeEmailImageUrl = (
 
   // If already absolute HTTP / HTTPS
   if (lower.startsWith("https://") || lower.startsWith("http://")) {
-    if (lower.includes("shipnest.com")) {
+    if (lower.includes("shipnest.com") || lower.includes("shipnest.getvoroa.com")) {
       // Legacy domain rewrite
       const pathPart = trimmed.replace(/^https?:\/\/[^/]+/i, "");
       return normalizeEmailImageUrl(pathPart, base);
@@ -315,7 +333,7 @@ export const APPLE_STATUS_DETAILS: Record<string, AppleStepDetails> = {
  * - Light and dark mode support with automatic white-logo switching.
  * - Email-compatible HTML tables and inline CSS (tested for Gmail iOS/Android, Apple Mail, Outlook).
  * - Reliable production HTTPS image asset resolution.
- * - Real dynamic tracking links: https://shipnest.getvoroa.com/track/:trackingId.
+ * - Real dynamic tracking links: https://shipnest-cz.lovable.app/track/:trackingId.
  * - Complete plain-text counterpart.
  * - Zero emoji decorations, zero marketing fluff.
  */
@@ -556,9 +574,7 @@ export const generateOrderEmail = (
       .apple-bar-active { background-color: #F5F5F7 !important; }
       .apple-bar-inactive { background-color: #38383A !important; }
       .apple-btn { background-color: #FFFFFF !important; color: #000000 !important; }
-      .light-logo-wrap { display: none !important; }
-      .dark-logo-wrap { display: block !important; width: 112px !important; max-height: none !important; line-height: normal !important; overflow: visible !important; float: none !important; visibility: visible !important; }
-      .dark-logo { display: block !important; width: 112px !important; max-width: 112px !important; height: auto !important; }
+
     }
   </style>
 </head>
@@ -574,27 +590,20 @@ export const generateOrderEmail = (
     <tr>
       <td align="center" style="padding: 12px 0;">
         <!-- Single Column Fluid Container (Max 560px for Apple-style typography) -->
-        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 560px; width: 100%; margin: 0 auto; padding: 24px 20px;">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-container" style="max-width: 600px; width: 100%; margin: 0 auto; padding: 24px 20px;">
           
-          <!-- Apple Minimalist Header with Verified ShipNest Logo (Light/Dark Switchable) -->
+          <!-- Universally Visible Brand Header (Dark Background Card) -->
           <tr>
-            <td class="apple-border" style="padding-bottom: 20px; border-bottom: 1px solid #E5E5E7;">
-              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <td style="padding-bottom: 20px;">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #000000; border-radius: 12px; padding: 16px 20px;">
                 <tr>
                   <td align="left" style="vertical-align: middle;">
-                    <a href="${origin}" target="_blank" style="text-decoration: none; display: inline-block;">
-                      <div class="light-logo-wrap">
-                        <img src="${logoUrl}" alt="ShipNest" width="112" height="30" class="light-logo" style="display: block; width: 112px; max-width: 112px; height: auto; border: 0; outline: none;" />
-                      </div>
-                      <!--[if !mso]><!-->
-                      <div class="dark-logo-wrap" style="display: none; overflow: hidden; float: left; width: 0px; max-height: 0px; line-height: 0px; visibility: hidden;">
-                        <img src="${logoWhiteUrl}" alt="ShipNest" width="112" height="30" class="dark-logo" style="display: none; width: 112px; max-width: 112px; height: auto; border: 0; outline: none;" />
-                      </div>
-                      <!--<![endif]-->
+                    <a href="${origin}" target="_blank" style="text-decoration: none; display: block;">
+                      <img src="${logoWhiteUrl}" alt="ShipNest" width="112" height="30" style="display: block; width: 112px; height: 30px; border: 0; outline: none; margin: 0;" />
                     </a>
                   </td>
                   <td align="right" style="vertical-align: middle;">
-                    <span class="apple-text-secondary" style="font-size: 11px; font-weight: 500; color: #86868B; text-transform: uppercase; letter-spacing: 0.08em;">
+                    <span style="font-size: 11px; font-weight: 500; color: #8E8E93; text-transform: uppercase; letter-spacing: 0.08em;">
                       Prague Hub
                     </span>
                   </td>
@@ -686,52 +695,74 @@ export const generateOrderEmail = (
             </td>
           </tr>
 
-          <!-- Shipping Details & Estimated Delivery (Responsive Stacking) -->
+          <!-- Shipping Details & Estimated Delivery (Fluid Hybrid Stacking) -->
           <tr>
             <td style="padding-top: 22px; padding-bottom: 28px;">
               <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                 <tr>
-                  <td class="mobile-stack" style="vertical-align: top; width: 50%; padding-right: 14px;">
-                    <div class="apple-text-secondary" style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #86868B; margin-bottom: 4px;">
-                      Ship To
+                  <td style="padding: 0; font-size: 0; text-align: left;">
+                    <!--[if (gte mso 9)|(IE)]>
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                    <td width="50%" valign="top">
+                    <![endif]-->
+                    <div style="display: inline-block; width: 100%; max-width: 275px; vertical-align: top; text-align: left;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td style="padding: 0 10px 16px 0;">
+                            <div class="apple-text-secondary" style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #86868B; margin-bottom: 4px;">
+                              Ship To
+                            </div>
+                            <div class="apple-text-primary" style="font-size: 13px; font-weight: 600; color: #1D1D1F; margin-bottom: 2px;">
+                              ${order.customer.name}
+                            </div>
+                            <div class="apple-text-secondary" style="font-size: 12px; color: #515154; line-height: 1.45;">
+                              ${order.customer.address}<br />
+                              ${order.customer.city}, ${order.customer.state} ${order.customer.zip}<br />
+                              ${order.customer.country}
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                    <div class="apple-text-primary" style="font-size: 13px; font-weight: 600; color: #1D1D1F; margin-bottom: 2px;">
-                      ${order.customer.name}
+                    <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                    <td width="50%" valign="top">
+                    <![endif]-->
+                    <div style="display: inline-block; width: 100%; max-width: 275px; vertical-align: top; text-align: left;">
+                      <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                          <td style="padding: 0 0 16px 10px;">
+                            <div class="apple-text-secondary" style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #86868B; margin-bottom: 4px;">
+                              Estimated Arrival
+                            </div>
+                            <div class="apple-text-primary" style="font-size: 13px; font-weight: 600; color: #1D1D1F; margin-bottom: 2px;">
+                              ${order.estimatedDelivery}
+                            </div>
+                            <div class="apple-text-secondary" style="font-size: 12px; color: #86868B; line-height: 1.45;">
+                              Carrier: ShipNest Express Worldwide<br />
+                              <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', monospace; font-size: 11px;">Tracking: ${order.trackingId}</span>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
                     </div>
-                    <div class="apple-text-secondary" style="font-size: 12px; color: #515154; line-height: 1.45;">
-                      ${order.customer.address}<br />
-                      ${order.customer.city}, ${order.customer.state} ${order.customer.zip}<br />
-                      ${order.customer.country}
-                    </div>
-                  </td>
-                  <td class="mobile-stack mobile-stack-bottom" style="vertical-align: top; width: 50%; padding-left: 14px;">
-                    <div class="apple-text-secondary" style="font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #86868B; margin-bottom: 4px;">
-                      Estimated Arrival
-                    </div>
-                    <div class="apple-text-primary" style="font-size: 13px; font-weight: 600; color: #1D1D1F; margin-bottom: 2px;">
-                      ${order.estimatedDelivery}
-                    </div>
-                    <div class="apple-text-secondary" style="font-size: 12px; color: #86868B; line-height: 1.45;">
-                      Carrier: ShipNest Express Worldwide<br />
-                      <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', monospace; font-size: 11px;">Tracking: ${order.trackingId}</span>
-                    </div>
+                    <!--[if (gte mso 9)|(IE)]>
+                    </td>
+                    </tr>
+                    </table>
+                    <![endif]-->
                   </td>
                 </tr>
               </table>
             </td>
           </tr>
 
-          <!-- Apple Minimalist Pill CTA Button pointing to Production Tracking Route -->
+          <!-- Reliable Tracking Link CTA Button -->
           <tr>
             <td align="center" style="padding-bottom: 34px;">
-              <!--[if mso]>
-              <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="${trackUrl}" style="height:44px;v-text-anchor:middle;width:200px;" arcsize="50%" stroke="f" fillcolor="#000000">
-                <w:anchorlock/>
-                <center style="color:#ffffff;font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:14px;font-weight:500;">Track Shipment</center>
-              </v:roundrect>
-              <![endif]-->
-              <a href="${trackUrl}" target="_blank" class="mobile-btn apple-btn" style="mso-hide:all; background-color: #000000; color: #FFFFFF; font-size: 14px; font-weight: 500; text-decoration: none; padding: 13px 38px; border-radius: 980px; display: inline-block; -webkit-text-size-adjust: none; text-align: center;">
-                Track Shipment
+              <a href="${trackUrl}" target="_blank" style="display: inline-block; background-color: #0071E3; color: #FFFFFF; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 600; text-decoration: none; padding: 14px 28px; border-radius: 8px; text-align: center;">
+                Track Consignment Live &rarr;
               </a>
             </td>
           </tr>
@@ -743,7 +774,7 @@ export const generateOrderEmail = (
                 ShipNest s.r.o. · Václav Havel Airport Prague (PRG) · Na Příkopě 859/22, 110 00 Prague 1
               </p>
               <p class="apple-text-secondary" style="margin: 0 0 6px 0; font-size: 11px; color: #86868B; line-height: 1.5;">
-                Questions? Visit ShipNest Support or contact <a href="mailto:concierge@shipnest.getvoroa.com" style="color: #1D1D1F; text-decoration: underline;" class="apple-text-primary">concierge@shipnest.getvoroa.com</a>
+                Questions? Visit ShipNest Support or contact <a href="mailto:concierge@shipnest-cz.lovable.app" style="color: #1D1D1F; text-decoration: underline;" class="apple-text-primary">concierge@shipnest-cz.lovable.app</a>
               </p>
               <p class="apple-text-secondary" style="margin: 0; font-size: 11px; color: #86868B;">
                 Copyright © 2026 ShipNest s.r.o. All rights reserved.
@@ -803,7 +834,7 @@ ${trackUrl}
 
 --
 ShipNest s.r.o. · Václav Havel Airport Prague (PRG) · Na Příkopě 859/22, 110 00 Prague 1
-Concierge Support: concierge@shipnest.getvoroa.com
+Concierge Support: concierge@shipnest-cz.lovable.app
 `.trim();
 
   return {

@@ -15,8 +15,6 @@ import DeliveryEstimator from "@/components/home/DeliveryEstimator";
 import ReviewsCarousel from "@/components/home/ReviewsCarousel";
 import HomeFAQ from "@/components/home/HomeFAQ";
 
-const sampleTrackingIds = ["SNX7829104", "SNX4920183", "SNX6104829"];
-
 const tabLinks: Record<string, { url: string; label: string }> = {
   flagships: { url: "/shop?department=Technology", label: "Flagships" },
   apple: { url: "/shop?brand=Apple", label: "Apple Products" },
@@ -109,7 +107,7 @@ const HomePage = () => {
                     <Search className="w-4 h-4 text-muted-foreground shrink-0 ml-1.5" />
                     <input
                       type="text"
-                      placeholder="Have a tracking number? e.g. SNX7829104"
+                      placeholder="Have a tracking number? e.g. SNX..."
                       value={trackInput}
                       onChange={e => setTrackInput(e.target.value)}
                       onKeyDown={e => e.key === "Enter" && handleTrack()}
@@ -121,18 +119,6 @@ const HomePage = () => {
                     >
                       Track
                     </button>
-                  </div>
-                  <div className="flex items-center gap-2 mt-2 pt-2 border-t border-border/60 text-[11px] text-muted-foreground px-1">
-                    <span>Recent shipments:</span>
-                    {sampleTrackingIds.map(sample => (
-                      <button
-                        key={sample}
-                        onClick={() => handleTrack(sample)}
-                        className="font-mono text-primary hover:underline"
-                      >
-                        {sample}
-                      </button>
-                    ))}
                   </div>
                 </div>
               </div>

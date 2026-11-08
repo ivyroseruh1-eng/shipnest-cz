@@ -144,6 +144,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setSession(data.session);
         return { error: null };
       }
+      // Auto-confirm sign in flow: immediately sign in if user was created
+      if (data.user) {
+        const signInRes = await supabase.auth.signInWithPassword({
+          email: email.trim(),
+          password,
+        });
+        if (signInRes.data.session && signInRes.data.user) {
+          setUser(signInRes.data.user);
+          setSession(signInRes.data.session);
+          return { error: null };
+        }
+      }
       // Without auto-confirm the account exists but is not signed in yet
       return { error: new Error("Account created. Please sign in with your email or username.") };
     } catch (e: any) {

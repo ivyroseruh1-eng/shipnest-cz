@@ -39,6 +39,11 @@ import { isIndiaDestination, formatOrderDeliveryRange } from "@/lib/shipping";
 import MacroMilestoneStepper from "@/components/MacroMilestoneStepper";
 import { motion } from "framer-motion";
 
+const maskDeliveryAddress = (address?: string): string => {
+  if (!address) return "";
+  return address.replace(/\d+/g, (m) => "•".repeat(m.length));
+};
+
 const TrackPage = () => {
   const { id } = useParams();
   const { orders, getOrder, loading } = useOrders();
@@ -137,14 +142,14 @@ const TrackPage = () => {
             </span>
           </div>
 
-          {/* Master Consignment Overview Card (Apple Style Hero + Samsung One UI Status) */}
+          {/* 1. HEADER & CONSIGNMENT STATUS SUMMARY */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="bg-card border border-border/80 rounded-3xl overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]"
           >
-            {/* Header Strip */}
+            {/* Certified Air Carrier Strip */}
             <div className="px-6 sm:px-8 py-4 border-b border-border/70 bg-[#fafafc] flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Logo variant="mark" size={26} linkTo={false} />
@@ -158,7 +163,7 @@ const TrackPage = () => {
                 </div>
               </div>
 
-              {/* Status Badge */}
+              {/* Current Stage Badge */}
               <span
                 className={`px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider ${
                   delivered
@@ -172,8 +177,8 @@ const TrackPage = () => {
               </span>
             </div>
 
-            {/* Tracking ID & Prominent ETA Hero Banner */}
-            <div className="p-6 sm:p-8 space-y-6">
+            {/* Tracking ID, Order ID & Prominent ETA Hero Banner */}
+            <div className="p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                 <div>
                   <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold">
@@ -191,9 +196,15 @@ const TrackPage = () => {
                       <Copy className="w-3.5 h-3.5" />
                     </button>
                   </div>
-                  <p className="text-[12px] text-muted-foreground font-mono mt-1">
-                    Air Waybill: <span className="font-semibold text-foreground">{meta.awb}</span>
-                  </p>
+                  <div className="flex items-center gap-3 mt-1.5 text-[12px] text-muted-foreground font-mono">
+                    <span>
+                      Air Waybill: <span className="font-semibold text-foreground">{meta.awb}</span>
+                    </span>
+                    <span>·</span>
+                    <span>
+                      Order Reference: <span className="font-semibold text-foreground">#{order.orderId}</span>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Delivery Countdown / Target Date Box */}
@@ -209,200 +220,14 @@ const TrackPage = () => {
                   </p>
                 </div>
               </div>
-
-              {/* Apple-Style Macro 4-Stage Stepper */}
-              <div className="pt-2 pb-1 border-t border-border/60">
-                <MacroMilestoneStepper
-                  status={order.status}
-                  steps={order.trackingSteps}
-                  isConfirmationPage={false}
-                />
-              </div>
-
-              {/* Latest Scan Live Notification Banner (Samsung One UI Live Event) */}
-              {!cancelled && (
-                <div className="p-4 sm:p-5 rounded-2xl bg-primary/5 border border-primary/20 space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                    <div className="flex items-center gap-2.5 text-primary font-bold text-[13px]">
-                      <span className="relative flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
-                      </span>
-                      <Plane className="w-4 h-4" />
-                      <span>Latest Milestone: {lastCompleted?.status || "Order Received"}</span>
-                    </div>
-                    <span className="text-[11px] font-mono text-muted-foreground">
-                      Scanned {relTime} · CET
-                    </span>
-                  </div>
-                  <p className="text-[13px] text-foreground/85 leading-relaxed pl-5 sm:pl-5">
-                    {explanation ||
-                      "Your consignment is progressing on schedule through our certified European air logistics corridor."}
-                  </p>
-                </div>
-              )}
             </div>
           </motion.div>
 
-          {/* Interactive Route Map & Carrier Handoff Module */}
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.35 }}
-              className="bg-card border border-border/80 rounded-3xl p-6 sm:p-7 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] space-y-4"
-            >
-              <div className="flex items-center justify-between border-b border-border/70 pb-4">
-                <div>
-                  <h3 className="text-[14px] font-bold text-foreground uppercase tracking-wider">
-                    Air Transit Flight Trajectory
-                  </h3>
-                  <p className="text-[12px] text-muted-foreground mt-0.5">
-                    Live flight corridor from Prague PRG Gateway to final destination
-                  </p>
-                </div>
-                <span className="text-[12px] font-mono font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
-                  {progress.toFixed(0)}% Dispatched
-                </span>
-              </div>
-
-              <div className="rounded-2xl bg-secondary/30 p-2 sm:p-4 border border-border/60">
-                <RouteMap
-                  origin={{
-                    label: "PRG Gateway",
-                    sub: meta.courier.split(" ")[0],
-                  }}
-                  destination={{
-                    label: `${order.customer.city || "Destination"}`,
-                    sub: meta.indiaCourier.split(" ")[0],
-                  }}
-                  progress={Math.min(
-                    Math.max(completedSteps / order.trackingSteps.length, 0.05),
-                    1
-                  )}
-                  height={190}
-                />
-              </div>
-            </motion.div>
-
-            {/* Carrier Handoff Details */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15, duration: 0.35 }}
-            >
-              <CourierHandoff
-                meta={meta}
-                inIndia={inIndia}
-                city={order.customer.city}
-              />
-            </motion.div>
-          </div>
-
-          {/* Checkpoint Scan History (12-Step Detailed Event Log) */}
+          {/* 2. ENCLOSED CONSIGNMENT ITEMS (Promoted to Top for Single Screenshot) */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.35 }}
-            className="bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] space-y-6"
-          >
-            <div className="border-b border-border/70 pb-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-[16px] font-bold text-foreground">
-                  Checkpoint Log & Scans
-                </h3>
-                <p className="text-[12px] text-muted-foreground mt-0.5">
-                  Chronological scan events recorded across international air terminals
-                </p>
-              </div>
-              <span className="text-[11px] font-mono text-muted-foreground bg-secondary px-2.5 py-1 rounded-md border border-border/60">
-                CET Timezone
-              </span>
-            </div>
-
-            <TrackingTimeline
-              steps={order.trackingSteps}
-              placedAt={order.placedAt}
-            />
-          </motion.div>
-
-          {/* Doorstep Verification PIN & Delivery Address Grid */}
-          <div className="grid sm:grid-cols-2 gap-4">
-            {/* Samsung One UI Security Pass Card */}
-            {order.deliveryPin && (
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.35 }}
-                className="bg-card border border-primary/25 rounded-3xl p-6 space-y-3 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-8 -mt-8 pointer-events-none" />
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-primary text-[11px] font-bold uppercase tracking-wider">
-                    <ShieldCheck className="w-4 h-4" />
-                    <span>Doorstep Verification PIN</span>
-                  </div>
-                  <span className="text-[10px] uppercase font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
-                    Handover Token
-                  </span>
-                </div>
-
-                <div className="flex items-baseline justify-between gap-3 pt-2">
-                  <span className="text-3xl sm:text-4xl font-mono font-bold tracking-[0.3em] text-primary tabular-nums">
-                    {order.deliveryPin}
-                  </span>
-                  <button
-                    onClick={() => copyToClipboard(order.deliveryPin!, "PIN")}
-                    className="p-2 rounded-xl bg-secondary/80 hover:bg-secondary border border-border text-foreground transition-colors shadow-2xs"
-                    title="Copy PIN"
-                  >
-                    <Copy className="w-4 h-4" />
-                  </button>
-                </div>
-                <p className="text-[11px] text-muted-foreground leading-relaxed pt-1">
-                  Required upon parcel handover. Share this exclusively with the courier once the sealed box is presented.
-                </p>
-              </motion.div>
-            )}
-
-            {/* Consignment Destination Address Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.35 }}
-              className="bg-card border border-border/80 rounded-3xl p-6 space-y-3 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]"
-            >
-              <div className="flex items-center justify-between border-b border-border/70 pb-2.5">
-                <div className="flex items-center gap-2 text-primary">
-                  <MapPin className="w-4 h-4" />
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-foreground">
-                    Shipment Destination
-                  </span>
-                </div>
-                <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
-                  <CheckCircle2 className="w-3.5 h-3.5" /> Insured
-                </span>
-              </div>
-              <div>
-                <p className="text-[14px] font-semibold text-foreground">
-                  {order.customer.name}
-                </p>
-                <p className="text-[12px] text-muted-foreground leading-relaxed mt-0.5">
-                  {order.customer.address}
-                  <br />
-                  {order.customer.city}
-                  {order.customer.state ? `, ${order.customer.state}` : ""} · {order.customer.country}
-                </p>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Enclosed Consignment Electronics Items Card (Apple Store Itemized Breakdown) */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.35 }}
+            transition={{ delay: 0.05, duration: 0.35 }}
             className="bg-card border border-border/80 rounded-3xl p-6 sm:p-7 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] space-y-4"
           >
             <div className="flex items-center justify-between border-b border-border/70 pb-3">
@@ -464,6 +289,202 @@ const TrackPage = () => {
               })}
             </div>
           </motion.div>
+
+          {/* 3. DESTINATION ADDRESS & DOORSTEP VERIFICATION PIN */}
+          <div className="grid sm:grid-cols-2 gap-4">
+            {/* Consignment Destination Address Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
+              className="bg-card border border-border/80 rounded-3xl p-6 space-y-3 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)]"
+            >
+              <div className="flex items-center justify-between border-b border-border/70 pb-2.5">
+                <div className="flex items-center gap-2 text-primary">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-foreground">
+                    Shipment Destination
+                  </span>
+                </div>
+                <span className="text-[11px] text-emerald-600 font-semibold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" /> Insured
+                </span>
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-foreground">
+                  {order.customer.name}
+                </p>
+                <p className="text-[12px] text-muted-foreground leading-relaxed mt-0.5">
+                  {maskDeliveryAddress(order.customer.address)}
+                  <br />
+                  {order.customer.city}
+                  {order.customer.state ? `, ${order.customer.state}` : ""} · {order.customer.country}
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Doorstep Verification PIN Card */}
+            {order.deliveryPin && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.35 }}
+                className="bg-card border border-primary/25 rounded-3xl p-6 space-y-3 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-8 -mt-8 pointer-events-none" />
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5 text-primary text-[11px] font-bold uppercase tracking-wider">
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Doorstep Verification PIN</span>
+                  </div>
+                  <span className="text-[10px] uppercase font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                    Handover Token
+                  </span>
+                </div>
+
+                <div className="flex items-baseline justify-between gap-3 pt-2">
+                  <span className="text-3xl sm:text-4xl font-mono font-bold tracking-[0.3em] text-primary tabular-nums">
+                    {order.deliveryPin}
+                  </span>
+                  <button
+                    onClick={() => copyToClipboard(order.deliveryPin!, "PIN")}
+                    className="p-2 rounded-xl bg-secondary/80 hover:bg-secondary border border-border text-foreground transition-colors shadow-2xs"
+                    title="Copy PIN"
+                  >
+                    <Copy className="w-4 h-4" />
+                  </button>
+                </div>
+                <p className="text-[11px] text-muted-foreground leading-relaxed pt-1">
+                  Required upon parcel handover. Share this exclusively with the courier once the sealed box is presented.
+                </p>
+              </motion.div>
+            )}
+          </div>
+
+          {/* 4. TRACKING TIMELINE & TELEMETRY */}
+          <div className="space-y-6">
+            {/* Macro Milestone Stepper & Latest Scan Banner */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.15, duration: 0.35 }}
+              className="bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] space-y-6"
+            >
+              <div>
+                <span className="text-[10px] uppercase tracking-wider text-muted-foreground font-bold block mb-1">
+                  Transit Progression
+                </span>
+                <MacroMilestoneStepper
+                  status={order.status}
+                  steps={order.trackingSteps}
+                  isConfirmationPage={false}
+                />
+              </div>
+
+              {!cancelled && (
+                <div className="p-4 sm:p-5 rounded-2xl bg-primary/5 border border-primary/20 space-y-2">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2.5 text-primary font-bold text-[13px]">
+                      <span className="relative flex h-2.5 w-2.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary" />
+                      </span>
+                      <Plane className="w-4 h-4" />
+                      <span>Latest Milestone: {lastCompleted?.status || "Order Received"}</span>
+                    </div>
+                    <span className="text-[11px] font-mono text-muted-foreground">
+                      Scanned {relTime} · CET
+                    </span>
+                  </div>
+                  <p className="text-[13px] text-foreground/85 leading-relaxed pl-5 sm:pl-5">
+                    {explanation ||
+                      "Your consignment is progressing on schedule through our certified European air logistics corridor."}
+                  </p>
+                </div>
+              )}
+            </motion.div>
+
+            {/* Flight Trajectory Route Map */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.35 }}
+              className="bg-card border border-border/80 rounded-3xl p-6 sm:p-7 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] space-y-4"
+            >
+              <div className="flex items-center justify-between border-b border-border/70 pb-4">
+                <div>
+                  <h3 className="text-[14px] font-bold text-foreground uppercase tracking-wider">
+                    Air Transit Flight Trajectory
+                  </h3>
+                  <p className="text-[12px] text-muted-foreground mt-0.5">
+                    Live flight corridor from Prague PRG Gateway to final destination
+                  </p>
+                </div>
+                <span className="text-[12px] font-mono font-bold text-primary bg-primary/10 px-3 py-1 rounded-full border border-primary/20">
+                  {progress.toFixed(0)}% Dispatched
+                </span>
+              </div>
+
+              <div className="rounded-2xl bg-secondary/30 p-2 sm:p-4 border border-border/60">
+                <RouteMap
+                  origin={{
+                    label: "PRG Gateway",
+                    sub: meta.courier.split(" ")[0],
+                  }}
+                  destination={{
+                    label: `${order.customer.city || "Destination"}`,
+                    sub: meta.indiaCourier.split(" ")[0],
+                  }}
+                  progress={Math.min(
+                    Math.max(completedSteps / order.trackingSteps.length, 0.05),
+                    1
+                  )}
+                  height={190}
+                />
+              </div>
+            </motion.div>
+
+            {/* Carrier Handoff Details */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.35 }}
+            >
+              <CourierHandoff
+                meta={meta}
+                inIndia={inIndia}
+                city={order.customer.city}
+              />
+            </motion.div>
+
+            {/* Detailed Checkpoint Log & Scans */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.35 }}
+              className="bg-card border border-border/80 rounded-3xl p-6 sm:p-8 shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] space-y-6"
+            >
+              <div className="border-b border-border/70 pb-4 flex items-center justify-between">
+                <div>
+                  <h3 className="text-[16px] font-bold text-foreground">
+                    Checkpoint Log & Scans
+                  </h3>
+                  <p className="text-[12px] text-muted-foreground mt-0.5">
+                    Chronological scan events recorded across international air terminals
+                  </p>
+                </div>
+                <span className="text-[11px] font-mono text-muted-foreground bg-secondary px-2.5 py-1 rounded-md border border-border/60">
+                  CET Timezone
+                </span>
+              </div>
+
+              <TrackingTimeline
+                steps={order.trackingSteps}
+                placedAt={order.placedAt}
+              />
+            </motion.div>
+          </div>
 
           {/* Tracking Support & FAQ Module */}
           <motion.div

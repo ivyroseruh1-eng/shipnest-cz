@@ -51,6 +51,15 @@ export function applyShippingUpdate<K extends keyof DeliveryInfo>(
     else if (country.includes("united states") || country === "usa" || country === "us") next.countryCode = "+1";
     else if (country.includes("united kingdom") || country === "uk" || country === "gb") next.countryCode = "+44";
     else if (country.includes("germany") || country === "de") next.countryCode = "+49";
+    else {
+      const found = COUNTRY_CODES.find(
+        (c) =>
+          c.country.toLowerCase() === country ||
+          c.code.toLowerCase() === country ||
+          c.dialCode === country
+      );
+      if (found) next.countryCode = found.code;
+    }
   }
 
   if (field === "countryCode") {
@@ -378,7 +387,7 @@ const CheckoutPage: React.FC = () => {
                     </div>
                     <div>
                       <label className="block text-[12px] font-semibold text-foreground mb-1.5">
-                        State / Region
+                        State / Province / Region
                       </label>
                       <input
                         type="text"

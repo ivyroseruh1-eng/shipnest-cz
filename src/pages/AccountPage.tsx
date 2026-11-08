@@ -219,14 +219,14 @@ const AccountPage = () => {
                   className="bg-card border border-border hover:border-foreground/30 transition-all rounded-2xl p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4"
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 bg-secondary/40 rounded-xl overflow-hidden flex items-center justify-center p-2 shrink-0">
-                      <img
+                    <div
+                      className="w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center p-2 shrink-0 border border-border/50"
+                      style={{ background: getProductImageBackground(item?.image).background }}
+                    >
+                      <ProductImage
                         src={item?.image}
                         alt=""
                         className="w-full h-full object-contain"
-                        onError={e => {
-                          (e.target as HTMLImageElement).src = "/placeholder.svg";
-                        }}
                       />
                     </div>
                     <div className="space-y-1">

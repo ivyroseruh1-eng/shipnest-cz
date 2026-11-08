@@ -1875,7 +1875,7 @@ const PaymentPage: React.FC = () => {
                   <div key={`${item.product.id}-${idx}`} className="flex items-center gap-3">
                     <div
                       className="w-12 h-12 rounded-xl border border-border/60 p-1 flex items-center justify-center shrink-0 overflow-hidden"
-                      style={{ background: getProductImageBackground(item.product) }}
+                      style={{ background: getProductImageBackground(item.product.image, item.product).background }}
                     >
                       <ProductImage
                         src={item.product.image}
