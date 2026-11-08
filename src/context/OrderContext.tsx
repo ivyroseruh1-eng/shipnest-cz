@@ -607,6 +607,16 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
 
     setOrders((prev) => [orderWithPin, ...prev]);
 
+    // Unconditionally sync order to local storage for immediate account reflection & offline persistence
+    try {
+      const saved = localStorage.getItem("shipnest-orders");
+      const existing = saved ? JSON.parse(saved) : [];
+      const filtered = existing.filter((o: Order) => o.orderId !== orderWithPin.orderId);
+      localStorage.setItem("shipnest-orders", JSON.stringify([orderWithPin, ...filtered]));
+    } catch {
+      // Ignore localStorage exceptions
+    }
+
     const { error } = await supabase.from("orders").insert({
       id: orderWithPin.id,
       order_id: orderWithPin.orderId,
@@ -626,10 +636,7 @@ export const OrderProvider = ({ children }: { children: ReactNode }) => {
     });
 
     if (error) {
-      console.error("Failed to save order:", error);
-      const saved = localStorage.getItem("shipnest-orders");
-      const existing = saved ? JSON.parse(saved) : [];
-      localStorage.setItem("shipnest-orders", JSON.stringify([orderWithPin, ...existing]));
+      console.error("Failed to sync order to remote Supabase:", error);
     }
   };
 

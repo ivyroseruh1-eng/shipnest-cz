@@ -114,7 +114,7 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
         return "375px";
       case "desktop":
       default:
-        return "560px";
+        return "600px";
     }
   };
 

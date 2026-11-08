@@ -48,46 +48,57 @@ const mockOrder: Order = {
 
 describe("Order Email Generator (Apple Style & Mobile-First)", () => {
   describe("Canonical Production Site URL & Security", () => {
-    it("defaults to https://shipnest.getvoroa.com", () => {
-      expect(CANONICAL_PRODUCTION_SITE_URL).toBe("https://shipnest.getvoroa.com");
-      expect(getCanonicalSiteUrl()).toBe("https://shipnest.getvoroa.com");
+    it("defaults to https://shipnest-cz.lovable.app", () => {
+      expect(CANONICAL_PRODUCTION_SITE_URL).toBe("https://shipnest-cz.lovable.app");
+      expect(getCanonicalSiteUrl()).toBe("https://shipnest-cz.lovable.app");
     });
 
     it("rejects localhost, 127.0.0.1, preview URLs, and shipnest.com in favor of canonical", () => {
-      expect(getCanonicalSiteUrl("http://localhost:5173")).toBe("https://shipnest.getvoroa.com");
-      expect(getCanonicalSiteUrl("http://127.0.0.1:3000")).toBe("https://shipnest.getvoroa.com");
-      expect(getCanonicalSiteUrl("https://shipnest-preview-123.vercel.app")).toBe("https://shipnest.getvoroa.com");
-      expect(getCanonicalSiteUrl("https://shipnest.com")).toBe("https://shipnest.getvoroa.com");
-      expect(getCanonicalSiteUrl("https://shipnest.com/")).toBe("https://shipnest.getvoroa.com");
+      expect(getCanonicalSiteUrl("http://localhost:5173")).toBe("https://shipnest-cz.lovable.app");
+      expect(getCanonicalSiteUrl("http://127.0.0.1:3000")).toBe("https://shipnest-cz.lovable.app");
+      expect(getCanonicalSiteUrl("https://shipnest-preview-123.vercel.app")).toBe("https://shipnest-cz.lovable.app");
+      expect(getCanonicalSiteUrl("https://shipnest.com")).toBe("https://shipnest-cz.lovable.app");
+      expect(getCanonicalSiteUrl("https://shipnest.com/")).toBe("https://shipnest-cz.lovable.app");
     });
 
     it("safely trims trailing slashes from valid custom origins", () => {
-      expect(getCanonicalSiteUrl("https://shipnest.getvoroa.com/")).toBe("https://shipnest.getvoroa.com");
+      expect(getCanonicalSiteUrl("https://shipnest-cz.lovable.app/")).toBe("https://shipnest-cz.lovable.app");
     });
   });
 
   describe("Image URL Normalization Helper", () => {
+    it("sanitizes image URLs by stripping query strings and hash fragments", () => {
+      expect(normalizeEmailImageUrl("/assets/products/iphone.jpg?v=12345")).toBe(
+        "https://shipnest-cz.lovable.app/assets/products/iphone.jpg"
+      );
+      expect(
+        normalizeEmailImageUrl(
+          "https://shipnest-cz.lovable.app/assets/brand/shipnest-logo.png?v=abc#frag"
+        )
+      ).toBe("https://shipnest-cz.lovable.app/assets/brand/shipnest-logo.png");
+    });
+
     it("normalizes local paths to absolute production HTTPS URLs", () => {
       expect(normalizeEmailImageUrl("/assets/brand/shipnest-logo.png")).toBe(
-        "https://shipnest.getvoroa.com/assets/brand/shipnest-logo.png"
+        "https://shipnest-cz.lovable.app/assets/brand/shipnest-logo.png"
       );
       expect(normalizeEmailImageUrl("assets/brand/shipnest-logo.png")).toBe(
-        "https://shipnest.getvoroa.com/assets/brand/shipnest-logo.png"
+        "https://shipnest-cz.lovable.app/assets/brand/shipnest-logo.png"
       );
     });
 
     it("handles public/ prefix correctly (Vite rule: public/ is served at root /)", () => {
       expect(normalizeEmailImageUrl("public/assets/products/galaxy.jpg")).toBe(
-        "https://shipnest.getvoroa.com/assets/products/galaxy.jpg"
+        "https://shipnest-cz.lovable.app/assets/products/galaxy.jpg"
       );
       expect(normalizeEmailImageUrl("/public/assets/brand/shipnest-logo.png")).toBe(
-        "https://shipnest.getvoroa.com/assets/brand/shipnest-logo.png"
+        "https://shipnest-cz.lovable.app/assets/brand/shipnest-logo.png"
       );
     });
 
     it("handles relative product and brand paths", () => {
       expect(normalizeEmailImageUrl("products/iphone-16.jpg")).toBe(
-        "https://shipnest.getvoroa.com/assets/products/iphone-16.jpg"
+        "https://shipnest-cz.lovable.app/assets/products/iphone-16.jpg"
       );
     });
 
@@ -97,7 +108,7 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
     });
 
     it("rejects localhost, blob:, file:, and data: URLs in favor of fallback asset", () => {
-      const fallback = "https://shipnest.getvoroa.com/assets/brand/shipnest-mark.png";
+      const fallback = "https://shipnest-cz.lovable.app/assets/brand/shipnest-mark.png";
       expect(normalizeEmailImageUrl("http://localhost:5173/assets/test.jpg")).toBe(fallback);
       expect(normalizeEmailImageUrl("blob:http://localhost:5173/xyz-123")).toBe(fallback);
       expect(normalizeEmailImageUrl("file:///C:/Users/test/img.png")).toBe(fallback);
@@ -109,14 +120,14 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
     it("rewrites legacy shipnest.com domain to canonical production origin", () => {
       expect(
         normalizeEmailImageUrl("https://shipnest.com/assets/brand/shipnest-logo.png")
-      ).toBe("https://shipnest.getvoroa.com/assets/brand/shipnest-logo.png");
+      ).toBe("https://shipnest-cz.lovable.app/assets/brand/shipnest-logo.png");
     });
   });
 
   describe("Tracking URL Integrity", () => {
     it("generates direct /track/:trackingId URL using dynamic order.trackingId", () => {
       const email = generateOrderEmail(mockOrder, "Order Received");
-      const expectedTrackUrl = "https://shipnest.getvoroa.com/track/SNX948201";
+      const expectedTrackUrl = "https://shipnest-cz.lovable.app/track/SNX948201";
 
       expect(email.html).toContain(expectedTrackUrl);
       expect(email.plainText).toContain(expectedTrackUrl);
@@ -148,8 +159,8 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
     it("renders Apple minimalist typography and design tokens", () => {
       const email = generateOrderEmail(mockOrder, "Order Received");
       expect(email.html).toContain("-apple-system, BlinkMacSystemFont");
-      expect(email.html).toContain("https://shipnest.getvoroa.com/assets/brand/shipnest-logo.png");
-      expect(email.html).toContain("Track Shipment");
+      expect(email.html).toContain("https://shipnest-cz.lovable.app/assets/brand/shipnest-logo-white.png");
+      expect(email.html).toContain("Track Consignment Live");
       expect(email.html).toContain("Prague Hub");
       expect(email.html).toContain("Václav Havel Airport Prague (PRG)");
     });
@@ -301,11 +312,11 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
       expect(email.html).toContain("width: 100% !important");
     });
 
-    it("supports automatic dark mode logo switching with shipnest-logo-white.png", () => {
+    it("supports universally visible brand header with shipnest-logo-white.png without fragile class toggles", () => {
       const email = generateOrderEmail(mockOrder, "In Transit");
       expect(email.html).toContain("shipnest-logo-white.png");
-      expect(email.html).toContain("light-logo-wrap");
-      expect(email.html).toContain("dark-logo-wrap");
+      expect(email.html).not.toContain("light-logo-wrap");
+      expect(email.html).not.toContain("dark-logo-wrap");
       expect(email.html).toContain("@media (prefers-color-scheme: dark)");
     });
 
@@ -345,7 +356,7 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
         expect(email.plainText).toContain(mockOrder.trackingId);
 
         // Tracking URL
-        const expectedTrackUrl = `https://shipnest.getvoroa.com/track/${mockOrder.trackingId}`;
+        const expectedTrackUrl = `https://shipnest-cz.lovable.app/track/${mockOrder.trackingId}`;
         expect(email.html).toContain(expectedTrackUrl);
         expect(email.plainText).toContain(expectedTrackUrl);
 

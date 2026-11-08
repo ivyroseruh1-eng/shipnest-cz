@@ -931,7 +931,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               <div key={p.id} className="bg-card border border-border rounded-2xl p-4 space-y-3 flex flex-col justify-between">
                 <div
                   className="aspect-square rounded-xl overflow-hidden flex items-center justify-center p-3 border border-border/50"
-                  style={{ backgroundColor: getProductImageBackground(p.image).background }}
+                  style={{ backgroundColor: getProductImageBackground(p.image, p).background }}
                 >
                   <ProductImage
                     src={p.image}
