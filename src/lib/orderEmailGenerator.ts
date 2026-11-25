@@ -1,5 +1,6 @@
 import { Order } from "@/types";
 import { explainStatus } from "@/data/statusExplanations";
+import { getShipmentMeta } from "@/lib/courier";
 
 export interface GeneratedEmail {
   stepStatus: string;
@@ -21,6 +22,7 @@ export const ALL_TRACKING_STEPS = [
   "Departed Origin",
   "In Transit",
   "Customs",
+  "Arrived in India",
   "Regional Hub",
   "Local Hub",
   "Out for Delivery",
@@ -277,6 +279,24 @@ export const APPLE_STATUS_DETAILS: Record<string, AppleStepDetails> = {
       "Your shipment has arrived at the destination customs facility for standard regulatory clearance. Once completed, your package will transfer directly to the local carrier.",
     stepperIndex: 2,
   },
+  "Arrived in India": {
+    eyebrow: "Arrived in India",
+    title: "Your product has reached India.",
+    subjectPrefix: "Arrived in India",
+    preheader: "Your product has reached India and will be handed to our local delivery partner.",
+    explanation:
+      "Your product has reached India and is completing inbound arrival checks. It will shortly be handed over to our local delivery partner for onward delivery to your address.",
+    stepperIndex: 2,
+  },
+  "Reached India": {
+    eyebrow: "Arrived in India",
+    title: "Your product has reached India.",
+    subjectPrefix: "Arrived in India",
+    preheader: "Your product has reached India and will be handed to our local delivery partner.",
+    explanation:
+      "Your product has reached India and is completing inbound arrival checks. It will shortly be handed over to our local delivery partner for onward delivery to your address.",
+    stepperIndex: 2,
+  },
   "Regional Hub": {
     eyebrow: "Regional Facility",
     title: "Arrived at regional facility.",
@@ -386,6 +406,9 @@ export const generateOrderEmail = (
   // Sensitive data handling: only render when actually present
   const hasDeliveryPin = Boolean(order.deliveryPin && order.deliveryPin.trim());
   const hasPaymentMethod = Boolean(order.paymentMethod && order.paymentMethod.trim());
+  const isIndiaHandoverStep =
+    currentStep === "Arrived in India" || currentStep === "Reached India";
+  const shipmentMeta = getShipmentMeta(order.trackingId, order.total);
 
   // Items list HTML - Refined Apple item rows with high-res thumbnails & tabular alignment
   const itemsHtml = order.items
@@ -719,7 +742,7 @@ export const generateOrderEmail = (
                             <div class="apple-text-secondary" style="font-size: 12px; color: #515154; line-height: 1.45;">
                               ${order.customer.address}<br />
                               ${order.customer.city}, ${order.customer.state} ${order.customer.zip}<br />
-                              ${order.customer.country}
+                              ${order.customer.country}${order.customer.phone ? `<br />${order.customer.phone}` : ""}
                             </div>
                           </td>
                         </tr>
@@ -741,7 +764,7 @@ export const generateOrderEmail = (
                             </div>
                             <div class="apple-text-secondary" style="font-size: 12px; color: #86868B; line-height: 1.45;">
                               Carrier: ShipNest Express Worldwide<br />
-                              <span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', monospace; font-size: 11px;">Tracking: ${order.trackingId}</span>
+                              ${isIndiaHandoverStep ? `Local Delivery Partner: ${shipmentMeta.indiaCourier}<br />` : ""}<span style="font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', monospace; font-size: 11px;">Tracking: ${order.trackingId}</span>
                             </div>
                           </td>
                         </tr>
@@ -812,7 +835,7 @@ Estimated Arrival: ${order.estimatedDelivery}
 ORDER DETAILS:
 Order Number: #${order.orderId}
 Order Date: ${placedDate}
-Tracking Number: ${order.trackingId}${pinTextLine}
+Tracking Number: ${order.trackingId}${isIndiaHandoverStep ? `\nLocal Delivery Partner: ${shipmentMeta.indiaCourier}` : ""}${pinTextLine}
 
 ITEMS IN YOUR ORDER:
 ${order.items.map((i) => `* ${i.name}${i.brand ? ` (${i.brand})` : ""} x${i.qty} - $${(i.price * i.qty).toLocaleString()}`).join("\n")}
@@ -827,7 +850,7 @@ SHIP TO:
 ${order.customer.name}
 ${order.customer.address}
 ${order.customer.city}, ${order.customer.state} ${order.customer.zip}
-${order.customer.country}
+${order.customer.country}${order.customer.phone ? `\nPhone: ${order.customer.phone}` : ""}
 
 TRACK YOUR SHIPMENT:
 ${trackUrl}

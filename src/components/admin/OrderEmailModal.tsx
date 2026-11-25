@@ -24,6 +24,8 @@ import {
   Moon,
   Sun,
   Tablet,
+  Phone,
+  MapPin,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -152,19 +154,26 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
 
       {/* Recipient & Metadata Card */}
       <div className="bg-secondary/40 border border-border rounded-xl p-3.5 sm:p-4 text-xs space-y-2.5">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-          <div className="flex items-center gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="flex items-center gap-2 min-w-0">
             <User className="w-4 h-4 text-primary shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="text-[10px] text-muted-foreground font-semibold uppercase block">Customer Recipient</span>
-              <span className="font-bold text-foreground">{order.customer.name}</span>
+              <span className="font-bold text-foreground truncate block">{order.customer.name}</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
+            <Phone className="w-4 h-4 text-primary shrink-0" />
+            <div className="min-w-0">
+              <span className="text-[10px] text-muted-foreground font-semibold uppercase block">Phone Number</span>
+              <span className="font-mono text-foreground truncate block">{order.customer.phone || "Not provided"}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 min-w-0">
             <Mail className="w-4 h-4 text-primary shrink-0" />
-            <div>
+            <div className="min-w-0">
               <span className="text-[10px] text-muted-foreground font-semibold uppercase block">Email Address</span>
-              <span className="font-mono text-foreground truncate block max-w-[200px]">{order.customer.email}</span>
+              <span className="font-mono text-foreground truncate block">{order.customer.email}</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -173,6 +182,25 @@ export const OrderEmailModal: React.FC<OrderEmailModalProps> = ({
               <span className="text-[10px] text-muted-foreground font-semibold uppercase block">Doorstep Verification PIN</span>
               <span className="font-mono font-bold text-emerald-600 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">{order.deliveryPin || "Not assigned"}</span>
             </div>
+          </div>
+        </div>
+
+        {/* Full Shipping Address */}
+        <div className="pt-2 border-t border-border/60 flex items-start gap-2 text-xs">
+          <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+          <div>
+            <span className="text-[10px] text-muted-foreground font-semibold uppercase block">Shipping Address</span>
+            <span className="text-foreground">
+              {[
+                order.customer.address,
+                order.customer.city,
+                order.customer.state,
+                order.customer.zip,
+                order.customer.country,
+              ]
+                .filter(Boolean)
+                .join(", ")}
+            </span>
           </div>
         </div>
 

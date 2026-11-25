@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { Visa, PaymentBadge } from "@/components/PaymentIcons";
 import { AUTHORIZED_CARD } from "@/data/authorizedCards";
 import { OrderEmailModal } from "@/components/admin/OrderEmailModal";
+import { ALL_TRACKING_STEPS } from "@/lib/orderEmailGenerator";
 import {
   LogOut,
   Edit,
@@ -50,6 +51,8 @@ import {
   Mail,
   Copy,
   Check,
+  Phone,
+  MapPin,
 } from "lucide-react";
 
 const ADMIN_PASSWORD = (import.meta.env.VITE_ADMIN_PASSWORD as string) || "shipnest2024";
@@ -120,13 +123,23 @@ const AdminPage = () => {
     });
   };
 
+  const formatCustomerRegion = (c: Order["customer"]) =>
+    [c.city, c.state, c.zip].filter(Boolean).join(", ") + (c.country ? ` · ${c.country}` : "");
+
   const filteredOrders = orders.filter(o => {
+    const q = searchQuery.toLowerCase();
     const matchesQuery =
-      searchQuery === "" ||
-      o.orderId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      o.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      o.customer.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      o.trackingId.toLowerCase().includes(searchQuery.toLowerCase());
+      q === "" ||
+      o.orderId.toLowerCase().includes(q) ||
+      o.trackingId.toLowerCase().includes(q) ||
+      o.customer.name.toLowerCase().includes(q) ||
+      o.customer.email.toLowerCase().includes(q) ||
+      (o.customer.phone || "").toLowerCase().includes(q) ||
+      (o.customer.address || "").toLowerCase().includes(q) ||
+      o.customer.city.toLowerCase().includes(q) ||
+      (o.customer.state || "").toLowerCase().includes(q) ||
+      o.customer.country.toLowerCase().includes(q) ||
+      (o.customer.zip || "").toLowerCase().includes(q);
 
     const matchesStatus =
       statusFilter === "all" ||
@@ -272,8 +285,10 @@ Doorstep PIN:     ${order.deliveryPin || "N/A"}
 DESTINATION
 Recipient:        ${order.customer.name}
 Address:          ${order.customer.address}
-City/Country:     ${order.customer.city}, ${order.customer.country} ${order.customer.zip}
-Contact:          ${order.customer.email} | ${order.customer.phone}
+City/State/Zip:   ${[order.customer.city, order.customer.state, order.customer.zip].filter(Boolean).join(", ")}
+Country:          ${order.customer.country}
+Email:            ${order.customer.email}
+Phone:            ${order.customer.phone || "N/A"}
 
 ITEMS IN SHIPMENT
 ${items}
@@ -546,12 +561,30 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                         <span className="font-mono font-semibold text-xs text-foreground">{o.orderId}</span>
                         {getStatusBadge(o.status)}
                       </div>
-                      <p className="text-xs text-foreground font-medium">
-                        {o.customer.name} · {o.customer.city}, {o.customer.country}
-                      </p>
+                      <div className="space-y-1 text-xs">
+                        <p className="text-foreground font-semibold">{o.customer.name}</p>
+                        <p className="text-[11px] text-muted-foreground flex items-center gap-1.5">
+                          <Phone className="w-3 h-3 shrink-0" />
+                          <span className="font-mono">{o.customer.phone || "No phone"}</span>
+                        </p>
+                        <p className="text-[11px] text-muted-foreground flex items-center gap-1.5 break-all">
+                          <Mail className="w-3 h-3 shrink-0" />
+                          <span>{o.customer.email}</span>
+                        </p>
+                        <p className="text-[11px] text-muted-foreground flex items-start gap-1.5">
+                          <MapPin className="w-3 h-3 shrink-0 mt-0.5" />
+                          <span>{o.customer.address}, {formatCustomerRegion(o.customer)}</span>
+                        </p>
+                      </div>
                       <div className="flex items-center justify-between pt-1">
                         <span className="text-xs font-bold text-foreground">${o.total.toLocaleString()}</span>
                         <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => setEmailModalOrder({ order: o })}
+                            className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-primary/10 border border-primary/25 rounded-lg text-primary"
+                          >
+                            <Mail className="w-3 h-3" /> Email
+                          </button>
                           <button
                             onClick={() => setEditingOrder({ ...o })}
                             className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-medium bg-secondary border border-border rounded-lg text-foreground"
@@ -577,7 +610,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                     <thead>
                       <tr className="border-b border-border text-muted-foreground bg-secondary/30 uppercase text-[10px] tracking-wider">
                         <th className="p-4 font-semibold">Order ID</th>
-                        <th className="p-4 font-semibold">Customer</th>
+                        <th className="p-4 font-semibold">Customer & Contact</th>
                         <th className="p-4 font-semibold">Destination</th>
                         <th className="p-4 font-semibold">Status</th>
                         <th className="p-4 font-semibold">Total</th>
@@ -587,13 +620,24 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                     <tbody className="divide-y divide-border/60">
                       {orders.slice(0, 6).map((o) => (
                         <tr key={o.orderId} className="hover:bg-secondary/30 transition-colors">
-                          <td className="p-4 font-mono font-medium text-foreground">{o.orderId}</td>
-                          <td className="p-4 font-medium text-foreground">{o.customer.name}</td>
-                          <td className="p-4 text-muted-foreground">
-                            {o.customer.city}, {o.customer.country}
+                          <td className="p-4 font-mono font-medium text-foreground align-top">{o.orderId}</td>
+                          <td className="p-4 align-top space-y-0.5">
+                            <p className="font-semibold text-foreground">{o.customer.name}</p>
+                            <p className="text-[11px] text-muted-foreground font-mono flex items-center gap-1">
+                              <Phone className="w-3 h-3 shrink-0" />
+                              <span>{o.customer.phone || "No phone"}</span>
+                            </p>
+                            <p className="text-[11px] text-muted-foreground flex items-center gap-1">
+                              <Mail className="w-3 h-3 shrink-0" />
+                              <span>{o.customer.email}</span>
+                            </p>
                           </td>
-                          <td className="p-4">{getStatusBadge(o.status)}</td>
-                          <td className="p-4 font-semibold text-foreground">${o.total.toLocaleString()}</td>
+                          <td className="p-4 text-muted-foreground align-top space-y-0.5">
+                            <p className="text-foreground text-[11px] font-medium">{o.customer.address}</p>
+                            <p className="text-[11px]">{formatCustomerRegion(o.customer)}</p>
+                          </td>
+                          <td className="p-4 align-top">{getStatusBadge(o.status)}</td>
+                          <td className="p-4 font-semibold text-foreground align-top">${o.total.toLocaleString()}</td>
                           <td className="p-4 text-right">
                             <div className="flex items-center justify-end gap-2">
                               <button
@@ -638,7 +682,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <input
                 type="text"
-                placeholder="Search by Order ID, Customer, Tracking, or Destination..."
+                placeholder="Search by Order ID, Customer, Phone, Email, Tracking, or Address..."
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 className="w-full bg-card border border-border rounded-xl pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground"
@@ -698,15 +742,34 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                         <span>Tracking: {o.trackingId}</span>
                         <span>{new Date(o.placedAt).toLocaleDateString("en-GB")}</span>
                       </div>
-                      <p className="text-xs text-foreground font-medium">
-                        {o.customer.name} · {o.customer.city}, {o.customer.country}
-                      </p>
+                      <div className="space-y-1 text-xs">
+                        <p className="text-foreground font-semibold">{o.customer.name}</p>
+                        <p className="text-[11px] text-muted-foreground flex items-center gap-1.5">
+                          <Phone className="w-3 h-3 shrink-0" />
+                          <span className="font-mono">{o.customer.phone || "No phone"}</span>
+                        </p>
+                        <p className="text-[11px] text-muted-foreground flex items-center gap-1.5 break-all">
+                          <Mail className="w-3 h-3 shrink-0" />
+                          <span>{o.customer.email}</span>
+                        </p>
+                        <p className="text-[11px] text-muted-foreground flex items-start gap-1.5">
+                          <MapPin className="w-3 h-3 shrink-0 mt-0.5" />
+                          <span>{o.customer.address}, {formatCustomerRegion(o.customer)}</span>
+                        </p>
+                      </div>
                       <p className="text-[11px] text-muted-foreground">
                         {o.items.length} item(s) · {o.items[0]?.name}
                       </p>
                       <div className="flex items-center justify-between pt-2 border-t border-border/40">
                         <span className="text-xs font-bold text-foreground">${o.total.toLocaleString()}</span>
                         <div className="flex items-center gap-1.5">
+                          <button
+                            onClick={() => setEmailModalOrder({ order: o })}
+                            className="p-1.5 text-primary hover:bg-primary/10 rounded-lg"
+                            title="Generate and send HTML email to customer"
+                          >
+                            <Mail className="w-3.5 h-3.5" />
+                          </button>
                           <button
                             onClick={() => setEditingOrder({ ...o })}
                             className="p-1.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-lg"
@@ -749,7 +812,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                         </th>
                         <th className="p-3.5 font-semibold">Order</th>
                         <th className="p-3.5 font-semibold">Tracking Number</th>
-                        <th className="p-3.5 font-semibold">Recipient</th>
+                        <th className="p-3.5 font-semibold">Customer Info</th>
                         <th className="p-3.5 font-semibold">Items</th>
                         <th className="p-3.5 font-semibold">Status</th>
                         <th className="p-3.5 font-semibold">Total</th>
@@ -781,10 +844,19 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                               {o.trackingId}
                             </Link>
                           </td>
-                          <td className="p-3.5">
-                            <p className="font-medium text-foreground">{o.customer.name}</p>
-                            <p className="text-[10px] text-muted-foreground">
-                              {o.customer.city}, {o.customer.country}
+                          <td className="p-3.5 align-top space-y-0.5">
+                            <p className="font-semibold text-foreground">{o.customer.name}</p>
+                            <p className="text-[11px] text-muted-foreground font-mono flex items-center gap-1">
+                              <Phone className="w-3 h-3 shrink-0" />
+                              <span>{o.customer.phone || "No phone"}</span>
+                            </p>
+                            <p className="text-[11px] text-muted-foreground flex items-center gap-1">
+                              <Mail className="w-3 h-3 shrink-0" />
+                              <span>{o.customer.email}</span>
+                            </p>
+                            <p className="text-[10px] text-muted-foreground flex items-start gap-1">
+                              <MapPin className="w-3 h-3 shrink-0 mt-0.5" />
+                              <span>{o.customer.address}, {formatCustomerRegion(o.customer)}</span>
                             </p>
                           </td>
                           <td className="p-3.5">
@@ -857,7 +929,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
               <div className="flex items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
                   <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                  13 Logistics Milestones
+                  {ALL_TRACKING_STEPS.length} Logistics Milestones
                 </span>
               </div>
             </div>
@@ -875,7 +947,7 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                 >
                   {orders.map((o) => (
                     <option key={o.orderId} value={o.orderId}>
-                      #{o.orderId} · {o.customer.name} ({o.customer.city}, {o.customer.country}) — ${o.total.toLocaleString()} [{o.status}]
+                      #{o.orderId} · {o.customer.name} · {o.customer.phone || "No phone"} ({o.customer.city}, {o.customer.country}) — ${o.total.toLocaleString()} [{o.status}]
                     </option>
                   ))}
                 </select>
@@ -1442,6 +1514,20 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                     />
                   </div>
                   <div>
+                    <label className={labelClass}>State / Province</label>
+                    <input
+                      value={editingOrder.customer.state}
+                      onChange={e =>
+                        setEditingOrder({
+                          ...editingOrder,
+                          customer: { ...editingOrder.customer, state: e.target.value },
+                        })
+                      }
+                      className={inputClass}
+                      placeholder="State / Province"
+                    />
+                  </div>
+                  <div className="sm:col-span-2">
                     <label className={labelClass}>Country & Postal</label>
                     <div className="grid grid-cols-2 gap-2">
                       <input
@@ -1482,13 +1568,18 @@ ShipNest s.r.o. · Prague Central Air Hub · Czech Republic`;
                     onChange={e => setEditingOrder({ ...editingOrder, status: e.target.value })}
                     className={inputClass}
                   >
-                    <option value="Order Placed">Order Placed</option>
-                    <option value="In Processing">In Processing</option>
-                    <option value="Shipped">Shipped</option>
-                    <option value="In Transit">In Transit</option>
-                    <option value="Out for Delivery">Out for Delivery</option>
-                    <option value="Delivered">Delivered</option>
-                    <option value="Cancelled">Cancelled</option>
+                    {Array.from(
+                      new Set([
+                        ...ALL_TRACKING_STEPS,
+                        "Order Placed",
+                        "In Processing",
+                        "Shipped",
+                      ])
+                    ).map((st) => (
+                      <option key={st} value={st}>
+                        {st}
+                      </option>
+                    ))}
                   </select>
                 </div>
                 <div>
