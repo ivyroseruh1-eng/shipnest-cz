@@ -462,7 +462,10 @@ const PaymentPage: React.FC = () => {
       customer: {
         name: recipient.name,
         email: recipient.email,
-        phone: recipient.phone,
+        phone:
+          recipient.phone && recipient.phone.trim().startsWith("+")
+            ? recipient.phone.trim()
+            : [recipient.countryCode, recipient.phone].filter(Boolean).join(" ").trim(),
         address: recipient.address + (recipient.apartment ? `, ${recipient.apartment}` : ""),
         city: recipient.city,
         state: recipient.state,

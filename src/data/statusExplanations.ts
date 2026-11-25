@@ -17,6 +17,8 @@ export const statusExplanations: Record<string, string> = {
   "Arrived at Beijing Hub": "Your package has arrived at the Beijing transit hub and is preparing for onward transit.",
   "In Transit to New Delhi": "Your shipment is in transit on its flight connection to New Delhi.",
   "Customs": "Your shipment has arrived at the destination customs facility for standard regulatory clearance. Once completed, your package will transfer directly to the local carrier.",
+  "Arrived in India": "Your product has reached India and is completing inbound arrival checks. It will shortly be handed over to our local delivery partner for onward delivery to your address.",
+  "Reached India": "Your product has reached India and is completing inbound arrival checks. It will shortly be handed over to our local delivery partner for onward delivery to your address.",
   "Arrived at New Delhi": "Your package has arrived in New Delhi and is undergoing standard inbound processing.",
   "Received at Local Warehouse": "Your package has cleared customs and arrived at the local delivery facility.",
   "Regional Hub": "Your package has arrived at the regional distribution facility serving your region. It is being sorted for transport to the local delivery station in your area.",

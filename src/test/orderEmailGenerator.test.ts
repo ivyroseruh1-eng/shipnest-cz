@@ -212,7 +212,7 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
   });
 
   describe("Full Coverage of Tracking Steps", () => {
-    it("generates valid lightweight emails for all 13 tracking steps", () => {
+    it("generates valid lightweight emails for all tracking steps", () => {
       ALL_TRACKING_STEPS.forEach((step) => {
         const email = generateOrderEmail(mockOrder, step);
         expect(email.stepStatus).toBe(step);
@@ -224,10 +224,37 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
         expect(email.plainText.length).toBeGreaterThan(200);
       });
     });
+
+    it("includes 'Arrived in India' template with local delivery partner handover details", () => {
+      expect(ALL_TRACKING_STEPS).toContain("Arrived in India");
+      const indiaOrder: Order = {
+        ...mockOrder,
+        customer: {
+          name: "Aarav Sharma",
+          email: "aarav@example.in",
+          phone: "+91 98765 43210",
+          address: "42 MG Road",
+          city: "Dimapur",
+          state: "Nagaland",
+          country: "India",
+          zip: "797112",
+        },
+      };
+      const email = generateOrderEmail(indiaOrder, "Arrived in India");
+      expect(email.subject).toBe("Arrived in India: ShipNest #SN94820194");
+      expect(email.html).toContain("Your product has reached India.");
+      expect(email.html).toContain("local delivery partner");
+      expect(email.html).toContain("Local Delivery Partner:");
+      expect(email.html).toContain("+91 98765 43210");
+      expect(email.plainText).toContain("Your product has reached India.");
+      expect(email.plainText).toContain("local delivery partner");
+      expect(email.plainText).toContain("Local Delivery Partner:");
+      expect(email.plainText).toContain("+91 98765 43210");
+    });
   });
 
   describe("Apple-Quality Transactional Email Communication Standards", () => {
-    it("keeps all 13 subject lines strictly under 50 characters", () => {
+    it("keeps all subject lines strictly under 50 characters", () => {
       ALL_TRACKING_STEPS.forEach((step) => {
         const email = generateOrderEmail(mockOrder, step);
         expect(email.subject.length).toBeLessThanOrEqual(50);
@@ -242,7 +269,7 @@ describe("Order Email Generator (Apple Style & Mobile-First)", () => {
       });
     });
 
-    it("ensures preheaders are distinct across all 13 tracking steps", () => {
+    it("ensures preheaders are distinct across all tracking steps", () => {
       const preheaders = ALL_TRACKING_STEPS.map(
         (step) => generateOrderEmail(mockOrder, step).preheader
       );
